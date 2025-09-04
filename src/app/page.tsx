@@ -36,30 +36,38 @@ const features = [
   {
     icon: <Globe className="h-8 w-8 text-primary" />,
     title: 'Global Connectivity',
-    description: 'We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.',
+    description: 'ensuring that your shipments reach every corner of the globe with efficiency and precision.',
     image: 'https://picsum.photos/600/400?q=9',
     imageHint: 'globe world map',
+    colSpan: 'col-span-1',
+    rowSpan: 'row-span-1'
   },
   {
     icon: <LocateIcon className="h-8 w-8 text-primary" />,
-    title: 'Real-Time Tracking',
-    description: 'Our real-time tracking system gives you complete visibility from departure to arrival.',
+    title: 'Tracking',
+    description: 'Gaining insights into their journey from dispatch to delivery.',
     image: 'https://picsum.photos/600/400?q=10',
     imageHint: 'person tracking package',
+    colSpan: 'col-span-1',
+    rowSpan: 'row-span-1'
   },
   {
     icon: <Container className="h-8 w-8 text-primary" />,
     title: 'Versatile Fleet Options',
-    description: 'Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.',
-    image: 'https://picsum.photos/600/400?q=11',
+    description: 'Tailor your deliveries with our diverse fleet, offering a range of vehicles to accommodate packages of any size. From bikes to trucks, we’ve got your shipment covered.',
+    image: 'https://picsum.photos/600/800?q=11',
     imageHint: 'shipping containers',
+    colSpan: 'col-span-1',
+    rowSpan: 'row-span-2'
   },
   {
     icon: <PackageCheck className="h-8 w-8 text-primary" />,
     title: 'Secure Handling',
-    description: 'Your package is handled with the utmost care, with multiple security checks to ensure its safety.',
+    description: 'Ensuring that your packages arrive intact and on time.',
     image: 'https://picsum.photos/600/400?q=4',
     imageHint: 'secure package handling',
+    colSpan: 'col-span-1',
+    rowSpan: 'row-span-1'
   },
 ];
 
@@ -232,24 +240,65 @@ export default function Home() {
               </p>
                <Button>Learn More</Button>
             </div>
-            <div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-2">
-              {features.map((feature) => (
-                <div key={feature.title} className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
-                    <div className="flex items-center gap-4 mb-4">
-                      {feature.icon}
-                      <h3 className="font-headline text-xl font-bold">{feature.title}</h3>
+            <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
+              <div className="grid gap-8">
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 className="font-headline text-xl font-bold mb-2">{features[0].title}</h3>
+                        <p className="text-muted-foreground">{features[0].description}</p>
                     </div>
-                    <p className="text-muted-foreground flex-grow">{feature.description}</p>
                     <Image 
-                      src={feature.image} 
-                      data-ai-hint={feature.imageHint} 
-                      alt={feature.title} 
+                      src={features[0].image} 
+                      data-ai-hint={features[0].imageHint} 
+                      alt={features[0].title} 
                       width={600} 
                       height={400} 
-                      className="mt-4 rounded-lg object-cover aspect-[3/2]"
+                      className="mt-4 rounded-lg object-cover aspect-video self-end max-w-[80%]"
                     />
                 </div>
-              ))}
+                 <div className="grid grid-cols-2 gap-8">
+                    <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                         <div>
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
+                            <p className="text-muted-foreground">{features[1].description}</p>
+                        </div>
+                        <Image 
+                        src={features[1].image} 
+                        data-ai-hint={features[1].imageHint} 
+                        alt={features[1].title} 
+                        width={300} 
+                        height={200} 
+                        className="mt-4 rounded-lg object-contain self-end w-24 h-24"
+                        />
+                    </div>
+                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                         <div>
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
+                            <p className="text-muted-foreground">{features[3].description}</p>
+                        </div>
+                        <Image 
+                        src={features[3].image} 
+                        data-ai-hint={features[3].imageHint} 
+                        alt={features[3].title} 
+                        width={300} 
+                        height={200} 
+                        className="mt-4 rounded-lg object-contain self-end w-24 h-24"
+                        />
+                    </div>
+                </div>
+              </div>
+              <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
+                <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
+                <p className="text-muted-foreground flex-grow">{features[2].description}</p>
+                <Image 
+                  src={features[2].image} 
+                  data-ai-hint={features[2].imageHint} 
+                  alt={features[2].title} 
+                  width={600} 
+                  height={800} 
+                  className="mt-4 rounded-lg object-cover aspect-[3/4]"
+                />
+              </div>
             </div>
           </div>
         </section>
