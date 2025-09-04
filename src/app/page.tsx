@@ -39,7 +39,7 @@ const features = [
     description: 'ensuring that your shipments reach every corner of the globe with efficiency and precision.',
     image: 'https://picsum.photos/600/400?q=9',
     imageHint: 'globe world map',
-    colSpan: 'col-span-1',
+    colSpan: 'col-span-1 md:col-span-2',
     rowSpan: 'row-span-1'
   },
   {
@@ -58,7 +58,7 @@ const features = [
     image: 'https://picsum.photos/600/800?q=11',
     imageHint: 'shipping containers',
     colSpan: 'col-span-1',
-    rowSpan: 'row-span-2'
+    rowSpan: 'row-span-1 md:row-span-2'
   },
   {
     icon: <PackageCheck className="h-8 w-8 text-primary" />,
@@ -240,65 +240,76 @@ export default function Home() {
               </p>
                <Button>Learn More</Button>
             </div>
-            <div className="mx-auto mt-16 grid max-w-5xl gap-8 md:grid-cols-2">
-              <div className="grid gap-8">
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                    <div>
-                        <h3 className="font-headline text-xl font-bold mb-2">{features[0].title}</h3>
-                        <p className="text-muted-foreground">{features[0].description}</p>
-                    </div>
-                    <Image 
-                      src={features[0].image} 
-                      data-ai-hint={features[0].imageHint} 
-                      alt={features[0].title} 
-                      width={600} 
-                      height={400} 
-                      className="mt-4 rounded-lg object-cover aspect-video self-end max-w-[80%]"
-                    />
-                </div>
-                 <div className="grid grid-cols-2 gap-8">
-                    <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                         <div>
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
-                            <p className="text-muted-foreground">{features[1].description}</p>
+            <div className="mt-16 grid gap-8 md:grid-cols-3">
+                {/* Feature 1: Top, wide */}
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between md:col-span-3">
+                    <div className='grid md:grid-cols-2 gap-8 items-center'>
+                        <div className="flex-1">
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[0].title}</h3>
+                            <p className="text-muted-foreground">{features[0].description}</p>
                         </div>
                         <Image 
+                            src={features[0].image} 
+                            data-ai-hint={features[0].imageHint} 
+                            alt={features[0].title} 
+                            width={600} 
+                            height={400} 
+                            className="rounded-lg object-cover aspect-video w-full"
+                        />
+                    </div>
+                </div>
+
+                {/* Feature 2: Bottom left */}
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between md:col-span-1">
+                    <div>
+                        <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
+                        <p className="text-muted-foreground">{features[1].description}</p>
+                    </div>
+                     <Image 
                         src={features[1].image} 
                         data-ai-hint={features[1].imageHint} 
                         alt={features[1].title} 
-                        width={300} 
-                        height={200} 
-                        className="mt-4 rounded-lg object-contain self-end w-24 h-24"
-                        />
-                    </div>
-                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                         <div>
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
-                            <p className="text-muted-foreground">{features[3].description}</p>
+                        width={600} 
+                        height={400} 
+                        className="mt-4 rounded-lg object-cover aspect-square w-full"
+                    />
+                </div>
+
+                {/* Feature 3 & 4: Right side, stacked */}
+                <div className="md:col-span-2 flex flex-col gap-8">
+                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between flex-1">
+                        <div className='grid md:grid-cols-2 gap-8 items-center h-full'>
+                            <div className="flex-1">
+                                <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
+                                <p className="text-muted-foreground">{features[2].description}</p>
+                            </div>
+                            <Image 
+                                src={features[2].image} 
+                                data-ai-hint={features[2].imageHint} 
+                                alt={features[2].title} 
+                                width={600} 
+                                height={400}
+                                className="rounded-lg object-cover aspect-video w-full h-full"
+                            />
                         </div>
-                        <Image 
-                        src={features[3].image} 
-                        data-ai-hint={features[3].imageHint} 
-                        alt={features[3].title} 
-                        width={300} 
-                        height={200} 
-                        className="mt-4 rounded-lg object-contain self-end w-24 h-24"
-                        />
+                    </div>
+                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between flex-1">
+                        <div className='grid md:grid-cols-2 gap-8 items-center h-full'>
+                             <div className="flex-1">
+                                <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
+                                <p className="text-muted-foreground">{features[3].description}</p>
+                            </div>
+                            <Image 
+                            src={features[3].image} 
+                            data-ai-hint={features[3].imageHint} 
+                            alt={features[3].title} 
+                            width={600} 
+                            height={400} 
+                            className="rounded-lg object-cover aspect-video w-full h-full"
+                            />
+                        </div>
                     </div>
                 </div>
-              </div>
-              <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
-                <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
-                <p className="text-muted-foreground flex-grow">{features[2].description}</p>
-                <Image 
-                  src={features[2].image} 
-                  data-ai-hint={features[2].imageHint} 
-                  alt={features[2].title} 
-                  width={600} 
-                  height={800} 
-                  className="mt-4 rounded-lg object-cover aspect-[3/4]"
-                />
-              </div>
             </div>
           </div>
         </section>
