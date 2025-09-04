@@ -149,7 +149,7 @@ export default function Home() {
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-6 text-center md:text-left">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground">
-                  Elevate Your Business with <span className="text-primary font-accent">Reliable</span> Shipping Services
+                  Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
                 </h1>
                 <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
                   We provide a seamless and reliable shipping service, with automated customs and a global network to ensure on-time delivery of your packages.
@@ -314,7 +314,7 @@ export default function Home() {
                 {testimonials.map((testimonial, index) => (
                   <Card key={index} className="flex flex-col">
                     <CardContent className="flex flex-1 flex-col justify-between p-6">
-                      <blockquote className="text-lg leading-snug text-muted-foreground font-accent">
+                      <blockquote className="text-lg leading-snug text-muted-foreground">
                         &ldquo;{testimonial.quote}&rdquo;
                       </blockquote>
                       <div className="mt-6 flex items-center gap-4">
