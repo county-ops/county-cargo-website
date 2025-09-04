@@ -8,6 +8,9 @@ import {
   Twitter,
   Instagram,
   ChevronDown,
+  LocateIcon,
+  PackageCheck,
+  Container,
 } from 'lucide-react';
 import {
   Accordion,
@@ -33,20 +36,30 @@ const features = [
   {
     icon: <Globe className="h-8 w-8 text-primary" />,
     title: 'Global Connectivity',
-    description:
-      'We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.',
+    description: 'We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.',
+    image: 'https://picsum.photos/600/400?q=9',
+    imageHint: 'globe world map',
   },
   {
-    icon: <Ship className="h-8 w-8 text-primary" />,
+    icon: <LocateIcon className="h-8 w-8 text-primary" />,
+    title: 'Real-Time Tracking',
+    description: 'Our real-time tracking system gives you complete visibility from departure to arrival.',
+    image: 'https://picsum.photos/600/400?q=10',
+    imageHint: 'person tracking package',
+  },
+  {
+    icon: <Container className="h-8 w-8 text-primary" />,
     title: 'Versatile Fleet Options',
-    description:
-      'Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.',
+    description: 'Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.',
+    image: 'https://picsum.photos/600/400?q=11',
+    imageHint: 'shipping containers',
   },
   {
-    icon: <ShieldCheck className="h-8 w-8 text-primary" />,
+    icon: <PackageCheck className="h-8 w-8 text-primary" />,
     title: 'Secure Handling',
-    description:
-      'Your package is handled with the utmost care, with multiple security checks to ensure its safety.',
+    description: 'Your package is handled with the utmost care, with multiple security checks to ensure its safety.',
+    image: 'https://picsum.photos/600/400?q=4',
+    imageHint: 'secure package handling',
   },
 ];
 
@@ -173,7 +186,7 @@ export default function Home() {
                     </div>
                 </div>
               </div>
-              <div className="hidden md:block md:ml-auto">
+              <div className="hidden md:ml-auto md:flex justify-end items-start">
                   <QuoteForm />
               </div>
             </div>
@@ -220,31 +233,23 @@ export default function Home() {
                <Button>Learn More</Button>
             </div>
             <div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-2">
-              <div className="grid gap-8">
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="font-headline text-xl font-bold mb-2">Global Connectivity</h3>
-                    <p className="text-muted-foreground">We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.</p>
-                    <Image src="https://picsum.photos/600/400?q=9" data-ai-hint="globe world map" alt="Global Connectivity" width={600} height={400} className="mt-4 rounded-lg"/>
+              {features.map((feature) => (
+                <div key={feature.title} className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      {feature.icon}
+                      <h3 className="font-headline text-xl font-bold">{feature.title}</h3>
+                    </div>
+                    <p className="text-muted-foreground flex-grow">{feature.description}</p>
+                    <Image 
+                      src={feature.image} 
+                      data-ai-hint={feature.imageHint} 
+                      alt={feature.title} 
+                      width={600} 
+                      height={400} 
+                      className="mt-4 rounded-lg object-cover aspect-[3/2]"
+                    />
                 </div>
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="font-headline text-xl font-bold mb-2">Tracking</h3>
-                    <p className="text-muted-foreground">Our real-time tracking system gives you complete visibility from departure to arrival.</p>
-                    <Image src="https://picsum.photos/300/200?q=10" data-ai-hint="person tracking package" alt="Tracking" width={300} height={200} className="mt-4 rounded-lg"/>
-                </div>
-              </div>
-               <div className="grid gap-8">
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="font-headline text-xl font-bold mb-2">Versatile Fleet Options</h3>
-                    <p className="text-muted-foreground">Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.</p>
-                </div>
-                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="font-headline text-xl font-bold mb-2">Secure Handling</h3>
-                    <p className="text-muted-foreground">Your package is handled with the utmost care, with multiple security checks to ensure its safety.</p>
-                </div>
-                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                   <Image src="https://picsum.photos/600/400?q=11" data-ai-hint="shipping containers" alt="Containers" width={600} height={400} className="rounded-lg"/>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
