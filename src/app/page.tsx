@@ -147,7 +147,7 @@ export default function Home() {
             />
         </div>
           <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
-            <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div className="grid gap-8 md:grid-cols-2 md:items-start">
               <div className="space-y-6 text-center md:text-left">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
                   Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
