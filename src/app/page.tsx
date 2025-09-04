@@ -172,6 +172,17 @@ export default function Home() {
                     </div>
                 </div>
               </div>
+              <div className="hidden md:block">
+                  <Card className="p-6 bg-card shadow-lg">
+                    <h3 className="text-2xl font-bold mb-4">Get a Quote</h3>
+                    <div className="space-y-4">
+                      <Input placeholder="Origin" />
+                      <Input placeholder="Destination" />
+                      <Input placeholder="Weight (kg)" type="number" />
+                      <Button className="w-full">Get Quote</Button>
+                    </div>
+                  </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -399,3 +410,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
