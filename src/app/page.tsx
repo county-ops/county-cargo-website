@@ -135,20 +135,20 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full bg-secondary text-white pt-24 pb-32 md:pt-32 md:pb-40">
-        <div className="absolute inset-0">
+        <section className="relative w-full pt-24 pb-32 md:pt-32 md:pb-40">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/50 to-transparent">
             <Image
                 src="https://picsum.photos/1920/1080?q=8"
                 alt="Cargo ship"
                 data-ai-hint="cargo ship port"
                 fill
-                className="object-cover opacity-10"
+                className="object-cover opacity-20"
             />
         </div>
           <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-6 text-center md:text-left">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground">
+                <h1 className="font-headline text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 sm:text-5xl md:text-6xl lg:text-7xl">
                   Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
                 </h1>
                 <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
@@ -177,7 +177,7 @@ export default function Home() {
         </section>
 
         {/* Partners Section */}
-        <section className="w-full py-12 bg-card">
+        <section className="w-full py-12 bg-secondary">
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
                 <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
                     {partners.map(partner => (
@@ -204,7 +204,7 @@ export default function Home() {
         </section>
         
         {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-28 bg-muted">
+        <section id="features" className="w-full py-20 md:py-28 bg-secondary">
           <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
@@ -258,7 +258,7 @@ export default function Home() {
             </div>
             <div className="mt-12 space-y-8">
               {vehicles.map((vehicle, index) => (
-                <Card key={vehicle.id} className="p-4">
+                <Card key={vehicle.id} className="p-4 bg-secondary border-border/50">
                   <div className={`grid gap-8 md:grid-cols-2 md:items-center ${index % 2 !== 0 ? 'md:grid-flow-col-dense' : ''}`}>
                     <div className={`relative h-64 w-full overflow-hidden rounded-lg md:h-80 ${index % 2 !== 0 ? 'md:col-start-2' : ''}`}>
                       <Image
@@ -282,15 +282,15 @@ export default function Home() {
         </section>
         
         {/* FAQ Section */}
-        <section id="faq" className="w-full bg-muted py-20 md:py-28">
+        <section id="faq" className="w-full bg-secondary py-20 md:py-28">
             <div className="container mx-auto max-w-4xl px-4 md:px-6">
                 <h2 className="font-headline text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
                 <p className="text-center text-muted-foreground mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
                     {faqItems.map((item, index) => (
-                        <AccordionItem value={`item-${index}`} key={index} className={`border rounded-lg mb-4 px-6 ${index === 0 ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
-                            <AccordionTrigger className={`font-headline font-semibold text-lg hover:no-underline ${index === 0 ? '' : 'text-card-foreground'}`}>{item.question}</AccordionTrigger>
-                            <AccordionContent className={`${index === 0 ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                        <AccordionItem value={`item-${index}`} key={index} className="border rounded-lg mb-4 px-6 bg-card border-border/50">
+                            <AccordionTrigger className="font-headline font-semibold text-lg hover:no-underline text-card-foreground">{item.question}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">
                                 {item.answer}
                             </AccordionContent>
                         </AccordionItem>
@@ -312,7 +312,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 {testimonials.map((testimonial, index) => (
-                  <Card key={index} className="flex flex-col">
+                  <Card key={index} className="flex flex-col bg-card border-border/50">
                     <CardContent className="flex flex-1 flex-col justify-between p-6">
                       <blockquote className="text-lg leading-snug text-muted-foreground">
                         &ldquo;{testimonial.quote}&rdquo;
@@ -347,7 +347,7 @@ export default function Home() {
             Join our newsletter to stay up to date on features and releases.
             </p>
             <form className="flex gap-2">
-                <Input type="email" placeholder="Enter your email" className="bg-gray-800 border-gray-700 text-white" />
+                <Input type="email" placeholder="Enter your email" className="bg-background border-border/50 text-foreground" />
                 <Button type="submit">Subscribe</Button>
             </form>
             <p className="text-xs text-gray-500">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
@@ -384,7 +384,7 @@ export default function Home() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800">
+        <div className="border-t border-border/50">
           <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row md:px-6">
             <p className="text-sm">
               © {new Date().getFullYear()} Pandex. All rights reserved.
