@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Ship } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useState, useEffect } from 'react';
 
@@ -51,9 +51,9 @@ export function Header() {
         isScrolled ? 'border-border bg-background/95 backdrop-blur-sm' : 'border-transparent bg-secondary'
       }`}
     >
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
+      <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
+        <Link href="/" className="mr-6 flex items-center">
+          <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
         </Link>
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
@@ -66,7 +66,7 @@ export function Header() {
             <SheetContent side="right" className="bg-background text-foreground">
               <nav className="grid gap-6 text-lg font-medium pt-8">
                 <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
-                  <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
+                  <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
                 </Link>
                 {navContent}
                  <Link href="#quote" onClick={() => setSheetOpen(false)}>
@@ -76,7 +76,7 @@ export function Header() {
             </SheetContent>
           </Sheet>
         ) : (
-          <div className="flex items-center gap-6">
+          <div className="flex w-full items-center justify-between">
             <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
             <Link href="#quote">
               <Button>Get a Quote</Button>
