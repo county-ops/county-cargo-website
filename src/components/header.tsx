@@ -1,0 +1,91 @@
+'use client';
+
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu, Truck } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { useState, useEffect } from 'react';
+
+const navLinks = [
+  { href: '#features', label: 'Features' },
+  { href: '#solutions', label: 'Solutions' },
+  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#contact', label: 'Contact' },
+];
+
+export function Header() {
+  const isMobile = useIsMobile();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSheetOpen, setSheetOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  const NavLink = ({ href, label }: { href: string; label: string }) => (
+    <Link
+      href={href}
+      onClick={() => isMobile && setSheetOpen(false)}
+      className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+    >
+      {label}
+    </Link>
+  );
+
+  const navContent = (
+    <>
+      {navLinks.map((link) => (
+        <NavLink key={link.href} href={link.href} label={link.label} />
+      ))}
+    </>
+  );
+
+  return (
+    <header
+      className={`sticky top-0 z-50 w-full border-b transition-all ${
+        isScrolled ? 'border-border bg-background/95 backdrop-blur-sm' : 'border-transparent bg-background'
+      }`}
+    >
+      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <Truck className="h-6 w-6 text-primary" />
+          <span className="text-xl font-bold">SwiftCargo</span>
+        </Link>
+        {isMobile ? (
+          <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle navigation menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <nav className="grid gap-6 text-lg font-medium pt-8">
+                <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
+                  <Truck className="h-6 w-6 text-primary" />
+                  <span>SwiftCargo</span>
+                </Link>
+                {navContent}
+                 <Link href="#quote" onClick={() => setSheetOpen(false)}>
+                  <Button className="w-full">Get a Free Quote</Button>
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <div className="flex items-center gap-6">
+            <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
+            <Link href="#quote">
+              <Button>Get a Free Quote</Button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+}
