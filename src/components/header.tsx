@@ -3,15 +3,14 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Truck } from 'lucide-react';
+import { Menu, Ship } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useState, useEffect } from 'react';
 
 const navLinks = [
-  { href: '#features', label: 'Features' },
-  { href: '#solutions', label: 'Solutions' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#home', label: 'Home' },
+  { href: '#services', label: 'Services' },
+  { href: '#about', label: 'About Us' },
 ];
 
 export function Header() {
@@ -48,31 +47,29 @@ export function Header() {
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all ${
-        isScrolled ? 'border-border bg-background/95 backdrop-blur-sm' : 'border-transparent bg-background'
+        isScrolled ? 'border-border bg-gray-900/95 backdrop-blur-sm' : 'border-transparent bg-gray-900'
       }`}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <Truck className="h-6 w-6 text-primary" />
-          <span className="text-xl font-bold">SwiftCargo</span>
+          <span className="text-xl font-bold text-white">Pandex</span>
         </Link>
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
-                <Menu className="h-6 w-6" />
+                <Menu className="h-6 w-6 text-white" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
+            <SheetContent side="right" className="bg-gray-900 text-white">
               <nav className="grid gap-6 text-lg font-medium pt-8">
                 <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
-                  <Truck className="h-6 w-6 text-primary" />
-                  <span>SwiftCargo</span>
+                  <span className="text-white">Pandex</span>
                 </Link>
                 {navContent}
                  <Link href="#quote" onClick={() => setSheetOpen(false)}>
-                  <Button className="w-full">Get a Free Quote</Button>
+                  <Button className="w-full">Get a Quote</Button>
                 </Link>
               </nav>
             </SheetContent>
@@ -81,7 +78,7 @@ export function Header() {
           <div className="flex items-center gap-6">
             <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
             <Link href="#quote">
-              <Button>Get a Free Quote</Button>
+              <Button>Get a Quote</Button>
             </Link>
           </div>
         )}

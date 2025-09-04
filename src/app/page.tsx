@@ -1,210 +1,266 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Truck,
-  Timer,
+  Globe,
+  Ship,
   ShieldCheck,
-  Linkedin,
+  Facebook,
   Twitter,
+  Instagram,
+  ChevronDown,
 } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardHeader,
-  CardTitle,
 } from '@/components/ui/card';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ShippingCostEstimator } from '@/components/shipping-cost-estimator';
 import { Header } from '@/components/header';
+import { RealtimeTracking } from '@/components/realtime-tracking';
+import { Input } from '@/components/ui/input';
+
 
 const features = [
   {
-    icon: <Truck className="h-8 w-8 text-primary" />,
-    title: 'Nationwide Coverage',
+    icon: <Globe className="h-8 w-8 text-primary" />,
+    title: 'Global Connectivity',
     description:
-      'Our vast network ensures fast and efficient delivery to any corner of the country, from bustling cities to remote towns.',
+      'We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.',
   },
   {
-    icon: <Timer className="h-8 w-8 text-primary" />,
-    title: 'On-Time Delivery',
+    icon: <Ship className="h-8 w-8 text-primary" />,
+    title: 'Versatile Fleet Options',
     description:
-      'We pride ourselves on punctuality. Our logistics are optimized to meet deadlines and deliver your goods exactly when promised.',
+      'Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.',
   },
   {
     icon: <ShieldCheck className="h-8 w-8 text-primary" />,
-    title: 'Secure & Safe',
+    title: 'Secure Handling',
     description:
-      'Your cargo is precious. We handle every package with utmost care and provide real-time tracking for your peace of mind.',
+      'Your package is handled with the utmost care, with multiple security checks to ensure its safety.',
   },
 ];
 
 const vehicles = [
   {
-    id: 'vans',
-    name: 'Small Vans',
-    description: 'Perfect for urgent, small parcels, and last-mile document deliveries in urban areas.',
+    id: 'air',
+    name: 'Air Freight',
+    description: 'Our strategic solutions are designed for time-sensitive international shipments, ensuring fast parcel delivery at lower operational costs, maximizing your reach and profits.',
     image: 'https://picsum.photos/600/400?q=1',
-    imageHint: 'delivery van'
+    imageHint: 'cargo airplane'
   },
   {
-    id: 'trucks',
-    name: 'Large Trucks',
-    description: 'The workhorse of our fleet, ideal for full container loads, heavy pallets, and inter-city transport.',
+    id: 'sea',
+    name: 'Sea Freight',
+    description: 'Powerful, economical freight services that can transport bulk shipments to any country. Our sea freight service offers complete visibility of your freight at a lower cost.',
     image: 'https://picsum.photos/600/400?q=2',
-    imageHint: 'large truck'
+    imageHint: 'cargo ship'
   },
   {
-    id: 'refrigerated',
-    name: 'Refrigerated',
-    description: 'Specialized vehicles for temperature-sensitive goods, ensuring your perishables arrive fresh.',
+    id: 'road',
+    name: 'Road Freight',
+    description: 'A cost-effective network of ground transport that ensures that your goods reach their destination safely and punctually.',
     image: 'https://picsum.photos/600/400?q=3',
-    imageHint: 'refrigerated truck'
-  },
-  {
-    id: 'specialized',
-    name: 'Specialized',
-    description: 'Custom solutions for oversized, hazardous, or high-value materials requiring special handling.',
-    image: 'https://picsum.photos/600/400?q=4',
-    imageHint: 'flatbed truck'
+    imageHint: 'cargo truck'
   },
 ];
 
 const testimonials = [
   {
-    quote: "SwiftCargo transformed our supply chain. Their on-time delivery and professional service are unmatched. We've seen a significant improvement in our operational efficiency.",
-    name: 'Sarah Johnson',
-    title: 'Operations Manager, TechCorp',
+    quote: "Pandex has been a game-changer for our business. Their real-time tracking and reliable delivery have significantly improved our customer satisfaction.",
+    name: 'Jessica Jung',
+    title: 'CEO, Chic Boutique',
     avatar: 'https://picsum.photos/100/100?q=5',
     avatarHint: 'woman portrait'
   },
   {
-    quote: "As a small business, reliable shipping is crucial. SwiftCargo provided an affordable and scalable solution that grew with us. Their team is always responsive and helpful.",
-    name: 'David Chen',
-    title: 'Founder, Artisan Goods Co.',
+    quote: "The customer service at Pandex is top-notch. They are always available to answer my questions and provide updates on my shipments.",
+    name: 'David Kim',
+    title: 'Owner, K-Pop Store',
     avatar: 'https://picsum.photos/100/100?q=6',
     avatarHint: 'man portrait'
   },
   {
-    quote: "The real-time tracking and secure handling gave us complete peace of mind. We trust SwiftCargo with our most valuable shipments, and they have never disappointed.",
-    name: 'Maria Garcia',
-    title: 'Logistics Head, PharmaSolutions',
+    quote: "I've been using Pandex for all my international shipping needs, and I couldn't be happier. Their rates are competitive, and my packages always arrive on time.",
+    name: 'Emily Chen',
+    title: 'E-commerce Seller',
     avatar: 'https://picsum.photos/100/100?q=7',
     avatarHint: 'woman portrait professional'
   },
 ];
 
+const faqItems = [
+    {
+        question: "How does real-time tracking work on Pandex?",
+        answer: "With our real-time tracking, you simply enter your tracking number on our website or app. You'll get instant updates on your package's location, status, and estimated delivery time. It's transparent and easy to use."
+    },
+    {
+        question: "How does Pandex integrate with my e-commerce store?",
+        answer: "Pandex offers seamless integration with major e-commerce platforms. This allows for automated order syncing, real-time shipping rate calculation at checkout, and automatic fulfillment updates, simplifying your logistics."
+    },
+    {
+        question: "How does Pandex handle returns?",
+        answer: "We offer a hassle-free returns process. You can initiate a return through our portal, and we'll handle the pickup and shipping back to the sender. We aim to make returns as easy as deliveries."
+    },
+    {
+        question: "How do I calculate shipping costs?",
+        answer: "Shipping costs are calculated based on package weight, dimensions, destination, and the shipping service selected. You can get an instant quote using the calculator on our website."
+    },
+    {
+        question: "Can I redirect a package while it's in transit?",
+        answer: "Yes, with Pandex, you have the flexibility to redirect your package to a different address or schedule a pickup at a nearby location, even after it has been shipped."
+    }
+]
+
+const partners = [
+  { name: "Logistics", logo: "/logo-placeholder.svg" },
+  { name: "Fast Lane", logo: "/logo-placeholder.svg" },
+  { name: "DSV Global", logo: "/logo-placeholder.svg" },
+  { name: "DHL Logistics", logo: "/logo-placeholder.svg" },
+  { name: "TSS Logistics", logo: "/logo-placeholder.svg" },
+];
+
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background text-foreground dark:bg-gray-900 dark:text-white">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full bg-gradient-to-b from-blue-50 via-background to-background pt-16 pb-24 md:pt-24 md:pb-32">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6">
+        <section className="relative w-full bg-gray-900 text-white pt-24 pb-32 md:pt-32 md:pb-40">
+        <div className="absolute inset-0">
+            <Image
+                src="https://picsum.photos/1920/1080?q=8"
+                alt="Cargo ship"
+                data-ai-hint="cargo ship port"
+                fill
+                className="object-cover opacity-30"
+            />
+        </div>
+          <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-6 text-center md:text-left">
                 <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                  <span className="block text-lg font-medium text-primary sm:text-xl md:text-2xl">
-                    Elevate Your Business with
-                  </span>
-                  Reliable Shipping
+                  Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
                 </h1>
                 <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
-                  We deliver your goods on time, every time. Nationwide logistics solutions tailored for your business's growth.
+                  We provide a seamless and reliable shipping service, with automated customs and a global network to ensure on-time delivery of your packages.
                 </p>
                 <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
                   <Link href="#quote">
                     <Button size="lg" className="w-full sm:w-auto">
-                      Get a Free Quote
-                    </Button>
-                  </Link>
-                  <Link href="#features">
-                    <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                      View Our Services
+                      Get a Quote
                     </Button>
                   </Link>
                 </div>
-              </div>
-              <div className="relative h-64 w-full overflow-hidden rounded-xl shadow-2xl md:h-96">
-                <Image
-                  src="https://picsum.photos/800/600"
-                  alt="A logistics truck on a highway"
-                  data-ai-hint="logistics truck highway"
-                  fill
-                  className="object-cover"
-                />
+                <div className="flex items-center gap-8 pt-4 justify-center md:justify-start">
+                    <div className="text-center">
+                        <p className="text-4xl font-bold">100K</p>
+                        <p className="text-sm text-muted-foreground">Successful Deliveries</p>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-4xl font-bold">15+</p>
+                        <p className="text-sm text-muted-foreground">Years of Experience</p>
+                    </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
+        {/* Partners Section */}
+        <section className="w-full py-12 bg-muted dark:bg-gray-800">
+            <div className="container mx-auto max-w-7xl px-4 md:px-6">
+                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+                    {partners.map(partner => (
+                        <div key={partner.name} className="flex items-center gap-2">
+                           <p className="font-bold text-xl text-muted-foreground">{partner.name}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+
+        {/* Tracking Section */}
+        <section id="tracking" className="w-full py-20 md:py-28">
+           <div className="container mx-auto max-w-7xl px-4 md:px-6">
+              <div className="grid gap-12 md:grid-cols-2 md:items-center">
+                <div className="space-y-4">
+                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">Real Time Tracking for Modern Shipments</h2>
+                    <p className="text-muted-foreground md:text-lg">We have created a user-friendly and reliable shipping experience, with real-time tracking and automated customs clearing to ensure your package gets to you.</p>
+                </div>
+                <RealtimeTracking />
+              </div>
+           </div>
+        </section>
+        
         {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-28">
+        <section id="features" className="w-full py-20 md:py-28 bg-muted dark:bg-gray-800">
           <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                The Unique Features of Our Services
+                The Unique Features of Our Shipping Service
               </h2>
               <p className="text-muted-foreground md:text-lg">
-                We go the extra mile to ensure your shipments are handled with precision, care, and efficiency.
+              We provide a user-friendly and reliable shipping experience, with real-time tracking and automated customs clearing to ensure your package gets to you on time.
               </p>
+               <Button>Learn More</Button>
             </div>
-            <div className="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature) => (
-                <Card key={feature.title} className="text-center transition-transform hover:scale-105 hover:shadow-lg">
-                  <CardHeader className="items-center gap-4">
-                    <div className="rounded-full bg-primary/10 p-4">
-                      {feature.icon}
-                    </div>
-                    <CardTitle>{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-2">
+              <div className="grid gap-8">
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
+                    <h3 className="text-xl font-bold mb-2">Global Connectivity</h3>
+                    <p className="text-muted-foreground">We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.</p>
+                    <Image src="https://picsum.photos/600/400?q=9" data-ai-hint="globe world map" alt="Global Connectivity" width={600} height={400} className="mt-4 rounded-lg"/>
+                </div>
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
+                    <h3 className="text-xl font-bold mb-2">Tracking</h3>
+                    <p className="text-muted-foreground">Our real-time tracking system gives you complete visibility from departure to arrival.</p>
+                    <Image src="https://picsum.photos/300/200?q=10" data-ai-hint="person tracking package" alt="Tracking" width={300} height={200} className="mt-4 rounded-lg"/>
+                </div>
+              </div>
+               <div className="grid gap-8">
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
+                    <h3 className="text-xl font-bold mb-2">Versatile Fleet Options</h3>
+                    <p className="text-muted-foreground">Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.</p>
+                </div>
+                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
+                    <h3 className="text-xl font-bold mb-2">Secure Handling</h3>
+                    <p className="text-muted-foreground">Your package is handled with the utmost care, with multiple security checks to ensure its safety.</p>
+                </div>
+                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
+                   <Image src="https://picsum.photos/600/400?q=11" data-ai-hint="shipping containers" alt="Containers" width={600} height={400} className="rounded-lg"/>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Vehicle Selection Section */}
-        <section id="solutions" className="w-full bg-muted py-20 md:py-28">
+        <section id="solutions" className="w-full py-20 md:py-28">
           <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                Choosing the Right Vehicle for Your Needs
+                Choosing the Right Vehicle for Your Package
               </h2>
               <p className="text-muted-foreground md:text-lg">
-                Not every shipment is the same. We offer a diverse fleet to match the size, priority, and requirements of your cargo.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
-            <Tabs defaultValue={vehicles[0].id} className="mt-12 w-full">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                {vehicles.map((vehicle) => (
-                  <TabsTrigger key={vehicle.id} value={vehicle.id}>
-                    {vehicle.name}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {vehicles.map((vehicle) => (
-                <TabsContent key={vehicle.id} value={vehicle.id} className="mt-8 rounded-lg border bg-card p-6 shadow-sm">
-                  <div className="grid gap-8 md:grid-cols-2 md:items-center">
-                    <div className="relative h-64 w-full overflow-hidden rounded-lg md:h-80">
+            <div className="mt-12 space-y-8">
+              {vehicles.map((vehicle, index) => (
+                <Card key={vehicle.id} className="p-4">
+                  <div className={`grid gap-8 md:grid-cols-2 md:items-center ${index % 2 !== 0 ? 'md:grid-flow-col-dense' : ''}`}>
+                    <div className={`relative h-64 w-full overflow-hidden rounded-lg md:h-80 ${index % 2 !== 0 ? 'md:col-start-2' : ''}`}>
                       <Image
                         src={vehicle.image}
                         alt={vehicle.name}
@@ -213,133 +269,127 @@ export default function Home() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="space-y-4">
+                    <div className={`space-y-4 ${index % 2 !== 0 ? 'md:col-start-1' : ''}`}>
                       <h3 className="text-2xl font-bold">{vehicle.name}</h3>
                       <p className="text-muted-foreground">{vehicle.description}</p>
-                      <Button>Request this Vehicle</Button>
+                      <Button variant="outline">Learn More <ChevronDown className="h-4 w-4 transform -rotate-90 ml-2" /></Button>
                     </div>
                   </div>
-                </TabsContent>
+                </Card>
               ))}
-            </Tabs>
+            </div>
           </div>
         </section>
-
-        {/* Cost Estimation Section */}
-        <section id="quote" className="w-full py-20 md:py-28">
-           <div className="container mx-auto max-w-7xl px-4 md:px-6">
-              <ShippingCostEstimator />
-           </div>
-        </section>
         
+        {/* FAQ Section */}
+        <section id="faq" className="w-full bg-muted dark:bg-gray-800 py-20 md:py-28">
+            <div className="container mx-auto max-w-4xl px-4 md:px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+                <p className="text-center text-muted-foreground mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+                    {faqItems.map((item, index) => (
+                        <AccordionItem value={`item-${index}`} key={index} className={`border rounded-lg mb-4 px-6 ${index === 0 ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
+                            <AccordionTrigger className={`font-semibold text-lg hover:no-underline ${index === 0 ? '' : 'text-card-foreground'}`}>{item.question}</AccordionTrigger>
+                            <AccordionContent className={`${index === 0 ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
+                                {item.answer}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </div>
+        </section>
+
         {/* Testimonials Section */}
-        <section id="testimonials" className="w-full bg-muted py-20 md:py-28">
+        <section id="testimonials" className="w-full py-20 md:py-28">
           <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                Trusted by Businesses Everywhere
+                Testimonial
               </h2>
               <p className="text-muted-foreground md:text-lg">
-                Hear what our satisfied clients have to say about our services.
+                Don't just take our word for it - our clients are our biggest advocates. Here's what they have to say about their experience working with us.
               </p>
             </div>
-            <Carousel
-              opts={{ align: 'start', loop: true }}
-              className="mt-12 w-full max-w-5xl mx-auto"
-            >
-              <CarouselContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                 {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                    <div className="p-1">
-                      <Card className="h-full">
-                        <CardContent className="flex h-full flex-col justify-between p-6">
-                          <blockquote className="text-lg font-semibold leading-snug">
-                            &ldquo;{testimonial.quote}&rdquo;
-                          </blockquote>
-                          <div className="mt-6 flex items-center gap-4">
-                            <Avatar>
-                              <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarHint} />
-                              <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                            </Avatar>
-                            <div>
-                              <p className="font-semibold">{testimonial.name}</p>
-                              <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </CarouselItem>
+                  <Card key={index} className="flex flex-col">
+                    <CardContent className="flex flex-1 flex-col justify-between p-6">
+                      <blockquote className="text-lg leading-snug text-muted-foreground">
+                        &ldquo;{testimonial.quote}&rdquo;
+                      </blockquote>
+                      <div className="mt-6 flex items-center gap-4">
+                        <Avatar>
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarHint} />
+                          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-semibold">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section id="contact" className="w-full bg-primary py-20 md:py-28">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6">
-            <div className="mx-auto max-w-3xl space-y-6 text-center text-primary-foreground">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                Ready to Streamline Your Shipping?
-              </h2>
-              <p className="mx-auto max-w-xl text-primary-foreground/80 md:text-lg">
-                Get in touch with our team today for a custom quote and see how we can support your business.
-              </p>
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="#quote">Contact Us Now</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t bg-muted">
-        <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6">
-          <div className="space-y-4">
+      <footer className="w-full border-t bg-gray-900 text-gray-400">
+        <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-4 md:px-6">
+          <div className="space-y-4 col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <Truck className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">SwiftCargo</span>
+              <span className="text-2xl font-bold text-white">Pandex</span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              Your reliable partner in logistics and shipping.
+            <p className="text-sm">
+            Join our newsletter to stay up to date on features and releases.
             </p>
-            <div className="flex gap-4">
-              <Link href="#" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary" />
+            <form className="flex gap-2">
+                <Input type="email" placeholder="Enter your email" className="bg-gray-800 border-gray-700 text-white" />
+                <Button type="submit">Subscribe</Button>
+            </form>
+            <p className="text-xs text-gray-500">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
+
+          </div>
+          <div className="space-y-2 md:text-right">
+            <h4 className="font-semibold text-white">Follow Us</h4>
+             <div className="flex gap-4 md:justify-end">
+              <Link href="#" aria-label="Facebook">
+                <Facebook className="h-5 w-5 hover:text-primary" />
+              </Link>
+              <Link href="#" aria-label="Instagram">
+                <Instagram className="h-5 w-5 hover:text-primary" />
               </Link>
               <Link href="#" aria-label="Twitter">
-                <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary" />
+                <Twitter className="h-5 w-5 hover:text-primary" />
               </Link>
             </div>
           </div>
-          <div className="space-y-2">
-            <h4 className="font-semibold">Quick Links</h4>
+           <div className="space-y-2">
+            <h4 className="font-semibold text-white">About</h4>
             <ul className="space-y-1">
-              <li><Link href="#features" className="text-sm text-muted-foreground hover:text-primary">Services</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary">About Us</Link></li>
-              <li><Link href="#quote" className="text-sm text-muted-foreground hover:text-primary">Pricing</Link></li>
-              <li><Link href="#contact" className="text-sm text-muted-foreground hover:text-primary">Contact</Link></li>
+              <li><Link href="#" className="text-sm hover:text-primary">Home</Link></li>
+              <li><Link href="#" className="text-sm hover:text-primary">Services</Link></li>
+              <li><Link href="#" className="text-sm hover:text-primary">About Us</Link></li>
             </ul>
           </div>
           <div className="space-y-2">
-            <h4 className="font-semibold">Contact</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
-              <li>hello@swiftcargo.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>123 Logistics St., Anytown, USA</li>
+            <h4 className="font-semibold text-white">Info</h4>
+            <ul className="space-y-1">
+              <li><Link href="#" className="text-sm hover:text-primary">Contact</Link></li>
+               <li><Link href="#" className="text-sm hover:text-primary">Careers</Link></li>
+              <li><Link href="#" className="text-sm hover:text-primary">Blog</Link></li>
             </ul>
           </div>
         </div>
-        <div className="border-t">
+        <div className="border-t border-gray-800">
           <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row md:px-6">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} SwiftCargo. All rights reserved.
+            <p className="text-sm">
+              © {new Date().getFullYear()} Pandex. All rights reserved.
             </p>
-            <div className="flex gap-4 text-sm text-muted-foreground">
+            <div className="flex gap-4 text-sm">
               <Link href="#" className="hover:text-primary">Privacy Policy</Link>
               <Link href="#" className="hover:text-primary">Terms of Service</Link>
             </div>
