@@ -173,7 +173,7 @@ export default function Home() {
                     </div>
                 </div>
               </div>
-              <div className="hidden md:block">
+              <div className="hidden md:block md:ml-auto">
                   <QuoteForm />
               </div>
             </div>
