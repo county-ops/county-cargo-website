@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Ship } from 'lucide-react';
@@ -52,7 +53,7 @@ export function Header() {
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-foreground">Pandex</span>
+          <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
         </Link>
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
@@ -65,7 +66,7 @@ export function Header() {
             <SheetContent side="right" className="bg-background text-foreground">
               <nav className="grid gap-6 text-lg font-medium pt-8">
                 <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
-                  <span className="text-foreground">Pandex</span>
+                  <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
                 </Link>
                 {navContent}
                  <Link href="#quote" onClick={() => setSheetOpen(false)}>

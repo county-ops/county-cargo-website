@@ -240,10 +240,9 @@ export default function Home() {
               </p>
                <Button>Learn More</Button>
             </div>
-            <div className="mt-16 grid gap-8 md:grid-cols-3">
-                {/* Feature 1: Top, wide */}
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between md:col-span-3">
-                    <div className='grid md:grid-cols-2 gap-8 items-center'>
+            <div className="mt-16 grid gap-8 md:grid-cols-2">
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                    <div className='flex flex-col h-full'>
                         <div className="flex-1">
                             <h3 className="font-headline text-xl font-bold mb-2">{features[0].title}</h3>
                             <p className="text-muted-foreground">{features[0].description}</p>
@@ -254,60 +253,57 @@ export default function Home() {
                             alt={features[0].title} 
                             width={600} 
                             height={400} 
-                            className="rounded-lg object-cover aspect-video w-full"
+                            className="rounded-lg object-cover aspect-video w-full mt-4"
                         />
                     </div>
                 </div>
 
-                {/* Feature 2: Bottom left */}
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between md:col-span-1">
-                    <div>
-                        <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
-                        <p className="text-muted-foreground">{features[1].description}</p>
-                    </div>
-                     <Image 
-                        src={features[1].image} 
-                        data-ai-hint={features[1].imageHint} 
-                        alt={features[1].title} 
-                        width={600} 
-                        height={400} 
-                        className="mt-4 rounded-lg object-cover aspect-square w-full"
-                    />
-                </div>
-
-                {/* Feature 3 & 4: Right side, stacked */}
-                <div className="md:col-span-2 flex flex-col gap-8">
-                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between flex-1">
-                        <div className='grid md:grid-cols-2 gap-8 items-center h-full'>
-                            <div className="flex-1">
-                                <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
-                                <p className="text-muted-foreground">{features[2].description}</p>
-                            </div>
-                            <Image 
-                                src={features[2].image} 
-                                data-ai-hint={features[2].imageHint} 
-                                alt={features[2].title} 
-                                width={600} 
-                                height={400}
-                                className="rounded-lg object-cover aspect-video w-full h-full"
-                            />
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                    <div className='flex flex-col h-full'>
+                        <div className="flex-1">
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
+                            <p className="text-muted-foreground">{features[1].description}</p>
                         </div>
-                    </div>
-                     <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between flex-1">
-                        <div className='grid md:grid-cols-2 gap-8 items-center h-full'>
-                             <div className="flex-1">
-                                <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
-                                <p className="text-muted-foreground">{features[3].description}</p>
-                            </div>
-                            <Image 
-                            src={features[3].image} 
-                            data-ai-hint={features[3].imageHint} 
-                            alt={features[3].title} 
+                         <Image 
+                            src={features[1].image} 
+                            data-ai-hint={features[1].imageHint} 
+                            alt={features[1].title} 
                             width={600} 
                             height={400} 
-                            className="rounded-lg object-cover aspect-video w-full h-full"
-                            />
+                            className="mt-4 rounded-lg object-cover aspect-video w-full"
+                        />
+                    </div>
+                </div>
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                    <div className='flex flex-col h-full'>
+                        <div className="flex-1">
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
+                            <p className="text-muted-foreground">{features[2].description}</p>
                         </div>
+                        <Image 
+                            src={features[2].image} 
+                            data-ai-hint={features[2].imageHint} 
+                            alt={features[2].title} 
+                            width={600} 
+                            height={400}
+                            className="rounded-lg object-cover aspect-video w-full mt-4"
+                        />
+                    </div>
+                </div>
+                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
+                    <div className='flex flex-col h-full'>
+                         <div className="flex-1">
+                            <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
+                            <p className="text-muted-foreground">{features[3].description}</p>
+                        </div>
+                        <Image 
+                        src={features[3].image} 
+                        data-ai-hint={features[3].imageHint} 
+                        alt={features[3].title} 
+                        width={600} 
+                        height={400} 
+                        className="rounded-lg object-cover aspect-video w-full mt-4"
+                        />
                     </div>
                 </div>
             </div>
@@ -410,7 +406,7 @@ export default function Home() {
         <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-4 md:px-6">
           <div className="space-y-4 col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-foreground">Pandex</span>
+              <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
             </Link>
             <p className="text-sm">
             Join our newsletter to stay up to date on features and releases.
