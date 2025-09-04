@@ -131,25 +131,25 @@ const partners = [
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground dark:bg-gray-900 dark:text-white">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full bg-gray-900 text-white pt-24 pb-32 md:pt-32 md:pb-40">
+        <section className="relative w-full bg-secondary text-white pt-24 pb-32 md:pt-32 md:pb-40">
         <div className="absolute inset-0">
             <Image
                 src="https://picsum.photos/1920/1080?q=8"
                 alt="Cargo ship"
                 data-ai-hint="cargo ship port"
                 fill
-                className="object-cover opacity-30"
+                className="object-cover opacity-10"
             />
         </div>
           <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-6 text-center md:text-left">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                  Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
+                <h1 className="font-headline text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground">
+                  Elevate Your Business with <span className="text-primary font-accent">Reliable</span> Shipping Services
                 </h1>
                 <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
                   We provide a seamless and reliable shipping service, with automated customs and a global network to ensure on-time delivery of your packages.
@@ -161,7 +161,7 @@ export default function Home() {
                     </Button>
                   </Link>
                 </div>
-                <div className="flex items-center gap-8 pt-4 justify-center md:justify-start">
+                <div className="flex items-center gap-8 pt-4 justify-center md:justify-start text-foreground">
                     <div className="text-center">
                         <p className="text-4xl font-bold">100K</p>
                         <p className="text-sm text-muted-foreground">Successful Deliveries</p>
@@ -177,7 +177,7 @@ export default function Home() {
         </section>
 
         {/* Partners Section */}
-        <section className="w-full py-12 bg-muted dark:bg-gray-800">
+        <section className="w-full py-12 bg-card">
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
                 <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
                     {partners.map(partner => (
@@ -204,7 +204,7 @@ export default function Home() {
         </section>
         
         {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-28 bg-muted dark:bg-gray-800">
+        <section id="features" className="w-full py-20 md:py-28 bg-muted">
           <div className="container mx-auto max-w-7xl px-4 md:px-6">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
@@ -218,23 +218,23 @@ export default function Home() {
             <div className="mx-auto mt-16 grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-2">
               <div className="grid gap-8">
                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="text-xl font-bold mb-2">Global Connectivity</h3>
+                    <h3 className="font-headline text-xl font-bold mb-2">Global Connectivity</h3>
                     <p className="text-muted-foreground">We offer a vast network of shipping routes, ensuring your package can reach any destination worldwide.</p>
                     <Image src="https://picsum.photos/600/400?q=9" data-ai-hint="globe world map" alt="Global Connectivity" width={600} height={400} className="mt-4 rounded-lg"/>
                 </div>
                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="text-xl font-bold mb-2">Tracking</h3>
+                    <h3 className="font-headline text-xl font-bold mb-2">Tracking</h3>
                     <p className="text-muted-foreground">Our real-time tracking system gives you complete visibility from departure to arrival.</p>
                     <Image src="https://picsum.photos/300/200?q=10" data-ai-hint="person tracking package" alt="Tracking" width={300} height={200} className="mt-4 rounded-lg"/>
                 </div>
               </div>
                <div className="grid gap-8">
                 <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="text-xl font-bold mb-2">Versatile Fleet Options</h3>
+                    <h3 className="font-headline text-xl font-bold mb-2">Versatile Fleet Options</h3>
                     <p className="text-muted-foreground">Our diverse fleet of vehicles can handle any type of shipment, from small parcels to large cargo.</p>
                 </div>
                  <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
-                    <h3 className="text-xl font-bold mb-2">Secure Handling</h3>
+                    <h3 className="font-headline text-xl font-bold mb-2">Secure Handling</h3>
                     <p className="text-muted-foreground">Your package is handled with the utmost care, with multiple security checks to ensure its safety.</p>
                 </div>
                  <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm">
@@ -270,7 +270,7 @@ export default function Home() {
                       />
                     </div>
                     <div className={`space-y-4 ${index % 2 !== 0 ? 'md:col-start-1' : ''}`}>
-                      <h3 className="text-2xl font-bold">{vehicle.name}</h3>
+                      <h3 className="font-headline text-2xl font-bold">{vehicle.name}</h3>
                       <p className="text-muted-foreground">{vehicle.description}</p>
                       <Button variant="outline">Learn More <ChevronDown className="h-4 w-4 transform -rotate-90 ml-2" /></Button>
                     </div>
@@ -282,14 +282,14 @@ export default function Home() {
         </section>
         
         {/* FAQ Section */}
-        <section id="faq" className="w-full bg-muted dark:bg-gray-800 py-20 md:py-28">
+        <section id="faq" className="w-full bg-muted py-20 md:py-28">
             <div className="container mx-auto max-w-4xl px-4 md:px-6">
-                <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+                <h2 className="font-headline text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
                 <p className="text-center text-muted-foreground mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index} className={`border rounded-lg mb-4 px-6 ${index === 0 ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
-                            <AccordionTrigger className={`font-semibold text-lg hover:no-underline ${index === 0 ? '' : 'text-card-foreground'}`}>{item.question}</AccordionTrigger>
+                            <AccordionTrigger className={`font-headline font-semibold text-lg hover:no-underline ${index === 0 ? '' : 'text-card-foreground'}`}>{item.question}</AccordionTrigger>
                             <AccordionContent className={`${index === 0 ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>
                                 {item.answer}
                             </AccordionContent>
@@ -314,7 +314,7 @@ export default function Home() {
                 {testimonials.map((testimonial, index) => (
                   <Card key={index} className="flex flex-col">
                     <CardContent className="flex flex-1 flex-col justify-between p-6">
-                      <blockquote className="text-lg leading-snug text-muted-foreground">
+                      <blockquote className="text-lg leading-snug text-muted-foreground font-accent">
                         &ldquo;{testimonial.quote}&rdquo;
                       </blockquote>
                       <div className="mt-6 flex items-center gap-4">
@@ -337,7 +337,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t bg-gray-900 text-gray-400">
+      <footer className="w-full border-t bg-secondary text-gray-400">
         <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-4 md:px-6">
           <div className="space-y-4 col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
@@ -354,7 +354,7 @@ export default function Home() {
 
           </div>
           <div className="space-y-2 md:text-right">
-            <h4 className="font-semibold text-white">Follow Us</h4>
+            <h4 className="font-headline font-semibold text-white">Follow Us</h4>
              <div className="flex gap-4 md:justify-end">
               <Link href="#" aria-label="Facebook">
                 <Facebook className="h-5 w-5 hover:text-primary" />
@@ -368,7 +368,7 @@ export default function Home() {
             </div>
           </div>
            <div className="space-y-2">
-            <h4 className="font-semibold text-white">About</h4>
+            <h4 className="font-headline font-semibold text-white">About</h4>
             <ul className="space-y-1">
               <li><Link href="#" className="text-sm hover:text-primary">Home</Link></li>
               <li><Link href="#" className="text-sm hover:text-primary">Services</Link></li>
@@ -376,7 +376,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="space-y-2">
-            <h4 className="font-semibold text-white">Info</h4>
+            <h4 className="font-headline font-semibold text-white">Info</h4>
             <ul className="space-y-1">
               <li><Link href="#" className="text-sm hover:text-primary">Contact</Link></li>
                <li><Link href="#" className="text-sm hover:text-primary">Careers</Link></li>

@@ -47,25 +47,25 @@ export function Header() {
   return (
     <header
       className={`sticky top-0 z-50 w-full border-b transition-all ${
-        isScrolled ? 'border-border bg-gray-900/95 backdrop-blur-sm' : 'border-transparent bg-gray-900'
+        isScrolled ? 'border-border bg-background/95 backdrop-blur-sm' : 'border-transparent bg-secondary'
       }`}
     >
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold text-white">Pandex</span>
+          <span className="text-xl font-bold text-foreground">Pandex</span>
         </Link>
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
-                <Menu className="h-6 w-6 text-white" />
+                <Menu className="h-6 w-6 text-foreground" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-gray-900 text-white">
+            <SheetContent side="right" className="bg-background text-foreground">
               <nav className="grid gap-6 text-lg font-medium pt-8">
                 <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
-                  <span className="text-white">Pandex</span>
+                  <span className="text-foreground">Pandex</span>
                 </Link>
                 {navContent}
                  <Link href="#quote" onClick={() => setSheetOpen(false)}>

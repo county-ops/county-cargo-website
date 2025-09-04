@@ -10,8 +10,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['"DM Sans"', 'sans-serif'],
-        headline: ['"DM Sans"', 'sans-serif'],
+        body: ['"Open Sans"', 'sans-serif'],
+        headline: ['"Montserrat"', 'sans-serif'],
+        accent: ['"Playfair Display"', 'serif'],
         code: ['monospace'],
       },
       colors: {

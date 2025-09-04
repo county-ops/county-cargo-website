@@ -38,7 +38,7 @@ export function RealtimeTracking() {
 
 
     return (
-        <Card className="w-full max-w-md shadow-lg">
+        <Card className="w-full max-w-md shadow-lg bg-card">
             <CardContent className="p-6">
                 <Tabs defaultValue="tracking">
                     <TabsList className="grid w-full grid-cols-2">
@@ -50,11 +50,10 @@ export function RealtimeTracking() {
                         <div className="space-y-4">
                              <Input 
                                 type="text" 
-                                placeholder="Your article" 
+                                placeholder="Tracking Number (e.g. PN123456789)" 
                                 value={trackingNumber} 
                                 onChange={(e) => setTrackingNumber(e.target.value)}
                             />
-                            <Input placeholder="Password" type="password" />
                             <Button className="w-full" onClick={handleTrack} disabled={isLoading}>
                                 {isLoading ? 'Tracking...' : 'Track now'}
                             </Button>
