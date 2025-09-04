@@ -135,8 +135,8 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full pt-24 pb-32 md:pt-32 md:pb-40">
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-black/50 to-transparent">
+        <section className="relative w-full pt-24 pb-32 md:pt-32 md:pb-40 bg-secondary">
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent">
             <Image
                 src="https://picsum.photos/1920/1080?q=8"
                 alt="Cargo ship"
@@ -148,7 +148,7 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-6 text-center md:text-left">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400 sm:text-5xl md:text-6xl lg:text-7xl">
+                <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
                   Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
                 </h1>
                 <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
@@ -177,7 +177,7 @@ export default function Home() {
         </section>
 
         {/* Partners Section */}
-        <section className="w-full py-12 bg-secondary">
+        <section className="w-full py-12 bg-card">
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
                 <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
                     {partners.map(partner => (
@@ -341,7 +341,7 @@ export default function Home() {
         <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-4 md:px-6">
           <div className="space-y-4 col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white">Pandex</span>
+              <span className="text-2xl font-bold text-foreground">Pandex</span>
             </Link>
             <p className="text-sm">
             Join our newsletter to stay up to date on features and releases.
@@ -350,11 +350,11 @@ export default function Home() {
                 <Input type="email" placeholder="Enter your email" className="bg-background border-border/50 text-foreground" />
                 <Button type="submit">Subscribe</Button>
             </form>
-            <p className="text-xs text-gray-500">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
+            <p className="text-xs text-muted-foreground">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
 
           </div>
           <div className="space-y-2 md:text-right">
-            <h4 className="font-headline font-semibold text-white">Follow Us</h4>
+            <h4 className="font-headline font-semibold text-foreground">Follow Us</h4>
              <div className="flex gap-4 md:justify-end">
               <Link href="#" aria-label="Facebook">
                 <Facebook className="h-5 w-5 hover:text-primary" />
@@ -368,7 +368,7 @@ export default function Home() {
             </div>
           </div>
            <div className="space-y-2">
-            <h4 className="font-headline font-semibold text-white">About</h4>
+            <h4 className="font-headline font-semibold text-foreground">About</h4>
             <ul className="space-y-1">
               <li><Link href="#" className="text-sm hover:text-primary">Home</Link></li>
               <li><Link href="#" className="text-sm hover:text-primary">Services</Link></li>
@@ -376,7 +376,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="space-y-2">
-            <h4 className="font-headline font-semibold text-white">Info</h4>
+            <h4 className="font-headline font-semibold text-foreground">Info</h4>
             <ul className="space-y-1">
               <li><Link href="#" className="text-sm hover:text-primary">Contact</Link></li>
                <li><Link href="#" className="text-sm hover:text-primary">Careers</Link></li>
@@ -386,7 +386,7 @@ export default function Home() {
         </div>
         <div className="border-t border-border/50">
           <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row md:px-6">
-            <p className="text-sm">
+            <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Pandex. All rights reserved.
             </p>
             <div className="flex gap-4 text-sm">
