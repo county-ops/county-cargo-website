@@ -52,9 +52,12 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
-        <Link href="/" className="mr-6 flex items-center">
-          <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
-        </Link>
+        <div className="flex items-center gap-6">
+            <Link href="/" className="flex items-center">
+            <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
+            </Link>
+            <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
+        </div>
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
@@ -76,12 +79,9 @@ export function Header() {
             </SheetContent>
           </Sheet>
         ) : (
-          <div className="flex w-full items-center justify-between">
-            <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
             <Link href="#quote">
               <Button>Get a Quote</Button>
             </Link>
-          </div>
         )}
       </div>
     </header>
