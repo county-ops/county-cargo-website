@@ -56,8 +56,10 @@ export function Header() {
             <Link href="/" className="flex items-center">
             <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
             </Link>
-            <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
         </div>
+        
+        <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
+
         {isMobile ? (
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
