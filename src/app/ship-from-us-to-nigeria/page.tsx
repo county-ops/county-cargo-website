@@ -48,7 +48,7 @@ const pricingTiers = [
     price: '$4.50',
     per: '/kg',
     features: [
-      'Delivery in 7-10 working days',
+      'Delivery in 7-12 working days',
       'Full tracking included with your shipment',
     ],
   },
@@ -60,16 +60,6 @@ const pricingTiers = [
       'Fast delivery in 48 hours',
       'Full tracking included',
       'Premium insurance cover',
-    ],
-  },
-  {
-    title: '24hrs Express Shipping',
-    price: '$30.00',
-    per: '/kg',
-    features: [
-      'Super-fast delivery in 24 hours',
-      'Real-time tracking',
-      'Highest priority handling',
     ],
   },
 ];
@@ -150,7 +140,7 @@ const reviews = [
     {
         initial: 'T',
         name: 'Tunde Ajayi',
-        review: '"The 24hrs express shipping is a game changer! I needed urgent documents and gadgets shipped to Port Harcourt and they delivered exactly on time. Worth every penny. 5 stars!"',
+        review: '"The 48hrs express shipping is a game changer! I needed urgent documents and gadgets shipped to Port Harcourt and they delivered exactly on time. Worth every penny. 5 stars!"',
         time: '5 days ago'
     },
 ];
@@ -200,7 +190,7 @@ export default function ShipFromUsToNigeriaPage() {
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from US to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping from US to Nigeria needs.</p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     {pricingTiers.map((tier, index) => (
                         <div key={index} className="bg-white rounded-lg shadow-md p-8">
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
