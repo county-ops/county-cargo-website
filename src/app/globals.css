@@ -61,7 +61,7 @@
 @layer utilities {
     .hero-bg {
         background-color: #1F2937; 
-        background: linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('https://picsum.photos/seed/hero/1920/1080');
+        background: linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('/Send and Receive Goods Worldwide with County Cargo.jpg');
         background-size: cover;
         background-position: center;
     }

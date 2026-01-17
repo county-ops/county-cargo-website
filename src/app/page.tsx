@@ -148,7 +148,7 @@ export default function Home() {
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Seamless Global Shipping, Done Right.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-primary font-semibold border-2 border-white hover:bg-transparent hover:text-white transition-colors">
-                <Link href="https://ship.countycargo.com/register">Create a <span className="text-red-600">Free</span> Account</Link>
+                <Link href="https://ship.countycargo.com/register">Create a <span className="text-red-600">FREE</span> Account</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white font-semibold hover:bg-white hover:text-primary transition-colors">
                 <Link href="https://ship.countycargo.com/">Track Shipment</Link>
