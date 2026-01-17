@@ -45,12 +45,11 @@ const processSteps = [
 const pricingTiers = [
   {
     title: 'Standard Shipping',
-    price: '$7.50',
+    price: '$4.50',
     per: '/kg',
     features: [
-      'Delivery in 7-12 working days',
+      'Delivery in 7-10 working days',
       'Full tracking included with your shipment',
-      'Basic insurance cover for peace of mind',
     ],
   },
   {
