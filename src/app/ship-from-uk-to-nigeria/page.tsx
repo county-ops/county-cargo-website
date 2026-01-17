@@ -211,7 +211,7 @@ export default function ShipFromUkToNigeriaPage() {
             <h1 className="text-4xl md:text-6xl font-bold">Shipping from UK to Nigeria</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-primary font-semibold hover:bg-gray-100 transition-colors">
+              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
                 <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>
               </Button>
             </div>
