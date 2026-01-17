@@ -42,7 +42,7 @@ export function Header() {
                 {link.label} <ChevronDown className="w-4 h-4" />
               </Link>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent align="start">
               {link.submenu.map(sublink => (
                 <DropdownMenuItem key={sublink.label} asChild>
                   <Link href={sublink.href}>{sublink.label}</Link>
@@ -84,7 +84,7 @@ export function Header() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Link href="/">
-                <Image src="/county-logo.png" alt="County Cargo Logo" width={98} height={28} />
+                <Image src="/county-logo.png" alt="County Cargo Logo" width={68.6} height={19.6} />
               </Link>
             </div>
             
