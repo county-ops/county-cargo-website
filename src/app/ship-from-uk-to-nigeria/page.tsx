@@ -276,21 +276,21 @@ export default function ShipFromUkToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/\s+/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/\s+/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
                          {allStores3.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/\s+/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
