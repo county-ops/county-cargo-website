@@ -55,7 +55,7 @@ const pricingTiers = [
     features: [
       '1kg minimum weight',
       'Delivery in 5-10 working days',
-      'Full tracking included with your shipment',
+      'Full tracking included',
       '£15 handling charge',
     ],
   },
