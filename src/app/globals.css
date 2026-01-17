@@ -68,12 +68,48 @@
     .ticker-item {
         @apply inline-block px-12 text-sm font-thin italic;
     }
-    @keyframes ticker {
-        0% { transform: translate3d(0, 0, 0); }
-        100% { transform: translate3d(-100%, 0, 0); }
-    }
     .service-card:hover, .blog-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .scroller {
+        max-width: 100%;
+        overflow: hidden;
+        -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    }
+    .scroller__inner {
+        display: flex;
+        gap: 2rem;
+        width: max-content;
+        flex-wrap: nowrap;
+        animation: scroll 60s linear infinite;
+    }
+    .scroller__inner:hover {
+        animation-play-state: paused;
+    }
+    .scroller__inner img {
+      height: 50px;
+      width: auto;
+      max-width: 140px;
+      object-fit: contain;
+      opacity: 0.8;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .scroller__inner img:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+}
+
+
+@keyframes ticker {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+@keyframes scroll {
+    to {
+        transform: translate(calc(-50% - 1rem));
     }
 }
