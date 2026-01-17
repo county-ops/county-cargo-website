@@ -296,35 +296,35 @@ export default function ShipFromUkToNigeriaPage() {
 
         <section id="uk-stores" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Shop Thousands of UK Stores and Ship to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">Here are just a few of the thousands of UK online stores you can shop from for your shipping from UK to Nigeria.</p>
                 </div>
             </div>
-            <div className="logos">
+            <div className="logos" data-aos="fade-up" data-aos-delay="200">
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
                          {allStores3.map((store, index) => (
-                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-12" data-aos="fade-up">
                 <Button asChild>
                     <Link href="#">See All UK Stores</Link>
                 </Button>
