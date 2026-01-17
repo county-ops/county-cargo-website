@@ -55,7 +55,6 @@ const pricingTiers = [
     features: [
       'Delivery in 5-10 working days',
       'Full tracking included with your shipment',
-      'Basic insurance cover for peace of mind',
       '£15 handling charge',
     ],
   },
