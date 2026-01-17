@@ -1,16 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  Truck,
+  Package,
   Globe,
-  Ship,
-  ShieldCheck,
+  ShoppingBag,
+  UserPlus,
+  Send,
+  Gift,
+  Users,
+  DollarSign,
+  Anchor,
+  UserCheck,
+  ChevronDown,
   Facebook,
   Twitter,
-  Instagram,
-  ChevronDown,
-  LocateIcon,
-  PackageCheck,
-  Container,
+  Linkedin,
 } from 'lucide-react';
 import {
   Accordion,
@@ -20,343 +25,255 @@ import {
 } from '@/components/ui/accordion';
 
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-} from '@/components/ui/card';
-
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Header } from '@/components/header';
-import { RealtimeTracking } from '@/components/realtime-tracking';
-import { Input } from '@/components/ui/input';
-import { QuoteForm } from '@/components/quote-form';
 
-
-const features = [
+const services = [
   {
-    icon: <Globe className="h-8 w-8 text-primary" />,
-    title: 'Global Connectivity',
-    description: 'ensuring that your shipments reach every corner of the globe with efficiency and precision.',
-    image: 'https://picsum.photos/600/400?q=9',
-    imageHint: 'globe world map',
-    colSpan: 'col-span-1 md:col-span-2',
-    rowSpan: 'row-span-1'
+    icon: <Truck className="h-6 w-6 text-primary" />,
+    title: 'Shipping from UK to Nigeria',
+    description: 'Fast and affordable air and sea freight services from our UK warehouse directly to your doorstep in Nigeria.',
   },
   {
-    icon: <LocateIcon className="h-8 w-8 text-primary" />,
-    title: 'Tracking',
-    description: 'Gaining insights into their journey from dispatch to delivery.',
-    image: 'https://picsum.photos/600/400?q=10',
-    imageHint: 'person tracking package',
-    colSpan: 'col-span-1',
-    rowSpan: 'row-span-1'
+    icon: <Package className="h-6 w-6 text-primary" />,
+    title: 'Shipping from US to Nigeria',
+    description: 'Seamless shipping from the US to Nigeria. We handle customs and delivery, whether it\'s a small parcel or a full container.',
   },
   {
-    icon: <Container className="h-8 w-8 text-primary" />,
-    title: 'Versatile Fleet Options',
-    description: 'Tailor your deliveries with our diverse fleet, offering a range of vehicles to accommodate packages of any size. From bikes to trucks, we’ve got your shipment covered.',
-    image: 'https://picsum.photos/600/800?q=11',
-    imageHint: 'shipping containers',
-    colSpan: 'col-span-1',
-    rowSpan: 'row-span-1 md:row-span-2'
+    icon: <Globe className="h-6 w-6 text-primary" />,
+    title: 'Shipping from Nigeria to the World',
+    description: 'Export goods from Nigeria to over 200 countries worldwide with our reliable international courier partners.',
   },
   {
-    icon: <PackageCheck className="h-8 w-8 text-primary" />,
-    title: 'Secure Handling',
-    description: 'Ensuring that your packages arrive intact and on time.',
-    image: 'https://picsum.photos/600/400?q=4',
-    imageHint: 'secure package handling',
-    colSpan: 'col-span-1',
-    rowSpan: 'row-span-1'
+    icon: <Truck className="h-6 w-6 text-primary" />,
+    title: 'Shipping from Nigeria to UK',
+    description: 'Send packages, documents, and foodstuff from Nigeria to the United Kingdom with our economy/express delivery services.',
+  },
+  {
+    icon: <Package className="h-6 w-6 text-primary" />,
+    title: 'Shipping from Nigeria to US',
+    description: 'Send packages, documents, and foodstuff from Nigeria to the United States with our economy/express delivery services.',
+  },
+  {
+    icon: <ShoppingBag className="h-6 w-6 text-primary" />,
+    title: 'Shop for Me',
+    description: 'Can\'t pay on international sites? We purchase items on your behalf from UK/US stores and ship them to you.',
   },
 ];
 
-const vehicles = [
+const processSteps = [
   {
-    id: 'air',
-    name: 'Air Freight',
-    description: 'Our strategic solutions are designed for time-sensitive international shipments, ensuring fast parcel delivery at lower operational costs, maximizing your reach and profits.',
-    image: 'https://picsum.photos/600/400?q=1',
-    imageHint: 'cargo airplane'
+    icon: <UserPlus className="h-10 w-10 text-white" />,
+    title: '1. Register With Us',
+    description: 'Create a free account to get your County Cargo shipping address.',
   },
   {
-    id: 'sea',
-    name: 'Sea Freight',
-    description: 'Powerful, economical freight services that can transport bulk shipments to any country. Our sea freight service offers complete visibility of your freight at a lower cost.',
-    image: 'https://picsum.photos/600/400?q=2',
-    imageHint: 'cargo ship'
+    icon: <Send className="h-10 w-10 text-white" />,
+    title: '2. Send Your Items',
+    description: 'Shop UK/US stores and ship to your County Cargo address, or drop off exports in Lagos or Abuja.',
   },
   {
-    id: 'road',
-    name: 'Road Freight',
-    description: 'A cost-effective network of ground transport that ensures that your goods reach their destination safely and punctually.',
-    image: 'https://picsum.photos/600/400?q=3',
-    imageHint: 'cargo truck'
+    icon: <Gift className="h-10 w-10 text-white" />,
+    title: '3. We Handle the Rest',
+    description: 'We process and deliver your packages to your doorstep or nearest collection point.',
   },
 ];
 
-const testimonials = [
+const stats = [
   {
-    quote: "Pandex has been a game-changer for our business. Their real-time tracking and reliable delivery have significantly improved our customer satisfaction.",
-    name: 'Jessica Jung',
-    title: 'CEO, Chic Boutique',
-    avatar: 'https://picsum.photos/100/100?q=5',
-    avatarHint: 'woman portrait'
+    icon: <Users className="h-12 w-12 mx-auto mb-4" />,
+    value: '10k+',
+    label: 'Customers Trust Us',
   },
   {
-    quote: "The customer service at Pandex is top-notch. They are always available to answer my questions and provide updates on my shipments.",
-    name: 'David Kim',
-    title: 'Owner, K-Pop Store',
-    avatar: 'https://picsum.photos/100/100?q=6',
-    avatarHint: 'man portrait'
+    icon: <DollarSign className="h-12 w-12 mx-auto mb-4" />,
+    value: '68%',
+    label: 'Savings on Shipping',
   },
   {
-    quote: "I've been using Pandex for all my international shipping needs, and I couldn't be happier. Their rates are competitive, and my packages always arrive on time.",
-    name: 'Emily Chen',
-    title: 'E-commerce Seller',
-    avatar: 'https://picsum.photos/100/100?q=7',
-    avatarHint: 'woman portrait professional'
+    icon: <Anchor className="h-12 w-12 mx-auto mb-4" />,
+    value: '3,000',
+    label: 'Tons Shipped Annually',
+  },
+  {
+    icon: <UserCheck className="h-12 w-12 mx-auto mb-4" />,
+    value: '500+',
+    label: 'SMEs Served Annually',
+  },
+];
+
+const blogPosts = [
+  {
+    image: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=640&q=80',
+    title: 'The Future of Drone Delivery',
+    description: 'Exploring the advancements and challenges of autonomous delivery drones.',
+    imageHint: 'drone delivery',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?auto=format&fit=crop&w=640&q=80',
+    title: 'Sustainable Logistics Practices',
+    description: 'How green initiatives are reshaping the supply chain for a better future.',
+    imageHint: 'sustainable logistics',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=640&q=80',
+    title: 'AI in Warehouse Management',
+    description: 'The impact of artificial intelligence on inventory accuracy and efficiency.',
+    imageHint: 'warehouse AI',
   },
 ];
 
 const faqItems = [
-    {
-        question: "How does real-time tracking work on Pandex?",
-        answer: "With our real-time tracking, you simply enter your tracking number on our website or app. You'll get instant updates on your package's location, status, and estimated delivery time. It's transparent and easy to use."
-    },
-    {
-        question: "How does Pandex integrate with my e-commerce store?",
-        answer: "Pandex offers seamless integration with major e-commerce platforms. This allows for automated order syncing, real-time shipping rate calculation at checkout, and automatic fulfillment updates, simplifying your logistics."
-    },
-    {
-        question: "How does Pandex handle returns?",
-        answer: "We offer a hassle-free returns process. You can initiate a return through our portal, and we'll handle the pickup and shipping back to the sender. We aim to make returns as easy as deliveries."
-    },
-    {
-        question: "How do I calculate shipping costs?",
-        answer: "Shipping costs are calculated based on package weight, dimensions, destination, and the shipping service selected. You can get an instant quote using the calculator on our website."
-    },
-    {
-        question: "Can I redirect a package while it's in transit?",
-        answer: "Yes, with Pandex, you have the flexibility to redirect your package to a different address or schedule a pickup at a nearby location, even after it has been shipped."
-    }
-]
-
-const partners = [
-  { name: "Logistics", logo: "/logo-placeholder.svg" },
-  { name: "Fast Lane", logo: "/logo-placeholder.svg" },
-  { name: "DSV Global", logo: "/logo-placeholder.svg" },
-  { name: "DHL Logistics", logo: "/logo-placeholder.svg" },
-  { name: "TSS Logistics", logo: "/logo-placeholder.svg" },
+  {
+    question: 'What items are prohibited from shipping?',
+    answer: 'Prohibited items include hazardous materials, flammable liquids, explosives, illegal substances, and live animals. Please check our detailed guidelines for a complete list.',
+  },
+  {
+    question: 'How do I track my package?',
+    answer: 'Once your package is dispatched, you will receive a tracking number via email. You can use this number on our website\'s tracking page to monitor its journey in real-time.',
+  },
+  {
+    question: 'What are your shipping rates?',
+    answer: 'Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our support team.',
+  },
 ];
-
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
+    <>
       <Header />
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative w-full pt-24 pb-32 md:pt-32 md:pb-40 bg-secondary">
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent">
-            <Image
-                src="https://picsum.photos/1920/1080?q=8"
-                alt="Cargo ship"
-                data-ai-hint="cargo ship port"
-                fill
-                className="object-cover opacity-20"
-            />
-        </div>
-          <div className="container mx-auto max-w-7xl px-4 md:px-6 relative">
-            <div className="grid gap-8 md:grid-cols-2 md:items-start">
-              <div className="space-y-6 text-center md:text-left">
-                <h1 className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-                  Elevate Your Business with <span className="text-primary">Reliable</span> Shipping Services
-                </h1>
-                <p className="mx-auto max-w-xl text-muted-foreground md:mx-0 md:text-xl">
-                  We provide a seamless and reliable shipping service, with automated customs and a global network to ensure on-time delivery of your packages.
-                </p>
-                <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
-                  <Link href="#quote">
-                    <Button size="lg" className="w-full sm:w-auto">
-                      Get a Quote
-                    </Button>
-                  </Link>
-                </div>
-                <div className="flex items-center gap-8 pt-4 justify-center md:justify-start text-foreground">
-                    <div className="text-center">
-                        <p className="text-4xl font-bold">100K</p>
-                        <p className="text-sm text-muted-foreground">Successful Deliveries</p>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-4xl font-bold">15+</p>
-                        <p className="text-sm text-muted-foreground">Years of Experience</p>
-                    </div>
-                </div>
-              </div>
-              <div className="hidden md:ml-auto md:flex justify-end items-start">
-                  <QuoteForm />
-              </div>
+      <main>
+        <section
+          className="min-h-screen flex items-center justify-center text-white pt-28"
+          style={{
+            background: `linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('https://picsum.photos/seed/hero/1920/1080')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">Send and Receive Goods Worldwide — Nigeria, UK, USA & Beyond</h1>
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Seamless Global Shipping, Done Right.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-white text-primary font-semibold border-2 border-white hover:bg-transparent hover:text-white transition-colors">
+                <Link href="https://ship.countycargo.com/register">Create a Free Account</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white font-semibold hover:bg-white hover:text-primary transition-colors">
+                <Link href="https://ship.countycargo.com/">Track Shipment</Link>
+              </Button>
             </div>
           </div>
         </section>
 
-        {/* Partners Section */}
-        <section className="w-full py-12 bg-card">
-            <div className="container mx-auto max-w-7xl px-4 md:px-6">
-                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-                    {partners.map(partner => (
-                        <div key={partner.name} className="flex items-center gap-2">
-                           <p className="font-bold text-xl text-muted-foreground">{partner.name}</p>
+        <section id="services" className="py-20 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Services</h2>
+                    <p className="text-lg text-gray-800 max-w-2xl mx-auto">Comprehensive logistics solutions tailored to meet your business needs</p>
+                </div>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.map((service, index) => (
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                {service.icon}
+                            </div>
+                            <h3 className="text-xl font-semibold text-secondary mb-3">{service.title}</h3>
+                            <p className="text-gray-800">{service.description}</p>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
 
-
-        {/* Tracking Section */}
-        <section id="tracking" className="w-full py-20 md:py-28">
-           <div className="container mx-auto max-w-7xl px-4 md:px-6">
-              <div className="grid gap-12 md:grid-cols-2 md:items-center">
-                <div className="space-y-4">
-                    <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">Real Time Tracking for Modern Shipments</h2>
-                    <p className="text-muted-foreground md:text-lg">We have created a user-friendly and reliable shipping experience, with real-time tracking and automated customs clearing to ensure your package gets to you.</p>
+        <section id="process" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How It Works</h2>
+                    <p className="text-lg text-gray-800 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered.</p>
                 </div>
-                <RealtimeTracking />
-              </div>
-           </div>
-        </section>
-        
-        {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-28 bg-secondary">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6">
-            <div className="mx-auto max-w-3xl space-y-4 text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                The Unique Features of Our Shipping Service
-              </h2>
-              <p className="text-muted-foreground md:text-lg">
-              We provide a user-friendly and reliable shipping experience, with real-time tracking and automated customs clearing to ensure your package gets to you on time.
-              </p>
-               <Button>Learn More</Button>
-            </div>
-            <div className="mt-16 grid gap-8 md:grid-cols-2">
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                    <div className='flex flex-col h-full'>
-                        <div className="flex-1">
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[0].title}</h3>
-                            <p className="text-muted-foreground">{features[0].description}</p>
+                <div className="grid md:grid-cols-3 gap-12 text-center">
+                    {processSteps.map((step, index) => (
+                        <div key={index} className="process-step">
+                            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                                {step.icon}
+                            </div>
+                            <h3 className="text-2xl font-semibold text-secondary mb-3">{step.title}</h3>
+                            <p className="text-gray-800">{step.description}</p>
                         </div>
-                        <Image 
-                            src={features[0].image} 
-                            data-ai-hint={features[0].imageHint} 
-                            alt={features[0].title} 
-                            width={600} 
-                            height={400} 
-                            className="rounded-lg object-cover aspect-video w-full mt-4"
-                        />
-                    </div>
-                </div>
-
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                    <div className='flex flex-col h-full'>
-                        <div className="flex-1">
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[1].title}</h3>
-                            <p className="text-muted-foreground">{features[1].description}</p>
-                        </div>
-                         <Image 
-                            src={features[1].image} 
-                            data-ai-hint={features[1].imageHint} 
-                            alt={features[1].title} 
-                            width={600} 
-                            height={400} 
-                            className="mt-4 rounded-lg object-cover aspect-video w-full"
-                        />
-                    </div>
-                </div>
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                    <div className='flex flex-col h-full'>
-                        <div className="flex-1">
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[2].title}</h3>
-                            <p className="text-muted-foreground">{features[2].description}</p>
-                        </div>
-                        <Image 
-                            src={features[2].image} 
-                            data-ai-hint={features[2].imageHint} 
-                            alt={features[2].title} 
-                            width={600} 
-                            height={400}
-                            className="rounded-lg object-cover aspect-video w-full mt-4"
-                        />
-                    </div>
-                </div>
-                <div className="p-6 rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col justify-between">
-                    <div className='flex flex-col h-full'>
-                         <div className="flex-1">
-                            <h3 className="font-headline text-xl font-bold mb-2">{features[3].title}</h3>
-                            <p className="text-muted-foreground">{features[3].description}</p>
-                        </div>
-                        <Image 
-                        src={features[3].image} 
-                        data-ai-hint={features[3].imageHint} 
-                        alt={features[3].title} 
-                        width={600} 
-                        height={400} 
-                        className="rounded-lg object-cover aspect-video w-full mt-4"
-                        />
-                    </div>
+                    ))}
                 </div>
             </div>
-          </div>
         </section>
 
-        {/* Vehicle Selection Section */}
-        <section id="solutions" className="w-full py-20 md:py-28">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6">
-            <div className="mx-auto max-w-3xl space-y-4 text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                Choosing the Right Vehicle for Your Package
-              </h2>
-              <p className="text-muted-foreground md:text-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
+        <section id="stats" className="py-20 text-white" style={{
+            background: `linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+        }}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    {stats.map((stat, index) => (
+                         <div key={index}>
+                            {stat.icon}
+                            <h3 className="text-4xl font-bold">{stat.value}</h3>
+                            <p className="text-blue-200">{stat.label}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className="mt-12 space-y-8">
-              {vehicles.map((vehicle, index) => (
-                <Card key={vehicle.id} className="p-4 bg-secondary border-border/50">
-                  <div className={`grid gap-8 md:grid-cols-2 md:items-center ${index % 2 !== 0 ? 'md:grid-flow-col-dense' : ''}`}>
-                    <div className={`relative h-64 w-full overflow-hidden rounded-lg md:h-80 ${index % 2 !== 0 ? 'md:col-start-2' : ''}`}>
-                      <Image
-                        src={vehicle.image}
-                        alt={vehicle.name}
-                        data-ai-hint={vehicle.imageHint}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className={`space-y-4 ${index % 2 !== 0 ? 'md:col-start-1' : ''}`}>
-                      <h3 className="font-headline text-2xl font-bold">{vehicle.name}</h3>
-                      <p className="text-muted-foreground">{vehicle.description}</p>
-                      <Button variant="outline">Learn More <ChevronDown className="h-4 w-4 transform -rotate-90 ml-2" /></Button>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
         </section>
-        
-        {/* FAQ Section */}
-        <section id="faq" className="w-full bg-secondary py-20 md:py-28">
-            <div className="container mx-auto max-w-4xl px-4 md:px-6">
-                <h2 className="font-headline text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-                <p className="text-center text-muted-foreground mb-12">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
+
+        <section id="about" className="py-20 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">About County Cargo</h2>
+                        <p className="text-lg text-gray-800 mb-6">With over 15 years of experience, we provide reliable and efficient logistics solutions.</p>
+                        <Link href="/about" className="text-primary font-semibold hover:underline">Learn More About Us</Link>
+                    </div>
+                    <div>
+                        <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=640&q=80" alt="County Cargo Team" data-ai-hint="team meeting" width={640} height={427} className="rounded-lg shadow-xl w-full"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">From Our Blog</h2>
+                    <p className="text-lg text-gray-800 max-w-2xl mx-auto">Latest news and insights from the logistics world.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-8">
+                    {blogPosts.map((post, index) => (
+                        <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                            <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-48 object-cover"/>
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold text-secondary mb-3">{post.title}</h3>
+                                <p className="text-gray-800 mb-4">{post.description}</p>
+                                <Link href="#" className="text-primary font-semibold hover:underline">Read More &rarr;</Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" className="py-20 bg-gray-50">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Frequently Asked Questions</h2>
+                    <p className="text-lg text-gray-800">Have questions? We have answers. If you don't find what you're looking for, feel free to contact us.</p>
+                </div>
+                <Accordion type="single" collapsible className="w-full space-y-4">
                     {faqItems.map((item, index) => (
-                        <AccordionItem value={`item-${index}`} key={index} className="border rounded-lg mb-4 px-6 bg-card border-border/50">
-                            <AccordionTrigger className="font-headline font-semibold text-lg hover:no-underline text-card-foreground">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">
-                                {item.answer}
+                        <AccordionItem value={`item-${index}`} key={index} className="bg-white p-6 rounded-lg shadow-md border-b-0">
+                            <AccordionTrigger className="w-full text-left flex justify-between items-center text-xl font-semibold text-secondary focus:outline-none hover:no-underline">
+                                <span>{item.question}</span>
+                            </AccordionTrigger>
+                            <AccordionContent className="mt-4 text-gray-800">
+                                <p>{item.answer}</p>
                             </AccordionContent>
                         </AccordionItem>
                     ))}
@@ -364,103 +281,53 @@ export default function Home() {
             </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="w-full py-20 md:py-28">
-          <div className="container mx-auto max-w-7xl px-4 md:px-6">
-            <div className="mx-auto max-w-3xl space-y-4 text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl">
-                Testimonial
-              </h2>
-              <p className="text-muted-foreground md:text-lg">
-                Don't just take our word for it - our clients are our biggest advocates. Here's what they have to say about their experience working with us.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                {testimonials.map((testimonial, index) => (
-                  <Card key={index} className="flex flex-col bg-card border-border/50">
-                    <CardContent className="flex flex-1 flex-col justify-between p-6">
-                      <blockquote className="text-lg leading-snug text-muted-foreground">
-                        &ldquo;{testimonial.quote}&rdquo;
-                      </blockquote>
-                      <div className="mt-6 flex items-center gap-4">
-                        <Avatar>
-                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint={testimonial.avatarHint} />
-                          <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="font-semibold">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-            </div>
-          </div>
-        </section>
-
       </main>
 
-      {/* Footer */}
-      <footer className="w-full border-t bg-secondary text-gray-400">
-        <div className="container mx-auto grid max-w-7xl gap-8 px-4 py-16 md:grid-cols-4 md:px-6">
-          <div className="space-y-4 col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/county-logo.png" alt="Pandex Logo" width={120} height={40} />
-            </Link>
-            <p className="text-sm">
-            Join our newsletter to stay up to date on features and releases.
-            </p>
-            <form className="flex gap-2">
-                <Input type="email" placeholder="Enter your email" className="bg-background border-border/50 text-foreground" />
-                <Button type="submit">Subscribe</Button>
-            </form>
-            <p className="text-xs text-muted-foreground">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
-
-          </div>
-          <div className="space-y-2 md:text-right">
-            <h4 className="font-headline font-semibold text-foreground">Follow Us</h4>
-             <div className="flex gap-4 md:justify-end">
-              <Link href="#" aria-label="Facebook">
-                <Facebook className="h-5 w-5 hover:text-primary" />
-              </Link>
-              <Link href="#" aria-label="Instagram">
-                <Instagram className="h-5 w-5 hover:text-primary" />
-              </Link>
-              <Link href="#" aria-label="Twitter">
-                <Twitter className="h-5 w-5 hover:text-primary" />
-              </Link>
+      <footer className="bg-secondary text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div className="flex items-center mb-4">
+                        <Truck className="h-8 w-8 text-primary" />
+                        <span className="ml-2 text-xl font-bold">County Cargo</span>
+                    </div>
+                    <p className="text-gray-400">Reliable logistics solutions for your business needs.</p>
+                </div>
+                
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Services</h3>
+                    <ul className="space-y-2">
+                        <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Ship from UK to Nigeria</Link></li>
+                        <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Ship from US to Nigeria</Link></li>
+                        <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Freight Transportation</Link></li>
+                        <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">Warehousing</Link></li>
+                        <li><Link href="#services" className="text-gray-400 hover:text-white transition-colors">International Shipping</Link></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Company</h3>
+                    <ul className="space-y-2">
+                        <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
+                        <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
+                        <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div className="flex space-x-4">
+                        <Link href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook className="h-6 w-6" /></Link>
+                        <Link href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter className="h-6 w-6" /></Link>
+                        <Link href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin className="h-6 w-6" /></Link>
+                    </div>
+                </div>
             </div>
-          </div>
-           <div className="space-y-2">
-            <h4 className="font-headline font-semibold text-foreground">About</h4>
-            <ul className="space-y-1">
-              <li><Link href="#" className="text-sm hover:text-primary">Home</Link></li>
-              <li><Link href="#" className="text-sm hover:text-primary">Services</Link></li>
-              <li><Link href="#" className="text-sm hover:text-primary">About Us</Link></li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="font-headline font-semibold text-foreground">Info</h4>
-            <ul className="space-y-1">
-              <li><Link href="#" className="text-sm hover:text-primary">Contact</Link></li>
-               <li><Link href="#" className="text-sm hover:text-primary">Careers</Link></li>
-              <li><Link href="#" className="text-sm hover:text-primary">Blog</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-border/50">
-          <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row md:px-6">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Pandex. All rights reserved.
-            </p>
-            <div className="flex gap-4 text-sm">
-              <Link href="#" className="hover:text-primary">Privacy Policy</Link>
-              <Link href="#" className="hover:text-primary">Terms of Service</Link>
+            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; {new Date().getFullYear()} County Cargo. All rights reserved.</p>
             </div>
-          </div>
         </div>
-      </footer>
-    </div>
+    </footer>
+    </>
   );
 }

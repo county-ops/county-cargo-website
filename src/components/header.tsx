@@ -4,88 +4,116 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { useState, useEffect } from 'react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Menu, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { RollingRibbon } from './rolling-ribbon';
 
 const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Services' },
-  { href: '#about', label: 'About Us' },
+  { href: '/', label: 'Home' },
+  { 
+    href: '#services', 
+    label: 'Services',
+    submenu: [
+      { href: '#', label: 'Ship from UK to Nigeria' },
+      { href: '#', label: 'Ship from US to Nigeria' },
+    ]
+  },
+  { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
+  { href: '/about', label: 'About Us' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Header() {
-  const isMobile = useIsMobile();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isSheetOpen, setSheetOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  const NavLink = ({ href, label }: { href: string; label: string }) => (
-    <Link
-      href={href}
-      onClick={() => isMobile && setSheetOpen(false)}
-      className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-    >
-      {label}
-    </Link>
+  const desktopNav = (
+     <div className="hidden md:flex items-center justify-center flex-1 space-x-6 lg:space-x-8">
+      {navLinks.map((link) => (
+        link.submenu ? (
+          <DropdownMenu key={link.label}>
+            <DropdownMenuTrigger asChild>
+              <Link href={link.href} className="text-secondary hover:text-primary transition-colors flex items-center gap-1">
+                {link.label} <ChevronDown className="w-4 h-4" />
+              </Link>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {link.submenu.map(sublink => (
+                <DropdownMenuItem key={sublink.label} asChild>
+                  <Link href={sublink.href}>{sublink.label}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Link key={link.label} href={link.href} className="text-secondary hover:text-primary transition-colors">
+            {link.label}
+          </Link>
+        )
+      ))}
+    </div>
   );
 
-  const navContent = (
-    <>
-      {navLinks.map((link) => (
-        <NavLink key={link.href} href={link.href} label={link.label} />
-      ))}
-    </>
-  );
+  const mobileNav = (
+    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Home</Link>
+        <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
+        <Link href="#services" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Services</Link>
+        <Link href="#" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Ship from UK</Link>
+        <Link href="#" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Ship from US</Link>
+        <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>
+        <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
+        
+        <div className="border-t border-gray-200 pt-4 pb-2">
+            <Link href="http://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
+            <Link href="https://ship.countycargo.com/register" className="block px-3 py-2 mt-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
+        </div>
+    </div>
+  )
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
-        isScrolled ? 'border-border bg-background/95 backdrop-blur-sm' : 'border-transparent bg-secondary'
-      }`}
-    >
-      <div className="container mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-3">
-        <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center">
-            <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
-            </Link>
-        </div>
-        
-        <nav className="hidden items-center gap-6 md:flex">{navContent}</nav>
+    <>
+      <RollingRibbon />
+      <header className="bg-white shadow-lg fixed w-full z-50 top-[40px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/">
+                <Image src="/county-logo.png" alt="County Cargo Logo" width={140} height={40} />
+              </Link>
+            </div>
+            
+            {desktopNav}
 
-        {isMobile ? (
-          <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Menu className="h-6 w-6 text-foreground" />
-                <span className="sr-only">Toggle navigation menu</span>
+            <div className="hidden md:flex items-center space-x-4">
+              <Button variant="ghost" asChild>
+                <Link href="http://ship.countycargo.com/login">Login</Link>
               </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-background text-foreground">
-              <nav className="grid gap-6 text-lg font-medium pt-8">
-                <Link href="/" onClick={() => setSheetOpen(false)} className="flex items-center gap-2 text-lg font-semibold mb-4">
-                  <Image src="/county-logo.png" alt="Pandex Logo" width={140} height={40} />
-                </Link>
-                {navContent}
-                 <Link href="#quote" onClick={() => setSheetOpen(false)}>
-                  <Button className="w-full">Get a Quote</Button>
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-            <Link href="#quote">
-              <Button>Get a Quote</Button>
-            </Link>
-        )}
-      </div>
-    </header>
+               <Button asChild>
+                <Link href="https://ship.countycargo.com/register">Register</Link>
+              </Button>
+            </div>
+
+            <div className="md:hidden flex items-center">
+              <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
+                <SheetTrigger asChild>
+                   <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6 text-secondary" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="bg-white w-full">
+                  {mobileNav}
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }

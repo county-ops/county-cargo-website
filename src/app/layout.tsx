@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'Pandex | Reliable Shipping Services',
-  description: 'Pandex offers affordable and hassle-free shipping solutions for your business. Nationwide and worldwide.',
+  title: 'County Cargo - Professional Logistics Solutions',
+  description: 'Seamless Global Shipping, Done Right. Send and receive goods worldwide - Nigeria, UK, USA & Beyond.',
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased bg-white text-gray-800">
         {children}
         <Toaster />
       </body>
