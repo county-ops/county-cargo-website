@@ -18,7 +18,7 @@ export function Footer() {
                         <h3 className="text-lg font-semibold mb-4">Services</h3>
                         <ul className="space-y-2">
                             <li><Link href="/ship-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from UK to Nigeria</Link></li>
-                            <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Ship from US to Nigeria</Link></li>
+                            <li><Link href="/ship-from-us-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from US to Nigeria</Link></li>
                             <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Freight Transportation</Link></li>
                             <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Warehousing</Link></li>
                             <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">International Shipping</Link></li>
