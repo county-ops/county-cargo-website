@@ -77,7 +77,6 @@ const pricingTiers = [
     features: [
       '1kg minimum weight',
       'Super-fast delivery in 24 hours',
-      'Real-time tracking',
       'Highest priority handling',
       '£20 handling charge',
     ],
