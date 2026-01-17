@@ -1,4 +1,5 @@
 
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -304,21 +305,21 @@ export default function ShipFromUkToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
+                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
+                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
                          {allStores3.map((store, index) => (
-                            <Image key={index} src={`https://placehold.co/120x40/1E40AF/ffffff?text=${encodeURIComponent(store.name)}`} alt={store.name} width={120} height={40} className="object-contain" />
+                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
