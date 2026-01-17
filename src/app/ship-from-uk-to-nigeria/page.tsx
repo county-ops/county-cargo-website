@@ -97,34 +97,42 @@ const guideFeatures = [
 ];
 
 const stores1 = [
-    { name: "Marks & Spencer", seed: "ms" }, { name: "Tesco", seed: "tesco" },
-    { name: "ASOS", seed: "asos" }, { name: "John Lewis", seed: "johnlewis" },
-    { name: "Next", seed: "next" }, { name: "Boots", seed: "boots" },
-    { name: "Currys", seed: "currys" }, { name: "JD Sports", seed: "jdsports" },
-    { name: "Amazon UK", seed: "amazonuk" }, { name: "eBay UK", seed: "ebayuk" },
-    { name: "Argos", seed: "argos" }, { name: "Very", seed: "very" },
-    { name: "Boohoo", seed: "boohoo" }, { name: "PrettyLittleThing", seed: "plt" },
-    { name: "River Island", seed: "riverisland" }, { name: "Sports Direct", seed: "sportsdirect" },
+    { name: "Marks & Spencer", domain: "marksandspencer.com" }, { name: "Tesco", domain: "tesco.com" },
+    { name: "ASOS", domain: "asos.com" }, { name: "John Lewis", domain: "johnlewis.com" },
+    { name: "Next", domain: "next.co.uk" }, { name: "Boots", domain: "boots.com" },
+    { name: "Currys", domain: "currys.co.uk" }, { name: "JD Sports", domain: "jdsports.co.uk" },
+    { name: "Amazon UK", domain: "amazon.co.uk" }, { name: "eBay UK", domain: "ebay.co.uk" },
+    { name: "Argos", domain: "argos.co.uk" }, { name: "Very", domain: "very.co.uk" },
+    { name: "Boohoo", domain: "boohoo.com" }, { name: "PrettyLittleThing", domain: "prettylittlething.com" },
+    { name: "River Island", domain: "riverisland.com" }, { name: "Sports Direct", domain: "sportsdirect.com" },
 ];
 const stores2 = [
-    { name: "Debenhams", seed: "debenhams" }, { name: "Selfridges", seed: "selfridges" },
-    { name: "Harrods", seed: "harrods" }, { name: "Superdrug", seed: "superdrug" },
-    { name: "Primark", seed: "primark" }, { name: "Zara", seed: "zara" },
-    { name: "H&M", seed: "hm" }, { name: "Matalan", seed: "matalan" },
-    { name: "The Body Shop", seed: "bodyshop" }, { name: "Waitrose", seed: "waitrose" },
-    { name: "Sainsbury's", seed: "sainsburys" }, { name: "Asda", seed: "asda" },
-    { name: "TK Maxx", seed: "tkmaxx" }, { name: "Dunelm", seed: "dunelm" },
-    { name: "The Range", seed: "therange" }, { name: "IKEA UK", seed: "ikeauk" },
+    { name: "Debenhams", domain: "debenhams.com" }, { name: "Selfridges", domain: "selfridges.com" },
+    { name: "Harrods", domain: "harrods.com" }, { name: "Superdrug", domain: "superdrug.com" },
+    { name: "Primark", domain: "primark.com" }, { name: "Zara", domain: "zara.com" },
+    { name: "H&M", domain: "hm.com" }, { name: "Matalan", domain: "matalan.co.uk" },
+    { name: "The Body Shop", domain: "thebodyshop.com" }, { name: "Waitrose", domain: "waitrose.com" },
+    { name: "Sainsbury's", domain: "sainsburys.co.uk" }, { name: "Asda", domain: "asda.com" },
+    { name: "TK Maxx", domain: "tkmaxx.com" }, { name: "Dunelm", domain: "dunelm.com" },
+    { name: "The Range", domain: "therange.co.uk" }, { name: "IKEA UK", domain: "ikea.com" },
 ];
 const stores3 = [
-    { name: "PC World", seed: "pcworld" }, { name: "AO.com", seed: "ao" },
-    { name: "Apple UK", seed: "appleuk" }, { name: "Nike UK", seed: "nikeuk" },
-    { name: "Adidas UK", seed: "adidasuk" }, { name: "Footasylum", seed: "footasylum" },
-    { name: "Schuh", seed: "schuh" }, { name: "Clarks", seed: "clarks" },
-    { name: "LookFantastic", seed: "lookfantastic" }, { name: "Cult Beauty", seed: "cultbeauty" },
-    { name: "Space NK", seed: "spacenk" }, { name: "Feel Unique", seed: "feelunique" },
-    { name: "New Look", seed: "newlook" }, { name: "Topshop", seed: "topshop" },
+    { name: "PC World", domain: "currys.co.uk" },
+    { name: "AO.com", domain: "ao.com" },
+    { name: "Apple UK", domain: "apple.com" },
+    { name: "Nike UK", domain: "nike.com" },
+    { name: "Adidas UK", domain: "adidas.co.uk" },
+    { name: "Footasylum", domain: "footasylum.com" },
+    { name: "Schuh", domain: "schuh.co.uk" },
+    { name: "Clarks", domain: "clarks.co.uk" },
+    { name: "LookFantastic", domain: "lookfantastic.com" },
+    { name: "Cult Beauty", domain: "cultbeauty.co.uk" },
+    { name: "Space NK", domain: "spacenk.com" },
+    { name: "Feelunique", domain: "sephora.co.uk" },
+    { name: "New Look", domain: "newlook.com" },
+    { name: "Topshop", domain: "asos.com" },
 ];
+
 
 const allStores1 = [...stores1, ...stores1];
 const allStores2 = [...stores2, ...stores2];
@@ -186,7 +194,7 @@ export default function ShipFromUkToNigeriaPage() {
             <h1 className="text-4xl md:text-6xl font-bold">Shipping from UK to Nigeria</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+              <Button asChild size="lg" className="bg-white text-red-600 font-semibold hover:bg-gray-100 transition-colors">
                 <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>
               </Button>
             </div>
@@ -276,21 +284,21 @@ export default function ShipFromUkToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
                          {allStores3.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
