@@ -53,6 +53,7 @@ const pricingTiers = [
     price: '£5.80',
     per: '/kg',
     features: [
+      '1kg minimum weight',
       'Delivery in 5-10 working days',
       'Full tracking included with your shipment',
       '£15 handling charge',
@@ -63,9 +64,9 @@ const pricingTiers = [
     price: '£22.00',
     per: '/kg',
     features: [
+      '1kg minimum weight',
       'Fast delivery in 48 hours',
       'Full tracking included',
-      'Premium insurance cover',
       '£20 handling charge',
     ],
   },
@@ -74,6 +75,7 @@ const pricingTiers = [
     price: '£24.00',
     per: '/kg',
     features: [
+      '1kg minimum weight',
       'Super-fast delivery in 24 hours',
       'Real-time tracking',
       'Highest priority handling',
