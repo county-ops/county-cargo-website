@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,6 +59,18 @@
 }
 
 @layer utilities {
+    .hero-bg {
+        background-color: #1F2937; 
+        background: linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('https://picsum.photos/seed/hero/1920/1080');
+        background-size: cover;
+        background-position: center;
+    }
+    .stats-bg {
+        background: linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
     .ticker-wrap {
         @apply w-full overflow-hidden bg-primary text-primary-foreground py-2 fixed top-0 z-[60];
     }

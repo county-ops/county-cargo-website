@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -140,19 +141,14 @@ export default function Home() {
       <Header />
       <main>
         <section
-          className="min-h-screen flex items-center justify-center text-white pt-28"
-          style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('https://picsum.photos/seed/hero/1920/1080')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="min-h-screen flex items-center justify-center text-white pt-28 hero-bg"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">Send and Receive Goods Worldwide — Nigeria, UK, USA & Beyond</h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Seamless Global Shipping, Done Right.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-primary font-semibold border-2 border-white hover:bg-transparent hover:text-white transition-colors">
-                <Link href="https://ship.countycargo.com/register">Create a Free Account</Link>
+                <Link href="https://ship.countycargo.com/register">Create a <span className="text-red-600">Free</span> Account</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent border-2 border-white text-white font-semibold hover:bg-white hover:text-primary transition-colors">
                 <Link href="https://ship.countycargo.com/">Track Shipment</Link>
@@ -163,14 +159,14 @@ export default function Home() {
 
         <section id="services" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Services</h2>
                     <p className="text-lg text-gray-800 max-w-2xl mx-auto">Comprehensive logistics solutions tailored to meet your business needs</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300">
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                             <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                                 {service.icon}
                             </div>
@@ -184,13 +180,13 @@ export default function Home() {
 
         <section id="process" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How It Works</h2>
                     <p className="text-lg text-gray-800 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step">
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -202,16 +198,11 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="stats" className="py-20 text-white" style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundAttachment: 'fixed',
-        }}>
+        <section id="stats" className="py-20 text-white stats-bg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     {stats.map((stat, index) => (
-                         <div key={index}>
+                         <div key={index} data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                             {stat.icon}
                             <h3 className="text-4xl font-bold">{stat.value}</h3>
                             <p className="text-blue-200">{stat.label}</p>
@@ -224,12 +215,12 @@ export default function Home() {
         <section id="about" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
+                    <div data-aos="fade-right">
                         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-6">About County Cargo</h2>
                         <p className="text-lg text-gray-800 mb-6">With over 15 years of experience, we provide reliable and efficient logistics solutions.</p>
                         <Link href="/about" className="text-primary font-semibold hover:underline">Learn More About Us</Link>
                     </div>
-                    <div>
+                    <div data-aos="fade-left">
                         <Image src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=640&q=80" alt="County Cargo Team" data-ai-hint="team meeting" width={640} height={427} className="rounded-lg shadow-xl w-full"/>
                     </div>
                 </div>
@@ -238,13 +229,13 @@ export default function Home() {
 
         <section id="blog" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">From Our Blog</h2>
                     <p className="text-lg text-gray-800 max-w-2xl mx-auto">Latest news and insights from the logistics world.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                     {blogPosts.map((post, index) => (
-                        <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300">
+                        <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                             <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-48 object-cover"/>
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold text-secondary mb-3">{post.title}</h3>
@@ -259,22 +250,24 @@ export default function Home() {
 
         <section id="faq" className="py-20 bg-gray-50">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Frequently Asked Questions</h2>
                     <p className="text-lg text-gray-800">Have questions? We have answers. If you don't find what you're looking for, feel free to contact us.</p>
                 </div>
-                <Accordion type="single" collapsible className="w-full space-y-4">
-                    {faqItems.map((item, index) => (
-                        <AccordionItem value={`item-${index}`} key={index} className="bg-white p-6 rounded-lg shadow-md border-b-0">
-                            <AccordionTrigger className="w-full text-left flex justify-between items-center text-xl font-semibold text-secondary focus:outline-none hover:no-underline">
-                                <span>{item.question}</span>
-                            </AccordionTrigger>
-                            <AccordionContent className="mt-4 text-gray-800">
-                                <p>{item.answer}</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {faqItems.map((item, index) => (
+                            <AccordionItem value={`item-${index}`} key={index} className="bg-white p-6 rounded-lg shadow-md border-b-0">
+                                <AccordionTrigger className="w-full text-left flex justify-between items-center text-xl font-semibold text-secondary focus:outline-none hover:no-underline">
+                                    <span>{item.question}</span>
+                                </AccordionTrigger>
+                                <AccordionContent className="mt-4 text-gray-800">
+                                    <p>{item.answer}</p>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </div>
             </div>
         </section>
 
