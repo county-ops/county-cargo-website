@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -23,7 +24,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Ship from UK to Nigeria - Fast & Affordable Shipping | County Cargo',
+  title: 'Shipping from UK to Nigeria - Fast & Affordable Shipping | County Cargo',
   description: 'Looking to ship from UK to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the UK to Nigeria. Get your free UK address today and enjoy seamless delivery of your goods.',
   keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria',
 };
@@ -207,8 +208,13 @@ export default function ShipFromUkToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Ship from UK to Nigeria</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping services from the UK to Nigeria. Get your personal UK shipping address and start your shipping from UK to Nigeria journey today!</p>
+            <h1 className="text-4xl md:text-6xl font-bold">Shipping from UK to Nigeria</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="bg-white text-primary font-semibold hover:bg-gray-100 transition-colors">
+                <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
