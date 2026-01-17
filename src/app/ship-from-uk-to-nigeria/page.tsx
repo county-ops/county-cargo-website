@@ -248,7 +248,7 @@ export default function ShipFromUkToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                        <div key={index} className="bg-blue-800/40 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 ease-in-out hover:bg-blue-900/60 hover:-translate-y-2 hover:shadow-2xl">
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
