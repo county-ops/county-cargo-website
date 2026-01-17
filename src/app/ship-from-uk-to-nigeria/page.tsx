@@ -32,18 +32,18 @@ export const metadata: Metadata = {
 const processSteps = [
   {
     icon: <UserPlus className="h-10 w-10 text-white" />,
-    title: '1. Get Your UK Shipping Address',
-    description: 'Create your free account in minutes to receive your personal UK shipping address to start your shipping from UK to Nigeria.',
+    title: '1. Get Your Free UK Shipping Address',
+    description: 'Create your free account in minutes to receive your personal UK shipping address.',
   },
   {
     icon: <ShoppingCart className="h-10 w-10 text-white" />,
     title: '2. Shop in the UK',
-    description: 'Shop from any online retailer in the UK and use your County Cargo UK shipping address at checkout. It\'s the perfect way to ship from UK to Nigeria.',
+    description: 'Shop from any online retailer in the UK and use your County Cargo UK shipping address at checkout.',
   },
   {
     icon: <Gift className="h-10 w-10 text-white" />,
-    title: '3. We Deliver to Nigeria',
-    description: 'We consolidate and forward your packages, handling all the logistics for your shipping from UK to Nigeria, right to your doorstep.',
+    title: '3. We Handle the Rest',
+    description: 'We process and deliver your packages to your doorstep or nearest collection point.',
   },
 ];
 
@@ -56,6 +56,7 @@ const pricingTiers = [
       'Delivery in 5-10 working days',
       'Full tracking included with your shipment',
       'Basic insurance cover for peace of mind',
+      '£15 handling charge',
     ],
   },
   {
@@ -66,6 +67,7 @@ const pricingTiers = [
       'Fast delivery in 48 hours',
       'Full tracking included',
       'Premium insurance cover',
+      '£20 handling charge',
     ],
   },
   {
@@ -76,6 +78,7 @@ const pricingTiers = [
       'Super-fast delivery in 24 hours',
       'Real-time tracking',
       'Highest priority handling',
+      '£20 handling charge',
     ],
   },
 ];
