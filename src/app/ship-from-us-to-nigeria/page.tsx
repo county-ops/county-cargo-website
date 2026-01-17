@@ -48,18 +48,8 @@ const pricingTiers = [
     price: '$4.50',
     per: '/kg',
     features: [
-      'Delivery in 7-12 working days',
+      'Delivery in 7-10 working days',
       'Full tracking included with your shipment',
-    ],
-  },
-  {
-    title: '48hrs Express Shipping',
-    price: '$25.00',
-    per: '/kg',
-    features: [
-      'Fast delivery in 48 hours',
-      'Full tracking included',
-      'Premium insurance cover',
     ],
   },
 ];
@@ -190,7 +180,7 @@ export default function ShipFromUsToNigeriaPage() {
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from US to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping from US to Nigeria needs.</p>
                 </div>
-                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
                     {pricingTiers.map((tier, index) => (
                         <div key={index} className="bg-white rounded-lg shadow-md p-8">
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
@@ -247,14 +237,14 @@ export default function ShipFromUsToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://picsum.photos/seed/${store.seed}/140/50`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
