@@ -24,6 +24,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import blogPosts from '@/lib/blog-posts.json';
 
 const services = [
   {
@@ -96,27 +97,6 @@ const stats = [
     icon: <UserCheck className="h-12 w-12 mx-auto mb-4" />,
     value: '500+',
     label: 'SMEs Served Annually',
-  },
-];
-
-const blogPosts = [
-  {
-    image: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=640&q=80',
-    title: 'The Future of Drone Delivery',
-    description: 'Exploring the advancements and challenges of autonomous delivery drones.',
-    imageHint: 'drone delivery',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?auto=format&fit=crop&w=640&q=80',
-    title: 'Sustainable Logistics Practices',
-    description: 'How green initiatives are reshaping the supply chain for a better future.',
-    imageHint: 'sustainable logistics',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=640&q=80',
-    title: 'AI in Warehouse Management',
-    description: 'The impact of artificial intelligence on inventory accuracy and efficiency.',
-    imageHint: 'warehouse AI',
   },
 ];
 
@@ -240,7 +220,7 @@ export default function Home() {
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold text-secondary mb-3">{post.title}</h3>
                                 <p className="text-gray-800 mb-4">{post.description}</p>
-                                <Link href="#" className="text-primary font-semibold hover:underline">Read More &rarr;</Link>
+                                <Link href={post.url} className="text-primary font-semibold hover:underline">Read More &rarr;</Link>
                             </div>
                         </div>
                     ))}

@@ -1,0 +1,36 @@
+
+[
+  {
+    "title": "The Future of Drone Delivery",
+    "image": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "drone delivery",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-10-26",
+    "category": "Technology",
+    "tags": ["drones", "delivery", "logistics"],
+    "description": "Exploring the advancements and challenges of autonomous delivery drones.",
+    "url": "/blog/the-future-of-drone-delivery"
+  },
+  {
+    "title": "Sustainable Logistics Practices",
+    "image": "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "sustainable logistics",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-10-20",
+    "category": "Sustainability",
+    "tags": ["green logistics", "supply chain", "environment"],
+    "description": "How green initiatives are reshaping the supply chain for a better future.",
+    "url": "/blog/sustainable-logistics-practices"
+  },
+  {
+    "title": "AI in Warehouse Management",
+    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "warehouse AI",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-10-15",
+    "category": "Technology",
+    "tags": ["AI", "warehouse", "automation"],
+    "description": "The impact of artificial intelligence on inventory accuracy and efficiency.",
+    "url": "/blog/ai-in-warehouse-management"
+  }
+]
