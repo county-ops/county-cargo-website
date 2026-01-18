@@ -44,7 +44,7 @@ const processSteps = [
 
 const pricingTiers = [
   {
-    title: 'Documents & Small Parcels',
+    title: 'Docs & Small Parcels',
     price: 'Contact Us',
     per: 'for rates',
     features: [
@@ -267,3 +267,5 @@ export default function ShipFromNigeriaToWorldPage() {
     </>
   );
 }
+
+    
