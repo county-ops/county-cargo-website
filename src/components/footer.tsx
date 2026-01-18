@@ -29,7 +29,9 @@ export function Footer() {
                         <ul className="space-y-3 text-gray-400">
                             <li className="flex items-start">
                                 <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0 text-primary" />
-                                <span>Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria</span>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Suite%20F8%2C%20Magnet%20Shopping%20Plaza%2C%20525%20Agege%20Motor%20Rd%2C%20Ladipo-Oshodi%2C%20Lagos%20102214%2C%20Lagos%2C%20Nigeria" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                                    Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria
+                                </a>
                             </li>
                             <li className="flex items-center">
                                 <Mail className="h-5 w-5 mr-3 shrink-0 text-primary" />
@@ -54,9 +56,9 @@ export function Footer() {
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                      <p>&copy; {new Date().getFullYear()} County Cargo. All rights reserved. | Built by <a href="https://nocodek.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Nocodek</a></p>
                      <div className="mt-4">
-                        <Link href="/privacy-policy" className="text-red-500 hover:text-red-400 transition-colors mx-2">Privacy Policy</Link>
+                        <Link href="/privacy-policy" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Privacy Policy</Link>
                         <span className="text-gray-500">|</span>
-                        <Link href="/terms-of-service" className="text-red-500 hover:text-red-400 transition-colors mx-2">Terms of Service</Link>
+                        <Link href="/terms-of-service" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Terms of Service</Link>
                     </div>
                 </div>
             </div>
