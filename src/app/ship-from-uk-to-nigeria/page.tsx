@@ -16,12 +16,30 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
+import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria - Fast & Affordable Shipping | County Cargo',
   description: 'Looking to ship from UK to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the UK to Nigeria. Get your free UK address today and enjoy seamless delivery of your goods.',
   keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria',
 };
+
+const JohnLewisLogo = ({ className }: { className?: string }) => (
+    <svg className={cn("h-8 w-auto", className)} fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>John Lewis & Partners</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.9 14.625h.9V9.375h-.9v5.25zm-3.6 2.625h.9V6.75h-.9v10.5zM15.6 17.25h.9V6.75h-.9v10.5zm3.6-2.625h.9V9.375h-.9v5.25z"/></svg>
+);
+
+const SheinLogo = ({ className }: { className?: string }) => (
+    <svg
+      className={cn("h-6 w-auto", className)}
+      fill="currentColor"
+      viewBox="0 0 256 256"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M110.19,94.13H49.11V78.27h88.35v15.47h-12.4l-0.42,0.4v30.41h12.82v15.85H49.11V124.5h61.08Zm0,14.54H65V124.5h45.15v-15.83Z M164.71,94.13v46.22h15.48V94.13Zm37.16,0v46.22h15.47V94.13Z M224,78.27v78.27h-15.48V94.13H170.5v46.22h-15.48V78.27h68.94Z" />
+    </svg>
+);
+
 
 const processSteps = [
   {
@@ -142,6 +160,7 @@ const stores3 = [
     { name: "Schuh", domain: "schuh.co.uk" },
     { name: "Selfridges", domain: "selfridges.com" },
     { name: "Sephora UK", domain: "sephora.co.uk" },
+    { name: "Shein", domain: "shein.co.uk" },
     { name: "Space NK", domain: "spacenk.com" },
     { name: "Sports Direct", domain: "sportsdirect.com" },
     { name: "Superdrug", domain: "superdrug.com" },
@@ -313,16 +332,22 @@ export default function ShipFromUkToNigeriaPage() {
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
-                         {allStores2.map((store, index) => (
-                            <div key={`uk-store2-${index}-${store.name}`}>{store.name}</div>
-                        ))}
+                         {allStores2.map((store, index) => {
+                            if (store.name === 'John Lewis') {
+                                return <div key={`uk-store2-${index}-${store.name}`} className="h-full flex items-center justify-center"><JohnLewisLogo /></div>
+                            }
+                            return <div key={`uk-store2-${index}-${store.name}`}>{store.name}</div>
+                         })}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
-                         {allStores3.map((store, index) => (
-                            <div key={`uk-store3-${index}-${store.name}`}>{store.name}</div>
-                        ))}
+                         {allStores3.map((store, index) => {
+                            if (store.name === 'Shein') {
+                                return <div key={`uk-store3-${index}-${store.name}`} className="h-full flex items-center justify-center"><SheinLogo /></div>
+                            }
+                            return <div key={`uk-store3-${index}-${store.name}`}>{store.name}</div>
+                         })}
                     </div>
                 </div>
             </div>
