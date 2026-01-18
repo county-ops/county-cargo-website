@@ -20,6 +20,7 @@ export function Footer() {
                         <ul className="space-y-2">
                             <li><Link href="/ship-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from UK to Nigeria</Link></li>
                             <li><Link href="/ship-from-us-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from US to Nigeria</Link></li>
+                            <li><Link href="/ship-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Ship from Nigeria to UK</Link></li>
                             <li><Link href="/ship-from-nigeria-to-world" className="text-gray-400 hover:text-white transition-colors">Ship from Nigeria to World</Link></li>
                             <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Freight Transportation</Link></li>
                             <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Warehousing</Link></li>
