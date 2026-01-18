@@ -31,31 +31,37 @@ const services = [
     icon: <Truck className="h-6 w-6 text-primary" />,
     title: 'Shipping from UK to Nigeria',
     description: 'Fast and affordable air and sea freight services from our UK warehouse directly to your doorstep in Nigeria.',
+    href: '/ship-from-uk-to-nigeria',
   },
   {
     icon: <Package className="h-6 w-6 text-primary" />,
     title: 'Shipping from US to Nigeria',
     description: 'Seamless shipping from the US to Nigeria. We handle customs and delivery, whether it\'s a small parcel or a full container.',
+    href: '/ship-from-us-to-nigeria',
   },
   {
     icon: <Globe className="h-6 w-6 text-primary" />,
     title: 'Shipping from Nigeria to the World',
     description: 'Export goods from Nigeria to over 200 countries worldwide with our reliable international courier partners.',
+    href: '/ship-from-nigeria-to-world',
   },
   {
     icon: <Truck className="h-6 w-6 text-primary" />,
     title: 'Shipping from Nigeria to UK',
     description: 'Send packages, documents, and foodstuff from Nigeria to the United Kingdom with our economy/express delivery services.',
+    href: '/ship-from-nigeria-to-uk',
   },
   {
     icon: <Package className="h-6 w-6 text-primary" />,
     title: 'Shipping from Nigeria to US',
     description: 'Send packages, documents, and foodstuff from Nigeria to the United States with our economy/express delivery services.',
+    href: '/ship-from-nigeria-to-us',
   },
   {
     icon: <ShoppingBag className="h-6 w-6 text-primary" />,
     title: 'Shop for Me',
     description: 'Can\'t pay on international sites? We purchase items on your behalf from UK/US stores and ship them to you.',
+    href: '#services',
   },
 ];
 
@@ -146,13 +152,15 @@ export default function Home() {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
-                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                                {service.icon}
+                        <Link href={service.href} key={index} className="block">
+                            <div className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300 h-full" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    {service.icon}
+                                </div>
+                                <h3 className="text-xl font-semibold text-secondary mb-3">{service.title}</h3>
+                                <p className="text-gray-800">{service.description}</p>
                             </div>
-                            <h3 className="text-xl font-semibold text-secondary mb-3">{service.title}</h3>
-                            <p className="text-gray-800">{service.description}</p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
