@@ -6,26 +6,13 @@ export function Footer() {
     return (
         <footer className="bg-secondary text-white py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid md:grid-cols-4 gap-8">
+                <div className="grid md:grid-cols-3 gap-8">
                     <div>
                         <div className="flex items-center mb-4">
                             <Truck className="h-8 w-8 text-primary" />
                             <span className="ml-2 text-xl font-bold">County Cargo</span>
                         </div>
                         <p className="text-gray-400">Reliable logistics solutions for your business needs.</p>
-                    </div>
-                    
-                    <div>
-                        <h3 className="text-lg font-semibold mb-4">Services</h3>
-                        <ul className="space-y-2">
-                            <li><Link href="/ship-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from UK to Nigeria</Link></li>
-                            <li><Link href="/ship-from-us-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Ship from US to Nigeria</Link></li>
-                            <li><Link href="/ship-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Ship from Nigeria to UK</Link></li>
-                            <li><Link href="/ship-from-nigeria-to-us" className="text-gray-400 hover:text-white transition-colors">Ship from Nigeria to US</Link></li>
-                            <li><Link href="/ship-from-nigeria-to-world" className="text-gray-400 hover:text-white transition-colors">Ship from Nigeria to World</Link></li>
-                            <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Freight Transportation</Link></li>
-                            <li><Link href="/#services" className="text-gray-400 hover:text-white transition-colors">Warehousing</Link></li>
-                        </ul>
                     </div>
                     
                     <div>
