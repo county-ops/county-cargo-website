@@ -304,7 +304,7 @@ export default function ShipFromUkToNigeriaPage() {
             </div>
             <div className="text-center mt-12" data-aos="fade-up">
                 <Button asChild>
-                    <Link href="#">See All UK Stores</Link>
+                    <Link href="/uk-stores">See All UK Stores</Link>
                 </Button>
             </div>
         </section>

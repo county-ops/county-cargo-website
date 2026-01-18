@@ -251,7 +251,7 @@ export default function ShipFromUsToNigeriaPage() {
             </div>
             <div className="text-center mt-12" data-aos="fade-up">
                 <Button asChild>
-                    <Link href="#">See All US Stores</Link>
+                    <Link href="/us-stores">See All US Stores</Link>
                 </Button>
             </div>
         </section>
