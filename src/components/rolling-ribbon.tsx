@@ -1,11 +1,11 @@
 'use client';
 
 const ribbonItems = [
-    '🚀 Express shipments from UK to Nigeria now available! 1-2 Business Days Delivery.',
-    '📦 Ship your foodstuff to the UK, US and Canada with ease.',
-    '✈️ Weekly Air Freight departures from UK to Lagos.',
-    '💰 Best rates guaranteed.',
-    '✈️ Weekly Air Freight departures from UK to Abuja.',
+    '🚀 Express UK to Nigeria: 1-2 Business Days Delivery!',
+    '📦 Ship Foodstuff Worldwide: UK, US & Canada with Ease.',
+    '✈️ Weekly Air Freight to Lagos & Abuja.',
+    '💰 Best Rates Guaranteed for All Shipments.',
+    '✅ Your Trusted Partner for Secure & Reliable Cargo.',
 ];
 
 // Duplicate items for a seamless loop

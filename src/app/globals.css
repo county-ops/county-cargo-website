@@ -91,7 +91,7 @@
         animation: ticker 120s linear infinite;
     }
     .ticker-item {
-        @apply inline-block px-12 text-sm font-thin italic;
+        @apply inline-block px-12 text-sm font-medium;
     }
     .service-card:hover, .blog-card:hover {
         transform: translateY(-5px);
