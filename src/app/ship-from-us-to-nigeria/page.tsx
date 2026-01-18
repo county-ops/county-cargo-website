@@ -73,25 +73,26 @@ const guideFeatures = [
 ];
 
 const stores1 = [
-    { name: "Walmart", seed: "walmart" }, { name: "Target", seed: "target" },
-    { name: "Amazon US", seed: "amazonus" }, { name: "eBay US", seed: "ebayus" },
-    { name: "Best Buy", seed: "bestbuy" }, { name: "Home Depot", seed: "homedepot" },
-    { name: "Lowe's", seed: "lowes" }, { name: "Macy's", seed: "macys" },
-    { name: "Kohl's", seed: "kohls" }, { name: "Nordstrom", seed: "nordstrom" },
-    { name: "Costco", seed: "costco" }, { name: "Sam's Club", seed: "samsclub" },
-    { name: "Gap", seed: "gap" }, { name: "Old Navy", seed: "oldnavy" },
-    { name: "Banana Republic", seed: "br" }, { name: "Sephora", seed: "sephora" },
+    { name: "Walmart", domain: "walmart.com" }, { name: "Target", domain: "target.com" },
+    { name: "Amazon US", domain: "amazon.com" }, { name: "eBay US", domain: "ebay.com" },
+    { name: "Best Buy", domain: "bestbuy.com" }, { name: "Home Depot", domain: "homedepot.com" },
+    { name: "Lowe's", domain: "lowes.com" }, { name: "Macy's", domain: "macys.com" },
+    { name: "Kohl's", domain: "kohls.com" }, { name: "Nordstrom", domain: "nordstrom.com" },
+    { name: "Costco", domain: "costco.com" }, { name: "Sam's Club", domain: "samsclub.com" },
+    { name: "Gap", domain: "gap.com" }, { name: "Old Navy", domain: "oldnavy.com" },
+    { name: "Banana Republic", domain: "bananarepublic.com" }, { name: "Sephora", domain: "sephora.com" },
 ];
 const stores2 = [
-    { name: "Ulta Beauty", seed: "ulta" }, { name: "Foot Locker", seed: "footlocker" },
-    { name: "Champs Sports", seed: "champs" }, { name: "Finish Line", seed: "finishline" },
-    { name: "Apple US", seed: "appleus" }, { name: "Nike US", seed: "nikeus" },
-    { name: "Adidas US", seed: "adidasus" }, { name: "GameStop", seed: "gamestop" },
-    { name: "Bath & Body Works", seed: "bbw" }, { name: "Victoria's Secret", seed: "vs" },
-    { name: "J.Crew", seed: "jcrew" }, { name: "American Eagle", seed: "ae" },
-    { name: "Forever 21", seed: "f21" }, { name: "Zara US", seed: "zaraus" },
-    { name: "H&M US", seed: "hmus" }, { name: "The Body Shop US", seed: "bodyshopus" },
+    { name: "Ulta Beauty", domain: "ulta.com" }, { name: "Foot Locker", domain: "footlocker.com" },
+    { name: "Champs Sports", domain: "champssports.com" }, { name: "Finish Line", domain: "finishline.com" },
+    { name: "Apple US", domain: "apple.com" }, { name: "Nike US", domain: "nike.com" },
+    { name: "Adidas US", domain: "adidas.com" }, { name: "GameStop", domain: "gamestop.com" },
+    { name: "Bath & Body Works", domain: "bathandbodyworks.com" }, { name: "Victoria's Secret", domain: "victoriassecret.com" },
+    { name: "J.Crew", domain: "jcrew.com" }, { name: "American Eagle", domain: "ae.com" },
+    { name: "Forever 21", domain: "forever21.com" }, { name: "Zara US", domain: "zara.com" },
+    { name: "H&M US", domain: "hm.com" }, { name: "The Body Shop US", domain: "thebodyshop.com" },
 ];
+
 
 const allStores1 = [...stores1, ...stores1];
 const allStores2 = [...stores2, ...stores2];
@@ -233,23 +234,23 @@ export default function ShipFromUsToNigeriaPage() {
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">Here are just a few of the thousands of US online stores you can shop from for your shipping from US to Nigeria.</p>
                 </div>
             </div>
-            <div className="logos">
+            <div className="logos" data-aos="fade-up" data-aos-delay="200">
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}.com`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-12" data-aos="fade-up">
                 <Button asChild>
                     <Link href="#">See All US Stores</Link>
                 </Button>
