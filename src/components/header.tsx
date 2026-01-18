@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -46,7 +45,7 @@ export function Header() {
                 {link.label} <ChevronDown className="w-4 h-4" />
               </Link>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
+            <DropdownMenuContent align="start" className="bg-primary text-primary-foreground">
               {link.submenu.map(sublink => (
                 <DropdownMenuItem key={sublink.label} asChild>
                   <Link href={sublink.href}>{sublink.label}</Link>
