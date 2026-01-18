@@ -72,7 +72,7 @@
         background-attachment: fixed;
     }
     .ticker-wrap {
-        @apply w-full overflow-hidden text-primary-foreground py-2 fixed top-0 z-[60] relative;
+        @apply w-full overflow-hidden text-white py-2 fixed top-0 z-[60] relative;
         background: linear-gradient(180deg, hsl(222, 80%, 55%) 0%, hsl(var(--primary)) 100%);
         box-shadow: 0 3px 12px hsla(var(--primary) / 0.5);
     }
