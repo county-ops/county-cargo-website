@@ -96,14 +96,15 @@ const guideFeatures = [
 ];
 
 const stores1 = [
+    { name: "John Lewis", domain: "johnlewis.com" },
     { name: "Marks & Spencer", domain: "marksandspencer.com" }, { name: "Tesco", domain: "tesco.com" },
-    { name: "ASOS", domain: "asos.com" }, { name: "John Lewis", domain: "johnlewis.com" },
-    { name: "Next", domain: "next.co.uk" }, { name: "Boots", domain: "boots.com" },
-    { name: "Currys", domain: "currys.co.uk" }, { name: "JD Sports", domain: "jdsports.co.uk" },
-    { name: "Amazon UK", domain: "amazon.co.uk" }, { name: "eBay UK", domain: "ebay.co.uk" },
-    { name: "Argos", domain: "argos.co.uk" }, { name: "Very", domain: "very.co.uk" },
-    { name: "Boohoo", domain: "boohoo.com" }, { name: "PrettyLittleThing", domain: "prettylittlething.com" },
-    { name: "River Island", domain: "riverisland.com" }, { name: "Sports Direct", domain: "sportsdirect.com" },
+    { name: "ASOS", domain: "asos.com" }, { name: "Next", domain: "next.co.uk" },
+    { name: "Boots", domain: "boots.com" }, { name: "Currys", domain: "currys.co.uk" },
+    { name: "JD Sports", domain: "jdsports.co.uk" }, { name: "Amazon UK", domain: "amazon.co.uk" },
+    { name: "eBay UK", domain: "ebay.co.uk" }, { name: "Argos", domain: "argos.co.uk" },
+    { name: "Very", domain: "very.co.uk" }, { name: "Boohoo", domain: "boohoo.com" },
+    { name: "PrettyLittleThing", domain: "prettylittlething.com" }, { name: "River Island", domain: "riverisland.com" },
+    { name: "Sports Direct", domain: "sportsdirect.com" },
 ];
 const stores2 = [
     { name: "Debenhams", domain: "debenhams.com" }, { name: "Selfridges", domain: "selfridges.com" },
