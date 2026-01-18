@@ -30,15 +30,15 @@ export function Footer() {
                         <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
                         <ul className="space-y-3 text-gray-400">
                             <li className="flex items-start">
-                                <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0" />
+                                <MapPin className="h-5 w-5 mr-3 mt-1 shrink-0 text-primary" />
                                 <span>Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria</span>
                             </li>
                             <li className="flex items-center">
-                                <Mail className="h-5 w-5 mr-3 shrink-0" />
+                                <Mail className="h-5 w-5 mr-3 shrink-0 text-primary" />
                                 <a href="mailto:info@countycargo.com" className="hover:text-white transition-colors">info@countycargo.com</a>
                             </li>
                              <li className="flex items-center">
-                                <Phone className="h-5 w-5 mr-3 shrink-0" />
+                                <Phone className="h-5 w-5 mr-3 shrink-0 text-primary" />
                                 <a href="tel:+2348110000421" className="hover:text-white transition-colors">+234 811 000 0421</a>
                             </li>
                         </ul>
