@@ -152,15 +152,18 @@ export default function Home() {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <Link href={service.href} key={index} className="block group">
-                            <div className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300 h-full" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
-                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                                    {service.icon}
-                                </div>
-                                <h3 className="text-xl font-semibold text-secondary mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
-                                <p className="text-gray-800">{service.description}</p>
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300 h-full group relative" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
+                            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                {service.icon}
                             </div>
-                        </Link>
+                            <h3 className="text-xl font-semibold text-secondary mb-3">
+                                <Link href={service.href} className="transition-colors group-hover:text-primary">
+                                    <span className="absolute inset-0" aria-hidden="true" />
+                                    {service.title}
+                                </Link>
+                            </h3>
+                            <p className="text-gray-800">{service.description}</p>
+                        </div>
                     ))}
                 </div>
             </div>
