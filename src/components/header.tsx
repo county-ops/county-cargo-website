@@ -45,7 +45,7 @@ export function Header() {
                 {link.label} <ChevronDown className="w-4 h-4" />
               </Link>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="bg-transparent border-none shadow-none">
+            <DropdownMenuContent align="start" className="bg-primary border-none shadow-lg text-primary-foreground">
               {link.submenu.map(sublink => (
                 <DropdownMenuItem key={sublink.label} asChild>
                   <Link href={sublink.href}>{sublink.label}</Link>
