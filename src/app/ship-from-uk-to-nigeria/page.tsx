@@ -1,5 +1,4 @@
 
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
@@ -284,21 +283,21 @@ export default function ShipFromUkToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <div key={`uk-store1-${index}-${store.name}`}>{store.name}</div>
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <div key={`uk-store2-${index}-${store.name}`}>{store.name}</div>
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner">
                          {allStores3.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <div key={`uk-store3-${index}-${store.name}`}>{store.name}</div>
                         ))}
                     </div>
                 </div>
