@@ -24,17 +24,6 @@ export const metadata: Metadata = {
   keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria',
 };
 
-const SheinLogo = ({ className }: { className?: string }) => (
-    <svg
-      className={cn("h-6 w-auto", className)}
-      fill="currentColor"
-      viewBox="0 0 256 256"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M110.19,94.13H49.11V78.27h88.35v15.47h-12.4l-0.42,0.4v30.41h12.82v15.85H49.11V124.5h61.08Zm0,14.54H65V124.5h45.15v-15.83Z M164.71,94.13v46.22h15.48V94.13Zm37.16,0v46.22h15.47V94.13Z M224,78.27v78.27h-15.48V94.13H170.5v46.22h-15.48V78.27h68.94Z" />
-    </svg>
-);
-
 const processSteps = [
   {
     icon: <UserPlus className="h-10 w-10 text-white" />,
@@ -261,12 +250,9 @@ export default function ShipFromUsToNigeriaPage() {
             <div className="logos" data-aos="fade-up" data-aos-delay="200">
                 <div className="scroller">
                     <div className="scroller__inner">
-                        {allStores1.map((store, index) => {
-                           if (store.name === 'Shein') {
-                                return <div key={`us-store1-${index}-${store.name}`} className="h-full flex items-center justify-center"><SheinLogo /></div>
-                           }
-                           return <div key={`us-store1-${index}-${store.name}`}>{store.name}</div>
-                        })}
+                        {allStores1.map((store, index) => (
+                           <div key={`us-store1-${index}-${store.name}`}>{store.name}</div>
+                        ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">

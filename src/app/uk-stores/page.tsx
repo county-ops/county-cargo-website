@@ -15,17 +15,6 @@ const JohnLewisLogo = ({ className }: { className?: string }) => (
     <svg className={cn("h-10 w-auto", className)} fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>John Lewis & Partners</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.9 14.625h.9V9.375h-.9v5.25zm-3.6 2.625h.9V6.75h-.9v10.5zM15.6 17.25h.9V6.75h-.9v10.5zm3.6-2.625h.9V9.375h-.9v5.25z"/></svg>
 );
 
-const SheinLogo = ({ className }: { className?: string }) => (
-    <svg
-      className={cn("h-8 w-auto", className)}
-      fill="currentColor"
-      viewBox="0 0 256 256"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M110.19,94.13H49.11V78.27h88.35v15.47h-12.4l-0.42,0.4v30.41h12.82v15.85H49.11V124.5h61.08Zm0,14.54H65V124.5h45.15v-15.83Z M164.71,94.13v46.22h15.48V94.13Zm37.16,0v46.22h15.47V94.13Z M224,78.27v78.27h-15.48V94.13H170.5v46.22h-15.48V78.27h68.94Z" />
-    </svg>
-);
-
 const stores = [
     { name: "Adidas UK", domain: "adidas.co.uk" },
     { name: "AllSaints", domain: "allsaints.com" },
@@ -102,8 +91,6 @@ export default function UkStoresPage() {
                 let storeContent;
                 if (store.name === 'John Lewis') {
                     storeContent = <JohnLewisLogo className="text-gray-800 group-hover:text-primary h-10 mx-auto" />
-                } else if (store.name === 'Shein') {
-                    storeContent = <SheinLogo className="text-gray-800 group-hover:text-primary h-8 mx-auto" />
                 } else {
                     storeContent = <p className="font-semibold text-secondary group-hover:text-primary">{store.name}</p>
                 }
