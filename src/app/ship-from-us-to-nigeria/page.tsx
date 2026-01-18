@@ -80,6 +80,13 @@ const stores1 = [
     { name: "Costco", domain: "costco.com" }, { name: "Sam's Club", domain: "samsclub.com" },
     { name: "Gap", domain: "gap.com" }, { name: "Old Navy", domain: "oldnavy.com" },
     { name: "Banana Republic", domain: "bananarepublic.com" }, { name: "Sephora", domain: "sephora.com" },
+    { name: "Shein", domain: "shein.com" },
+    { name: "Fashion Nova", domain: "fashionnova.com" },
+    { name: "Revolve", domain: "revolve.com" },
+    { name: "Pacsun", domain: "pacsun.com" },
+    { name: "Urban Outfitters", domain: "urbanoutfitters.com" },
+    { name: "Lululemon", domain: "lululemon.com" },
+    { name: "Madewell", domain: "madewell.com" },
 ];
 const stores2 = [
     { name: "Ulta Beauty", domain: "ulta.com" }, { name: "Foot Locker", domain: "footlocker.com" },
@@ -90,6 +97,12 @@ const stores2 = [
     { name: "J.Crew", domain: "jcrew.com" }, { name: "American Eagle", domain: "ae.com" },
     { name: "Forever 21", domain: "forever21.com" }, { name: "Zara US", domain: "zara.com" },
     { name: "H&M US", domain: "hm.com" }, { name: "The Body Shop US", domain: "thebodyshop.com" },
+    { name: "Free People", domain: "freepeople.com" },
+    { name: "Fenty Beauty", domain: "fentybeauty.com" },
+    { name: "Glossier", domain: "glossier.com" },
+    { name: "Kylie Cosmetics", domain: "kyliecosmetics.com" },
+    { name: "Tarte Cosmetics", domain: "tartecosmetics.com" },
+    { name: "ColourPop", domain: "colourpop.com" },
 ];
 
 
