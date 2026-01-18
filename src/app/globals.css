@@ -113,6 +113,9 @@
       opacity: 1;
       transform: scale(1.1);
     }
+    .blog-card .overflow-hidden {
+        overflow: hidden;
+    }
 }
 
 

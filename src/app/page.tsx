@@ -152,13 +152,13 @@ export default function Home() {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {services.map((service, index) => (
-                        <Link href={service.href} key={index} className="block">
-                            <div className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300 h-full" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
-                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <Link href={service.href} key={index} className="block group">
+                            <div className="service-card bg-white rounded-lg shadow-md p-6 transition-all duration-300 h-full group-hover:bg-primary" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
+                                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-white transition-colors duration-300">
                                     {service.icon}
                                 </div>
-                                <h3 className="text-xl font-semibold text-secondary mb-3">{service.title}</h3>
-                                <p className="text-gray-800">{service.description}</p>
+                                <h3 className="text-xl font-semibold text-secondary mb-3 group-hover:text-white transition-colors duration-300">{service.title}</h3>
+                                <p className="text-gray-800 group-hover:text-white transition-colors duration-300">{service.description}</p>
                             </div>
                         </Link>
                     ))}
@@ -223,8 +223,10 @@ export default function Home() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8">
                     {blogPosts.map((post, index) => (
-                        <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
-                            <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-48 object-cover"/>
+                        <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 group" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
+                            <div className="overflow-hidden">
+                                <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"/>
+                            </div>
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold text-secondary mb-3">{post.title}</h3>
                                 <p className="text-gray-800 mb-4">{post.description}</p>
