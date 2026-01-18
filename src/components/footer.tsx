@@ -21,8 +21,6 @@ export function Footer() {
                             <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Careers</Link></li>
                             <li><Link href="#" className="text-gray-400 hover:text-white transition-colors">Blog</Link></li>
-                            <li><Link href="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link></li>
-                            <li><Link href="/terms-of-service" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link></li>
                         </ul>
                     </div>
 
@@ -55,6 +53,11 @@ export function Footer() {
                 </div>
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                      <p>&copy; {new Date().getFullYear()} County Cargo. All rights reserved. | Built by <a href="https://nocodek.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Nocodek</a></p>
+                     <div className="mt-4">
+                        <Link href="/privacy-policy" className="text-red-500 hover:text-red-400 transition-colors mx-2">Privacy Policy</Link>
+                        <span className="text-gray-500">|</span>
+                        <Link href="/terms-of-service" className="text-red-500 hover:text-red-400 transition-colors mx-2">Terms of Service</Link>
+                    </div>
                 </div>
             </div>
         </footer>
