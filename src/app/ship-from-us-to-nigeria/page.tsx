@@ -227,7 +227,7 @@ export default function ShipFromUsToNigeriaPage() {
             </div>
         </section>
 
-        <section id="uk-stores" className="py-20 bg-gray-50">
+        <section id="us-stores" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Shop Thousands of US Stores and Ship to Nigeria</h2>
@@ -238,14 +238,14 @@ export default function ShipFromUsToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={`store1-${index}-${store.domain}`} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" unoptimized/>
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <Image key={index} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" />
+                            <Image key={`store2-${index}-${store.domain}`} src={`https://logo.clearbit.com/${store.domain}`} alt={store.name} width={140} height={50} className="object-contain" unoptimized/>
                         ))}
                     </div>
                 </div>
@@ -314,3 +314,4 @@ export default function ShipFromUsToNigeriaPage() {
     </>
   );
 }
+
