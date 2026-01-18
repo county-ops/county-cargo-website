@@ -87,7 +87,7 @@
         pointer-events: none;
     }
     .ticker {
-        @apply inline-block whitespace-nowrap pr-[100%];
+        @apply inline-block whitespace-nowrap pr-[100%] text-white;
         animation: ticker 120s linear infinite;
     }
     .ticker-item {
@@ -127,6 +127,12 @@
     }
     .blog-card .overflow-hidden {
         overflow: hidden;
+    }
+    .non-copyable {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
     }
 }
 

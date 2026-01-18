@@ -12,7 +12,7 @@ export default function TermsOfServicePage() {
     <>
       <Header />
       <main className="pt-24 bg-white">
-        <section className="py-16">
+        <section className="py-16 non-copyable">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold text-secondary mb-8 text-center">Terms of Service</h1>
              <p className="text-center text-gray-500 mb-12">Last Updated: November 04, 2024</p>
@@ -63,7 +63,7 @@ export default function TermsOfServicePage() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-secondary">6. Prohibited Items Not Acceptable for Transportation:</h2>
-                <p><strong>6.1.</strong> We do not ship prohibited/dangerous items, cash or equivalent (including but not limited to cash, coins, negotiable instruments that are equivalent to cash such as traveler’s cheques, money orders, etc.), originals of all forms of certificates (including educational/training certificates, share certificates, or any other forms of original certificates). We do not ship Mobile devices, Tablets, Laptops, and digital cameras. We exclude all liability for shipment of such items accepted by mistake.</p>
+                <p><strong>6.1.</strong> We do not ship prohibited/dangerous items, cash or equivalent (including but not to cash, coins, negotiable instruments that are equivalent to cash such as traveler’s cheques, money orders, etc.), originals of all forms of certificates (including educational/training certificates, share certificates, or any other forms of original certificates). We do not ship Mobile devices, Tablets, Laptops, and digital cameras. We exclude all liability for shipment of such items accepted by mistake.</p>
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-secondary">7. Inspection of Goods:</h2>
@@ -102,7 +102,7 @@ export default function TermsOfServicePage() {
               <div>
                 <h2 className="text-2xl font-bold text-secondary">12. Export Control and Customs Clearance:</h2>
                 <p><strong>12.1.</strong> By giving us your shipment, you hereby appoint us your agent for the performance of customs clearance and certify us as the nominal consignee for designating a customs broker to perform customs clearance.</p>
-                <p><strong>12.2.</strong> You are responsible for and warrant your compliance with all applicable laws, rules, and regulations, including but not limited to customs laws; import, export, and re-export laws, and governmental regulations in respect of your shipment in any country where the same may pass. You agree to furnish such information and documents as are necessary to comply with such laws, rules, and regulations.</p>
+                <p><strong>12.2.</strong> You are responsible for and warrant your compliance with all applicable laws, rules, and regulations, including but not to customs laws; import, export, and re-export laws, and governmental regulations in respect of your shipment in any country where the same may pass. You agree to furnish such information and documents as are necessary to comply with such laws, rules, and regulations.</p>
                 <p><strong>12.3.</strong> We assume no liability to you or any other person for any loss or expenses due to failure to comply with any documentation with customs or other Government Agencies.</p>
               </div>
               <div>
