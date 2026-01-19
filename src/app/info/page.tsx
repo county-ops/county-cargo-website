@@ -43,7 +43,7 @@ const prices = [
     { destination: 'Katsina', doorToDoor: '6.50', collection: '6.50', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Kebbi', doorToDoor: '7.00', collection: '7.00', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Kogi', doorToDoor: '6.20', collection: '6.20', minWeight: '20', avgDelivery: '5-10' },
-    { destination: 'Kwara', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '5-10' },
+    { destination: 'Kwara', doorToDoor: '6.20', collection: '6.20', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Lagos', doorToDoor: '5.20', collection: '5.20', minWeight: '10', avgDelivery: '5-10' },
     { destination: 'Nassarawa', doorToDoor: '7.00', collection: '7.00', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Niger', doorToDoor: '6.20', collection: '6.20', minWeight: '20', avgDelivery: '5-10' },
@@ -58,6 +58,21 @@ const prices = [
     { destination: 'Yobe', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Zamfara', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '5-10' },
     { destination: 'Federal Capital Territory (Abuja)', doorToDoor: '6.20', collection: '6.20', minWeight: '20', avgDelivery: '5-10' },
+];
+
+const electronicsPrices = [
+    { item: '19″ TV', price: '120' },
+    { item: '24″ TV', price: '160' },
+    { item: '32″ TV', price: '180' },
+    { item: '37″ TV', price: '200' },
+    { item: '40″ TV', price: '230' },
+    { item: '42″ TV', price: '260' },
+    { item: '46″ TV', price: '300' },
+    { item: '50″ TV', price: '350' },
+    { item: 'Laptop (15–17″)', price: '100' },
+    { item: 'Computer / Desktop', price: '150' },
+    { item: 'Mobile Phone (per unit)', price: '30' },
+    { item: 'iPad / Tablet', price: '60' },
 ];
 
 export default function InfoPage() {
@@ -134,7 +149,7 @@ export default function InfoPage() {
         });
 
         // Table Rows
-        document.querySelectorAll('#price-table tbody tr').forEach(row => {
+        document.querySelectorAll('#price-table tbody tr, #electronics-price-table tbody tr').forEach(row => {
             const rowText = (row as HTMLElement).innerText.toLowerCase();
             
             row.querySelectorAll('td').forEach(td => {
@@ -254,6 +269,26 @@ export default function InfoPage() {
                     ))}
                 </tbody>
             </table>
+
+            <h2 id="electronics" className="mt-12">Fixed‑Item Electronics Price List</h2>
+            <p>Door-to-door fixed prices for common electronics and devices:</p>
+            <table id="electronics-price-table">
+                <thead>
+                    <tr>
+                        <th>Item Description</th>
+                        <th>Price (£)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {electronicsPrices.map((item, index) => (
+                        <tr key={`electronics-${index}`}>
+                            <td>{item.item}</td>
+                            <td>{item.price}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
           <div id="backToTop">↑ Top</div>
         </div>
       </main>
