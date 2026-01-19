@@ -59,6 +59,8 @@ export function Footer() {
                         <Link href="/privacy-policy" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Privacy Policy</Link>
                         <span className="text-gray-500">|</span>
                         <Link href="/terms-of-service" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Terms of Service</Link>
+                        <span className="text-gray-500">|</span>
+                        <Link href="/faq" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">FAQ</Link>
                     </div>
                 </div>
             </div>
