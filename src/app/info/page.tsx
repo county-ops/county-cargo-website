@@ -43,7 +43,7 @@ const prices = [
     { destination: 'Katsina', doorToDoor: '6.50', collection: '6.00', minWeight: '20', avgDelivery: '10' },
     { destination: 'Kebbi', doorToDoor: '7.00', collection: '7.00', minWeight: '20', avgDelivery: '12' },
     { destination: 'Kogi', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
-    { destination: 'Kwara', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Kwara', doorToDoor: '5.50', collection: '6.20', minWeight: '20', avgDelivery: '10' },
     { destination: 'Lagos', doorToDoor: '5.20', collection: '4.80', minWeight: '10', avgDelivery: '10' },
     { destination: 'Nassarawa', doorToDoor: '7.00', collection: '6.50', minWeight: '20', avgDelivery: '12' },
     { destination: 'Niger', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
