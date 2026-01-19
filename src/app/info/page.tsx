@@ -21,21 +21,43 @@ const privacy = [
 ];
 
 const prices = [
-    { destination: 'Abuja', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
-    { destination: 'Lagos', doorToDoor: '5.20', collection: '4.80', minWeight: '10', avgDelivery: '10' },
+    { destination: 'Abia', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Adamawa', doorToDoor: '7.00', collection: '6.50', minWeight: '30', avgDelivery: '12' },
+    { destination: 'Akwa Ibom', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Anambra', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Bauchi', doorToDoor: '7.00', collection: '6.50', minWeight: '30', avgDelivery: '12' },
+    { destination: 'Bayelsa', doorToDoor: '7.00', collection: '7.00', minWeight: '30', avgDelivery: '12' },
+    { destination: 'Benue', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Borno', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Cross River', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
     { destination: 'Delta', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Ebonyi', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Edo', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Ekiti', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Enugu', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Gombe', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Imo', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Jigawa', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Kaduna', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
     { destination: 'Kano', doorToDoor: '6.50', collection: '6.00', minWeight: '20', avgDelivery: '10' },
-    { destination: 'Port Harcourt', doorToDoor: '6.50', collection: '6.00', minWeight: '20', avgDelivery: '10' },
-    { destination: '19″ TV', doorToDoor: '120', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: '32″ TV', doorToDoor: '150', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Laptop (15–17″)', doorToDoor: '50', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Mobile Phones (per box)', doorToDoor: '45', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Clothing (per bag)', doorToDoor: '30', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Shoes (per box)', doorToDoor: '25', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Non-perishable Food (per box)', doorToDoor: '35', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Books / Documents (per box)', doorToDoor: '20', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Electronics (small, per box)', doorToDoor: '40', collection: '-', minWeight: '-', avgDelivery: '-' },
-    { destination: 'Household Items (per box)', doorToDoor: '45', collection: '-', minWeight: '-', avgDelivery: '-' },
+    { destination: 'Katsina', doorToDoor: '6.50', collection: '6.00', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Kebbi', doorToDoor: '7.00', collection: '7.00', minWeight: '20', avgDelivery: '12' },
+    { destination: 'Kogi', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Kwara', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Lagos', doorToDoor: '5.20', collection: '4.80', minWeight: '10', avgDelivery: '10' },
+    { destination: 'Nassarawa', doorToDoor: '7.00', collection: '6.50', minWeight: '20', avgDelivery: '12' },
+    { destination: 'Niger', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Ogun', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Ondo', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Osun', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Oyo', doorToDoor: '5.50', collection: '5.50', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Plateau', doorToDoor: '6.50', collection: '6.00', minWeight: '30', avgDelivery: '12' },
+    { destination: 'Rivers', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
+    { destination: 'Sokoto', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Taraba', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Yobe', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Zamfara', doorToDoor: '7.50', collection: '7.50', minWeight: '20', avgDelivery: '15' },
+    { destination: 'Federal Capital Territory (Abuja)', doorToDoor: '6.20', collection: '5.80', minWeight: '20', avgDelivery: '10' },
 ];
 
 export default function InfoPage() {
@@ -209,13 +231,13 @@ export default function InfoPage() {
             </div>
           ))}
 
-          <h2 id="prices" className="mt-12">Shipping Price List</h2>
+          <h2 id="prices" className="mt-12">Shipping Price List – All Nigerian States</h2>
             <table id="price-table">
                 <thead>
                     <tr>
-                        <th>Destination / Item</th>
-                        <th>Door-to-Door (£)</th>
-                        <th>Collection (£)</th>
+                        <th>State / FCT</th>
+                        <th>Door-to-Door (£/kg)</th>
+                        <th>Collection (£/kg)</th>
                         <th>Min Weight (kg)</th>
                         <th>Avg Delivery (Days)</th>
                     </tr>
