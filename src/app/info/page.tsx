@@ -1,9 +1,13 @@
 
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
 
 const terms = [
     { title: '1. General Disclaimer', content: <p>All information on the County Cargo website is for general informational purposes only. It does not constitute professional, legal, or financial advice. County Cargo and affiliates disclaim all liability for any loss, damage, or expense arising from reliance on website content.</p> },
@@ -80,6 +84,31 @@ const electronicsPrices = [
 
 export default function InfoPage() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [selectedState, setSelectedState] = useState('');
+    const [weight, setWeight] = useState(1);
+    const [deliveryResult, setDeliveryResult] = useState<string | null>(null);
+
+    const handleCalculate = () => {
+        if (!selectedState || !weight || weight <= 0) {
+            alert("Please select a state and enter a valid weight.");
+            return;
+        }
+
+        const stateData = prices.find(p => p.destination === selectedState);
+        if (!stateData) {
+            alert("Invalid state selected.");
+            return;
+        }
+        const extraPerKg = parseFloat(stateData.doorToDoor);
+
+        let resultText = "";
+        electronicsPrices.forEach(item => {
+            const basePrice = parseFloat(item.price);
+            const total = basePrice + (extraPerKg * weight);
+            resultText += `${item.item}: £${total.toFixed(2)}\n`;
+        });
+        setDeliveryResult(resultText);
+    };
 
   useEffect(() => {
     const toggles = document.querySelectorAll('.faq-toggle');
@@ -228,6 +257,7 @@ export default function InfoPage() {
             <a href="#terms">Terms & Conditions</a>
             <a href="#privacy">Privacy Policy</a>
             <a href="#prices">Price List</a>
+            <a href="#electronics">Electronics Prices</a>
         </div>
         <div className="info-container" ref={containerRef}>
           <h1>County Cargo – Info Page</h1>
@@ -274,7 +304,7 @@ export default function InfoPage() {
             </table>
 
             <h2 id="electronics" className="mt-12">Fixed‑Item Electronics Price List</h2>
-            <p>Door-to-door fixed prices for common electronics and devices:</p>
+            <p>Door-to-door fixed prices for common electronics and devices. <strong>Note:</strong> All electronics shipments are to our <u>Lagos office</u> only. Delivery to your final destination in Nigeria will incur additional charges.</p>
             <table id="electronics-price-table">
                 <thead>
                     <tr>
@@ -291,6 +321,38 @@ export default function InfoPage() {
                     ))}
                 </tbody>
             </table>
+            
+            <h3 className="text-xl font-semibold text-secondary mt-8 mb-4">Calculate Final Delivery Cost to Your Destination</h3>
+            <p className="text-lg text-gray-800 mb-4">Enter your Nigerian state and package weight to see total cost including delivery from Lagos office:</p>
+            <div className="flex flex-col sm:flex-row gap-4 items-center bg-gray-50 p-4 rounded-lg">
+                <select
+                    value={selectedState}
+                    onChange={(e) => setSelectedState(e.target.value)}
+                    className="w-full sm:w-1/3 p-2 border rounded-md"
+                >
+                    <option value="">Select State</option>
+                    {prices.map(p => <option key={p.destination} value={p.destination}>{p.destination}</option>)}
+                </select>
+                <div className="flex items-center gap-2">
+                    <Label htmlFor="package-weight">Package weight (kg):</Label>
+                    <Input
+                        id="package-weight"
+                        type="number"
+                        value={weight}
+                        onChange={(e) => setWeight(Number(e.target.value))}
+                        min="1"
+                        className="w-24"
+                    />
+                </div>
+                <Button onClick={handleCalculate}>Calculate Total Cost (£)</Button>
+            </div>
+            {deliveryResult && (
+                <div className="mt-6 bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-bold text-lg mb-2">Estimated Delivery Costs to {selectedState}:</h4>
+                    <pre className="text-sm whitespace-pre-wrap font-sans">{deliveryResult}</pre>
+                </div>
+            )}
+
 
           <div id="backToTop">↑ Top</div>
         </div>
