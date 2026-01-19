@@ -25,10 +25,6 @@ export const metadata: Metadata = {
   keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria',
 };
 
-const JohnLewisLogo = ({ className }: { className?: string }) => (
-    <svg className={cn("h-8 w-auto", className)} fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>John Lewis & Partners</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.9 14.625h.9V9.375h-.9v5.25zm-3.6 2.625h.9V6.75h-.9v10.5zM15.6 17.25h.9V6.75h-.9v10.5zm3.6-2.625h.9V9.375h-.9v5.25z"/></svg>
-);
-
 const processSteps = [
   {
     icon: <UserPlus className="h-10 w-10 text-white" />,
@@ -321,9 +317,6 @@ export default function ShipFromUkToNigeriaPage() {
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => {
-                            if (store.name === 'John Lewis') {
-                                return <div key={`uk-store2-${index}-${store.name}`} className="h-full flex items-center justify-center"><JohnLewisLogo /></div>
-                            }
                             return <div key={`uk-store2-${index}-${store.name}`}>{store.name}</div>
                          })}
                     </div>

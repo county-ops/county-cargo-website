@@ -11,10 +11,6 @@ export const metadata: Metadata = {
   description: 'Browse a list of popular UK online stores and ship your purchases to Nigeria with County Cargo.',
 };
 
-const JohnLewisLogo = ({ className }: { className?: string }) => (
-    <svg className={cn("h-10 w-auto", className)} fill="currentColor" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>John Lewis & Partners</title><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-.9 14.625h.9V9.375h-.9v5.25zm-3.6 2.625h.9V6.75h-.9v10.5zM15.6 17.25h.9V6.75h-.9v10.5zm3.6-2.625h.9V9.375h-.9v5.25z"/></svg>
-);
-
 const stores = [
     { name: "Adidas UK", domain: "adidas.co.uk" },
     { name: "AllSaints", domain: "allsaints.com" },
@@ -87,29 +83,20 @@ export default function UkStoresPage() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {stores.sort((a, b) => a.name.localeCompare(b.name)).map((store, index) => {
-                let storeContent;
-                if (store.name === 'John Lewis') {
-                    storeContent = <JohnLewisLogo className="text-gray-800 group-hover:text-primary h-10 mx-auto" />
-                } else {
-                    storeContent = <p className="font-semibold text-secondary group-hover:text-primary">{store.name}</p>
-                }
-
-                return (
-                    <a
-                    key={index}
-                    href={`https://${store.domain}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-primary/5 h-24"
-                    >
-                    {storeContent}
-                    <div className="flex items-center text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        Shop now <ExternalLink className="h-3 w-3 ml-1" />
-                    </div>
-                    </a>
-                )
-              })}
+              {stores.sort((a, b) => a.name.localeCompare(b.name)).map((store, index) => (
+                <a
+                  key={index}
+                  href={`https://${store.domain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center justify-center text-center p-4 bg-gray-50 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-primary/5 h-24"
+                >
+                  <p className="font-semibold text-secondary group-hover:text-primary">{store.name}</p>
+                  <div className="flex items-center text-xs text-gray-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      Shop now <ExternalLink className="h-3 w-3 ml-1" />
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </section>
