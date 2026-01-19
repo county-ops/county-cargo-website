@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect } from 'react';
@@ -96,7 +95,7 @@ export default function FaqPage() {
 
           <div className="faq-item"><h3 className="faq-toggle">What items are prohibited from shipping?</h3><p className="faq-answer">Prohibited items include hazardous materials, flammable liquids, explosives, illegal substances, and live animals. Please check our detailed guidelines for a complete list.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">How do I track my package?</h3><p className="faq-answer">Once your package is dispatched, you will receive a tracking number via email. You can use this number on our website's tracking page to monitor its journey in real-time.</p></div>
-          <div className="faq-item"><h3 className="faq-toggle">What are your shipping rates?</h3><p className="faq-answer">Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our support team.</p></div>
+          <div className="faq-item"><h3 className="faq-toggle">What are your shipping rates?</h3><p className="faq-answer">Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our customer service personal.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">Can I Send Food Produce with County Cargo?</h3><p className="faq-answer">Yes, County Cargo accepts non-perishable food items. Ensure all food products are safely and securely packaged. Fresh or frozen food is not accepted without prior approval. Always check import requirements for your destination country.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">Do You Only Ship Goods from the UK?</h3><p className="faq-answer">Yes. County Cargo operates exclusively from the United Kingdom to destinations worldwide.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">Do You Re-Pack My Cargo?</h3><p className="faq-answer">For boxed items, ensure cargo is properly packed. County Cargo can repack unboxed items for an additional fee.</p></div>
