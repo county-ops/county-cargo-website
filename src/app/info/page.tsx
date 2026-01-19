@@ -238,7 +238,7 @@ export default function InfoPage() {
                         <th>Door-to-Door (£/kg)</th>
                         <th>Collection (£/kg)</th>
                         <th>Min Weight (kg) for delivery</th>
-                        <th>Avg Delivery (Days)</th>
+                        <th>Avg Delivery (working day)</th>
                     </tr>
                 </thead>
                 <tbody>
