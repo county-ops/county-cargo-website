@@ -115,7 +115,7 @@ export default function FaqPage() {
           <div className="faq-item"><h3 className="faq-toggle">Can I Ship Dangerous or Hazardous Goods?</h3><p className="faq-answer">Yes, but only with correct documentation and safety data sheets (MSDS). Contact our team for guidance.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">Can I Send Vehicle Parts by Air Freight?</h3><p className="faq-answer">Yes. Parts must be clean, drip-free, and not classified as dangerous goods. Some components may require an MSDS.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">What If I Am Shipping as a Business?</h3><p className="faq-answer">Commercial shipments follow different rules than personal shipments. Contact our team for custom business quotes.</p></div>
-          <div className="faq-item"><h3 className="faq-toggle">Can I Send Phones, Laptops & Gadgets?</h3><p className="faq-answer">Yes. Electronics including phones, laptops, tablets, and consoles are accepted. Discounts may apply for bulk shipments.</p></div>
+          <div className="faq-item"><h3 className="faq-toggle">Can I Send Phones, Laptops & Gadgets?</h3><p className="faq-answer">Yes. but must provide prove of purchase Electronics including phones, laptops, tablets, and consoles are accepted.</p></div>
           <div className="faq-item"><h3 className="faq-toggle">Which Ports in Nigeria Do You Ship To?</h3><p className="faq-answer">Primary sea freight destination is Tin Can Island Port, Apapa, Lagos, with service to many other Nigerian cities.</p></div>
 
           <div id="backToTop">↑ Top</div>
