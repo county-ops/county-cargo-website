@@ -113,7 +113,7 @@
     .scroller__inner:hover {
         animation-play-state: paused;
     }
-    .scroller__inner > div {
+    .scroller__inner > a {
       height: 50px;
       display: flex;
       align-items: center;
@@ -129,7 +129,7 @@
       transition: opacity 0.3s, transform 0.3s;
       min-width: 140px;
     }
-    .scroller__inner > div:hover {
+    .scroller__inner > a:hover {
       opacity: 1;
       transform: scale(1.05);
     }

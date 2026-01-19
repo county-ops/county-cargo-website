@@ -251,14 +251,14 @@ export default function ShipFromUsToNigeriaPage() {
                 <div className="scroller">
                     <div className="scroller__inner">
                         {allStores1.map((store, index) => (
-                           <div key={`us-store1-${index}-${store.name}`}>{store.name}</div>
+                           <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`us-store1-${index}-${store.name}`}>{store.name}</a>
                         ))}
                     </div>
                 </div>
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <div key={`us-store2-${index}-${store.name}`}>{store.name}</div>
+                            <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`us-store2-${index}-${store.name}`}>{store.name}</a>
                         ))}
                     </div>
                 </div>
