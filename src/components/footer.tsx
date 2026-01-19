@@ -56,9 +56,9 @@ export function Footer() {
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
                      <p>&copy; {new Date().getFullYear()} County Cargo. All rights reserved. | Built by <a href="https://nocodek.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Nocodek</a></p>
                      <div className="mt-4">
-                        <Link href="/privacy-policy" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Privacy Policy</Link>
+                        <Link href="/legal" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Privacy Policy</Link>
                         <span className="text-gray-500">|</span>
-                        <Link href="/terms-of-service" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Terms of Service</Link>
+                        <Link href="/legal" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Terms of Service</Link>
                         <span className="text-gray-500">|</span>
                         <Link href="/faq" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">FAQ</Link>
                     </div>
