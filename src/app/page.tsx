@@ -14,12 +14,6 @@ import {
   Anchor,
   UserCheck,
 } from 'lucide-react';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
@@ -103,21 +97,6 @@ const stats = [
     icon: <UserCheck className="h-12 w-12 mx-auto mb-4" />,
     value: '500+',
     label: 'SMEs Served Annually',
-  },
-];
-
-const faqItems = [
-  {
-    question: 'What items are prohibited from shipping?',
-    answer: 'Prohibited items include hazardous materials, flammable liquids, explosives, illegal substances, and live animals. Please check our detailed guidelines for a complete list.',
-  },
-  {
-    question: 'How do I track my package?',
-    answer: 'Once your package is dispatched, you will receive a tracking number via email. You can use this number on our website\'s tracking page to monitor its journey in real-time.',
-  },
-  {
-    question: 'What are your shipping rates?',
-    answer: 'Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our support team.',
   },
 ];
 
@@ -237,29 +216,6 @@ export default function Home() {
                             </div>
                         </div>
                     ))}
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" className="py-20 bg-gray-50">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Frequently Asked Questions</h2>
-                    <p className="text-lg text-gray-800">Have questions? We have answers. If you don't find what you're looking for, feel free to contact us.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <Accordion type="single" collapsible className="w-full space-y-4">
-                        {faqItems.map((item, index) => (
-                            <AccordionItem value={`item-${index}`} key={index} className="bg-white p-6 rounded-lg shadow-md border-b-0">
-                                <AccordionTrigger className="w-full text-left flex justify-between items-center text-xl font-semibold text-secondary focus:outline-none hover:no-underline">
-                                    <span>{item.question}</span>
-                                </AccordionTrigger>
-                                <AccordionContent className="mt-4 text-gray-800">
-                                    <p>{item.answer}</p>
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
                 </div>
             </div>
         </section>
