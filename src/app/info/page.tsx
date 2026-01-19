@@ -253,12 +253,6 @@ export default function InfoPage() {
       />
       <Header />
       <main className="info-page">
-        <div id="nav">
-            <a href="#terms">Terms & Conditions</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#prices">Price List</a>
-            <a href="#electronics">Electronics Prices</a>
-        </div>
         <div className="info-container" ref={containerRef}>
           <h1>County Cargo – Info Page</h1>
           <input type="text" id="search-bar" placeholder="Search terms across Terms, Privacy &amp; Price List..." />
