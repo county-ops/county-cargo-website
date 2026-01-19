@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Menu, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import React from 'react';
 import { RollingRibbon } from './rolling-ribbon';
 
 const navLinks = [
@@ -33,7 +33,7 @@ const navLinks = [
 ];
 
 export function Header() {
-  const [isSheetOpen, setSheetOpen] = useState(false);
+  const [isSheetOpen, setSheetOpen] = React.useState(false);
 
   const desktopNav = (
      <div className="hidden md:flex items-center justify-center flex-1 space-x-6 lg:space-x-8">
