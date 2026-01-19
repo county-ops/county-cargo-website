@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -207,7 +206,7 @@ export default function InfoPage() {
       <Header />
       <main className="info-page">
         <div id="nav">
-            <a href="#terms">Terms &amp; Conditions</a>
+            <a href="#terms">Terms & Conditions</a>
             <a href="#privacy">Privacy Policy</a>
             <a href="#prices">Price List</a>
         </div>
@@ -215,7 +214,7 @@ export default function InfoPage() {
           <h1>County Cargo – Info Page</h1>
           <input type="text" id="search-bar" placeholder="Search terms across Terms, Privacy &amp; Price List..." />
           
-          <h2 id="terms">Terms &amp; Conditions</h2>
+          <h2 id="terms">Terms & Conditions</h2>
           {terms.map((item, index) => (
             <div className="faq-item" key={`term-${index}`}>
               <h3 className="faq-toggle">{item.title}</h3>
@@ -238,7 +237,7 @@ export default function InfoPage() {
                         <th>State / FCT</th>
                         <th>Door-to-Door (£/kg)</th>
                         <th>Collection (£/kg)</th>
-                        <th>Min Weight (kg)</th>
+                        <th>Min Weight (kg) for delivery</th>
                         <th>Avg Delivery (Days)</th>
                     </tr>
                 </thead>
