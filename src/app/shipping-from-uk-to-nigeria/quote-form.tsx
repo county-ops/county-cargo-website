@@ -96,7 +96,9 @@ export function UkNigeriaQuoteForm() {
       
       const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
 
-      const estimatedCost = finalChargeableWeight * statePriceInfo.doorToDoor;
+      const shippingCost = finalChargeableWeight * statePriceInfo.doorToDoor;
+      const handlingCharge = 15;
+      const estimatedCost = shippingCost + handlingCharge;
       
       const details = `
 Calculation based on:
@@ -107,6 +109,8 @@ Calculation based on:
 - Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
 - Minimum Weight for destination: ${statePriceInfo.minWeight} kg
 - Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
+- Shipping Cost: £${shippingCost.toFixed(2)}
+- Handling Charge: £${handlingCharge.toFixed(2)}
       `.trim();
 
       setResult({
@@ -270,7 +274,7 @@ Calculation based on:
           </Button>
         ) : (
             <p className="text-xs text-muted-foreground text-center w-full">
-            This is an estimate. Final costs may vary.
+            This is an estimate. Final costs may vary. Includes a £15 handling charge.
           </p>
         )}
       </CardFooter>
