@@ -41,22 +41,10 @@ const nigerianCities = [
 const formSchema = z.object({
   from: z.string().min(1, 'Please select an origin city.'),
   to: z.string().min(1, 'Please select a destination city.'),
-  weight: z.preprocess(
-    (a) => parseFloat(z.string().parse(a)),
-    z.number().positive('Weight must be a positive number.')
-  ),
-  length: z.preprocess(
-    (a) => parseFloat(z.string().parse(a)),
-    z.number().positive('Length must be a positive number.')
-  ),
-  width: z.preprocess(
-    (a) => parseFloat(z.string().parse(a)),
-    z.number().positive('Width must be a positive number.')
-  ),
-  height: z.preprocess(
-    (a) => parseFloat(z.string().parse(a)),
-    z.number().positive('Height must be a positive number.')
-  ),
+  weight: z.coerce.number().positive('Weight must be a positive number.'),
+  length: z.coerce.number().positive('Length must be a positive number.'),
+  width: z.coerce.number().positive('Width must be a positive number.'),
+  height: z.coerce.number().positive('Height must be a positive number.'),
 });
 
 type ShippingCostOutput = {
