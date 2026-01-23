@@ -22,7 +22,7 @@ export const nigerianShippingRates = [
     { destination: 'Kebbi', doorToDoor: 7.00, collection: 7.00, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Kogi', doorToDoor: 6.20, collection: 6.20, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Kwara', doorToDoor: 6.20, collection: 6.20, minWeight: 20, avgDelivery: '5-10' },
-    { destination: 'Lagos', doorToDoor: 5.20, collection: 5.20, minWeight: 10, avgDelivery: '5-10' },
+    { destination: 'Lagos', doorToDoor: 5.80, collection: 5.80, minWeight: 10, avgDelivery: '5-10' },
     { destination: 'Nassarawa', doorToDoor: 7.00, collection: 7.00, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Niger', doorToDoor: 6.20, collection: 6.20, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Ogun', doorToDoor: 5.50, collection: 5.50, minWeight: 20, avgDelivery: '5-10' },
@@ -35,7 +35,7 @@ export const nigerianShippingRates = [
     { destination: 'Taraba', doorToDoor: 7.50, collection: 7.50, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Yobe', doorToDoor: 7.50, collection: 7.50, minWeight: 20, avgDelivery: '5-10' },
     { destination: 'Zamfara', doorToDoor: 7.50, collection: 7.50, minWeight: 20, avgDelivery: '5-10' },
-    { destination: 'Federal Capital Territory (Abuja)', doorToDoor: 6.20, collection: 6.20, minWeight: 20, avgDelivery: '5-10' },
+    { destination: 'Federal Capital Territory (Abuja)', doorToDoor: 6.20, collection: 6.20, minWeight: 10, avgDelivery: '5-10' },
 ];
 
 export const electronicsPrices = [
