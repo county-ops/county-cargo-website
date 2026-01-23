@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Shipping from UK to Nigeria - Fast & Affordable Shipping | County Cargo',
+  title: 'Shipping from UK to Nigeria | London, Liverpool to Lagos, Abuja | County Cargo',
   description: 'Looking to ship from UK to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the UK to Nigeria. Get your free UK address today and enjoy seamless delivery of your goods.',
   keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria, shipping to Lagos, shipping to Abuja, shipping to Kano, shipping to Kaduna, shipping to Port-Harcourt, shipping to Ibadan, Osun, Borno, shipping from Liverpool, shipping from London, shipping from Birmingham, shipping from Leicester, shipping from Nottingham, shipping from Leeds',
 };
@@ -217,7 +217,7 @@ export default function ShipFromUkToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Shipping from UK to Nigeria</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">Shipping from UK to Nigeria (Door-to-Door & Air Freight)</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors">
