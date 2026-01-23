@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -14,7 +15,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -22,9 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { estimateShippingCost, ShippingCostInput, ShippingCostOutput } from '@/ai/flows/shipping-cost-estimation';
 import { Loader2 } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { nigerianCitiesToStates, nigerianShippingRates } from '@/lib/pricing-data';
 
 const ukCities = [
   "London", "Manchester", "Birmingham", "Liverpool", "Leeds", "Sheffield",
@@ -59,6 +59,12 @@ const formSchema = z.object({
   ),
 });
 
+type ShippingCostOutput = {
+  estimatedCost: number;
+  currency: string;
+  details: string;
+}
+
 export function UkNigeriaQuoteForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
@@ -76,14 +82,51 @@ export function UkNigeriaQuoteForm() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     setError(null);
     setResult(null);
 
     try {
-      const estimation = await estimateShippingCost(values as ShippingCostInput);
-      setResult(estimation);
+      const { to, weight, length, width, height } = values;
+      const state = nigerianCitiesToStates[to];
+      if (!state) {
+        setError(`We don't have pricing information for ${to}. Please contact us for a custom quote.`);
+        setIsLoading(false);
+        return;
+      }
+
+      const statePriceInfo = nigerianShippingRates.find(p => p.destination === state);
+      if (!statePriceInfo) {
+        setError(`We don't have pricing information for ${state}. Please contact us for a custom quote.`);
+        setIsLoading(false);
+        return;
+      }
+
+      const volumetricWeight = (length * width * height) / 5000;
+      const chargeableWeight = Math.max(weight, volumetricWeight);
+      
+      const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
+
+      const estimatedCost = finalChargeableWeight * statePriceInfo.doorToDoor;
+      
+      const details = `
+Calculation based on:
+- Destination: ${to}, ${state}
+- Rate: £${statePriceInfo.doorToDoor.toFixed(2)}/kg
+- Actual Weight: ${weight.toFixed(2)} kg
+- Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
+- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
+- Minimum Weight for destination: ${statePriceInfo.minWeight} kg
+- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
+      `.trim();
+
+      setResult({
+        estimatedCost,
+        currency: 'GBP',
+        details
+      });
+
     } catch (e) {
       setError('Failed to get estimation. Please try again.');
       console.error(e);
