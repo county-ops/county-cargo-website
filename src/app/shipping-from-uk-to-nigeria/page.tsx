@@ -204,6 +204,15 @@ const reviews = [
     },
 ];
 
+const transitRoutes = [
+  { origin: 'London', destination: 'Lagos', time: '5-7 Business Days' },
+  { origin: 'Manchester', destination: 'Abuja', time: '6-8 Business Days' },
+  { origin: 'Birmingham', destination: 'Port Harcourt', time: '6-8 Business Days' },
+  { origin: 'Liverpool', destination: 'Lagos', time: '7-9 Business Days' },
+  { origin: 'Leeds', destination: 'Abuja', time: '7-9 Business Days' },
+  { origin: 'London', destination: 'Ibadan', time: '7-9 Business Days' },
+];
+
 export default function ShipFromUkToNigeriaPage() {
   return (
     <>
@@ -278,6 +287,35 @@ export default function ShipFromUkToNigeriaPage() {
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <UkNigeriaQuoteForm />
+            </div>
+        </section>
+
+        <section id="routes" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the UK to Nigeria.</p>
+                </div>
+                <div className="overflow-x-auto rounded-lg shadow-md border">
+                    <table className="min-w-full bg-white">
+                        <thead className="bg-primary text-primary-foreground">
+                        <tr>
+                            <th className="py-4 px-6 text-left font-semibold">Origin (UK City)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Destination (Nigeria City)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
+                        </tr>
+                        </thead>
+                        <tbody className="text-gray-700">
+                        {transitRoutes.map((route, index) => (
+                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+                            <td className="py-4 px-6">{route.origin}</td>
+                            <td className="py-4 px-6">{route.destination}</td>
+                            <td className="py-4 px-6">{route.time}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
