@@ -22,7 +22,7 @@ const privacy = [
     { title: '2. How We Use Your Information', content: <ul><li>Process shipments and track deliveries</li><li>Customer support and communication</li><li>Secure payment processing</li><li>Compliance with legal obligations</li><li>Service improvement and analytics</li></ul> },
     { title: '3. Sharing & Security', content: <div><ul><li>Service providers: shipping partners, payment processors, IT vendors</li><li>Legal compliance</li><li>Business transactions: mergers, acquisitions</li><li>Protection of rights</li></ul><p>We do not sell or rent personal information.</p></div> },
     { title: '4. Your Rights', content: <ul><li>Access and correction</li><li>Deletion (with exceptions)</li><li>Opt-out of marketing</li><li>Data portability and restriction of processing</li></ul> },
-    { title: '5. Contact', content: <address className="not-italic">County Cargo<br />Asset Corp Plaza, C90, 21 Obafemi Awolowo Way, Ikeja, Lagos<br />Email: info@countycargo.com<br />Phone: +2348110000421, +2348110000423</address> },
+    { title: '5. Contact', content: <address className="not-italic">County Cargo<br />Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria<br />Email: info@countycargo.com<br />Phone: +2348110000421, +2348110000423</address> },
 ];
 
 export default function InfoPage() {
