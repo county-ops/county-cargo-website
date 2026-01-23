@@ -25,7 +25,7 @@ const services = [
     icon: <Truck className="h-6 w-6 text-primary" />,
     title: 'Shipping from UK to Nigeria',
     description: 'Fast and affordable air and sea freight services from our UK warehouse directly to your doorstep in Nigeria.',
-    href: '/ship-from-uk-to-nigeria',
+    href: '/shipping-from-uk-to-nigeria',
   },
   {
     icon: <Package className="h-6 w-6 text-primary" />,
