@@ -205,19 +205,19 @@ const reviews = [
 ];
 
 const transitRoutes = [
-  { origin: 'London', destination: 'Lagos', time: '5-7 Business Days' },
-  { origin: 'Manchester', destination: 'Abuja', time: '6-8 Business Days' },
-  { origin: 'Birmingham', destination: 'Port Harcourt', time: '6-8 Business Days' },
-  { origin: 'Liverpool', destination: 'Lagos', time: '7-9 Business Days' },
-  { origin: 'Leeds', destination: 'Abuja', time: '7-9 Business Days' },
-  { origin: 'London', destination: 'Ibadan', time: '7-9 Business Days' },
-  { origin: 'Sheffield', destination: 'Kano', time: '8-10 Business Days' },
-  { origin: 'Leicester', destination: 'Ibadan', time: '7-9 Business Days' },
-  { origin: 'Coventry', destination: 'Benin City', time: '7-10 Business Days' },
-  { origin: 'Bristol', destination: 'Lagos', time: '6-8 Business Days' },
-  { origin: 'Newcastle', destination: 'Abuja', time: '8-10 Business Days' },
-  { origin: 'Cardiff', destination: 'Port Harcourt', time: '8-10 Business Days' },
-  { origin: 'Nottingham', destination: 'Owerri', time: '7-10 Business Days' },
+  { origin: 'London', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Manchester', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Birmingham', destination: 'Port Harcourt', time: '5-10 working days' },
+  { origin: 'Liverpool', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Leeds', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'London', destination: 'Ibadan', time: '5-10 working days' },
+  { origin: 'Sheffield', destination: 'Kano', time: '5-10 working days' },
+  { origin: 'Leicester', destination: 'Ibadan', time: '5-10 working days' },
+  { origin: 'Coventry', destination: 'Benin City', time: '5-10 working days' },
+  { origin: 'Bristol', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Newcastle', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Cardiff', destination: 'Port Harcourt', time: '5-10 working days' },
+  { origin: 'Nottingham', destination: 'Owerri', time: '5-10 working days' },
 ];
 
 export default function ShipFromUkToNigeriaPage() {
