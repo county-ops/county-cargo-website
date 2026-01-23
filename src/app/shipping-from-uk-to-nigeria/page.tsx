@@ -22,7 +22,7 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria - Fast & Affordable Shipping | County Cargo',
   description: 'Looking to ship from UK to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the UK to Nigeria. Get your free UK address today and enjoy seamless delivery of your goods.',
-  keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria, shipping to Lagos, shipping to Abuja, shipping to Kano, shipping to Kaduna, shipping to Port-Harcourt, shipping to Ibadan, shipping to Osun, shipping to Borno',
+  keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria, shipping to Lagos, shipping to Abuja, shipping to Kano, shipping to Kaduna, shipping to Port-Harcourt, shipping to Ibadan, Osun, Borno, shipping from Liverpool, shipping from London, shipping from Birmingham, shipping from Leicester, shipping from Nottingham, shipping from Leeds',
 };
 
 const processSteps = [
@@ -295,6 +295,7 @@ export default function ShipFromUkToNigeriaPage() {
                 </div>
                  <div className="text-center mt-12">
                      <p className="text-lg">Our 3-step process is designed for your convenience. The journey of your shipping from UK to Nigeria begins with a simple registration, giving you a unique UK shipping address. This address is your gateway to thousands of UK retailers. Once your purchases arrive at our warehouse, we handle the consolidation, customs, and final delivery, completing the ship from UK to Nigeria process with professionalism and care.</p>
+                     <p className="mt-4 text-lg">We proudly serve customers across the UK, including major cities like Liverpool, London, Birmingham, Leicester, Nottingham, and Leeds, ensuring convenient options for your shipments to Nigeria.</p>
                      <p className="mt-4 text-lg">We deliver to all major cities in Nigeria, including Lagos, Abuja, Kano, Kaduna, Port-Harcourt, Ibadan, Osun, and Borno, ensuring your package reaches its destination no matter where it is.</p>
                 </div>
             </div>
