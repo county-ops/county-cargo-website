@@ -217,7 +217,7 @@ export default function ShipFromUkToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold">Shipping from UK to Nigeria (Door-to-Door & Air Freight)</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">Shipping from UK to Nigeria<br />(Door-to-Door)</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors">
