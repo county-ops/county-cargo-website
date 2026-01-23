@@ -18,6 +18,7 @@ import { Footer } from '@/components/footer';
 import { Faq } from './faq';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { UkNigeriaQuoteForm } from './quote-form';
 
 export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria | London, Liverpool to Lagos, Abuja | County Cargo',
@@ -271,6 +272,12 @@ export default function ShipFromUkToNigeriaPage() {
                         </div>
                     ))}
                 </div>
+            </div>
+        </section>
+
+        <section id="quote" className="py-20 bg-gray-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <UkNigeriaQuoteForm />
             </div>
         </section>
 

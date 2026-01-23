@@ -12,7 +12,8 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const ShippingCostInputSchema = z.object({
-  destination: z.string().describe('The destination address for the package.'),
+  from: z.string().describe('The origin city in the UK.'),
+  to: z.string().describe('The destination city in Nigeria.'),
   weight: z.number().describe('The weight of the package in kilograms.'),
   length: z.number().describe('The length of the package in centimeters.'),
   width: z.number().describe('The width of the package in centimeters.'),
@@ -21,8 +22,8 @@ const ShippingCostInputSchema = z.object({
 export type ShippingCostInput = z.infer<typeof ShippingCostInputSchema>;
 
 const ShippingCostOutputSchema = z.object({
-  estimatedCost: z.number().describe('The estimated shipping cost in USD.'),
-  currency: z.string().describe('The currency of the estimated cost, which is USD.'),
+  estimatedCost: z.number().describe('The estimated shipping cost in GBP.'),
+  currency: z.string().describe('The currency of the estimated cost, which is GBP.'),
   details: z.string().describe('A breakdown of how the cost was estimated.'),
 });
 export type ShippingCostOutput = z.infer<typeof ShippingCostOutputSchema>;
@@ -35,21 +36,23 @@ const estimateShippingCostPrompt = ai.definePrompt({
   name: 'estimateShippingCostPrompt',
   input: {schema: ShippingCostInputSchema},
   output: {schema: ShippingCostOutputSchema},
-  prompt: `You are an expert logistics cost estimator.  Given the package details, provide an estimated shipping cost in USD.
+  prompt: `You are an expert logistics cost estimator. Given the package details for a shipment from the UK to Nigeria, provide an estimated shipping cost in GBP.
 
-  Destination: {{{destination}}}
+  From (UK): {{{from}}}
+  To (Nigeria): {{{to}}}
   Weight (kg): {{{weight}}}
   Dimensions (cm): {{{length}}}x{{{width}}}x{{{height}}}
 
   Consider these factors when estimating:
-  - Base shipping fees
-  - Distance to destination
-  - Weight and size of the package
-  - Any surcharges for oversized or heavy packages
-  - Current fuel costs
+  - Base shipping fees between the UK and Nigeria.
+  - Distance from origin UK city to the airport and from the destination airport in Nigeria to the final city.
+  - Weight and size of the package (volumetric weight).
+  - Any surcharges for oversized or heavy packages.
+  - Current fuel costs and currency conversion rates (to GBP).
 
   Provide a breakdown of how you arrived at the estimated cost in the details field.
-  The currency should always be USD.
+  The currency should always be GBP.
+  The estimated cost should be in pounds sterling (£).
 `,
 });
 
