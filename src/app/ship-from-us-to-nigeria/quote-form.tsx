@@ -26,17 +26,17 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { nigerianCitiesToStates, usShippingRates } from '@/lib/pricing-data';
 
 const usCities = [
-  "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia",
-  "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville",
-  "Fort Worth", "Columbus", "Charlotte", "San Francisco", "Indianapolis", "Seattle",
-  "Denver", "Washington D.C."
-];
+  "Atlanta", "Austin", "Boston", "Charlotte", "Chicago", "Columbus", "Dallas",
+  "Denver", "Fort Worth", "Houston", "Indianapolis", "Jacksonville", "Los Angeles",
+  "Miami", "New York", "Philadelphia", "Phoenix", "San Antonio", "San Diego",
+  "San Francisco", "San Jose", "Seattle", "Washington D.C."
+].sort();
 
 const nigerianCities = [
-  "Lagos", "Abuja", "Port Harcourt", "Ibadan", "Benin City", "Onitsha", "Aba",
-  "Asaba", "Warri", "Owerri", "Uyo", "Calabar", "Enugu", "Awka", "Akure",
-  "Ado-Ekiti", "Ilorin"
-];
+  "Aba", "Abuja", "Ado-Ekiti", "Akure", "Asaba", "Awka", "Benin City", "Calabar",
+  "Enugu", "Ibadan", "Ilorin", "Kano", "Lagos", "Onitsha", "Owerri",
+  "Port Harcourt", "Uyo", "Warri"
+].sort();
 
 const formSchema = z.object({
   from: z.string().min(1, 'Please select an origin city.'),

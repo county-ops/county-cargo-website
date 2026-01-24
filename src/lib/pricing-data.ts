@@ -97,21 +97,22 @@ export const electronicsPrices = [
 ];
 
 export const nigerianCitiesToStates: { [city: string]: string } = {
-  'Lagos': 'Lagos',
-  'Abuja': 'Federal Capital Territory (Abuja)',
-  'Port Harcourt': 'Rivers',
-  'Ibadan': 'Oyo',
-  'Benin City': 'Edo',
-  'Onitsha': 'Anambra',
   'Aba': 'Abia',
+  'Abuja': 'Federal Capital Territory (Abuja)',
+  'Ado-Ekiti': 'Ekiti',
+  'Akure': 'Ondo',
   'Asaba': 'Delta',
-  'Warri': 'Delta',
-  'Owerri': 'Imo',
-  'Uyo': 'Akwa Ibom',
+  'Awka': 'Anambra',
+  'Benin City': 'Edo',
   'Calabar': 'Cross River',
   'Enugu': 'Enugu',
-  'Awka': 'Anambra',
-  'Akure': 'Ondo',
-  'Ado-Ekiti': 'Ekiti',
-  'Ilorin': 'Kwara'
+  'Ibadan': 'Oyo',
+  'Ilorin': 'Kwara',
+  'Kano': 'Kano',
+  'Lagos': 'Lagos',
+  'Onitsha': 'Anambra',
+  'Owerri': 'Imo',
+  'Port Harcourt': 'Rivers',
+  'Uyo': 'Akwa Ibom',
+  'Warri': 'Delta'
 };

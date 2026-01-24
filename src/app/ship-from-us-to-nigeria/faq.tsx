@@ -20,7 +20,7 @@ const faqItems = [
     },
     {
         question: 'How long does it take to ship from US to Nigeria?',
-        answer: 'Standard shipping typically takes 7-12 working days. For fast shipping Nigeria, our 48hrs Express option delivers in 2 working days, and our 24hrs Express option delivers in 1 working day. Delivery times are from when the parcel leaves our US warehouse. We are committed to reliable shipping US Nigeria for all your packages.'
+        answer: 'Standard shipping typically takes 5-10 working days. For fast shipping Nigeria, our 48hrs Express option delivers in 2 working days, and our 24hrs Express option delivers in 1 working day. Delivery times are from when the parcel leaves our US warehouse. We are committed to reliable shipping US Nigeria for all your packages.'
     },
     {
         question: 'Is my parcel insured when shipping from US to Nigeria?',

@@ -49,7 +49,7 @@ const pricingTiers = [
     per: '/kg',
     features: [
       '10kg minimum weight for Lagos',
-      'Delivery in 7-12 working days',
+      'Delivery in 5-10 working days',
       'Full tracking included',
       '$15 handling charge',
     ],
@@ -174,15 +174,18 @@ const reviews = [
 ];
 
 const transitRoutes = [
-  { origin: 'New York', destination: 'Lagos', time: '7-12 working days' },
-  { origin: 'Houston', destination: 'Abuja', time: '7-12 working days' },
-  { origin: 'Atlanta', destination: 'Port Harcourt', time: '7-12 working days' },
-  { origin: 'Chicago', destination: 'Lagos', time: '7-12 working days' },
-  { origin: 'Los Angeles', destination: 'Abuja', time: '7-12 working days' },
-  { origin: 'Dallas', destination: 'Ibadan', time: '7-12 working days' },
-  { origin: 'Washington D.C.', destination: 'Kano', time: '7-12 working days' },
-  { origin: 'Miami', destination: 'Ibadan', time: '7-12 working days' },
-  { origin: 'San Francisco', destination: 'Benin City', time: '7-12 working days' },
+  { origin: 'New York', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Houston', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Atlanta', destination: 'Port Harcourt', time: '5-10 working days' },
+  { origin: 'Chicago', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Los Angeles', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Dallas', destination: 'Ibadan', time: '5-10 working days' },
+  { origin: 'Washington D.C.', destination: 'Kano', time: '5-10 working days' },
+  { origin: 'Miami', destination: 'Ibadan', time: '5-10 working days' },
+  { origin: 'San Francisco', destination: 'Benin City', time: '5-10 working days' },
+  { origin: 'Philadelphia', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Seattle', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Boston', destination: 'Port Harcourt', time: '5-10 working days' },
 ];
 
 export default function ShipFromUsToNigeriaPage() {
