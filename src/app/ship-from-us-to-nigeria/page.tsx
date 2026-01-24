@@ -20,26 +20,25 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 
 export const metadata: Metadata = {
-  title: 'Ship from US to Nigeria | Your Free US Address | County Cargo',
-  description: 'Ship from the US to Nigeria with County Cargo. Get a free US address to shop any store, then enjoy fast, cheap, and reliable delivery to Lagos, Abuja, and nationwide. We handle cargo, customs, and parcel forwarding.',
-  keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria, shipping to Lagos, shipping to Abuja, shipping to Port-Harcourt, shipping from New York, shipping from Houston, shipping from Atlanta, parcel forwarding US to Nigeria, shop in USA ship to Nigeria, Amazon to Nigeria, Walmart to Nigeria',
+  title: 'Ship from US to Nigeria: Fast & Reliable Delivery | County Cargo',
+  description: 'Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we\'ll handle the rest.',
 };
 
 const processSteps = [
   {
     icon: <UserPlus className="h-10 w-10 text-white" />,
-    title: '1. Get Your US Shipping Address',
-    description: 'Create your free account in minutes to receive your personal US shipping address to start your shipping from US to Nigeria.',
+    title: '1. Get Your Free US Address',
+    description: 'Create a free account to receive your personal US shipping address. Use it to shop from any US retailer, including Amazon, Walmart, and Shein.',
   },
   {
     icon: <ShoppingCart className="h-10 w-10 text-white" />,
-    title: '2. Shop in the US',
-    description: 'Shop from any online retailer in the US and use your County Cargo US shipping address at checkout. It\'s the perfect way to ship from US to Nigeria.',
+    title: '2. Shop & Ship to Us',
+    description: 'Shop your favorite US stores online and use your new County Cargo address at checkout. We\'ll receive your packages at our US warehouse.',
   },
   {
     icon: <Gift className="h-10 w-10 text-white" />,
     title: '3. We Deliver to Nigeria',
-    description: 'We consolidate and forward your packages, handling all the logistics for your shipping from US to Nigeria, right to your doorstep.',
+    description: 'We consolidate your packages, handle customs, and deliver them straight to your doorstep in Nigeria. It\'s that simple!',
   },
 ];
 
@@ -82,18 +81,18 @@ const pricingTiers = [
 const guideFeatures = [
     {
         icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable & Transparent Rates",
-        description: "We offer the most competitive rates for shipping from US to Nigeria. Our transparent pricing means you know exactly what you're paying for, making us your top choice for cheap shipping to Nigeria."
+        title: "Affordable US to Nigeria Shipping",
+        description: "Our transparent pricing ensures you get the cheapest shipping to Nigeria without compromising on service. No hidden fees, just great value."
     },
     {
         icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable US to Nigeria Cargo",
-        description: "With our standard and express options, you can choose the speed that fits your needs. We are committed to providing a fast and reliable ship from US to Nigeria service every time, whether you're shipping to Lagos, Abuja, or Port Harcourt."
+        title: "Fast & Reliable Delivery",
+        description: "Whether you're shipping to Lagos, Abuja, or Port Harcourt, our standard and express services guarantee your US to Nigeria cargo arrives on time, every time."
     },
     {
         icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Secure Shipping & Peace of Mind",
-        description: "Every parcel is handled with the utmost care. We offer real-time tracking and insurance options so you can ship from US to Nigeria with confidence, knowing your items are safe from New York, Houston, or Atlanta all the way to your home."
+        title: "Secure Parcel Forwarding",
+        description: "From New York, Houston, or Atlanta, we handle your items with care. Enjoy peace of mind with real-time tracking and insurance options for all your shipments."
     }
 ];
 
@@ -214,16 +213,16 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Ship from the US to Nigeria</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Get your free US address, shop American stores, and enjoy fast, affordable, and reliable delivery to your doorstep in Nigeria.</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria: Fast & Reliable Delivery</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we'll handle the rest.</p>
           </div>
         </section>
 
         <section id="process" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How Our Shipping From US to Nigeria Works</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered when you ship from the US to Nigeria. We make US to Nigeria cargo and parcel forwarding effortless.</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship from the US to Nigeria</h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Our seamless 3-step process makes US to Nigeria cargo and parcel forwarding effortless. Get your packages from US stores to your doorstep in Nigeria, hassle-free.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
@@ -313,7 +312,7 @@ export default function ShipFromUsToNigeriaPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Your Ultimate Guide to Shipping from US to Nigeria</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto">When it comes to shipping from US to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite US stores like Amazon, Walmart, and Shein, and receive your goods in Nigeria without hassle. Our freight forwarding Nigeria service is designed to be cheap, fast, and completely reliable.</p>
+                    <p className="mb-12 text-lg max-w-3xl mx-auto">Shipping from the US to Nigeria has never been easier. County Cargo is your trusted partner for freight forwarding, offering a seamless and reliable way to shop from your favorite US stores like Amazon, Walmart, and Shein. Our service is designed to be cheap, fast, and completely dependable, ensuring your goods arrive in Nigeria without any hassle.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
@@ -329,7 +328,7 @@ export default function ShipFromUsToNigeriaPage() {
                     ))}
                 </div>
                  <div className="text-center mt-12" data-aos="fade-up">
-                     <p className="text-lg">Our 3-step process is designed for your convenience. The journey of your shipping from US to Nigeria begins with a simple registration, giving you a unique US shipping address. This address is your gateway to thousands of US retailers. Once your purchases arrive at our US warehouse, we handle the package consolidation, customs paperwork, and final delivery, completing the ship from US to Nigeria process with professionalism and care.</p>
+                     <p className="text-lg">Our simple 3-step process is built for your convenience. Your shipping journey begins with a free US shipping address, opening the door to thousands of US retailers. Once your items arrive at our US warehouse, we take care of everything—from package consolidation and customs paperwork to final delivery. We manage the entire process with professionalism and care, making your US to Nigeria shipping experience effortless.</p>
                 </div>
             </div>
         </section>
