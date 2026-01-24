@@ -273,13 +273,19 @@ export default function ShipFromUsToNigeriaPage() {
 
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <UsNigeriaQuoteForm />
+                <div className="grid lg:grid-cols-5 gap-12 items-start">
+                    <div className="lg:col-span-3">
+                        <UsNigeriaQuoteForm />
+                    </div>
+                    <div className="lg:col-span-2">
+                        <CurrencyConverter />
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="converter-and-routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-                <CurrencyConverter />
+        <section id="routes" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div>
                     <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>

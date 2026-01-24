@@ -128,7 +128,7 @@ Calculation based on Standard Shipping:
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
+    <Card className="w-full shadow-2xl">
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -48,7 +49,7 @@ export function CurrencyConverter() {
 
 
   return (
-    <Card className="w-full max-w-md mx-auto shadow-lg">
+    <Card className="w-full shadow-lg">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Currency Converter</CardTitle>
         <CardDescription>
