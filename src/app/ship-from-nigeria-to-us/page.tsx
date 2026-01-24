@@ -64,13 +64,13 @@ const pricingTiers = [
     ],
   },
   {
-    title: 'Bulk & Commercial Goods',
+    title: 'DHL EXPRESS 3-5 DAY',
     price: 'Contact Us',
     per: 'for rates',
     features: [
-      'Tailored for business and bulk exports',
-      'Sea and air freight options',
-      'Customs clearance support',
+        'Delivery in 3-5 working days',
+        'Ideal for urgent shipments',
+        'Full tracking included',
     ],
   },
 ];
@@ -178,7 +178,7 @@ export default function ShipFromNigeriaToUsPage() {
                         <div key={index} className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
-                                <span className="text-lg font-normal text-gray-500">{tier.title.includes('Bulk') || tier.title.includes('Docs') ? '' : 'from '}</span>{tier.price}
+                                <span className="text-lg font-normal text-gray-500">{tier.title.includes('Bulk') || tier.title.includes('DHL') || tier.title.includes('Docs') ? '' : 'from '}</span>{tier.price}
                                 <span className="text-lg font-normal text-gray-500"> {tier.per}</span>
                             </p>
                             <ul className="text-gray-600 space-y-2">
@@ -189,7 +189,9 @@ export default function ShipFromNigeriaToUsPage() {
                                 ))}
                             </ul>
                              <Button asChild className="w-full mt-6">
-                                <Link href="#quote">Get Started</Link>
+                                <Link href={tier.title.includes('Standard') ? '#quote' : '/contact'}>
+                                    {tier.title.includes('Standard') ? 'Get Started' : 'Contact Us'}
+                                </Link>
                             </Button>
                         </div>
                     ))}
