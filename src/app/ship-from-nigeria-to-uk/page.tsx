@@ -50,6 +50,7 @@ const pricingTiers = [
       '10kg minimum weight',
       'Delivery in 5-10 working days',
       'Full tracking included',
+      'From Abuja: ₦10,500/kg',
     ],
   },
   {

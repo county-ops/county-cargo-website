@@ -94,7 +94,7 @@ export function NigeriaUkQuoteForm() {
 
       if (serviceType === 'standard') {
         currency = 'NGN';
-        const rate = 9500;
+        const rate = from === 'Abuja' ? 10500 : 9500;
         const minWeight = 10;
         const finalChargeableWeight = Math.max(chargeableWeight, minWeight);
         estimatedCost = finalChargeableWeight * rate;
