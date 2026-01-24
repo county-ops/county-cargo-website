@@ -47,7 +47,7 @@ export function Footer() {
                     <div>
                         <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
                         <div className="flex space-x-4">
-                            <Link href="#" className="text-blue-600 transition-opacity hover:opacity-80"><Facebook className="h-6 w-6" /></Link>
+                            <Link href="https://www.facebook.com/countycargo" target="_blank" rel="noopener noreferrer" className="text-blue-600 transition-opacity hover:opacity-80"><Facebook className="h-6 w-6" /></Link>
                             <Link href="#" className="text-sky-500 transition-opacity hover:opacity-80"><Twitter className="h-6 w-6" /></Link>
                             <Link href="#" className="text-sky-700 transition-opacity hover:opacity-80"><Linkedin className="h-6 w-6" /></Link>
                             <Link href="https://www.instagram.com/countycargo/" target="_blank" rel="noopener noreferrer" className="text-pink-500 transition-opacity hover:opacity-80"><Instagram className="h-6 w-6" /></Link>
