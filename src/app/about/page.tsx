@@ -26,7 +26,7 @@ export default function AboutPage() {
         <section
           className="min-h-[40vh] flex items-center justify-center text-white"
            style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.unsplash.com/photo-1577563908411-5077b6a5b348?auto=format&fit=crop&w=1200&q=80')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.unsplash.com/photo-1577563908411-5077b6a5b348?auto=format&fit=crop&w=1200&q=80')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

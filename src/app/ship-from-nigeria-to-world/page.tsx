@@ -131,7 +131,7 @@ export default function ShipFromNigeriaToWorldPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.pexels.com/photos/4392033/pexels-photo-4392033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.pexels.com/photos/4392033/pexels-photo-4392033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
