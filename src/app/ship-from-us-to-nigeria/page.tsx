@@ -213,7 +213,10 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Shipping from US to Nigeria<br />(Door-to-Door)</h1>
+            <h1 className="text-4xl md:text-5xl font-bold flex flex-col items-center">
+              <span>Shipping from US to Nigeria</span>
+              <span className="mt-2">(Door-to-Door)</span>
+            </h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
           </div>
         </section>
