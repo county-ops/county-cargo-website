@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -41,7 +42,6 @@ const nigerianCities = [
 const formSchema = z.object({
   from: z.string().min(1, 'Please select an origin city.'),
   to: z.string().min(1, 'Please select a destination city.'),
-  serviceType: z.string().min(1, 'Please select a service type.'),
   weight: z.coerce.number().positive('Weight must be a positive number.'),
   length: z.coerce.number().positive('Length must be a positive number.'),
   width: z.coerce.number().positive('Width must be a positive number.'),
@@ -64,7 +64,6 @@ export function UsNigeriaQuoteForm() {
     defaultValues: {
       from: '',
       to: '',
-      serviceType: '',
       weight: 1,
       length: 10,
       width: 10,
@@ -78,44 +77,31 @@ export function UsNigeriaQuoteForm() {
     setResult(null);
 
     try {
-      const { from, to, serviceType, weight, length, width, height } = values;
+      const { to, weight, length, width, height } = values;
 
-      if ((serviceType === 'express48' || serviceType === 'express24') && (to !== 'Lagos' && to !== 'Abuja')) {
-        setError('Express services are only available for shipping to Lagos or Abuja.');
-        setIsLoading(false);
-        return;
-      }
-
-      let estimatedCost = 0;
-      let details = '';
       const currency = 'USD';
 
       const volumetricWeight = (length * width * height) / 5000;
       const chargeableWeight = Math.max(weight, volumetricWeight);
       
-      let handlingCharge = 0;
+      const state = nigerianCitiesToStates[to];
+      if (!state) {
+        setError(`We don't have pricing information for ${to}. Please contact us for a custom quote.`);
+        setIsLoading(false);
+        return;
+      }
 
-      if (serviceType === 'standard') {
-        const state = nigerianCitiesToStates[to];
-        if (!state) {
-          setError(`We don't have pricing information for ${to}. Please contact us for a custom quote.`);
-          setIsLoading(false);
-          return;
-        }
+      const statePriceInfo = usShippingRates.find(p => p.destination === state);
+      if (!statePriceInfo) {
+        setError(`We don't have pricing information for ${state}. Please contact us for a custom quote.`);
+        setIsLoading(false);
+        return;
+      }
 
-        const statePriceInfo = usShippingRates.find(p => p.destination === state);
-        if (!statePriceInfo) {
-          setError(`We don't have pricing information for ${state}. Please contact us for a custom quote.`);
-          setIsLoading(false);
-          return;
-        }
+      const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
+      const estimatedCost = finalChargeableWeight * statePriceInfo.doorToDoor;
 
-        handlingCharge = 15;
-        const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
-        const shippingCost = finalChargeableWeight * statePriceInfo.doorToDoor;
-        estimatedCost = shippingCost + handlingCharge;
-
-        details = `
+      const details = `
 Calculation based on Standard Shipping:
 - Destination: ${to}, ${state}
 - Rate: $${statePriceInfo.doorToDoor.toFixed(2)}/kg
@@ -124,32 +110,8 @@ Calculation based on Standard Shipping:
 - Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
 - Minimum Weight for destination: ${statePriceInfo.minWeight} kg
 - Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
-- Shipping Cost: $${shippingCost.toFixed(2)}
-- Handling Charge: $${handlingCharge.toFixed(2)}
-        `.trim();
-      } else { // Express services
-        const is48hr = serviceType === 'express48';
-        const rate = is48hr ? 25 : 28;
-        handlingCharge = 20;
-        const minWeight = 1;
+      `.trim().replace(/^\s+/gm, '');
 
-        const finalChargeableWeight = Math.max(chargeableWeight, minWeight);
-        const shippingCost = finalChargeableWeight * rate;
-        estimatedCost = shippingCost + handlingCharge;
-
-        details = `
-Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
-- Route: ${from} to ${to}
-- Rate: $${rate.toFixed(2)}/kg
-- Actual Weight: ${weight.toFixed(2)} kg
-- Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
-- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
-- Minimum Weight for service: ${minWeight} kg
-- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
-- Shipping Cost: $${shippingCost.toFixed(2)}
-- Handling Charge: $${handlingCharge.toFixed(2)}
-        `.trim();
-      }
 
       setResult({
         estimatedCost,
@@ -226,29 +188,6 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
               />
             </div>
             
-            <FormField
-              control={form.control}
-              name="serviceType"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Service Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a service type" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="standard">Standard Shipping</SelectItem>
-                      <SelectItem value="express48">48hrs Express</SelectItem>
-                      <SelectItem value="express24">24hrs Express</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <div className="space-y-2">
                 <p className="text-sm font-medium">Package Details</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -335,7 +274,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
           </Button>
         ) : (
             <p className="text-xs text-muted-foreground text-center w-full">
-            This is an estimate. Final costs may vary. Standard shipments include a $15 handling charge. Express includes $20.
+            This is an estimate. Final costs may vary based on package inspection.
           </p>
         )}
       </CardFooter>

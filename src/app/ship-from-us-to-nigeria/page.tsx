@@ -48,32 +48,32 @@ const pricingTiers = [
     price: '$4.50',
     per: '/kg',
     features: [
-      '10kg minimum weight for Lagos',
+      'Rates start from $4.50/kg for Lagos',
       'Delivery in 5-10 working days',
       'Full tracking included',
-      '$15 handling charge',
+      'No hidden handling charges',
     ],
   },
   {
-    title: '48hrs Express Shipping',
-    price: '$25.00',
-    per: '/kg',
+    title: 'Medium to Large Boxes',
+    price: 'Contact Us',
+    per: 'for a quote',
     features: [
-      '1kg minimum weight',
-      'Fast delivery in 48 hours to Lagos/Abuja',
+      'Ideal for packages over 50kg',
+      'Cost-effective air freight',
+      'Perfect for bulk personal or business shipments',
       'Full tracking included',
-      '$20 handling charge',
     ],
   },
   {
-    title: '24hrs Express Shipping',
-    price: '$28.00',
-    per: '/kg',
+    title: 'Procurement Service',
+    price: 'Shop & Ship',
+    per: 'for you',
     features: [
-      '1kg minimum weight',
-      'Super-fast delivery in 24 hours to Lagos/Abuja',
-      'Highest priority handling',
-      '$20 handling charge',
+      'We buy items from US stores on your behalf',
+      'Access to stores that don\'t accept Nigerian cards',
+      'Consolidation of multiple orders',
+      'Seamless delivery to your doorstep',
     ],
   },
 ];
@@ -138,7 +138,7 @@ const reviews = [
     {
         initial: 'A',
         name: 'Adewale Johnson',
-        review: '"Excellent service! I\'ve been using County Cargo for over a year now to ship electronics from US to Lagos. The 48hrs express option is incredibly fast and my items always arrive safely. Highly recommended!"',
+        review: '"Excellent service! I\'ve been using County Cargo for over a year now to ship electronics from US to Lagos. My items always arrive safely. Highly recommended!"',
         time: '2 weeks ago'
     },
     {
@@ -168,7 +168,7 @@ const reviews = [
     {
         initial: 'T',
         name: 'Tunde Ajayi',
-        review: '"The 48hrs express shipping is a game changer! I needed urgent documents and gadgets shipped to Port Harcourt and they delivered exactly on time. Worth every penny. 5 stars!"',
+        review: '"The standard shipping is fast enough for my needs. I needed urgent documents and gadgets shipped to Port Harcourt and they delivered exactly on time. Worth every penny. 5 stars!"',
         time: '5 days ago'
     },
 ];
@@ -235,19 +235,25 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8">
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col">
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
-                                <span className="text-lg font-normal text-gray-500">from</span> {tier.price}
-                                <span className="text-lg font-normal text-gray-500">{tier.per}</span>
+                                {tier.price.startsWith('$') ? <><span className="text-lg font-normal text-gray-500">from</span> {tier.price}</> : tier.price}
+                                <span className="text-lg font-normal text-gray-500"> {tier.per}</span>
                             </p>
-                            <ul className="text-gray-600 space-y-2">
+                            <ul className="text-gray-600 space-y-2 flex-grow mb-6">
                                 {tier.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center">
-                                        <Check className="h-5 w-5 text-green-500 mr-2" />{feature}
+                                    <li key={i} className="flex items-start">
+                                        <Check className="h-5 w-5 text-green-500 mr-2 mt-1 shrink-0" />
+                                        <span>{feature}</span>
                                     </li>
                                 ))}
                             </ul>
+                             <Button asChild className="w-full mt-auto">
+                                <Link href={tier.title === 'Standard Shipping' ? '#quote' : '/contact'}>
+                                    {tier.title === 'Standard Shipping' ? 'Get an Estimate' : 'Contact Us'}
+                                </Link>
+                            </Button>
                         </div>
                     ))}
                 </div>
