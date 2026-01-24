@@ -55,8 +55,7 @@ type ShippingCostOutput = {
 }
 
 // Currency Converter constants
-const GBP_TO_NGN_RATE = 1900;
-const ADDITIONAL_NAIRA = 20;
+const GBP_TO_NGN_RATE = 2150;
 
 export function NigeriaUkQuoteForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +64,7 @@ export function NigeriaUkQuoteForm() {
 
   // Currency converter state
   const [gbp, setGbp] = useState('1');
-  const [ngn, setNgn] = useState((1 * GBP_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
+  const [ngn, setNgn] = useState((1 * GBP_TO_NGN_RATE).toFixed(2));
   const [lastChanged, setLastChanged] = useState<'gbp' | 'ngn'>('gbp');
 
 
@@ -96,7 +95,7 @@ export function NigeriaUkQuoteForm() {
     if (lastChanged === 'gbp') {
       const gbpValue = parseFloat(gbp);
       if (!isNaN(gbpValue)) {
-        const ngnValue = gbpValue * GBP_TO_NGN_RATE + ADDITIONAL_NAIRA;
+        const ngnValue = gbpValue * GBP_TO_NGN_RATE;
         setNgn(Math.max(1, ngnValue).toFixed(2));
       } else {
         setNgn('');
@@ -108,7 +107,7 @@ export function NigeriaUkQuoteForm() {
     if (lastChanged === 'ngn') {
       const ngnValue = parseFloat(ngn);
       if (!isNaN(ngnValue)) {
-        const gbpValue = (ngnValue - ADDITIONAL_NAIRA) / GBP_TO_NGN_RATE;
+        const gbpValue = ngnValue / GBP_TO_NGN_RATE;
         setGbp(Math.max(1, gbpValue).toFixed(2));
       } else {
         setGbp('');
@@ -372,11 +371,11 @@ Calculation based on 48hrs Express Shipping:
                       </div>
                       <div className="flex-1 w-full space-y-2 text-left">
                           <Label htmlFor="ngn-input">NGN (₦)</Label>
-                          <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 190000" min="1" />
+                          <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 215000" min="1" />
                       </div>
                   </div>
                   <p className="text-xs text-muted-foreground mt-4 text-center hidden">
-                      *Exchange rate is an estimate (1 GBP ≈ {GBP_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
+                      *Exchange rate is an estimate (1 GBP ≈ {GBP_TO_NGN_RATE} NGN) and may not reflect the actual rate.
                   </p>
               </div>
             )}
