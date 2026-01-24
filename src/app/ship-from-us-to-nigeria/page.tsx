@@ -38,7 +38,7 @@ const processSteps = [
   {
     icon: <Gift className="h-10 w-10 text-white" />,
     title: '3. We Deliver to Nigeria',
-    description: 'We consolidate your packages, handle customs, and deliver them straight to your doorstep in Nigeria. It\'s that simple!',
+    description: 'We handle customs and deliver your packages straight to your doorstep in Nigeria. It\'s that simple!',
   },
 ];
 
