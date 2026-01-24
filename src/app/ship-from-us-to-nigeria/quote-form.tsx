@@ -24,7 +24,6 @@ import {
 } from '@/components/ui/select';
 import { Loader2 } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { nigerianCitiesToStates, usShippingRates } from '@/lib/pricing-data';
 
 const usCities = [
   "Atlanta", "Austin", "Boston", "Charlotte", "Chicago", "Columbus", "Dallas",
@@ -77,50 +76,34 @@ export function UsNigeriaQuoteForm() {
     setResult(null);
 
     try {
-      const { to, weight, length, width, height } = values;
+      const { from, to, weight, length, width, height } = values;
 
       const currency = 'USD';
 
-      // 1. Convert weight from lbs (form) to kg
-      const weightInKg = weight * 0.453592;
+      // 1. Calculate volumetric weight in lbs
+      const volumetricWeightInLbs = (length * width * height) / 5000 * 2.20462;
 
-      // 2. Calculate volumetric weight in kg
-      const volumetricWeightInKg = (length * width * height) / 5000;
+      // 2. Determine chargeable weight in lbs
+      const chargeableWeightInLbs = Math.max(weight, volumetricWeightInLbs);
       
-      // 3. Determine chargeable weight in kg
-      const chargeableWeightInKg = Math.max(weightInKg, volumetricWeightInKg);
+      // 3. Define minimum weight in lbs
+      const minWeightInLbs = 5;
 
-      // 4. Define minimum weight in kg (5 lbs)
-      const minWeightInKg = 5 * 0.453592;
+      // 4. Determine final chargeable weight in lbs, considering the minimum
+      const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 
-      // 5. Determine final chargeable weight in kg, considering the 5lbs minimum
-      const finalChargeableWeightInKg = Math.max(chargeableWeightInKg, minWeightInKg);
-
-      const state = nigerianCitiesToStates[to];
-      if (!state) {
-        setError(`We don't have pricing information for ${to}. Please contact us for a custom quote.`);
-        setIsLoading(false);
-        return;
-      }
-
-      const statePriceInfo = usShippingRates.find(p => p.destination === state);
-      if (!statePriceInfo) {
-        setError(`We don't have pricing information for ${state}. Please contact us for a custom quote.`);
-        setIsLoading(false);
-        return;
-      }
-      
-      const estimatedCost = finalChargeableWeightInKg * statePriceInfo.doorToDoor;
+      const ratePerLbs = 5;
+      const estimatedCost = finalChargeableWeightInLbs * ratePerLbs;
 
       const details = `
 Calculation based on Standard Shipping:
-- Destination: ${to}, ${state}
-- Rate: $${statePriceInfo.doorToDoor.toFixed(2)}/kg
+- Destination: ${from} to ${to}
+- Rate: $${ratePerLbs.toFixed(2)}/lbs
 - Actual Weight: ${weight.toFixed(2)} lbs
-- Volumetric Weight: ${(volumetricWeightInKg * 2.20462).toFixed(2)} lbs
-- Chargeable Weight: ${(chargeableWeightInKg * 2.20462).toFixed(2)} lbs
-- Minimum Chargeable Weight: 5.00 lbs
-- Final Chargeable Weight: ${(finalChargeableWeightInKg * 2.20462).toFixed(2)} lbs
+- Volumetric Weight: ${volumetricWeightInLbs.toFixed(2)} lbs
+- Chargeable Weight: ${chargeableWeightInLbs.toFixed(2)} lbs
+- Minimum Chargeable Weight: ${minWeightInLbs.toFixed(2)} lbs
+- Final Chargeable Weight: ${finalChargeableWeightInLbs.toFixed(2)} lbs
       `.trim().replace(/^\s+/gm, '');
 
 

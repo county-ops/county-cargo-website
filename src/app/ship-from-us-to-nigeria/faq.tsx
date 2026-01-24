@@ -16,7 +16,7 @@ const faqItems = [
     },
     {
         question: 'What is the cost of shipping from US to Nigeria?',
-        answer: 'Our shipping costs to Nigeria vary depending on the weight and dimensions of your package. We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section for detailed rates, which start from $4.50/kg, with a minimum chargeable weight of 5 lbs.'
+        answer: 'Our standard shipping rate is a flat $5.00 per pound (lbs) to any destination in Nigeria. The minimum chargeable weight for any shipment is 5 lbs. You can use our online calculator for an instant estimate.'
     },
     {
         question: 'How long does it take to ship from US to Nigeria?',

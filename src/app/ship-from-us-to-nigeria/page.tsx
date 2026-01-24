@@ -45,10 +45,10 @@ const processSteps = [
 const pricingTiers = [
   {
     title: 'Standard Shipping',
-    price: '$4.50',
-    per: '/kg',
+    price: '$5.00',
+    per: '/lbs',
     features: [
-      'Rates start from $4.50/kg',
+      'Flat rate of $5.00/lbs nationwide',
       'Minimum chargeable weight: 5 lbs',
       'Delivery in 5-10 working days',
       'Full tracking included',
@@ -238,7 +238,7 @@ export default function ShipFromUsToNigeriaPage() {
                         <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col">
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
-                                {tier.price.startsWith('$') ? <><span className="text-lg font-normal text-gray-500">from</span> {tier.price}</> : tier.price}
+                                {tier.price.startsWith('$') ? <>{tier.price}</> : tier.price}
                                 <span className="text-lg font-normal text-gray-500"> {tier.per}</span>
                             </p>
                             <ul className="text-gray-600 space-y-2 flex-grow mb-6">
@@ -407,4 +407,3 @@ export default function ShipFromUsToNigeriaPage() {
     </>
   );
 }
-
