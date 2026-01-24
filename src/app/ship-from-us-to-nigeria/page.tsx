@@ -17,6 +17,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
 import { UsNigeriaQuoteForm } from './quote-form';
+import { CurrencyConverter } from './currency-converter';
 
 export const metadata: Metadata = {
   title: 'Ship from US to Nigeria - Fast & Affordable Shipping | County Cargo',
@@ -44,24 +45,24 @@ const processSteps = [
 
 const pricingTiers = [
   {
-    title: 'Standard Shipping',
-    price: '$4.50 - $5.00',
+    title: 'Standard Shipping to Lagos',
+    price: '$4.50',
     per: '/lbs',
     features: [
-      'Lagos: $4.50/lbs',
-      'Other cities: $5.00/lbs',
       'Minimum chargeable weight: 5 lbs',
       'Delivery in 5-10 working days',
+      'No handling charges',
+      'Full tracking included',
     ],
   },
   {
-    title: 'Medium to Large Boxes',
-    price: 'Contact Us',
-    per: 'for a quote',
+    title: 'Standard Shipping (Other States)',
+    price: '$5.00',
+    per: '/lbs',
     features: [
-      'Ideal for packages over 110 lbs',
-      'Cost-effective air freight',
-      'Perfect for bulk personal or business shipments',
+      'Minimum chargeable weight: 5 lbs',
+      'Delivery in 5-10 working days',
+      'No handling charges',
       'Full tracking included',
     ],
   },
@@ -174,7 +175,6 @@ const reviews = [
 ];
 
 const transitRoutes = [
-  { origin: 'Houston', destination: 'Abuja', time: '5-10 working days' },
   { origin: 'Atlanta', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Austin', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Boston', destination: 'Lagos', time: '5-10 working days' },
@@ -192,7 +192,11 @@ const transitRoutes = [
   { origin: 'San Francisco', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Seattle', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Washington D.C.', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'Atlanta', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'Houston', destination: 'Abuja', time: '5-10 working days' },
+  { origin: 'New York', destination: 'Abuja', time: '5-10 working days' },
   { origin: 'Atlanta', destination: 'Port Harcourt', time: '5-10 working days' },
+  { origin: 'Houston', destination: 'Port Harcourt', time: '5-10 working days' },
 ];
 
 export default function ShipFromUsToNigeriaPage() {
@@ -257,8 +261,8 @@ export default function ShipFromUsToNigeriaPage() {
                                 ))}
                             </ul>
                              <Button asChild className="w-full mt-auto">
-                                <Link href={tier.title === 'Standard Shipping' ? '#quote' : '/contact'}>
-                                    {tier.title === 'Standard Shipping' ? 'Get an Estimate' : 'Contact Us'}
+                                <Link href={tier.title.includes('Standard') ? '#quote' : '/contact'}>
+                                    {tier.title.includes('Standard') ? 'Get an Estimate' : 'Contact Us'}
                                 </Link>
                             </Button>
                         </div>
@@ -273,31 +277,34 @@ export default function ShipFromUsToNigeriaPage() {
             </div>
         </section>
 
-        <section id="routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the US to Nigeria.</p>
-                </div>
-                <div className="overflow-x-auto rounded-lg shadow-md border">
-                    <table className="min-w-full bg-white">
-                        <thead className="bg-primary text-primary-foreground">
-                        <tr>
-                            <th className="py-4 px-6 text-left font-semibold">Origin (US City)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Destination (Nigeria City)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
-                        </tr>
-                        </thead>
-                        <tbody className="text-gray-700">
-                        {transitRoutes.map((route, index) => (
-                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
-                            <td className="py-4 px-6">{route.origin}</td>
-                            <td className="py-4 px-6">{route.destination}</td>
-                            <td className="py-4 px-6">{route.time}</td>
+        <section id="converter-and-routes" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+                <CurrencyConverter />
+                <div>
+                    <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the US to Nigeria.</p>
+                    </div>
+                    <div className="overflow-x-auto rounded-lg shadow-md border">
+                        <table className="min-w-full bg-white">
+                            <thead className="bg-primary text-primary-foreground">
+                            <tr>
+                                <th className="py-4 px-6 text-left font-semibold">Origin (US City)</th>
+                                <th className="py-4 px-6 text-left font-semibold">Destination (Nigeria City)</th>
+                                <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
                             </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="text-gray-700">
+                            {transitRoutes.map((route, index) => (
+                                <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+                                <td className="py-4 px-6">{route.origin}</td>
+                                <td className="py-4 px-6">{route.destination}</td>
+                                <td className="py-4 px-6">{route.time}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
