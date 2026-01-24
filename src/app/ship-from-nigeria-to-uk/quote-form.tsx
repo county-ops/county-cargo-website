@@ -79,12 +79,6 @@ export function NigeriaUkQuoteForm() {
     try {
       const { from, to, serviceType, weight, length, width, height } = values;
 
-      if ((serviceType === 'express48') && (to !== 'London' && to !== 'Manchester')) {
-        setError('Express service is only available for shipping to London or Manchester.');
-        setIsLoading(false);
-        return;
-      }
-
       let estimatedCost = 0;
       let details = '';
       let currency = 'GBP';
