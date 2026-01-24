@@ -21,7 +21,7 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 export const metadata: Metadata = {
   title: 'Ship from US to Nigeria | Your Free US Address | County Cargo',
-  description: 'Your #1 choice for shipping from US to Nigeria. Get a free US shipping address, shop from any US store (Amazon, Walmart, Shein), and enjoy cheap, fast, and reliable delivery to Lagos, Abuja, and all of Nigeria. We handle US to Nigeria cargo, parcel forwarding, and customs for a seamless experience.',
+  description: 'Ship from the US to Nigeria with County Cargo. Get a free US address to shop any store, then enjoy fast, cheap, and reliable delivery to Lagos, Abuja, and nationwide. We handle cargo, customs, and parcel forwarding.',
   keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria, shipping to Lagos, shipping to Abuja, shipping to Port-Harcourt, shipping from New York, shipping from Houston, shipping from Atlanta, parcel forwarding US to Nigeria, shop in USA ship to Nigeria, Amazon to Nigeria, Walmart to Nigeria',
 };
 
@@ -214,8 +214,8 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria: Fast & Reliable Delivery</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we'll handle the rest.</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Ship from the US to Nigeria</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Get your free US address, shop American stores, and enjoy fast, affordable, and reliable delivery to your doorstep in Nigeria.</p>
           </div>
         </section>
 
