@@ -45,13 +45,13 @@ const processSteps = [
 const pricingTiers = [
   {
     title: 'Standard Shipping',
-    price: '$5.00',
+    price: '$4.50 - $5.00',
     per: '/lbs',
     features: [
-      'Flat rate of $5.00/lbs nationwide',
+      'Lagos: $4.50/lbs',
+      'Other cities: $5.00/lbs',
       'Minimum chargeable weight: 5 lbs',
       'Delivery in 5-10 working days',
-      'Full tracking included',
     ],
   },
   {

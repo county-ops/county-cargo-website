@@ -92,7 +92,7 @@ export function UsNigeriaQuoteForm() {
       // 4. Determine final chargeable weight in lbs, considering the minimum
       const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 
-      const ratePerLbs = 5;
+      const ratePerLbs = to === 'Lagos' ? 4.50 : 5.00;
       const estimatedCost = finalChargeableWeightInLbs * ratePerLbs;
 
       const details = `
