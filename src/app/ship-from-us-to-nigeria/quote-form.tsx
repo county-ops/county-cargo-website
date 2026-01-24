@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -22,8 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowRightLeft } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
 
 const usCities = [
   "Atlanta", "Austin", "Boston", "Charlotte", "Chicago", "Columbus", "Dallas",
@@ -53,10 +54,20 @@ type ShippingCostOutput = {
   details: string;
 }
 
-export function UsNigeriaQuoteForm({ onEstimateChange }: { onEstimateChange: (usd: number | null) => void }) {
+// Currency Converter constants
+const USD_TO_NGN_RATE = 1500;
+const ADDITIONAL_NAIRA = 20;
+
+export function UsNigeriaQuoteForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Currency converter state
+  const [usd, setUsd] = useState('1');
+  const [ngn, setNgn] = useState((1 * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
+  const [lastChanged, setLastChanged] = useState<'usd' | 'ngn'>('usd');
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,6 +80,49 @@ export function UsNigeriaQuoteForm({ onEstimateChange }: { onEstimateChange: (us
       height: 10,
     },
   });
+
+  // Effect to update currency converter when estimate is calculated
+  useEffect(() => {
+    if (result) {
+      const newUsd = result.estimatedCost ?? 1;
+      setUsd(newUsd.toFixed(2));
+      setLastChanged('usd');
+    }
+  }, [result]);
+
+  // Currency converter effects
+  useEffect(() => {
+    if (lastChanged === 'usd') {
+      const usdValue = parseFloat(usd);
+      if (!isNaN(usdValue)) {
+        setNgn((usdValue * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
+      } else {
+        setNgn('');
+      }
+    }
+  }, [usd, lastChanged]);
+
+  useEffect(() => {
+    if (lastChanged === 'ngn') {
+      const ngnValue = parseFloat(ngn);
+      if (!isNaN(ngnValue)) {
+        const usdValue = (ngnValue - ADDITIONAL_NAIRA) / USD_TO_NGN_RATE;
+        setUsd(Math.max(0, usdValue).toFixed(2));
+      } else {
+        setUsd('');
+      }
+    }
+  }, [ngn, lastChanged]);
+
+  const handleUsdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsd(e.target.value);
+    setLastChanged('usd');
+  };
+
+  const handleNgnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNgn(e.target.value);
+    setLastChanged('ngn');
+  };
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
@@ -112,7 +166,6 @@ Calculation based on Standard Shipping:
         currency,
         details
       });
-      onEstimateChange(estimatedCost);
 
     } catch (e) {
       setError('Failed to get estimation. Please try again.');
@@ -126,11 +179,12 @@ Calculation based on Standard Shipping:
     form.reset();
     setResult(null);
     setError(null);
-    onEstimateChange(null);
+    setUsd('1');
+    setLastChanged('usd');
   };
 
   return (
-    <Card className="w-full shadow-2xl">
+    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>
@@ -248,7 +302,7 @@ Calculation based on Standard Shipping:
           </form>
         </Form>
         ) : (
-          <div className="space-y-4 text-center">
+          <div className="space-y-6 text-center">
             <div>
                 <p className="text-muted-foreground">Estimated Cost</p>
                 <p className="text-5xl font-bold">${result.estimatedCost.toFixed(2)}</p>
@@ -258,6 +312,28 @@ Calculation based on Standard Shipping:
                 <h4 className="font-semibold mb-2">Estimation Details</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-wrap">{result.details}</p>
             </div>
+            
+            <div className="border-t pt-6">
+                <h4 className="text-xl font-semibold text-center mb-1">Currency Converter</h4>
+                <p className="text-sm text-muted-foreground text-center mb-4">Estimate conversion from USD to NGN.</p>
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <div className="flex-1 w-full space-y-2 text-left">
+                        <Label htmlFor="usd-input">USD ($)</Label>
+                        <Input id="usd-input" type="number" value={usd} onChange={handleUsdChange} placeholder="e.g. 100" />
+                    </div>
+                    <div className="mt-6 hidden sm:block">
+                        <ArrowRightLeft className="h-6 w-6 text-muted-foreground" />
+                    </div>
+                    <div className="flex-1 w-full space-y-2 text-left">
+                        <Label htmlFor="ngn-input">NGN (₦)</Label>
+                        <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 150000" />
+                    </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4 text-center hidden">
+                    *Exchange rate is an estimate (1 USD ≈ {USD_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
+                </p>
+            </div>
+
           </div>
         )}
 

@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
-import { QuoteWithConverter } from './quote-with-converter';
+import { UsNigeriaQuoteForm } from './quote-form';
 
 
 export const metadata: Metadata = {
@@ -274,7 +274,7 @@ export default function ShipFromUsToNigeriaPage() {
 
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <QuoteWithConverter />
+                <UsNigeriaQuoteForm />
             </div>
         </section>
 
