@@ -20,9 +20,9 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 
 export const metadata: Metadata = {
-  title: 'Ship from US to Nigeria - Fast & Affordable Shipping | County Cargo',
-  description: 'Looking to ship from US to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the US to Nigeria. Get your free US address today and enjoy seamless delivery of your goods.',
-  keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria, shipping to Lagos, shipping to Abuja, shipping to Port-Harcourt, shipping from New York, shipping from Houston, shipping from Atlanta',
+  title: 'Ship from US to Nigeria | Your Free US Address | County Cargo',
+  description: 'Your #1 choice for shipping from US to Nigeria. Get a free US shipping address, shop from any US store (Amazon, Walmart, Shein), and enjoy cheap, fast, and reliable delivery to Lagos, Abuja, and all of Nigeria. We handle US to Nigeria cargo, parcel forwarding, and customs for a seamless experience.',
+  keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria, shipping to Lagos, shipping to Abuja, shipping to Port-Harcourt, shipping from New York, shipping from Houston, shipping from Atlanta, parcel forwarding US to Nigeria, shop in USA ship to Nigeria, Amazon to Nigeria, Walmart to Nigeria',
 };
 
 const processSteps = [
@@ -82,18 +82,18 @@ const pricingTiers = [
 const guideFeatures = [
     {
         icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable Rates",
-        description: "We offer the most competitive rates for shipping from US to Nigeria. Our transparent pricing means you know exactly what you're paying for, with no hidden costs."
+        title: "Affordable & Transparent Rates",
+        description: "We offer the most competitive rates for shipping from US to Nigeria. Our transparent pricing means you know exactly what you're paying for, making us your top choice for cheap shipping to Nigeria."
     },
     {
         icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable Delivery",
-        description: "With our standard and express options, you can choose the speed that fits your needs. We are committed to providing a fast and reliable ship from US to Nigeria service every time."
+        title: "Fast & Reliable US to Nigeria Cargo",
+        description: "With our standard and express options, you can choose the speed that fits your needs. We are committed to providing a fast and reliable ship from US to Nigeria service every time, whether you're shipping to Lagos, Abuja, or Port Harcourt."
     },
     {
         icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Security & Peace of Mind",
-        description: "Every parcel is handled with the utmost care. We offer tracking and insurance options so you can ship from US to Nigeria with confidence, knowing your items are safe."
+        title: "Secure Shipping & Peace of Mind",
+        description: "Every parcel is handled with the utmost care. We offer real-time tracking and insurance options so you can ship from US to Nigeria with confidence, knowing your items are safe from New York, Houston, or Atlanta all the way to your home."
     }
 ];
 
@@ -213,21 +213,21 @@ export default function ShipFromUsToNigeriaPage() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping services from the US to Nigeria. Get your personal US shipping address and start your shipping from US to Nigeria journey today!</p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria: Fast & Reliable Delivery</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we'll handle the rest.</p>
           </div>
         </section>
 
         <section id="process" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How Our Shipping From US to Nigeria Works</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered when you ship from the US to Nigeria.</p>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered when you ship from the US to Nigeria. We make US to Nigeria cargo and parcel forwarding effortless.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step">
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -241,13 +241,13 @@ export default function ShipFromUsToNigeriaPage() {
         
         <section id="pricing" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from US to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping from US to Nigeria needs.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col">
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
                                 {tier.price.startsWith('$') ? <>{tier.price}</> : tier.price}
@@ -279,7 +279,7 @@ export default function ShipFromUsToNigeriaPage() {
         </section>
 
         <section id="routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <div>
                     <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
@@ -311,13 +311,13 @@ export default function ShipFromUsToNigeriaPage() {
 
         <section id="seo-content" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
+                <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Your Ultimate Guide to Shipping from US to Nigeria</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto">When it comes to shipping from US to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite US stores and receive your goods in Nigeria without hassle.</p>
+                    <p className="mb-12 text-lg max-w-3xl mx-auto">When it comes to shipping from US to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite US stores like Amazon, Walmart, and Shein, and receive your goods in Nigeria without hassle. Our freight forwarding Nigeria service is designed to be cheap, fast, and completely reliable.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
@@ -328,15 +328,15 @@ export default function ShipFromUsToNigeriaPage() {
                         </div>
                     ))}
                 </div>
-                 <div className="text-center mt-12">
-                     <p className="text-lg">Our 3-step process is designed for your convenience. The journey of your shipping from US to Nigeria begins with a simple registration, giving you a unique US shipping address. This address is your gateway to thousands of US retailers. Once your purchases arrive at our warehouse, we handle the consolidation, customs, and final delivery, completing the ship from US to Nigeria process with professionalism and care.</p>
+                 <div className="text-center mt-12" data-aos="fade-up">
+                     <p className="text-lg">Our 3-step process is designed for your convenience. The journey of your shipping from US to Nigeria begins with a simple registration, giving you a unique US shipping address. This address is your gateway to thousands of US retailers. Once your purchases arrive at our US warehouse, we handle the package consolidation, customs paperwork, and final delivery, completing the ship from US to Nigeria process with professionalism and care.</p>
                 </div>
             </div>
         </section>
 
         <section id="us-stores" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
+                <div className="text-center mb-12" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Shop Thousands of US Stores and Ship to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">Here are just a few of the thousands of US online stores you can shop from for your shipping from US to Nigeria.</p>
                 </div>
@@ -366,7 +366,7 @@ export default function ShipFromUsToNigeriaPage() {
 
         <section id="reviews" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Customers Say</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Trusted by thousands for shipping from US to Nigeria</p>
                     <div className="mt-4">
@@ -378,7 +378,7 @@ export default function ShipFromUsToNigeriaPage() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6">
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex items-center mb-4">
                                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                                     {review.initial}
@@ -396,7 +396,7 @@ export default function ShipFromUsToNigeriaPage() {
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
+                <div className="text-center mt-12" data-aos="fade-up">
                     <Link href="https://www.google.com/search?q=county+cargo+us" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary font-semibold hover:underline">
                         Read More Reviews on Google
                         <ExternalLink className="h-5 w-5 ml-2" />
@@ -408,11 +408,11 @@ export default function ShipFromUsToNigeriaPage() {
         <Faq />
 
         <section className="py-20 bg-primary text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Shipping from US to Nigeria?</h2>
                 <p className="text-lg mb-8">Join thousands of satisfied customers who trust County Cargo for their shipping needs.</p>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
-                    <Link href="#">Get Your Free US Address Now</Link>
+                    <Link href="https://ship.countycargo.com/register">Get Your Free US Address Now</Link>
                 </Button>
             </div>
         </section>
