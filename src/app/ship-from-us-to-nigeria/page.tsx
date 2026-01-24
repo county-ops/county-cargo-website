@@ -20,8 +20,8 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 
 export const metadata: Metadata = {
-  title: 'Ship from US to Nigeria: Fast & Reliable Delivery | County Cargo',
-  description: 'Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we\'ll handle the rest.',
+  title: 'Ship from US to Nigeria: Fast, Reliable & Affordable Delivery | County Cargo',
+  description: 'Get your free US shipping address from County Cargo and shop any American store. We provide fast, reliable, and affordable parcel delivery to Nigeria.',
 };
 
 const processSteps = [
@@ -213,8 +213,8 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria: Fast & Reliable Delivery</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Your #1 choice for shipping from the US to Nigeria. Get a free, personal US shipping address and enjoy fast, reliable, and affordable parcel delivery to Lagos, Abuja, or anywhere in Nigeria. Shop your favorite US stores and we'll handle the rest.</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Fast, Reliable & Affordable Shipping from the US to Nigeria</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
           </div>
         </section>
 
