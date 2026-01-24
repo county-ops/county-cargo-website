@@ -16,12 +16,12 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
-import { cn } from '@/lib/utils';
+import { UsNigeriaQuoteForm } from './quote-form';
 
 export const metadata: Metadata = {
   title: 'Ship from US to Nigeria - Fast & Affordable Shipping | County Cargo',
   description: 'Looking to ship from US to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the US to Nigeria. Get your free US address today and enjoy seamless delivery of your goods.',
-  keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria',
+  keywords: 'ship from us to nigeria, shipping to nigeria, us to nigeria cargo, send parcel to nigeria, us personal shopper nigeria, cheapest shipping to nigeria, fast shipping nigeria, reliable shipping us nigeria, freight forwarding nigeria, us shipping address nigeria, shipping to Lagos, shipping to Abuja, shipping to Port-Harcourt, shipping from New York, shipping from Houston, shipping from Atlanta',
 };
 
 const processSteps = [
@@ -48,8 +48,32 @@ const pricingTiers = [
     price: '$4.50',
     per: '/kg',
     features: [
-      'Delivery in 7-10 working days',
-      'Full tracking included with your shipment',
+      '10kg minimum weight for Lagos',
+      'Delivery in 7-12 working days',
+      'Full tracking included',
+      '$15 handling charge',
+    ],
+  },
+  {
+    title: '48hrs Express Shipping',
+    price: '$25.00',
+    per: '/kg',
+    features: [
+      '1kg minimum weight',
+      'Fast delivery in 48 hours to Lagos/Abuja',
+      'Full tracking included',
+      '$20 handling charge',
+    ],
+  },
+  {
+    title: '24hrs Express Shipping',
+    price: '$28.00',
+    per: '/kg',
+    features: [
+      '1kg minimum weight',
+      'Super-fast delivery in 24 hours to Lagos/Abuja',
+      'Highest priority handling',
+      '$20 handling charge',
     ],
   },
 ];
@@ -149,6 +173,18 @@ const reviews = [
     },
 ];
 
+const transitRoutes = [
+  { origin: 'New York', destination: 'Lagos', time: '7-12 working days' },
+  { origin: 'Houston', destination: 'Abuja', time: '7-12 working days' },
+  { origin: 'Atlanta', destination: 'Port Harcourt', time: '7-12 working days' },
+  { origin: 'Chicago', destination: 'Lagos', time: '7-12 working days' },
+  { origin: 'Los Angeles', destination: 'Abuja', time: '7-12 working days' },
+  { origin: 'Dallas', destination: 'Ibadan', time: '7-12 working days' },
+  { origin: 'Washington D.C.', destination: 'Kano', time: '7-12 working days' },
+  { origin: 'Miami', destination: 'Ibadan', time: '7-12 working days' },
+  { origin: 'San Francisco', destination: 'Benin City', time: '7-12 working days' },
+];
+
 export default function ShipFromUsToNigeriaPage() {
   return (
     <>
@@ -163,7 +199,7 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Ship from US to Nigeria</h1>
+            <h1 className="text-4xl md:text-5xl font-bold">Ship from US to Nigeria</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping services from the US to Nigeria. Get your personal US shipping address and start your shipping from US to Nigeria journey today!</p>
           </div>
         </section>
@@ -194,7 +230,7 @@ export default function ShipFromUsToNigeriaPage() {
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from US to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping from US to Nigeria needs.</p>
                 </div>
-                <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
+                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
                         <div key={index} className="bg-white rounded-lg shadow-md p-8">
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
@@ -211,6 +247,41 @@ export default function ShipFromUsToNigeriaPage() {
                             </ul>
                         </div>
                     ))}
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" className="py-20 bg-gray-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <UsNigeriaQuoteForm />
+            </div>
+        </section>
+
+        <section id="routes" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the US to Nigeria.</p>
+                </div>
+                <div className="overflow-x-auto rounded-lg shadow-md border">
+                    <table className="min-w-full bg-white">
+                        <thead className="bg-primary text-primary-foreground">
+                        <tr>
+                            <th className="py-4 px-6 text-left font-semibold">Origin (US City)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Destination (Nigeria City)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
+                        </tr>
+                        </thead>
+                        <tbody className="text-gray-700">
+                        {transitRoutes.map((route, index) => (
+                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+                            <td className="py-4 px-6">{route.origin}</td>
+                            <td className="py-4 px-6">{route.destination}</td>
+                            <td className="py-4 px-6">{route.time}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
