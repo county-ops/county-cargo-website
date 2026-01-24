@@ -20,8 +20,8 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 
 export const metadata: Metadata = {
-  title: 'Ship from US to Nigeria: Fast, Reliable & Affordable Delivery | County Cargo',
-  description: 'Get your free US shipping address from County Cargo and shop any American store. We provide fast, reliable, and affordable parcel delivery to Nigeria.',
+  title: 'Shipping from US to Nigeria (Door-to-Door) | County Cargo',
+  description: 'Fast, reliable, and affordable delivery from the US. Get your free US shipping address, shop any American store, and we\'ll deliver to your doorstep in Nigeria.',
 };
 
 const processSteps = [
@@ -213,8 +213,8 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Fast, Reliable & Affordable Shipping from the US to Nigeria</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Shipping from US to Nigeria (Door-to-Door)</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable delivery from the US. Get your free US shipping address, shop any American store, and we'll deliver to your doorstep in Nigeria.</p>
           </div>
         </section>
 
@@ -352,7 +352,7 @@ export default function ShipFromUsToNigeriaPage() {
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
                             <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`us-store2-${index}-${store.name}`}>{store.name}</a>
-                        ))}
+                         ))}
                     </div>
                 </div>
             </div>
