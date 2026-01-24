@@ -81,18 +81,18 @@ const pricingTiers = [
 const guideFeatures = [
     {
         icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable US to Nigeria Shipping",
-        description: "Our transparent pricing ensures you get the cheapest shipping to Nigeria without compromising on service. No hidden fees, just great value."
+        title: "Affordable Shipping to Nigeria",
+        description: "With transparent pricing and no hidden fees, we offer some of the most competitive rates for shipping from the US to Nigeria, ensuring you get great value."
     },
     {
         icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable Delivery",
-        description: "Whether you're shipping to Lagos, Abuja, or Port Harcourt, our standard and express services guarantee your US to Nigeria cargo arrives on time, every time."
+        title: "Fast and Reliable Delivery",
+        description: "From Lagos and Abuja to Port Harcourt, our standard and express services guarantee your cargo from the US arrives on time. We're committed to reliable and timely deliveries across Nigeria."
     },
     {
         icon: <Shield className="h-8 w-8 text-primary" />,
         title: "Secure Parcel Forwarding",
-        description: "From New York, Houston, or Atlanta, we handle your items with care. Enjoy peace of mind with real-time tracking and insurance options for all your shipments."
+        description: "We handle your items with care from US hubs like New York, Houston, and Atlanta. Enjoy peace of mind with real-time tracking and insurance options for all your shipments."
     }
 ];
 
@@ -312,7 +312,7 @@ export default function ShipFromUsToNigeriaPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Your Ultimate Guide to Shipping from US to Nigeria</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto">Shipping from the US to Nigeria has never been easier. County Cargo is your trusted partner for freight forwarding, offering a seamless and reliable way to shop from your favorite US stores like Amazon, Walmart, and Shein. Our service is designed to be cheap, fast, and completely dependable, ensuring your goods arrive in Nigeria without any hassle.</p>
+                    <p className="mb-12 text-lg max-w-3xl mx-auto">Shipping from the US to Nigeria is seamless with County Cargo. As your trusted freight forwarding partner, we provide a reliable and affordable way to shop from top US retailers like Amazon, Walmart, and Shein. Our service is designed to be fast and dependable, ensuring your packages arrive in Nigeria without any hassle.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
@@ -328,7 +328,7 @@ export default function ShipFromUsToNigeriaPage() {
                     ))}
                 </div>
                  <div className="text-center mt-12" data-aos="fade-up">
-                     <p className="text-lg">Our simple 3-step process is built for your convenience. Your shipping journey begins with a free US shipping address, opening the door to thousands of US retailers. Once your items arrive at our US warehouse, we take care of everything—from package consolidation and customs paperwork to final delivery. We manage the entire process with professionalism and care, making your US to Nigeria shipping experience effortless.</p>
+                     <p className="text-lg">Our 3-step process is designed for your convenience. Your journey begins with a free US shipping address, giving you access to thousands of US retailers. Once your items arrive at our US warehouse, we handle everything from package consolidation and customs paperwork to final delivery. We manage the entire process professionally, making your US to Nigeria shipping experience effortless.</p>
                 </div>
             </div>
         </section>
