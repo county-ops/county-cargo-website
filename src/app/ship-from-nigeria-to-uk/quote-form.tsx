@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -22,8 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowRightLeft } from 'lucide-react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Label } from '@/components/ui/label';
 
 const nigerianCities = [
   "Lagos", "Abuja", "Port Harcourt", "Ibadan", "Kano", "Benin City", "Onitsha", "Aba",
@@ -53,10 +54,20 @@ type ShippingCostOutput = {
   details: string;
 }
 
+// Currency Converter constants
+const GBP_TO_NGN_RATE = 1900;
+const ADDITIONAL_NAIRA = 20;
+
 export function NigeriaUkQuoteForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Currency converter state
+  const [gbp, setGbp] = useState('1');
+  const [ngn, setNgn] = useState((1 * GBP_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
+  const [lastChanged, setLastChanged] = useState<'gbp' | 'ngn'>('gbp');
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -70,6 +81,51 @@ export function NigeriaUkQuoteForm() {
       height: 10,
     },
   });
+
+  // Effect to update currency converter when estimate is calculated
+  useEffect(() => {
+    if (result && result.currency === 'GBP') {
+      const newGbp = result.estimatedCost ?? 1;
+      setGbp(newGbp.toFixed(2));
+      setLastChanged('gbp');
+    }
+  }, [result]);
+
+  // Currency converter effects
+  useEffect(() => {
+    if (lastChanged === 'gbp') {
+      const gbpValue = parseFloat(gbp);
+      if (!isNaN(gbpValue)) {
+        const ngnValue = gbpValue * GBP_TO_NGN_RATE + ADDITIONAL_NAIRA;
+        setNgn(Math.max(1, ngnValue).toFixed(2));
+      } else {
+        setNgn('');
+      }
+    }
+  }, [gbp, lastChanged]);
+
+  useEffect(() => {
+    if (lastChanged === 'ngn') {
+      const ngnValue = parseFloat(ngn);
+      if (!isNaN(ngnValue)) {
+        const gbpValue = (ngnValue - ADDITIONAL_NAIRA) / GBP_TO_NGN_RATE;
+        setGbp(Math.max(1, gbpValue).toFixed(2));
+      } else {
+        setGbp('');
+      }
+    }
+  }, [ngn, lastChanged]);
+
+  const handleGbpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGbp(e.target.value);
+    setLastChanged('gbp');
+  };
+
+  const handleNgnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNgn(e.target.value);
+    setLastChanged('ngn');
+  };
+
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
@@ -146,6 +202,8 @@ Calculation based on 48hrs Express Shipping:
     form.reset();
     setResult(null);
     setError(null);
+    setGbp('1');
+    setLastChanged('gbp');
   }
 
   return (
@@ -289,7 +347,7 @@ Calculation based on 48hrs Express Shipping:
           </form>
         </Form>
         ) : (
-          <div className="space-y-4 text-center">
+          <div className="space-y-6 text-center">
             <div>
                 <p className="text-muted-foreground">Estimated Cost</p>
                 <p className="text-5xl font-bold">{result.currency === 'GBP' ? '£' : '₦'}{result.estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -299,6 +357,29 @@ Calculation based on 48hrs Express Shipping:
                 <h4 className="font-semibold mb-2">Estimation Details</h4>
                 <p className="text-sm text-muted-foreground whitespace-pre-wrap">{result.details}</p>
             </div>
+            
+            {result.currency === 'GBP' && (
+              <div className="border-t pt-6">
+                  <h4 className="text-xl font-semibold text-center mb-1">Currency Converter</h4>
+                  <p className="text-sm text-muted-foreground text-center mb-4">Estimate conversion from GBP to NGN.</p>
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                      <div className="flex-1 w-full space-y-2 text-left">
+                          <Label htmlFor="gbp-input">GBP (£)</Label>
+                          <Input id="gbp-input" type="number" value={gbp} onChange={handleGbpChange} placeholder="e.g. 100" min="1" />
+                      </div>
+                      <div className="mt-6 hidden sm:block">
+                          <ArrowRightLeft className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                      <div className="flex-1 w-full space-y-2 text-left">
+                          <Label htmlFor="ngn-input">NGN (₦)</Label>
+                          <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 190000" min="1" />
+                      </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-4 text-center hidden">
+                      *Exchange rate is an estimate (1 GBP ≈ {GBP_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
+                  </p>
+              </div>
+            )}
           </div>
         )}
 
