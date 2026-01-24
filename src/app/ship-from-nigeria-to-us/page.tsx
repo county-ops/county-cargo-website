@@ -1,5 +1,4 @@
 
-import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
@@ -11,12 +10,12 @@ import {
   Truck,
   Shield,
   Star,
-  ExternalLink,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
+import { NigeriaUsQuoteForm } from './quote-form';
 
 export const metadata: Metadata = {
   title: 'Shipping from Nigeria to US | County Cargo',
@@ -44,22 +43,23 @@ const processSteps = [
 
 const pricingTiers = [
   {
-    title: 'Docs & Small Parcels',
-    price: 'Contact Us',
-    per: 'for rates',
+    title: 'Standard Shipping',
+    price: '$8.00',
+    per: '/lbs',
     features: [
-      'Ideal for documents and items up to 5kg',
-      'Express delivery available',
+      '10 lbs minimum chargeable weight',
+      'Delivery in 7-14 working days',
+      'No handling charges',
       'Full tracking included',
     ],
   },
   {
-    title: 'Medium to Large Boxes',
+    title: 'Documents & Small Parcels',
     price: 'Contact Us',
     per: 'for rates',
     features: [
-      'For packages over 5kg',
-      'Cost-effective air freight',
+      'Ideal for documents and small items',
+      'Express delivery available',
       'Full tracking included',
     ],
   },
@@ -114,6 +114,15 @@ const reviews = [
     },
 ];
 
+const transitRoutes = [
+  { origin: 'Lagos', destination: 'New York', time: '7-14 working days' },
+  { origin: 'Abuja', destination: 'Houston', time: '7-14 working days' },
+  { origin: 'Port Harcourt', destination: 'Atlanta', time: '7-14 working days' },
+  { origin: 'Lagos', destination: 'Los Angeles', time: '7-14 working days' },
+  { origin: 'Kano', destination: 'Chicago', time: '7-14 working days' },
+  { origin: 'Ibadan', destination: 'Washington D.C.', time: '7-14 working days' },
+];
+
 export default function ShipFromNigeriaToUsPage() {
   return (
     <>
@@ -127,12 +136,12 @@ export default function ShipFromNigeriaToUsPage() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold">Shipping from Nigeria to the US</h1>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <h1 className="text-4xl md:text-5xl font-bold">Shipping from Nigeria to the US</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Reliable, fast, and affordable international shipping services from Nigeria to the United States.</p>
             <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-red-600 font-semibold hover:bg-gray-100 transition-colors">
-                <Link href="/#quote">Get a Quote</Link>
+              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+                <Link href="#quote">Get a Quote</Link>
               </Button>
             </div>
           </div>
@@ -140,13 +149,13 @@ export default function ShipFromNigeriaToUsPage() {
 
         <section id="process" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship from Nigeria to the US</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">A simple, three-step process to send your packages to the US from Nigeria.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step">
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -160,27 +169,27 @@ export default function ShipFromNigeriaToUsPage() {
         
         <section id="pricing" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Shipping Rates to the US</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping needs from Nigeria to the US.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8">
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
-                                {tier.price}
+                                <span className="text-lg font-normal text-gray-500">{tier.title.includes('Bulk') || tier.title.includes('Docs') ? '' : 'from '}</span>{tier.price}
                                 <span className="text-lg font-normal text-gray-500"> {tier.per}</span>
                             </p>
                             <ul className="text-gray-600 space-y-2">
                                 {tier.features.map((feature, i) => (
                                     <li key={i} className="flex items-center">
-                                        <Check className="h-5 w-5 text-green-500 mr-2" />{feature}
+                                        <Check className="h-5 w-5 text-green-500 mr-2 shrink-0" />{feature}
                                     </li>
                                 ))}
                             </ul>
                              <Button asChild className="w-full mt-6">
-                                <Link href="/#quote">Get Started</Link>
+                                <Link href="#quote">Get Started</Link>
                             </Button>
                         </div>
                     ))}
@@ -188,15 +197,51 @@ export default function ShipFromNigeriaToUsPage() {
             </div>
         </section>
 
+        <section id="quote" className="py-20 bg-gray-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <NigeriaUsQuoteForm />
+            </div>
+        </section>
+        
+        <section id="routes" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+                <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from Nigeria to the US.</p>
+                </div>
+                <div className="overflow-x-auto rounded-lg shadow-md border">
+                    <table className="min-w-full bg-white">
+                        <thead className="bg-primary text-primary-foreground">
+                        <tr>
+                            <th className="py-4 px-6 text-left font-semibold">Origin (Nigeria)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Destination (US)</th>
+                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
+                        </tr>
+                        </thead>
+                        <tbody className="text-gray-700">
+                        {transitRoutes.map((route, index) => (
+                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+                                <td className="py-4 px-6">{route.origin}</td>
+                                <td className="py-4 px-6">{route.destination}</td>
+                                <td className="py-4 px-6">{route.time}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
         <section id="features" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
+                <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose County Cargo for Shipping to the US?</h2>
                     <p className="mb-12 text-lg max-w-3xl mx-auto">We make shipping from Nigeria to the US simple, secure, and affordable.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-blue-800/40 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 ease-in-out hover:bg-blue-900/60 hover:-translate-y-2 hover:shadow-2xl">
+                        <div key={index} className="bg-blue-800/40 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 ease-in-out hover:bg-blue-900/60 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
@@ -212,14 +257,14 @@ export default function ShipFromNigeriaToUsPage() {
 
         <section id="reviews" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Customers Say</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Trusted for sending packages from Nigeria to the US.</p>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6">
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex items-center mb-4">
                                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                                     {review.initial}
@@ -241,24 +286,12 @@ export default function ShipFromNigeriaToUsPage() {
 
         <Faq />
         
-        <section id="support" className="py-20 bg-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Customer Support</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-                    Have questions or need assistance? Our dedicated customer support team is here to help you with every step of your shipping process from Nigeria to the US.
-                </p>
-                <Button asChild size="lg">
-                    <Link href="/contact">Contact Us Now</Link>
-                </Button>
-            </div>
-        </section>
-
         <section className="py-20 bg-primary text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Ship from Nigeria to the US?</h2>
                 <p className="text-lg mb-8">Get an instant quote and start shipping your packages to the US with County Cargo.</p>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
-                    <Link href="/#quote">Start Shipping Now</Link>
+                    <Link href="#quote">Start Shipping Now</Link>
                 </Button>
             </div>
         </section>
@@ -267,5 +300,3 @@ export default function ShipFromNigeriaToUsPage() {
     </>
   );
 }
-
-    
