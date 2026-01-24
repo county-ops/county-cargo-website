@@ -207,7 +207,7 @@ export default function ShipFromUsToNigeriaPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.85), rgba(31, 41, 55, 0.9)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -234,7 +234,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -254,7 +254,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
                                 {tier.price.startsWith('$') ? <>{tier.price}</> : tier.price}
@@ -324,7 +324,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
@@ -385,7 +385,7 @@ export default function ShipFromUsToNigeriaPage() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
                             <div className="flex items-center mb-4">
                                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                                     {review.initial}
