@@ -32,8 +32,8 @@ const processSteps = [
   },
   {
     icon: <ShoppingCart className="h-10 w-10 text-white" />,
-    title: '2. Shop & Ship to Us',
-    description: 'Shop your favorite US stores online and use your new County Cargo address at checkout. We\'ll receive your packages at our US warehouse.',
+    title: '2. Shop & Ship to Your US Address',
+    description: 'Shop online at any US store. At checkout, simply use your dedicated County Cargo US address for delivery. We\'ll handle it from there.',
   },
   {
     icon: <Gift className="h-10 w-10 text-white" />,
