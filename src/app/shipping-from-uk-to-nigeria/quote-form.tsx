@@ -80,8 +80,8 @@ export function UkNigeriaQuoteForm() {
     try {
       const { from, to, serviceType, weight, length, width, height } = values;
 
-      if ((serviceType === 'express48' || serviceType === 'express24') && (from !== 'London' || (to !== 'Lagos' && to !== 'Abuja'))) {
-        setError('Express services are only available for shipping from London to Lagos or Abuja.');
+      if ((serviceType === 'express48' || serviceType === 'express24') && (to !== 'Lagos' && to !== 'Abuja')) {
+        setError('Express services are only available for shipping to Lagos or Abuja.');
         setIsLoading(false);
         return;
       }
@@ -340,3 +340,5 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
     </Card>
   );
 }
+
+    
