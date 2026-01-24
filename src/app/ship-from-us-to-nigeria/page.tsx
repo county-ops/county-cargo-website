@@ -48,10 +48,10 @@ const pricingTiers = [
     price: '$4.50',
     per: '/kg',
     features: [
-      'Rates start from $4.50/kg for Lagos',
+      'Rates start from $4.50/kg',
+      'Minimum chargeable weight: 5 lbs',
       'Delivery in 5-10 working days',
       'Full tracking included',
-      'No hidden handling charges',
     ],
   },
   {
@@ -59,7 +59,7 @@ const pricingTiers = [
     price: 'Contact Us',
     per: 'for a quote',
     features: [
-      'Ideal for packages over 50kg',
+      'Ideal for packages over 110 lbs',
       'Cost-effective air freight',
       'Perfect for bulk personal or business shipments',
       'Full tracking included',
@@ -179,7 +179,7 @@ const transitRoutes = [
   { origin: 'Atlanta', destination: 'Port Harcourt', time: '5-10 working days' },
   { origin: 'Chicago', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Los Angeles', destination: 'Abuja', time: '5-10 working days' },
-  { origin: 'Dallas', destination: 'Ibadan', time: '5-10 working days' },
+  { origin: 'Dallas', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Washington D.C.', destination: 'Kano', time: '5-10 working days' },
   { origin: 'Miami', destination: 'Ibadan', time: '5-10 working days' },
   { origin: 'San Francisco', destination: 'Benin City', time: '5-10 working days' },
@@ -407,3 +407,4 @@ export default function ShipFromUsToNigeriaPage() {
     </>
   );
 }
+

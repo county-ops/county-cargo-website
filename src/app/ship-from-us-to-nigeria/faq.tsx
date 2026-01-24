@@ -16,7 +16,7 @@ const faqItems = [
     },
     {
         question: 'What is the cost of shipping from US to Nigeria?',
-        answer: 'Our shipping costs to Nigeria vary depending on the weight, dimensions, and chosen shipping speed (Standard, 48hrs Express, or 24hrs Express). We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section above for detailed rates, starting from $7.50/kg. This covers your US to Nigeria cargo needs.'
+        answer: 'Our shipping costs to Nigeria vary depending on the weight and dimensions of your package. We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section for detailed rates, which start from $4.50/kg, with a minimum chargeable weight of 5 lbs.'
     },
     {
         question: 'How long does it take to ship from US to Nigeria?',

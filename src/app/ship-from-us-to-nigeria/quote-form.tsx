@@ -81,9 +81,21 @@ export function UsNigeriaQuoteForm() {
 
       const currency = 'USD';
 
-      const volumetricWeight = (length * width * height) / 5000;
-      const chargeableWeight = Math.max(weight, volumetricWeight);
+      // 1. Convert weight from lbs (form) to kg
+      const weightInKg = weight * 0.453592;
+
+      // 2. Calculate volumetric weight in kg
+      const volumetricWeightInKg = (length * width * height) / 5000;
       
+      // 3. Determine chargeable weight in kg
+      const chargeableWeightInKg = Math.max(weightInKg, volumetricWeightInKg);
+
+      // 4. Define minimum weight in kg (5 lbs)
+      const minWeightInKg = 5 * 0.453592;
+
+      // 5. Determine final chargeable weight in kg, considering the 5lbs minimum
+      const finalChargeableWeightInKg = Math.max(chargeableWeightInKg, minWeightInKg);
+
       const state = nigerianCitiesToStates[to];
       if (!state) {
         setError(`We don't have pricing information for ${to}. Please contact us for a custom quote.`);
@@ -97,19 +109,18 @@ export function UsNigeriaQuoteForm() {
         setIsLoading(false);
         return;
       }
-
-      const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
-      const estimatedCost = finalChargeableWeight * statePriceInfo.doorToDoor;
+      
+      const estimatedCost = finalChargeableWeightInKg * statePriceInfo.doorToDoor;
 
       const details = `
 Calculation based on Standard Shipping:
 - Destination: ${to}, ${state}
 - Rate: $${statePriceInfo.doorToDoor.toFixed(2)}/kg
-- Actual Weight: ${weight.toFixed(2)} kg
-- Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
-- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
-- Minimum Weight for destination: ${statePriceInfo.minWeight} kg
-- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
+- Actual Weight: ${weight.toFixed(2)} lbs
+- Volumetric Weight: ${(volumetricWeightInKg * 2.20462).toFixed(2)} lbs
+- Chargeable Weight: ${(chargeableWeightInKg * 2.20462).toFixed(2)} lbs
+- Minimum Chargeable Weight: 5.00 lbs
+- Final Chargeable Weight: ${(finalChargeableWeightInKg * 2.20462).toFixed(2)} lbs
       `.trim().replace(/^\s+/gm, '');
 
 
@@ -196,9 +207,9 @@ Calculation based on Standard Shipping:
                     name="weight"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Weight (kg)</FormLabel>
+                        <FormLabel>Weight (lbs)</FormLabel>
                         <FormControl>
-                          <Input type="number" placeholder="e.g. 5" {...field} />
+                          <Input type="number" placeholder="e.g. 10" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
