@@ -11,10 +11,16 @@ import { ArrowRightLeft } from 'lucide-react';
 const USD_TO_NGN_RATE = 1500;
 const ADDITIONAL_NAIRA = 20;
 
-export function CurrencyConverter() {
+export function CurrencyConverter({ usdAmount }: { usdAmount: number | null }) {
   const [usd, setUsd] = useState('1');
   const [ngn, setNgn] = useState((1 * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
   const [lastChanged, setLastChanged] = useState<'usd' | 'ngn'>('usd');
+
+  useEffect(() => {
+    const newUsd = usdAmount ?? 1;
+    setUsd(newUsd.toFixed(2));
+    setLastChanged('usd');
+  }, [usdAmount]);
 
   useEffect(() => {
     if (lastChanged === 'usd') {

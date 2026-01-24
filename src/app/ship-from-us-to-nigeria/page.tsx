@@ -16,8 +16,8 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
-import { UsNigeriaQuoteForm } from './quote-form';
-import { CurrencyConverter } from './currency-converter';
+import { QuoteWithConverter } from './quote-with-converter';
+
 
 export const metadata: Metadata = {
   title: 'Ship from US to Nigeria - Fast & Affordable Shipping | County Cargo',
@@ -188,6 +188,7 @@ const transitRoutes = [
   { origin: 'New York', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Philadelphia', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Phoenix', destination: 'Lagos', time: '5-10 working days' },
+  { origin: 'San Antonio', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'San Diego', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'San Francisco', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Seattle', destination: 'Lagos', time: '5-10 working days' },
@@ -273,14 +274,7 @@ export default function ShipFromUsToNigeriaPage() {
 
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid lg:grid-cols-5 gap-12 items-start">
-                    <div className="lg:col-span-3">
-                        <UsNigeriaQuoteForm />
-                    </div>
-                    <div className="lg:col-span-2">
-                        <CurrencyConverter />
-                    </div>
-                </div>
+                <QuoteWithConverter />
             </div>
         </section>
 

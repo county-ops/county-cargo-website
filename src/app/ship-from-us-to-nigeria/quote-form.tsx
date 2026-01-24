@@ -53,7 +53,7 @@ type ShippingCostOutput = {
   details: string;
 }
 
-export function UsNigeriaQuoteForm() {
+export function UsNigeriaQuoteForm({ onEstimateChange }: { onEstimateChange: (usd: number | null) => void }) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -112,6 +112,7 @@ Calculation based on Standard Shipping:
         currency,
         details
       });
+      onEstimateChange(estimatedCost);
 
     } catch (e) {
       setError('Failed to get estimation. Please try again.');
@@ -125,6 +126,7 @@ Calculation based on Standard Shipping:
     form.reset();
     setResult(null);
     setError(null);
+    onEstimateChange(null);
   };
 
   return (
