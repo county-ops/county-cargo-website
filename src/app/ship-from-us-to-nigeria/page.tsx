@@ -21,7 +21,7 @@ import { UsNigeriaQuoteForm } from './quote-form';
 
 export const metadata: Metadata = {
   title: 'Shipping from US to Nigeria (Door-to-Door) | County Cargo',
-  description: 'Fast, reliable, and affordable delivery from the US. Get your free US shipping address, shop any American store, and we\'ll deliver to your doorstep in Nigeria.',
+  description: 'Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address to shop American stores. We deliver to your doorstep in Nigeria.',
 };
 
 const processSteps = [
@@ -213,8 +213,8 @@ export default function ShipFromUsToNigeriaPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">Shipping from US to Nigeria (Door-to-Door)</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable delivery from the US. Get your free US shipping address, shop any American store, and we'll deliver to your doorstep in Nigeria.</p>
+            <h1 className="text-4xl md:text-5xl font-bold">Shipping from US to Nigeria<br />(Door-to-Door)</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
           </div>
         </section>
 
