@@ -95,7 +95,8 @@ export function UsNigeriaQuoteForm() {
     if (lastChanged === 'usd') {
       const usdValue = parseFloat(usd);
       if (!isNaN(usdValue)) {
-        setNgn((usdValue * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
+        const ngnValue = usdValue * USD_TO_NGN_RATE + ADDITIONAL_NAIRA;
+        setNgn(Math.max(1, ngnValue).toFixed(2));
       } else {
         setNgn('');
       }
@@ -107,7 +108,7 @@ export function UsNigeriaQuoteForm() {
       const ngnValue = parseFloat(ngn);
       if (!isNaN(ngnValue)) {
         const usdValue = (ngnValue - ADDITIONAL_NAIRA) / USD_TO_NGN_RATE;
-        setUsd(Math.max(0, usdValue).toFixed(2));
+        setUsd(Math.max(1, usdValue).toFixed(2));
       } else {
         setUsd('');
       }
@@ -319,14 +320,14 @@ Calculation based on Standard Shipping:
                 <div className="flex flex-col sm:flex-row items-center gap-4">
                     <div className="flex-1 w-full space-y-2 text-left">
                         <Label htmlFor="usd-input">USD ($)</Label>
-                        <Input id="usd-input" type="number" value={usd} onChange={handleUsdChange} placeholder="e.g. 100" />
+                        <Input id="usd-input" type="number" value={usd} onChange={handleUsdChange} placeholder="e.g. 100" min="1" />
                     </div>
                     <div className="mt-6 hidden sm:block">
                         <ArrowRightLeft className="h-6 w-6 text-muted-foreground" />
                     </div>
                     <div className="flex-1 w-full space-y-2 text-left">
                         <Label htmlFor="ngn-input">NGN (₦)</Label>
-                        <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 150000" />
+                        <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 150000" min="1" />
                     </div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-4 text-center hidden">
@@ -353,3 +354,5 @@ Calculation based on Standard Shipping:
     </Card>
   );
 }
+
+    
