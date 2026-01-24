@@ -28,7 +28,7 @@ const processSteps = [
   {
     icon: <UserPlus className="h-10 w-10 text-white" />,
     title: '1. Get Your Free US Address',
-    description: 'Create a free account to receive your personal US shipping address. Use it to shop from any US retailer, including Amazon, Walmart, and Shein.',
+    description: 'Create a free account to instantly receive your personal US shipping address. Use this address to shop from any US online retailer like Amazon, Walmart, and Shein.',
   },
   {
     icon: <ShoppingCart className="h-10 w-10 text-white" />,
