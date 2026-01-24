@@ -218,6 +218,11 @@ export default function ShipFromUsToNigeriaPage() {
               <span className="mt-2">(Door-to-Door)</span>
             </h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+                <Link href="https://ship.countycargo.com/register">Get Your Free US Address</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
