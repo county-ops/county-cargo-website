@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { Truck, Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Truck, Facebook, Twitter, Linkedin, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 export function Footer() {
     return (
@@ -50,6 +50,7 @@ export function Footer() {
                             <Link href="#" className="text-blue-600 transition-opacity hover:opacity-80"><Facebook className="h-6 w-6" /></Link>
                             <Link href="#" className="text-sky-500 transition-opacity hover:opacity-80"><Twitter className="h-6 w-6" /></Link>
                             <Link href="#" className="text-sky-700 transition-opacity hover:opacity-80"><Linkedin className="h-6 w-6" /></Link>
+                            <Link href="https://www.instagram.com/countycargo/" target="_blank" rel="noopener noreferrer" className="text-pink-500 transition-opacity hover:opacity-80"><Instagram className="h-6 w-6" /></Link>
                         </div>
                     </div>
                 </div>
