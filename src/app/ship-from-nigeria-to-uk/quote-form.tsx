@@ -79,7 +79,7 @@ export function NigeriaUkQuoteForm() {
     try {
       const { from, to, serviceType, weight, length, width, height } = values;
 
-      if ((serviceType === 'express') && (to !== 'London' && to !== 'Manchester')) {
+      if ((serviceType === 'express48') && (to !== 'London' && to !== 'Manchester')) {
         setError('Express service is only available for shipping to London or Manchester.');
         setIsLoading(false);
         return;
@@ -112,7 +112,7 @@ Calculation based on Standard Shipping:
         `.trim().replace(/^\s+/gm, '');
 
       } else { // Express service
-        const rate = 25.00;
+        const rate = 24.00;
         const handlingCharge = 20;
         const minWeight = 1;
 
@@ -121,7 +121,7 @@ Calculation based on Standard Shipping:
         estimatedCost = shippingCost + handlingCharge;
 
         details = `
-Calculation based on Express Shipping:
+Calculation based on 48hrs Express Shipping:
 - Route: ${from} to ${to}
 - Rate: £${rate.toFixed(2)}/kg
 - Actual Weight: ${weight.toFixed(2)} kg
@@ -223,7 +223,7 @@ Calculation based on Express Shipping:
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="standard">Standard Shipping</SelectItem>
-                      <SelectItem value="express">Express Shipping</SelectItem>
+                      <SelectItem value="express48">48hrs Express Shipping</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

@@ -54,12 +54,12 @@ const pricingTiers = [
     ],
   },
   {
-    title: 'Express Shipping',
-    price: '£25.00',
+    title: '48hrs Express Shipping',
+    price: '£24.00',
     per: '/kg',
     features: [
       '1kg minimum weight',
-      'Fast delivery to London & Manchester',
+      'Delivery in 2 working days',
       'Full tracking included',
       '£20 handling charge',
     ],
