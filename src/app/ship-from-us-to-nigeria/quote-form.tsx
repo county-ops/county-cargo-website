@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -170,7 +169,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
     form.reset();
     setResult(null);
     setError(null);
-  }
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
@@ -215,7 +214,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select Nigerian city" />
-                        </Trigger>
+                        </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {nigerianCities.map(city => <SelectItem key={city} value={city}>{city}</SelectItem>)}
@@ -237,7 +236,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a service type" />
-                      </Trigger>
+                      </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       <SelectItem value="standard">Standard Shipping</SelectItem>
@@ -343,5 +342,3 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
     </Card>
   );
 }
-
-    
