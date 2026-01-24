@@ -72,7 +72,7 @@ export function CurrencyConverter() {
             <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 150000" />
           </div>
         </div>
-        <p className="text-xs text-muted-foreground mt-4 text-center">
+        <p className="text-xs text-muted-foreground mt-4 text-center hidden">
           *Exchange rate is an estimate (1 USD ≈ {USD_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
         </p>
       </CardContent>
