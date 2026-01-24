@@ -87,31 +87,30 @@ export function NigeriaUkQuoteForm() {
 
       let estimatedCost = 0;
       let details = '';
-      const currency = 'GBP';
+      let currency = 'GBP';
 
       const volumetricWeight = (length * width * height) / 5000;
       const chargeableWeight = Math.max(weight, volumetricWeight);
 
       if (serviceType === 'standard') {
-        const rate = 8.00;
+        currency = 'NGN';
+        const rate = 9500;
         const minWeight = 10;
-        const handlingCharge = 15;
         const finalChargeableWeight = Math.max(chargeableWeight, minWeight);
-        const shippingCost = finalChargeableWeight * rate;
-        estimatedCost = shippingCost + handlingCharge;
+        estimatedCost = finalChargeableWeight * rate;
 
         details = `
 Calculation based on Standard Shipping:
 - Route: ${from} to ${to}
-- Rate: £${rate.toFixed(2)}/kg
+- Rate: ₦${rate.toLocaleString()}/kg
 - Actual Weight: ${weight.toFixed(2)} kg
 - Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
 - Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
 - Minimum Weight: ${minWeight} kg
 - Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
-- Shipping Cost: £${shippingCost.toFixed(2)}
-- Handling Charge: £${handlingCharge.toFixed(2)}
+- Shipping Cost: ₦${estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         `.trim().replace(/^\s+/gm, '');
+
       } else { // Express service
         const rate = 25.00;
         const handlingCharge = 20;
@@ -299,7 +298,7 @@ Calculation based on Express Shipping:
           <div className="space-y-4 text-center">
             <div>
                 <p className="text-muted-foreground">Estimated Cost</p>
-                <p className="text-5xl font-bold">£{result.estimatedCost.toFixed(2)}</p>
+                <p className="text-5xl font-bold">{result.currency === 'GBP' ? '£' : '₦'}{result.estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p className="text-sm text-muted-foreground">{result.currency}</p>
             </div>
             <div className='p-4 bg-muted/50 rounded-lg text-left'>
@@ -318,7 +317,7 @@ Calculation based on Express Shipping:
           </Button>
         ) : (
             <p className="text-xs text-muted-foreground text-center w-full">
-            This is an estimate. Final costs may vary. Standard shipments include a £15 handling charge. Express includes £20.
+            This is an estimate. Final costs may vary. Express shipments include a £20 handling charge.
           </p>
         )}
       </CardFooter>

@@ -44,13 +44,12 @@ const processSteps = [
 const pricingTiers = [
   {
     title: 'Standard Shipping',
-    price: '£8.00',
+    price: '₦9,500',
     per: '/kg',
     features: [
       '10kg minimum weight',
       'Delivery in 5-10 working days',
       'Full tracking included',
-      '£15 handling charge',
     ],
   },
   {
