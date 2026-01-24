@@ -9,17 +9,18 @@ import { ArrowRightLeft } from 'lucide-react';
 
 // This is a fixed rate. For a real application, you'd fetch this from an API.
 const USD_TO_NGN_RATE = 1500;
+const ADDITIONAL_NAIRA = 20;
 
 export function CurrencyConverter() {
   const [usd, setUsd] = useState('1');
-  const [ngn, setNgn] = useState(USD_TO_NGN_RATE.toString());
+  const [ngn, setNgn] = useState((1 * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
   const [lastChanged, setLastChanged] = useState<'usd' | 'ngn'>('usd');
 
   useEffect(() => {
     if (lastChanged === 'usd') {
       const usdValue = parseFloat(usd);
       if (!isNaN(usdValue)) {
-        setNgn((usdValue * USD_TO_NGN_RATE).toFixed(2));
+        setNgn((usdValue * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
       } else {
         setNgn('');
       }
@@ -30,7 +31,8 @@ export function CurrencyConverter() {
     if (lastChanged === 'ngn') {
       const ngnValue = parseFloat(ngn);
       if (!isNaN(ngnValue)) {
-        setUsd((ngnValue / USD_TO_NGN_RATE).toFixed(2));
+        const usdValue = (ngnValue - ADDITIONAL_NAIRA) / USD_TO_NGN_RATE;
+        setUsd(Math.max(0, usdValue).toFixed(2));
       } else {
         setUsd('');
       }
@@ -71,7 +73,7 @@ export function CurrencyConverter() {
           </div>
         </div>
         <p className="text-xs text-muted-foreground mt-4 text-center">
-          *Exchange rate is an estimate (1 USD ≈ {USD_TO_NGN_RATE} NGN) and may not reflect the actual rate.
+          *Exchange rate is an estimate (1 USD ≈ {USD_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
         </p>
       </CardContent>
     </Card>
