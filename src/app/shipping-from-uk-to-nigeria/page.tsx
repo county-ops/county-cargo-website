@@ -228,14 +228,14 @@ export default function ShipFromUkToNigeriaPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold">Shipping from UK to Nigeria<br />(Door-to-Door)</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
+            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from UK to Nigeria<br />(Door-to-Door)</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors">
                 <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>

@@ -207,17 +207,17 @@ export default function ShipFromUsToNigeriaPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold flex flex-col items-center">
+            <h1 className="text-4xl md:text-5xl font-bold flex flex-col items-center hero-text-glow">
               <span>Shipping from US to Nigeria</span>
               <span className="mt-2">(Door-to-Door)</span>
             </h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
                 <Link href="https://ship.countycargo.com/register">Get Your Free US Address</Link>

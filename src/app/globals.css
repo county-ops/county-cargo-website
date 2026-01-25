@@ -59,6 +59,9 @@
 }
 
 @layer utilities {
+    .hero-text-glow {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
     .hero-bg {
         background-color: #1F2937; 
         background: linear-gradient(rgba(30, 64, 175, 0), rgba(31, 41, 55, 0.9)), url('/Send and Receive Goods Worldwide with County Cargo.jpg');

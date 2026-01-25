@@ -26,14 +26,14 @@ export default function AboutPage() {
         <section
           className="min-h-[40vh] flex items-center justify-center text-white"
            style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.65), rgba(31, 41, 55, 0.7)), url('https://images.unsplash.com/photo-1577563908411-5077b6a5b348?auto=format&fit=crop&w=1200&q=80')`,
+            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('https://images.unsplash.com/photo-1577563908411-5077b6a5b348?auto=format&fit=crop&w=1200&q=80')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold">About County Cargo</h1>
-            <p className="text-xl mt-4 max-w-3xl mx-auto">Your trusted partner in international logistics.</p>
+            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">About County Cargo</h1>
+            <p className="text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Your trusted partner in international logistics.</p>
           </div>
         </section>
 
