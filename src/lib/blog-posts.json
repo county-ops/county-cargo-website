@@ -32,5 +32,60 @@
     "tags": ["AI", "warehouse", "automation"],
     "description": "The impact of artificial intelligence on inventory accuracy and efficiency.",
     "url": "/blog/ai-in-warehouse-management"
+  },
+  {
+    "title": "Navigating US to Nigeria Shipping: A Complete Guide",
+    "image": "https://images.unsplash.com/photo-1614730321944-3a5a1b354316?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "shipping container",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-11-01",
+    "category": "Guides",
+    "tags": ["shipping", "USA", "Nigeria"],
+    "description": "Learn how to easily ship your goods from the United States to Nigeria with our comprehensive guide.",
+    "url": "/ship-from-us-to-nigeria"
+  },
+  {
+    "title": "Shop from Any UK Store & Ship to Nigeria: Your Ultimate Guide",
+    "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "shopping online",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-11-05",
+    "category": "Guides",
+    "tags": ["shopping", "UK", "Nigeria"],
+    "description": "Discover how to shop from your favorite UK stores and get your purchases delivered to your doorstep in Nigeria.",
+    "url": "/shipping-from-uk-to-nigeria"
+  },
+  {
+    "title": "Seamless Shipping from Nigeria to the UK: A Step-by-Step Guide",
+    "image": "https://images.unsplash.com/photo-1578575437130-5278ce682623?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "cargo plane",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-11-10",
+    "category": "Guides",
+    "tags": ["export", "Nigeria", "UK"],
+    "description": "Our guide makes shipping from Nigeria to the UK simple and stress-free. Learn about the process and get started today.",
+    "url": "/ship-from-nigeria-to-uk"
+  },
+  {
+    "title": "How to Ship from Nigeria to the US: A Comprehensive Guide",
+    "image": "https://images.unsplash.com/photo-1590479601399-633a7e597925?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "postal boxes",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-11-15",
+    "category": "Guides",
+    "tags": ["export", "Nigeria", "USA"],
+    "description": "Everything you need to know about sending packages, documents, and cargo from Nigeria to the United States.",
+    "url": "/ship-from-nigeria-to-us"
+  },
+  {
+    "title": "The Ultimate Guide to International Shipping from Nigeria",
+    "image": "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?auto=format&fit=crop&w=640&q=80",
+    "imageHint": "shipping logistics",
+    "author": "County Cargo Staff",
+    "publicationDate": "2023-11-20",
+    "category": "Guides",
+    "tags": ["international", "shipping", "export"],
+    "description": "Exporting from Nigeria? Our guide covers shipping to over 200 countries worldwide.",
+    "url": "/ship-from-nigeria-to-world"
   }
 ]
