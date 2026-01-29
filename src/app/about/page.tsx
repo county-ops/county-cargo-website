@@ -2,7 +2,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
@@ -81,13 +81,19 @@ export default function AboutPage() {
                              </div>
                         </div>
 
-                         <div className="mt-12 text-center bg-primary text-primary-foreground p-8 rounded-lg shadow-lg">
-                            <p className="text-xl mb-4">
-                               At County Cargo, we don’t just ship packages—we provide peace of mind. Our goal is to make international shipping seamless, secure, and reliable, offering comprehensive solutions to meet all your logistics needs.
-                            </p>
-                             <p className="text-xl font-semibold">
-                               Trust, compliance, and accountability are the pillars of our service. Choosing County Cargo means choosing a cargo partner that prioritizes your shipments and your satisfaction within legal and professional boundaries.
-                            </p>
+                        <div className="mt-12 bg-blue-50 border border-blue-200 p-8 rounded-lg shadow-lg" data-aos="fade-up">
+                            <div className="flex flex-col md:flex-row items-center text-center md:text-left">
+                                <ShieldCheck className="h-16 w-16 text-primary mr-0 md:mr-6 mb-4 md:mb-0 shrink-0" />
+                                <div>
+                                    <h3 className="text-2xl font-bold text-secondary mb-4">Our Commitment to You</h3>
+                                    <p className="text-lg text-gray-800 mb-4">
+                                        At County Cargo, we don’t just ship packages—we provide peace of mind. Our goal is to make international shipping seamless, secure, and reliable, offering comprehensive solutions to meet all your logistics needs.
+                                    </p>
+                                    <p className="text-lg text-gray-800">
+                                        Trust, compliance, and accountability are the pillars of our service. Choosing County Cargo means choosing a cargo partner that prioritizes your shipments and your satisfaction within legal and professional boundaries.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
