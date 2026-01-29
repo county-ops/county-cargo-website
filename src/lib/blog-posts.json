@@ -1,17 +1,6 @@
 
 [
   {
-    "title": "The Future of Drone Delivery",
-    "image": "https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=640&q=80",
-    "imageHint": "drone delivery",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-10-26",
-    "category": "Technology",
-    "tags": ["drones", "delivery", "logistics"],
-    "description": "Exploring the advancements and challenges of autonomous delivery drones.",
-    "url": "/blog/the-future-of-drone-delivery"
-  },
-  {
     "title": "Sustainable Logistics Practices",
     "image": "https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?auto=format&fit=crop&w=640&q=80",
     "imageHint": "sustainable logistics",
