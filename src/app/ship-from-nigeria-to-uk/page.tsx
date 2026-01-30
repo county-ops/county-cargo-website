@@ -132,7 +132,7 @@ export default function ShipFromNigeriaToUkPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `url('https://images.pexels.com/photos/427679/pexels-photo-427679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
+            background: `url('/HERO.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
