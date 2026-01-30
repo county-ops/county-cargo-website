@@ -138,13 +138,9 @@ export default function ShipFromNigeriaToUkPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from Nigeria to the UK</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Reliable, fast, and affordable international shipping services from Nigeria to the UK.</p>
-            <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
-                <Link href="#quote">Get a Quote</Link>
-              </Button>
-            </div>
+            <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+              <Link href="#quote">Get a Quote</Link>
+            </Button>
           </div>
         </section>
 
