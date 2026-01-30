@@ -130,11 +130,11 @@ export default function ShipFromNigeriaToUkPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[40vh] flex items-center justify-center text-white"
+          className="min-h-[60vh] flex items-center justify-center text-white"
           style={{
             background: `url('/HERO.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'bottom',
+            backgroundPosition: 'center',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
