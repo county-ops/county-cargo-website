@@ -207,7 +207,7 @@ export default function ShipFromUsToNigeriaPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('/US TO NIGERIA.jpg')`,
+            background: `url('/US TO NIGERIA.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
