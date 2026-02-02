@@ -131,13 +131,13 @@ export default function ShipFromNigeriaToUkPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
+          className="relative min-h-[50vh] flex items-center justify-center text-white overflow-hidden"
         >
           <Image
             src="/nigeria to uk.jpg"
             alt="Shipping from Nigeria to the UK"
             fill
-            className="object-cover object-center"
+            className="object-cover object-bottom"
             data-ai-hint="cargo logistics"
             priority
           />
