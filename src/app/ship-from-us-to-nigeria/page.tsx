@@ -217,7 +217,7 @@ export default function ShipFromUsToNigeriaPage() {
               <span>Shipping from US to Nigeria</span>
               <span className="mt-2">(Door-to-Door)</span>
             </h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address and shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address to shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
                 <Link href="https://ship.countycargo.com/register">Get Your Free US Address</Link>
@@ -226,7 +226,7 @@ export default function ShipFromUsToNigeriaPage() {
           </div>
         </section>
 
-        <section id="process" className="py-20 bg-white">
+        <section id="process" className="py-12 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship from the US to Nigeria</h2>
@@ -234,7 +234,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -254,7 +254,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
                                 {tier.price.startsWith('$') ? <>{tier.price}</> : tier.price}
@@ -324,7 +324,7 @@ export default function ShipFromUsToNigeriaPage() {
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
+                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
@@ -385,7 +385,7 @@ export default function ShipFromUsToNigeriaPage() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${'index' * 100}`}>
+                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex items-center mb-4">
                                 <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
                                     {review.initial}
