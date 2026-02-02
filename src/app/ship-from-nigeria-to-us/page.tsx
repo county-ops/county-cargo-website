@@ -16,6 +16,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
 import { NigeriaUsQuoteForm } from './quote-form';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Shipping from Nigeria to US | County Cargo',
@@ -129,14 +130,18 @@ export default function ShipFromNigeriaToUsPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[60vh] flex items-center justify-center text-white"
-          style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('/NIGERIA TO THE US.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+          <Image
+            src="/NIGERIA TO THE US.jpg"
+            alt="Shipping from Nigeria to the US"
+            fill
+            className="object-cover object-center"
+            data-ai-hint="shipping logistics"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from Nigeria to the US</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Reliable, fast, and affordable international shipping services from Nigeria to the United States.</p>
             <div className="mt-8">
