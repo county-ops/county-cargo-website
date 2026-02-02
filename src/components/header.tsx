@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -28,8 +27,8 @@ const navLinks = [
       { href: '/ship-from-nigeria-to-world', label: 'Shipping from Nigeria to World' },
     ]
   },
-  { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
   { href: '/about', label: 'About Us' },
+  { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -67,7 +66,6 @@ export function Header() {
   const mobileNav = (
     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Home</Link>
-        <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
         <Link href="#services" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Services</Link>
         <Link href="/shipping-from-uk-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Nigeria</Link>
         <Link href="/ship-from-us-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from US to Nigeria</Link>
@@ -75,6 +73,7 @@ export function Header() {
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
         <Link href="/ship-from-nigeria-to-world" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to World</Link>
         <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>
+        <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
         <Link href="/blog" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Blog</Link>
         <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
         
