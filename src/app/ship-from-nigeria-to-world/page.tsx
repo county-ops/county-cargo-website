@@ -129,7 +129,7 @@ export default function ShipFromNigeriaToWorldPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[50vh] flex items-center justify-center text-white"
+          className="min-h-[75vh] flex items-center justify-center text-white"
           style={{
             background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('/the world.png')`,
             backgroundSize: 'cover',
