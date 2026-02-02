@@ -129,14 +129,18 @@ export default function ShipFromNigeriaToWorldPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[75vh] flex items-center justify-center text-white"
-          style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.5), rgba(31, 41, 55, 0.6)), url('/the world.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="relative min-h-[65vh] flex items-center justify-center text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+          <Image
+            src="/the world.png"
+            alt="International shipping from Nigeria to the world with a cargo plane being loaded"
+            fill
+            className="object-cover object-center"
+            data-ai-hint="cargo plane logistics"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">International Shipping from Nigeria to the World</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Your #1 choice for shipping parcels, documents, and cargo from Nigeria to the UK, US, Canada, Europe, and over 200 countries worldwide.</p>
             <div className="mt-8">
