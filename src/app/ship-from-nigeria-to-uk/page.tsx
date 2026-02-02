@@ -16,6 +16,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
 import { NigeriaUkQuoteForm } from './quote-form';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Shipping from Nigeria to UK | County Cargo',
@@ -130,17 +131,25 @@ export default function ShipFromNigeriaToUkPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[60vh] flex items-center justify-center text-white"
-          style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.3), rgba(31, 41, 55, 0.4)), url('/HERO.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
-              <Link href="#quote">Get a Quote</Link>
-            </Button>
+          <Image
+            src="/nigeria to uk.jpg"
+            alt="Shipping from Nigeria to the UK"
+            fill
+            className="object-cover object-center"
+            data-ai-hint="cargo logistics"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from Nigeria to the UK</h1>
+            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Ship packages from Nigeria to the UK. County Cargo offers fast, reliable, and affordable international shipping services.</p>
+            <div className="mt-8">
+                <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+                <Link href="#quote">Get a Quote</Link>
+                </Button>
+            </div>
           </div>
         </section>
 
