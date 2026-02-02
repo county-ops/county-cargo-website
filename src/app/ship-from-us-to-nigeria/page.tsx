@@ -226,7 +226,7 @@ export default function ShipFromUsToNigeriaPage() {
           </div>
         </section>
 
-        <section id="process" className="py-12 bg-white border-t border-b">
+        <section id="process" className="py-12 bg-white border-y-2 border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship from the US to Nigeria</h2>
@@ -246,7 +246,7 @@ export default function ShipFromUsToNigeriaPage() {
             </div>
         </section>
         
-        <section id="pricing" className="py-20 bg-gray-50">
+        <section id="pricing" className="py-20 bg-gray-50 border-y-2 border-primary">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from US to Nigeria</h2>
@@ -359,7 +359,7 @@ export default function ShipFromUsToNigeriaPage() {
                 <div className="scroller mt-4">
                     <div className="scroller__inner" style={{animationDirection: "reverse"}}>
                          {allStores2.map((store, index) => (
-                            <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`us-store2-${index}-${store.name}`}>{store.name}</a>
+                            <a href={`https://www.google.com/search?q=${store.name}`} target="_blank" rel="noopener noreferrer" key={`us-store2-${index}-${store.name}`}>{store.name}</a>
                          ))}
                     </div>
                 </div>
