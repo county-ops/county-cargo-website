@@ -205,7 +205,7 @@ export default function ShipFromUsToNigeriaPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[50vh] flex items-center justify-center text-white"
+          className="min-h-[60vh] flex items-center justify-center text-white"
           style={{
             background: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/US TO NIGERIA.jpg')`,
             backgroundSize: 'cover',
@@ -226,7 +226,7 @@ export default function ShipFromUsToNigeriaPage() {
           </div>
         </section>
 
-        <section id="process" className="py-12 bg-white">
+        <section id="process" className="py-12 bg-white border-t border-b">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship from the US to Nigeria</h2>
