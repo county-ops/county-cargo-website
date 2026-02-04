@@ -131,12 +131,13 @@ export default function ShipFromNigeriaToUkPage() {
     <>
       <Header />
       <main className="pt-16">
+        {/* Optimized Hero Section: 16:7 Aspect Ratio aligned to top */}
         <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.nigeriaUkHero.url}
             alt="Shipping from Nigeria to the UK"
             fill
-            className="object-cover object-center"
+            className="object-cover object-top"
             data-ai-hint={placeholders.nigeriaUkHero.hint}
             priority
           />
