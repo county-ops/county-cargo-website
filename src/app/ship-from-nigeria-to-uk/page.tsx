@@ -131,25 +131,32 @@ export default function ShipFromNigeriaToUkPage() {
     <>
       <Header />
       <main className="pt-16">
-        <section
-          className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden bg-gray-900"
-        >
+        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.nigeriaUkHero.url}
             alt="Shipping from Nigeria to the UK"
             fill
-            className="object-cover object-center opacity-80"
+            className="object-cover object-center"
             data-ai-hint={placeholders.nigeriaUkHero.hint}
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from Nigeria to the UK</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, reliable, and affordable international shipping services. We bridge the gap between Nigeria and the United Kingdom.</p>
-            <div className="mt-8">
-                <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                <Link href="#quote">Get a Quote</Link>
-                </Button>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
+            <div className="max-w-2xl">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
+                  Shipping from Nigeria <br /> to the UK
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                  Fast, reliable, and affordable international shipping. We bridge the gap between Nigeria and the United Kingdom.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-white text-destructive font-bold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
+                    <Link href="#quote">Get a Quote Now</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all">
+                    <Link href="#process">How it Works</Link>
+                  </Button>
+                </div>
             </div>
           </div>
         </section>
@@ -230,7 +237,7 @@ export default function ShipFromNigeriaToUkPage() {
                         <tbody className="text-gray-700">
                         {transitRoutes.map((route, index) => (
                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
-                                <td className="py-4 px-6">{route.origin}</td>
+                                <td className="py-4 px-6 font-medium">{route.origin}</td>
                                 <td className="py-4 px-6">{route.destination}</td>
                                 <td className="py-4 px-6">{route.time}</td>
                             </tr>
@@ -241,22 +248,22 @@ export default function ShipFromNigeriaToUkPage() {
             </div>
         </section>
 
-        <section id="features" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
+        <section id="features" className="py-20 bg-gradient-to-br from-primary to-blue-600 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose County Cargo for Shipping to the UK?</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto">We make shipping from Nigeria to the UK simple, secure, and affordable.</p>
+                    <p className="mb-12 text-lg max-w-3xl mx-auto opacity-90">We make shipping from Nigeria to the UK simple, secure, and affordable.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-blue-800/40 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 ease-in-out hover:bg-blue-900/60 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex justify-center items-center mb-4">
-                                <div className="bg-white p-3 rounded-full">
+                        <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                            <div className="flex justify-center items-center mb-6">
+                                <div className="bg-white p-4 rounded-full shadow-lg">
                                     {feature.icon}
                                 </div>
                             </div>
                             <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                            <p>{feature.description}</p>
+                            <p className="opacity-90 leading-relaxed">{feature.description}</p>
                         </div>
                     ))}
                 </div>
@@ -272,20 +279,20 @@ export default function ShipFromNigeriaToUkPage() {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div key={index} className="bg-white rounded-xl shadow-lg p-8 border border-gray-100" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                            <div className="flex items-center mb-6">
+                                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">
                                     {review.initial}
                                 </div>
                                 <div className="ml-4">
-                                    <h4 className="font-semibold text-secondary">{review.name}</h4>
+                                    <h4 className="font-bold text-secondary text-lg">{review.name}</h4>
                                     <div className="flex text-yellow-400">
                                         {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
                                     </div>
                                 </div>
                             </div>
-                            <p className="text-gray-600 mb-3">{review.review}</p>
-                            <p className="text-sm text-gray-400">{review.time}</p>
+                            <p className="text-gray-700 italic mb-6 leading-relaxed">{review.review}</p>
+                            <p className="text-sm text-gray-400 font-medium">{review.time}</p>
                         </div>
                     ))}
                 </div>
@@ -297,8 +304,8 @@ export default function ShipFromNigeriaToUkPage() {
         <section className="py-20 bg-primary text-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Ship from Nigeria to the UK?</h2>
-                <p className="text-lg mb-8">Get an instant quote and start shipping your packages to the UK with County Cargo.</p>
-                <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
+                <p className="text-xl mb-10 opacity-90">Get an instant quote and start shipping your packages to the UK with County Cargo.</p>
+                <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold px-10 py-6 text-lg rounded-full transition-all shadow-xl hover:scale-105">
                     <Link href="#quote">Start Shipping Now</Link>
                 </Button>
             </div>
