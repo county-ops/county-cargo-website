@@ -226,8 +226,8 @@ export default function ShipFromUkToNigeriaPage() {
     <>
       <Header />
       <main className="pt-16">
-        {/* Optimized Hero Section: 16:7 Aspect Ratio, no overlay, top alignment for whitespace */}
-        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-white pb-12 md:pb-20">
+        {/* Optimized Hero Section: 16:7 Aspect Ratio with dark overlay for readability */}
+        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.ukNigeriaHero.url}
             alt="Shipping from UK to Nigeria"
@@ -236,7 +236,7 @@ export default function ShipFromUkToNigeriaPage() {
             data-ai-hint={placeholders.ukNigeriaHero.hint}
             priority
           />
-          {/* No Overlay - maintained for high-quality bright professional look */}
+          <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
             <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
@@ -368,7 +368,7 @@ export default function ShipFromUkToNigeriaPage() {
 
         <section id="uk-stores" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12" data-aos="fade-up">
+                <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Shop Thousands of UK Stores and Ship to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-3xl mx-auto">Here are just a few of the thousands of UK online stores you can shop from for your shipping from UK to Nigeria.</p>
                 </div>
