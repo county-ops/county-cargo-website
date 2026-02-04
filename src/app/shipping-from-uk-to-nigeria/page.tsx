@@ -10,13 +10,11 @@ import {
   Truck,
   Shield,
   Star,
-  ExternalLink,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { UkNigeriaQuoteForm } from './quote-form';
 import placeholders from '@/app/lib/placeholder-images.json';
@@ -100,71 +98,17 @@ const guideFeatures = [
 ];
 
 const stores1 = [
-    { name: "Adidas UK", domain: "adidas.co.uk" },
-    { name: "AllSaints", domain: "allsaints.com" },
-    { name: "Amazon UK", domain: "amazon.co.uk" },
-    { name: "AO.com", domain: "ao.com" },
-    { name: "Apple UK", domain: "apple.com" },
-    { name: "Argos", domain: "argos.co.uk" },
-    { name: "Asda", domain: "asda.com" },
-    { name: "ASOS", domain: "asos.com" },
-    { name: "Beauty Bay", domain: "beautybay.com" },
-    { name: "Boohoo", domain: "boohoo.com" },
-    { name: "Boots", domain: "boots.com" },
-    { name: "Charlotte Tilbury", domain: "charlottetilbury.com" },
-    { name: "Clarks", domain: "clarks.co.uk" },
-    { name: "Cult Beauty", domain: "cultbeauty.co.uk" },
-    { name: "Currys", domain: "currys.co.uk" },
-    { name: "Debenhams", domain: "debenhams.com" },
-    { name: "Dunelm", domain: "dunelm.com" },
-    { name: "eBay UK", domain: "ebay.co.uk" },
+    { name: "Adidas UK", domain: "adidas.co.uk" }, { name: "AllSaints", domain: "allsaints.com" },
+    { name: "Amazon UK", domain: "amazon.co.uk" }, { name: "AO.com", domain: "ao.com" },
+    { name: "Apple UK", domain: "apple.com" }, { name: "Argos", domain: "argos.co.uk" },
+    { name: "Asda", domain: "asda.com" }, { name: "ASOS", domain: "asos.com" },
 ];
 const stores2 = [
-    { name: "Footasylum", domain: "footasylum.com" },
-    { name: "H&M", domain: "hm.com" },
-    { name: "Harrods", domain: "harrods.com" },
-    { name: "Harvey Nichols", domain: "harveynichols.com" },
-    { name: "IKEA UK", domain: "ikea.com" },
-    { name: "JD Sports", domain: "jdsports.co.uk" },
-    { name: "John Lewis", domain: "johnlewis.com" },
-    { name: "Liberty London", domain: "libertylondon.com" },
-    { name: "LookFantastic", domain: "lookfantastic.com" },
-    { name: "Lush", domain: "lush.com" },
-    { name: "Marks & Spencer", domain: "marksandspencer.com" },
-    { name: "Matalan", domain: "matalan.co.uk" },
-    { name: "Missguided", domain: "missguided.co.uk" },
-    { name: "New Look", domain: "newlook.com" },
-    { name: "Next", domain: "next.co.uk" },
-    { name: "Nike UK", domain: "nike.com" },
-    { name: "PrettyLittleThing", domain: "prettylittlething.com" },
-    { name: "Primark", domain: "primark.com" },
+    { name: "Footasylum", domain: "footasylum.com" }, { name: "H&M", domain: "hm.com" },
+    { name: "Harrods", domain: "harrods.com" }, { name: "Harvey Nichols", domain: "harveynichols.com" },
+    { name: "IKEA UK", domain: "ikea.com" }, { name: "JD Sports", domain: "jdsports.co.uk" },
+    { name: "John Lewis", domain: "johnlewis.com" }, { name: "Liberty London", domain: "libertylondon.com" },
 ];
-const stores3 = [
-    { name: "Reiss", domain: "reiss.com" },
-    { name: "River Island", domain: "riverisland.com" },
-    { name: "Sainsbury's", domain: "sainsburys.co.uk" },
-    { name: "Schuh", domain: "schuh.co.uk" },
-    { name: "Selfridges", domain: "selfridges.com" },
-    { name: "Sephora UK", domain: "sephora.co.uk" },
-    { name: "Shein", domain: "shein.co.uk" },
-    { name: "Space NK", domain: "spacenk.com" },
-    { name: "Sports Direct", domain: "sportsdirect.com" },
-    { name: "Superdrug", domain: "superdrug.com" },
-    { name: "Ted Baker", domain: "tedbaker.com" },
-    { name: "Tesco", domain: "tesco.com" },
-    { name: "The Body Shop", domain: "thebodyshop.com" },
-    { name: "The Range", domain: "therange.co.uk" },
-    { name: "TK Maxx", domain: "tkmaxx.com" },
-    { name: "Topshop", domain: "asos.com" },
-    { name: "Very", domain: "very.co.uk" },
-    { name: "Waitrose", domain: "waitrose.com" },
-    { name: "Zara", domain: "zara.com" },
-];
-
-
-const allStores1 = [...stores1, ...stores1];
-const allStores2 = [...stores2, ...stores2];
-const allStores3 = [...stores3, ...stores3];
 
 const reviews = [
     {
@@ -185,24 +129,6 @@ const reviews = [
         review: '"Very affordable rates compared to other companies. I shipped my laptop and phone from Amazon UK to Abuja using standard shipping and everything arrived in perfect condition. Will definitely use again!"',
         time: '3 weeks ago'
     },
-     {
-        initial: 'E',
-        name: 'Emmanuel Nwosu',
-        review: '"Professional and reliable service. I run an online business and County Cargo helps me import products from UK suppliers efficiently. Their consolidation service saves me a lot of money!"',
-        time: '1 week ago'
-    },
-    {
-        initial: 'F',
-        name: 'Funke Adeyemi',
-        review: '"I love County Cargo! Easy to use website, great prices, and my packages always arrive on time. I shop from Boots, M&S, and John Lewis regularly and they handle everything perfectly."',
-        time: '2 months ago'
-    },
-    {
-        initial: 'T',
-        name: 'Tunde Ajayi',
-        review: '"The 24hrs express shipping is a game changer! I needed urgent documents and gadgets shipped to Port Harcourt and they delivered exactly on time. Worth every penny. 5 stars!"',
-        time: '5 days ago'
-    },
 ];
 
 const transitRoutes = [
@@ -211,14 +137,6 @@ const transitRoutes = [
   { origin: 'Birmingham', destination: 'Port Harcourt', time: '5-10 working days' },
   { origin: 'Liverpool', destination: 'Lagos', time: '5-10 working days' },
   { origin: 'Leeds', destination: 'Abuja', time: '5-10 working days' },
-  { origin: 'London', destination: 'Ibadan', time: '5-10 working days' },
-  { origin: 'Sheffield', destination: 'Kano', time: '5-10 working days' },
-  { origin: 'Leicester', destination: 'Ibadan', time: '5-10 working days' },
-  { origin: 'Coventry', destination: 'Benin City', time: '5-10 working days' },
-  { origin: 'Bristol', destination: 'Lagos', time: '5-10 working days' },
-  { origin: 'Newcastle', destination: 'Abuja', time: '5-10 working days' },
-  { origin: 'Cardiff', destination: 'Port Harcourt', time: '5-10 working days' },
-  { origin: 'Nottingham', destination: 'Owerri', time: '5-10 working days' },
 ];
 
 export default function ShipFromUkToNigeriaPage() {
@@ -226,7 +144,6 @@ export default function ShipFromUkToNigeriaPage() {
     <>
       <Header />
       <main className="pt-16">
-        {/* Optimized Hero Section: 16:7 Aspect Ratio with dark overlay for readability */}
         <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.ukNigeriaHero.url}
@@ -259,13 +176,13 @@ export default function ShipFromUkToNigeriaPage() {
 
         <section id="process" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How Our Shipping From UK to Nigeria Works</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">A simple, three-step process to get your packages delivered when you ship from the UK to Nigeria.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-12 text-center">
                     {processSteps.map((step, index) => (
-                        <div key={index} className="process-step">
+                        <div key={index} className="process-step" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                                 {step.icon}
                             </div>
@@ -279,13 +196,13 @@ export default function ShipFromUkToNigeriaPage() {
         
         <section id="pricing" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
+                <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Pricing to Ship from UK to Nigeria</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping from UK to Nigeria needs.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8">
+                        <div key={index} className="bg-white rounded-lg shadow-md p-8" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
                             <p className="text-4xl font-bold text-primary mb-4">
                                 <span className="text-lg font-normal text-gray-500">from</span> {tier.price}
@@ -311,7 +228,7 @@ export default function ShipFromUkToNigeriaPage() {
         </section>
 
         <section id="routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
                 <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the UK to Nigeria.</p>
@@ -339,107 +256,24 @@ export default function ShipFromUkToNigeriaPage() {
             </div>
         </section>
 
-        <section id="seo-content" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
+        <section id="features" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
+                <div className="text-center" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Your Ultimate Guide to Shipping from UK to Nigeria</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto">When it comes to shipping from UK to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite UK stores and receive your goods in Nigeria without hassle.</p>
+                    <p className="mb-12 text-lg max-w-3xl mx-auto opacity-90">When it comes to shipping from UK to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite UK stores and receive your goods in Nigeria without hassle.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-blue-800/40 backdrop-blur-sm p-8 rounded-xl transition-all duration-300 ease-in-out hover:bg-blue-900/60 hover:-translate-y-2 hover:shadow-2xl">
+                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
                             <div className="flex justify-center items-center mb-4">
                                 <div className="bg-white p-3 rounded-full">
                                     {feature.icon}
                                 </div>
                             </div>
                             <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                            <p>{feature.description}</p>
+                            <p className="opacity-90">{feature.description}</p>
                         </div>
                     ))}
-                </div>
-                 <div className="text-center mt-12">
-                     <p className="text-lg">Our 3-step process is designed for your convenience. The journey of your shipping from UK to Nigeria begins with a simple registration, giving you a unique UK shipping address. This address is your gateway to thousands of UK retailers. Once your purchases arrive at our warehouse, we handle the consolidation, customs, and final delivery, completing the ship from UK to Nigeria process with professionalism and care.</p>
-                     <p className="mt-4 text-lg">We proudly serve customers across the UK, including major cities like Liverpool, London, Birmingham, Leicester, Nottingham, and Leeds, ensuring convenient options for your shipments to Nigeria.</p>
-                     <p className="mt-4 text-lg">We deliver to all major cities in Nigeria, including Lagos, Abuja, Kano, Kaduna, Port-Harcourt, Ibadan, Osun, and Borno, ensuring your package reaches its destination no matter where it is.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="uk-stores" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Shop Thousands of UK Stores and Ship to Nigeria</h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">Here are just a few of the thousands of UK online stores you can shop from for your shipping from UK to Nigeria.</p>
-                </div>
-            </div>
-            <div className="logos" data-aos="fade-up" data-aos-delay="200">
-                <div className="scroller">
-                    <div className="scroller__inner">
-                        {allStores1.map((store, index) => (
-                            <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`uk-store1-${index}-${store.name}`}>{store.name}</a>
-                        ))}
-                    </div>
-                </div>
-                <div className="scroller mt-4">
-                    <div className="scroller__inner" style={{animationDirection: "reverse"}}>
-                         {allStores2.map((store, index) => {
-                            return <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`uk-store2-${index}-${store.name}`}>{store.name}</a>
-                         })}
-                    </div>
-                </div>
-                <div className="scroller mt-4">
-                    <div className="scroller__inner">
-                         {allStores3.map((store, index) => (
-                            <a href={`https://${store.domain}`} target="_blank" rel="noopener noreferrer" key={`uk-store3-${index}-${store.name}`}>{store.name}</a>
-                         ))}
-                    </div>
-                </div>
-            </div>
-            <div className="text-center mt-12" data-aos="fade-up">
-                <Button asChild>
-                    <Link href="/uk-stores">See All UK Stores</Link>
-                </Button>
-            </div>
-        </section>
-
-        <section id="reviews" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Customers Say</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Trusted by thousands for shipping from UK to Nigeria</p>
-                    <div className="mt-4">
-                        <Link href="https://www.google.com/search?q=county+cargo+uk" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline">
-                            View our Google reviews
-                        </Link>
-                    </div>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {reviews.map((review, index) => (
-                        <div key={index} className="service-card bg-white rounded-lg shadow-md p-6">
-                            <div className="flex items-center mb-4">
-                                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
-                                    {review.initial}
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="font-semibold text-secondary">{review.name}</h4>
-                                    <div className="flex text-yellow-400">
-                                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
-                                    </div>
-                                </div>
-                            </div>
-                            <p className="text-gray-600 mb-3">{review.review}</p>
-                            <p className="text-sm text-gray-400">{review.time}</p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="text-center mt-12">
-                    <Link href="https://www.google.com/search?q=county+cargo+uk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary font-semibold hover:underline">
-                        Read More Reviews on Google
-                        <ExternalLink className="h-5 w-5 ml-2" />
-                    </Link>
                 </div>
             </div>
         </section>
@@ -447,9 +281,9 @@ export default function ShipFromUkToNigeriaPage() {
         <Faq />
 
         <section className="py-20 bg-primary text-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Shipping from UK to Nigeria?</h2>
-                <p className="text-lg mb-8">Join thousands of satisfied customers who trust County Cargo for their shipping needs.</p>
+                <p className="text-lg mb-8 opacity-90">Join thousands of satisfied customers who trust County Cargo for their shipping needs.</p>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
                     <Link href="https://ship.countycargo.com/register">Get Your Free UK Address Now</Link>
                 </Button>

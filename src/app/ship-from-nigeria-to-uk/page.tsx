@@ -109,21 +109,12 @@ const reviews = [
         review: '"As a small business owner exporting to the UK, County Cargo has been a reliable partner. Their rates are fair, and my shipments always arrive on time."',
         time: '1 month ago'
     },
-    {
-        initial: 'F',
-        name: 'Fatima B.',
-        review: '"Sent a package to Manchester. It was my first time shipping internationally, and their customer service was very helpful in guiding me through the process. Highly recommend!"',
-        time: '2 weeks ago'
-    },
 ];
 
 const transitRoutes = [
   { origin: 'Lagos', destination: 'London', time: '5-10 working days' },
   { origin: 'Abuja', destination: 'London', time: '5-10 working days' },
   { origin: 'Port Harcourt', destination: 'Manchester', time: '5-10 working days' },
-  { origin: 'Lagos', destination: 'Birmingham', time: '5-10 working days' },
-  { origin: 'Kano', destination: 'London', time: '5-10 working days' },
-  { origin: 'Ibadan', destination: 'Manchester', time: '5-10 working days' },
 ];
 
 export default function ShipFromNigeriaToUkPage() {
@@ -131,7 +122,6 @@ export default function ShipFromNigeriaToUkPage() {
     <>
       <Header />
       <main className="pt-16">
-        {/* Optimized Hero Section: 16:7 Aspect Ratio aligned to top */}
         <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.nigeriaUkHero.url}
@@ -203,11 +193,6 @@ export default function ShipFromNigeriaToUkPage() {
                                     </li>
                                 ))}
                             </ul>
-                             <Button asChild className="w-full mt-6">
-                                <Link href={tier.title.includes('DHL') ? '/contact' : '#quote'}>
-                                    {tier.title.includes('DHL') ? 'Contact Us' : 'Get Started'}
-                                </Link>
-                            </Button>
                         </div>
                     ))}
                 </div>
@@ -217,86 +202,6 @@ export default function ShipFromNigeriaToUkPage() {
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <NigeriaUkQuoteForm />
-            </div>
-        </section>
-
-        <section id="routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-                <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from Nigeria to the UK.</p>
-                </div>
-                <div className="overflow-x-auto rounded-lg shadow-md border">
-                    <table className="min-w-full bg-white">
-                        <thead className="bg-primary text-primary-foreground">
-                        <tr>
-                            <th className="py-4 px-6 text-left font-semibold">Origin (Nigeria)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Destination (UK)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
-                        </tr>
-                        </thead>
-                        <tbody className="text-gray-700">
-                        {transitRoutes.map((route, index) => (
-                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
-                                <td className="py-4 px-6 font-medium">{route.origin}</td>
-                                <td className="py-4 px-6">{route.destination}</td>
-                                <td className="py-4 px-6">{route.time}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" className="py-20 bg-gradient-to-br from-primary to-blue-600 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose County Cargo for Shipping to the UK?</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto opacity-90">We make shipping from Nigeria to the UK simple, secure, and affordable.</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex justify-center items-center mb-6">
-                                <div className="bg-white p-4 rounded-full shadow-lg">
-                                    {feature.icon}
-                                </div>
-                            </div>
-                            <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                            <p className="opacity-90 leading-relaxed">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <section id="reviews" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Customers Say</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Trusted for sending packages from Nigeria to the UK.</p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {reviews.map((review, index) => (
-                        <div key={index} className="bg-white rounded-xl shadow-lg p-8 border border-gray-100" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex items-center mb-6">
-                                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">
-                                    {review.initial}
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="font-bold text-secondary text-lg">{review.name}</h4>
-                                    <div className="flex text-yellow-400">
-                                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
-                                    </div>
-                                </div>
-                            </div>
-                            <p className="text-gray-700 italic mb-6 leading-relaxed">{review.review}</p>
-                            <p className="text-sm text-gray-400 font-medium">{review.time}</p>
-                        </div>
-                    ))}
-                </div>
             </div>
         </section>
 

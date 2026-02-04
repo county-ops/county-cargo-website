@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
@@ -64,64 +65,6 @@ const pricingTiers = [
       'Full tracking included',
     ],
   },
-  {
-    title: 'DHL EXPRESS 3-5 DAY',
-    price: 'Contact Us',
-    per: 'for rates',
-    features: [
-        'Delivery in 3-5 working days',
-        'Ideal for urgent shipments',
-        'Full tracking included',
-    ],
-  },
-];
-
-const guideFeatures = [
-    {
-        icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable Rates",
-        description: "We offer transparent and competitive pricing for shipping from Nigeria to the US, with no hidden charges."
-    },
-    {
-        icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable Delivery",
-        description: "With our global network, we guarantee timely and reliable delivery to the US."
-    },
-    {
-        icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Security & Peace of Mind",
-        description: "Ship with confidence. We provide secure packaging, real-time tracking, and insurance options for your peace of mind."
-    }
-];
-
-const reviews = [
-    {
-        initial: 'A',
-        name: 'Ayo Williams',
-        review: '"I sent some documents to my son in Texas. County Cargo handled it perfectly. The package arrived faster than I expected!"',
-        time: '3 weeks ago'
-    },
-    {
-        initial: 'I',
-        name: 'Ifeoma A.',
-        review: '"As a business owner, I rely on County Cargo for my exports to the US. They are professional, and their rates are the best I\'ve found."',
-        time: '1 month ago'
-    },
-    {
-        initial: 'C',
-        name: 'Chinedu E.',
-        review: '"Sent a large package to New York. The process was seamless, and their customer support team was very helpful. I highly recommend County Cargo!"',
-        time: '2 weeks ago'
-    },
-];
-
-const transitRoutes = [
-  { origin: 'Lagos', destination: 'New York', time: '7-14 working days' },
-  { origin: 'Abuja', destination: 'Houston', time: '7-14 working days' },
-  { origin: 'Port Harcourt', destination: 'Atlanta', time: '7-14 working days' },
-  { origin: 'Lagos', destination: 'Los Angeles', time: '7-14 working days' },
-  { origin: 'Kano', destination: 'Chicago', time: '7-14 working days' },
-  { origin: 'Ibadan', destination: 'Washington D.C.', time: '7-14 working days' },
 ];
 
 export default function ShipFromNigeriaToUsPage() {
@@ -129,19 +72,18 @@ export default function ShipFromNigeriaToUsPage() {
     <>
       <Header />
       <main className="pt-16">
-        {/* Optimized Hero Section: 16:7 Aspect Ratio */}
         <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.nigeriaUsHero.url}
             alt="Shipping from Nigeria to the US"
             fill
-            className="object-cover object-center"
+            className="object-cover object-top"
             data-ai-hint={placeholders.nigeriaUsHero.hint}
             priority
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
-            <div className="max-w-2xl">
+            <div className="max-w-2xl bg-transparent p-0">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from Nigeria <br /> to the US
                 </h1>
@@ -180,129 +122,9 @@ export default function ShipFromNigeriaToUsPage() {
             </div>
         </section>
         
-        <section id="pricing" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Shipping Rates to the US</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping needs from Nigeria to the US.</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    {pricingTiers.map((tier, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md p-8 flex flex-col" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
-                            <div className="mb-6">
-                                <p className="text-4xl font-bold text-primary">
-                                    <span className="text-lg font-normal text-gray-500">{tier.title.includes('DHL') || tier.title.includes('Docs') ? '' : 'from '}</span>{tier.price}
-                                </p>
-                                <p className="text-sm text-gray-500">{tier.per}</p>
-                            </div>
-                            <ul className="text-gray-600 space-y-3 flex-grow mb-8">
-                                {tier.features.map((feature, i) => (
-                                    <li key={i} className="flex items-start">
-                                        <Check className="h-5 w-5 text-green-500 mr-2 shrink-0 mt-0.5" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                             <Button asChild className="w-full mt-auto">
-                                <Link href={tier.title.includes('Standard') ? '#quote' : '/contact'}>
-                                    {tier.title.includes('Standard') ? 'Start Shipping' : 'Contact Support'}
-                                </Link>
-                            </Button>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Instant Quote</h2>
-                    <p className="text-lg text-gray-600">Enter your details below to get an estimated cost for your shipment.</p>
-                </div>
                 <NigeriaUsQuoteForm />
-            </div>
-        </section>
-        
-        <section id="routes" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-                <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from Nigeria to the US.</p>
-                </div>
-                <div className="overflow-x-auto rounded-lg shadow-md border">
-                    <table className="min-w-full bg-white">
-                        <thead className="bg-primary text-primary-foreground">
-                        <tr>
-                            <th className="py-4 px-6 text-left font-semibold">Origin (Nigeria)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Destination (US)</th>
-                            <th className="py-4 px-6 text-left font-semibold">Estimated Transit Time</th>
-                        </tr>
-                        </thead>
-                        <tbody className="text-gray-700">
-                        {transitRoutes.map((route, index) => (
-                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
-                                <td className="py-4 px-6 font-medium">{route.origin}</td>
-                                <td className="py-4 px-6">{route.destination}</td>
-                                <td className="py-4 px-6">{route.time}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="features" className="py-20 bg-gradient-to-br from-primary to-blue-600 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose County Cargo for Shipping to the US?</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto opacity-90">We make international shipping simple, secure, and affordable with a focus on your satisfaction.</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/20 transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex justify-center items-center mb-6">
-                                <div className="bg-white p-4 rounded-full shadow-lg">
-                                    {feature.icon}
-                                </div>
-                            </div>
-                            <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                            <p className="opacity-90 leading-relaxed">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
-        <section id="reviews" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">What Our Customers Say</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Trusted by thousands for sending packages from Nigeria to the US.</p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {reviews.map((review, index) => (
-                        <div key={index} className="bg-white rounded-xl shadow-lg p-8 border border-gray-100" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex items-center mb-6">
-                                <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white font-bold text-xl shadow-inner">
-                                    {review.initial}
-                                </div>
-                                <div className="ml-4">
-                                    <h4 className="font-bold text-secondary text-lg">{review.name}</h4>
-                                    <div className="flex text-yellow-400">
-                                        {[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
-                                    </div>
-                                </div>
-                            </div>
-                            <p className="text-gray-700 italic mb-6 leading-relaxed">"{review.review.replace(/"/g, '')}"</p>
-                            <p className="text-sm text-gray-400 font-medium">{review.time}</p>
-                        </div>
-                    ))}
-                </div>
             </div>
         </section>
 
