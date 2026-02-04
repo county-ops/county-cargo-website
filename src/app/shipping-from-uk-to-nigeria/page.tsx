@@ -226,25 +226,32 @@ export default function ShipFromUkToNigeriaPage() {
     <>
       <Header />
       <main className="pt-16">
-        <section
-          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden bg-gray-900"
-        >
+        {/* Optimized Hero Section: 16:7 Aspect Ratio, side-aligned dark text, no overlay */}
+        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-white pb-12 md:pb-20">
           <Image
             src={placeholders.ukNigeriaHero.url}
-            alt="Shipping from UK to Nigeria - London Skyline"
+            alt="Shipping from UK to Nigeria"
             fill
-            className="object-cover object-center opacity-70"
-            data-ai-hint={placeholders.ukNigeriaHero.hint}
+            className="object-cover object-center"
+            data-ai-hint="modern bright logistics"
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from UK to Nigeria<br />(Door-to-Door)</h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
-            <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-                <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>
-              </Button>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
+            <div className="max-w-2xl">
+                <h1 className="text-4xl md:text-6xl font-bold text-secondary mb-6 leading-tight">
+                  Shipping from UK <br /> to Nigeria
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-800 mb-8 max-w-xl font-medium">
+                  Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-primary text-white font-bold hover:bg-blue-700 transition-all shadow-lg hover:scale-105">
+                    <Link href="https://ship.countycargo.com/register">Get Your Free UK Address</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 transition-all">
+                    <Link href="#process">How it Works</Link>
+                  </Button>
+                </div>
             </div>
           </div>
         </section>
