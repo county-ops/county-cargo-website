@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
@@ -142,11 +141,11 @@ export default function ShipFromNigeriaToUsPage() {
           />
           <div className="absolute inset-0 bg-black/40" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center text-left" data-aos="fade-right">
-            <div className="max-w-2xl bg-black/20 backdrop-blur-sm p-8 rounded-lg">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <div className="max-w-2xl bg-transparent p-0">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from Nigeria <br /> to the US
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl">
+                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
                   Fast, reliable, and affordable international shipping. We handle the logistics so you can focus on what matters.
                 </p>
                 <div className="flex flex-wrap gap-4">
