@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
+import placeholders from '@/app/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
   title: 'International Shipping from Nigeria | Ship to 200+ Countries | County Cargo',
@@ -129,14 +130,14 @@ export default function ShipFromNigeriaToWorldPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="relative min-h-[65vh] flex items-center justify-center text-white overflow-hidden"
+          className="relative min-h-[85vh] flex items-center justify-center text-white overflow-hidden"
         >
           <Image
-            src="/the world.png"
+            src={placeholders.nigeriaWorldHero.url}
             alt="International shipping from Nigeria to the world with a cargo plane being loaded"
             fill
             className="object-cover object-center"
-            data-ai-hint="cargo plane logistics"
+            data-ai-hint={placeholders.nigeriaWorldHero.hint}
             priority
           />
           <div className="absolute inset-0 bg-black/50" />

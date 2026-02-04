@@ -19,6 +19,7 @@ import { Faq } from './faq';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { UkNigeriaQuoteForm } from './quote-form';
+import placeholders from '@/app/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria | London, Liverpool to Lagos, Abuja | County Cargo',
@@ -226,18 +227,22 @@ export default function ShipFromUkToNigeriaPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="min-h-[60vh] flex items-center justify-center text-white"
-          style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.4), rgba(31, 41, 55, 0.5)), url('/london.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden bg-gray-900"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Image
+            src={placeholders.ukNigeriaHero.url}
+            alt="Shipping from UK to Nigeria - London Skyline"
+            fill
+            className="object-cover object-center opacity-70"
+            data-ai-hint={placeholders.ukNigeriaHero.hint}
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from UK to Nigeria<br />(Door-to-Door)</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!</p>
             <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors">
+              <Button asChild size="lg" className="bg-white text-shiny-red font-semibold hover:bg-gray-100 transition-colors shadow-lg">
                 <Link href="https://ship.countycargo.com/register">Get your free UK shipping address</Link>
               </Button>
             </div>
@@ -438,7 +443,7 @@ export default function ShipFromUkToNigeriaPage() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Shipping from UK to Nigeria?</h2>
                 <p className="text-lg mb-8">Join thousands of satisfied customers who trust County Cargo for their shipping needs.</p>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
-                    <Link href="#">Get Your Free UK Address Now</Link>
+                    <Link href="https://ship.countycargo.com/register">Get Your Free UK Address Now</Link>
                 </Button>
             </div>
         </section>
