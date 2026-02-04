@@ -1,4 +1,3 @@
-
 {
   "ukNigeriaHero": {
     "url": "/london.jpg",
@@ -8,9 +7,9 @@
   },
   "usNigeriaHero": {
     "url": "/US TO NIGERIA.jpg",
-    "width": 1600,
-    "height": 700,
-    "hint": "cargo containers"
+    "width": 1400,
+    "height": 600,
+    "hint": "logistics warehouse staff"
   },
   "nigeriaUsHero": {
     "url": "/NIGERIA TO THE US.png",

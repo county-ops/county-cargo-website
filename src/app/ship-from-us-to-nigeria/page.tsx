@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
@@ -17,7 +16,8 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Faq } from './faq';
 import { UsNigeriaQuoteForm } from './quote-form';
-
+import Image from 'next/image';
+import placeholders from '@/app/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
   title: 'Shipping from US to Nigeria (Door-to-Door) | County Cargo',
@@ -204,24 +204,32 @@ export default function ShipFromUsToNigeriaPage() {
     <>
       <Header />
       <main className="pt-16">
-        <section
-          className="min-h-[60vh] flex items-center justify-center text-white"
-          style={{
-            background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/US TO NIGERIA.jpg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold flex flex-col items-center hero-text-glow">
-              <span>Shipping from US to Nigeria</span>
-              <span className="mt-2">(Door-to-Door)</span>
-            </h1>
-            <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address to shop any American store online. We'll deliver your packages to your doorstep anywhere in Nigeria. It's that simple.</p>
-            <div className="mt-8">
-              <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
-                <Link href="https://ship.countycargo.com/register">Get Your Free US Address</Link>
-              </Button>
+        <section className="relative w-full aspect-[14/6] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
+          <Image
+            src={placeholders.usNigeriaHero.url}
+            alt="Shipping from US to Nigeria (Door-to-Door)"
+            fill
+            className="object-cover object-center"
+            data-ai-hint={placeholders.usNigeriaHero.hint}
+            priority
+          />
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
+            <div className="max-w-2xl bg-transparent p-0">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
+                  Shipping from US <br /> to Nigeria (Door-to-Door)
+                </h1>
+                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                  Fast, Reliable & Affordable Shipping. Get your free US shipping address to shop American stores.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-white text-destructive font-bold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
+                    <Link href="https://ship.countycargo.com/register">Get Your Free US Address</Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all">
+                    <Link href="#process">How it Works</Link>
+                  </Button>
+                </div>
             </div>
           </div>
         </section>
