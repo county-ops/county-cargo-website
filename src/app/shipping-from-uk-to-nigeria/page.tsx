@@ -226,16 +226,17 @@ export default function ShipFromUkToNigeriaPage() {
     <>
       <Header />
       <main className="pt-16">
-        {/* Optimized Hero Section: 16:7 Aspect Ratio, side-aligned white text, no overlay */}
+        {/* Optimized Hero Section: 16:7 Aspect Ratio, no overlay, top alignment for whitespace */}
         <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-white pb-12 md:pb-20">
           <Image
             src={placeholders.ukNigeriaHero.url}
             alt="Shipping from UK to Nigeria"
             fill
-            className="object-cover object-center"
-            data-ai-hint="modern bright logistics"
+            className="object-cover object-top"
+            data-ai-hint={placeholders.ukNigeriaHero.hint}
             priority
           />
+          {/* No Overlay - maintained for high-quality bright professional look */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
             <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
