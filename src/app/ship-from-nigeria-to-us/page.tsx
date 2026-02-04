@@ -130,17 +130,17 @@ export default function ShipFromNigeriaToUsPage() {
       <Header />
       <main className="pt-16">
         <section
-          className="relative min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
+          className="relative min-h-[50vh] md:min-h-[60vh] flex items-center justify-center text-white overflow-hidden"
         >
           <Image
-            src="/NIGERIA TO THE US.jpg"
+            src="/NIGERIA TO THE US.png"
             alt="Shipping from Nigeria to the US"
             fill
             className="object-cover object-center"
             data-ai-hint="shipping logistics"
             priority
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/45" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Shipping from Nigeria to the US</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">Reliable, fast, and affordable international shipping services from Nigeria to the United States.</p>
