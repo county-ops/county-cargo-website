@@ -130,18 +130,18 @@ export default function ShipFromNigeriaToUsPage() {
       <Header />
       <main className="pt-16">
         {/* Optimized Hero Section: 16:7 Aspect Ratio */}
-        <section className="relative w-full aspect-[16/7] min-h-[400px] flex items-center overflow-hidden bg-gray-900">
+        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
           <Image
             src={placeholders.nigeriaUsHero.url}
-            alt="Shipping from Nigeria to the US - Modern Logistics Warehouse"
+            alt="Shipping from Nigeria to the US"
             fill
-            className="object-cover object-center transition-opacity duration-500"
+            className="object-cover object-center"
             data-ai-hint={placeholders.nigeriaUsHero.hint}
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex flex-col justify-center text-left" data-aos="fade-right">
-            <div className="max-w-2xl bg-transparent p-0">
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
+            <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from Nigeria <br /> to the US
                 </h1>
@@ -152,7 +152,7 @@ export default function ShipFromNigeriaToUsPage() {
                   <Button asChild size="lg" className="bg-white text-destructive font-bold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
                     <Link href="#quote">Get a Quote Now</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  <Button asChild size="lg" variant="outline" className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all">
                     <Link href="#process">How it Works</Link>
                   </Button>
                 </div>
