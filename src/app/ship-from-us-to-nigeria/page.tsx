@@ -209,7 +209,7 @@ export default function ShipFromUsToNigeriaPage() {
             src={placeholders.usNigeriaHero.url}
             alt="Shipping from US to Nigeria (Door-to-Door)"
             fill
-            className="object-cover object-center"
+            className="object-cover object-top"
             data-ai-hint={placeholders.usNigeriaHero.hint}
             priority
           />
@@ -297,7 +297,7 @@ export default function ShipFromUsToNigeriaPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
                 <div>
                     <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
+                    <h2 className="text-3xl md:text-4 font-bold text-secondary mb-4">Popular Routes & Estimated Transit Times</h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find estimated transit times for our most popular shipping routes from the US to Nigeria.</p>
                     </div>
                     <div className="overflow-x-auto rounded-lg shadow-md border">
