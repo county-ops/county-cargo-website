@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -52,7 +51,7 @@ export default function ShipFromNigeriaToWorldPage() {
     <>
       <Header />
       <main className="pt-24 md:pt-32">
-        <section className="relative w-full md:aspect-[12/5] min-h-[500px] flex items-center bg-white overflow-hidden">
+        <section className="relative w-full aspect-[12/5] min-h-[500px] flex items-center bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
             <div data-aos="fade-right" className="relative z-10">
                 <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight">
