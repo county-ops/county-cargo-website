@@ -97,19 +97,6 @@ const guideFeatures = [
     }
 ];
 
-const stores1 = [
-    { name: "Adidas UK", domain: "adidas.co.uk" }, { name: "AllSaints", domain: "allsaints.com" },
-    { name: "Amazon UK", domain: "amazon.co.uk" }, { name: "AO.com", domain: "ao.com" },
-    { name: "Apple UK", domain: "apple.com" }, { name: "Argos", domain: "argos.co.uk" },
-    { name: "Asda", domain: "asda.com" }, { name: "ASOS", domain: "asos.com" },
-];
-const stores2 = [
-    { name: "Footasylum", domain: "footasylum.com" }, { name: "H&M", domain: "hm.com" },
-    { name: "Harrods", domain: "harrods.com" }, { name: "Harvey Nichols", domain: "harveynichols.com" },
-    { name: "IKEA UK", domain: "ikea.com" }, { name: "JD Sports", domain: "jdsports.co.uk" },
-    { name: "John Lewis", domain: "johnlewis.com" }, { name: "Liberty London", domain: "libertylondon.com" },
-];
-
 const reviews = [
     {
         initial: 'A',
@@ -122,12 +109,6 @@ const reviews = [
         name: 'Chioma Okafor',
         review: '"Best shipping company for UK to Nigeria! Their customer service is top-notch. I love shopping from ASOS and Next, and County Cargo makes it so easy. The tracking system is very transparent too."',
         time: '1 month ago'
-    },
-    {
-        initial: 'O',
-        name: 'Oluwaseun Balogun',
-        review: '"Very affordable rates compared to other companies. I shipped my laptop and phone from Amazon UK to Abuja using standard shipping and everything arrived in perfect condition. Will definitely use again!"',
-        time: '3 weeks ago'
     },
 ];
 
@@ -153,7 +134,7 @@ export default function ShipFromUkToNigeriaPage() {
             data-ai-hint={placeholders.ukNigeriaHero.hint}
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
             <div className="max-w-2xl">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
@@ -163,7 +144,7 @@ export default function ShipFromUkToNigeriaPage() {
                   Fast, reliable, and affordable shipping from UK to Nigeria. Get your personal UK shipping address and start your shipping journey today!
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="bg-primary text-white font-bold hover:bg-blue-700 transition-all shadow-lg hover:scale-105">
+                  <Button asChild size="lg" className="bg-white text-destructive font-bold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
                     <Link href="https://ship.countycargo.com/register">Get Your Free UK Address</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all">
@@ -252,28 +233,6 @@ export default function ShipFromUkToNigeriaPage() {
                         ))}
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" className="py-20 bg-gradient-to-r from-blue-700 to-blue-500 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center" data-aos="fade-up">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">Your Ultimate Guide to Shipping from UK to Nigeria</h2>
-                    <p className="mb-12 text-lg max-w-3xl mx-auto opacity-90">When it comes to shipping from UK to Nigeria, County Cargo is your most trusted partner. We've simplified the entire process, making it easier than ever for you to shop from your favourite UK stores and receive your goods in Nigeria without hassle.</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    {guideFeatures.map((feature, index) => (
-                        <div key={index} className="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <div className="flex justify-center items-center mb-4">
-                                <div className="bg-white p-3 rounded-full">
-                                    {feature.icon}
-                                </div>
-                            </div>
-                            <h3 className="text-2xl font-semibold mb-4">{feature.title}</h3>
-                            <p className="opacity-90">{feature.description}</p>
-                        </div>
-                    ))}
                 </div>
             </div>
         </section>

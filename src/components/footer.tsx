@@ -1,8 +1,17 @@
 
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Truck, Facebook, Twitter, Linkedin, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 export function Footer() {
+    const [year, setYear] = useState<number | null>(null);
+
+    useEffect(() => {
+        setYear(new Date().getFullYear());
+    }, []);
+
     return (
         <footer className="bg-gradient-to-b from-gray-900 to-black text-white py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +64,7 @@ export function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                     <p>&copy; {new Date().getFullYear()} County Cargo. All rights reserved. | Built by <a href="https://nocodek.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Nocodek</a></p>
+                     <p>&copy; {year || '...'} County Cargo. All rights reserved. | Built by <a href="https://nocodek.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Nocodek</a></p>
                      <div className="mt-4">
                         <Link href="/info" className="text-shiny-red hover:opacity-80 transition-opacity mx-2">Info, Prices &amp; Terms</Link>
                         <span className="text-gray-500">|</span>

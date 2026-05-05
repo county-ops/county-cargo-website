@@ -43,57 +43,6 @@ const processSteps = [
   },
 ];
 
-const pricingTiers = [
-  {
-    title: 'Docs & Small Parcels',
-    price: 'Contact Us',
-    per: 'for rates',
-    features: [
-      'Ideal for documents and items up to 5kg',
-      'Express delivery available',
-      'Full tracking included',
-    ],
-  },
-  {
-    title: 'Medium to Large Boxes',
-    price: 'Contact Us',
-    per: 'for rates',
-    features: [
-      'For packages over 5kg',
-      'Cost-effective air freight',
-      'Full tracking included',
-    ],
-  },
-  {
-    title: 'DHL EXPRESS 3-5 DAY',
-    price: 'Contact Us',
-    per: 'for rates',
-    features: [
-        'Delivery in 3-5 working days',
-        'Ideal for urgent shipments',
-        'Full tracking included',
-    ],
-  },
-];
-
-const guideFeatures = [
-    {
-        icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable Rates",
-        description: "We offer transparent and competitive pricing for shipping from Nigeria to the world, with no hidden charges."
-    },
-    {
-        icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable Delivery",
-        description: "With our global network, we guarantee timely and reliable delivery to major countries and destinations worldwide."
-    },
-    {
-        icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Security & Peace of Mind",
-        description: "Ship with confidence. We provide secure packaging, real-time tracking, and insurance options for your peace of mind."
-    }
-];
-
 const popularDestinations = [
   { name: 'United States', flag: '🇺🇸' },
   { name: 'United Kingdom', flag: '🇬🇧' },
@@ -123,7 +72,7 @@ export default function ShipFromNigeriaToWorldPage() {
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   International Shipping <br /> from Nigeria to the World
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
                   Your #1 choice for shipping parcels, documents, and cargo to the UK, US, Canada, Europe, and over 200 countries worldwide.
                 </p>
                 <div className="flex flex-wrap gap-4">

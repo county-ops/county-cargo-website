@@ -78,45 +78,6 @@ const pricingTiers = [
   },
 ];
 
-const guideFeatures = [
-    {
-        icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable Rates",
-        description: "We offer transparent and competitive pricing for shipping from Nigeria to the UK, with no hidden charges."
-    },
-    {
-        icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast & Reliable Delivery",
-        description: "With our global network, we guarantee timely and reliable delivery to the UK."
-    },
-    {
-        icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Security & Peace of Mind",
-        description: "Ship with confidence. We provide secure packaging, real-time tracking, and insurance options for your peace of mind."
-    }
-];
-
-const reviews = [
-    {
-        initial: 'A',
-        name: 'Adeola S.',
-        review: '"I sent some foodstuff to my family in London, and County Cargo was fantastic. The process was straightforward, and the delivery was quicker than I expected."',
-        time: '3 weeks ago'
-    },
-    {
-        initial: 'I',
-        name: 'Ikenna O.',
-        review: '"As a small business owner exporting to the UK, County Cargo has been a reliable partner. Their rates are fair, and my shipments always arrive on time."',
-        time: '1 month ago'
-    },
-];
-
-const transitRoutes = [
-  { origin: 'Lagos', destination: 'London', time: '5-10 working days' },
-  { origin: 'Abuja', destination: 'London', time: '5-10 working days' },
-  { origin: 'Port Harcourt', destination: 'Manchester', time: '5-10 working days' },
-];
-
 export default function ShipFromNigeriaToUkPage() {
   return (
     <>
@@ -137,7 +98,7 @@ export default function ShipFromNigeriaToUkPage() {
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from Nigeria <br /> to the UK
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
                   Fast, reliable, and affordable international shipping. We bridge the gap between Nigeria and the United Kingdom.
                 </p>
                 <div className="flex flex-wrap gap-4">

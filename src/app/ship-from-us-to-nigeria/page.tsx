@@ -78,46 +78,6 @@ const pricingTiers = [
   },
 ];
 
-const guideFeatures = [
-    {
-        icon: <DollarSign className="h-8 w-8 text-primary" />,
-        title: "Affordable Shipping to Nigeria",
-        description: "With transparent pricing and no hidden fees, we offer some of the most competitive rates for shipping from the US to Nigeria, ensuring you get great value."
-    },
-    {
-        icon: <Truck className="h-8 w-8 text-primary" />,
-        title: "Fast and Reliable Delivery",
-        description: "From Lagos and Abuja to Port Harcourt, our standard and express services guarantee your cargo from the US arrives on time. We're committed to reliable and timely deliveries across Nigeria."
-    },
-    {
-        icon: <Shield className="h-8 w-8 text-primary" />,
-        title: "Secure Parcel Forwarding",
-        description: "We handle your items with care from US hubs like New York, Houston, and Atlanta. Enjoy peace of mind with real-time tracking and insurance options for all your shipments."
-    }
-];
-
-const reviews = [
-    {
-        initial: 'A',
-        name: 'Adewale Johnson',
-        review: '"Excellent service! I\'ve been using County Cargo for over a year now to ship electronics from US to Lagos. My items always arrive safely. Highly recommended!"',
-        time: '2 weeks ago'
-    },
-    {
-        initial: 'C',
-        name: 'Chioma Okafor',
-        review: '"Best shipping company for US to Nigeria! Their customer service is top-notch. I love shopping from Amazon and Walmart, and County Cargo makes it so easy. The tracking system is very transparent too."',
-        time: '1 month ago'
-    },
-];
-
-const transitRoutes = [
-  { origin: 'Atlanta', destination: 'Lagos', time: '5-10 working days' },
-  { origin: 'Houston', destination: 'Lagos', time: '5-10 working days' },
-  { origin: 'New York', destination: 'Lagos', time: '5-10 working days' },
-  { origin: 'Chicago', destination: 'Lagos', time: '5-10 working days' },
-];
-
 export default function ShipFromUsToNigeriaPage() {
   return (
     <>
@@ -132,13 +92,13 @@ export default function ShipFromUsToNigeriaPage() {
             data-ai-hint={placeholders.usNigeriaHero.hint}
             priority
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
             <div className="max-w-2xl bg-transparent p-0">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from US <br /> to Nigeria (Door-to-Door)
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
                   Fast, Reliable & Affordable Shipping. Get your free US shipping address to shop American stores.
                 </p>
                 <div className="flex flex-wrap gap-4">

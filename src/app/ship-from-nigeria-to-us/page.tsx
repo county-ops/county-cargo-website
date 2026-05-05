@@ -81,13 +81,13 @@ export default function ShipFromNigeriaToUsPage() {
             data-ai-hint={placeholders.nigeriaUsHero.hint}
             priority
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
             <div className="max-w-2xl bg-transparent p-0">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
                   Shipping from Nigeria <br /> to the US
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-100 mb-8 max-w-xl hero-text-glow">
+                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
                   Fast, reliable, and affordable international shipping. We handle the logistics so you can focus on what matters.
                 </p>
                 <div className="flex flex-wrap gap-4">
