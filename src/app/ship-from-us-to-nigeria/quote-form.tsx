@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Loader2, ArrowRightLeft } from 'lucide-react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Label } from '@/components/ui/label';
 
 const usCities = [
@@ -54,7 +54,6 @@ type ShippingCostOutput = {
   details: string;
 }
 
-// Currency Converter constants
 const USD_TO_NGN_RATE = 1500;
 const ADDITIONAL_NAIRA = 20;
 
@@ -63,7 +62,6 @@ export function UsNigeriaQuoteForm() {
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Currency converter state
   const [usd, setUsd] = useState('1');
   const [ngn, setNgn] = useState((1 * USD_TO_NGN_RATE + ADDITIONAL_NAIRA).toFixed(2));
   const [lastChanged, setLastChanged] = useState<'usd' | 'ngn'>('usd');
@@ -81,7 +79,6 @@ export function UsNigeriaQuoteForm() {
     },
   });
 
-  // Effect to update currency converter when estimate is calculated
   useEffect(() => {
     if (result) {
       const newUsd = result.estimatedCost ?? 1;
@@ -90,7 +87,6 @@ export function UsNigeriaQuoteForm() {
     }
   }, [result]);
 
-  // Currency converter effects
   useEffect(() => {
     if (lastChanged === 'usd') {
       const usdValue = parseFloat(usd);
@@ -135,16 +131,12 @@ export function UsNigeriaQuoteForm() {
 
       const currency = 'USD';
 
-      // 1. Calculate volumetric weight in lbs
       const volumetricWeightInLbs = (length * width * height) / 5000 * 2.20462;
 
-      // 2. Determine chargeable weight in lbs
       const chargeableWeightInLbs = Math.max(weight, volumetricWeightInLbs);
       
-      // 3. Define minimum weight in lbs
       const minWeightInLbs = 5;
 
-      // 4. Determine final chargeable weight in lbs, considering the minimum
       const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 
       const ratePerLbs = to === 'Lagos' ? 4.50 : 5.00;
@@ -185,7 +177,7 @@ Calculation based on Standard Shipping:
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
+    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12" suppressHydrationWarning>
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>
@@ -195,7 +187,7 @@ Calculation based on Standard Shipping:
       <CardContent>
         {!result ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" suppressHydrationWarning>
             <div className="grid md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
@@ -330,9 +322,6 @@ Calculation based on Standard Shipping:
                         <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 150000" min="1" />
                     </div>
                 </div>
-                <p className="text-xs text-muted-foreground mt-4 text-center hidden">
-                    *Exchange rate is an estimate (1 USD ≈ {USD_TO_NGN_RATE} NGN + ₦{ADDITIONAL_NAIRA} fee) and may not reflect the actual rate.
-                </p>
             </div>
 
           </div>
@@ -354,5 +343,3 @@ Calculation based on Standard Shipping:
     </Card>
   );
 }
-
-    

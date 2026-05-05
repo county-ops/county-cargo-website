@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Loader2 } from 'lucide-react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 
 const nigerianCities = [
   "Lagos", "Abuja", "Port Harcourt", "Ibadan", "Kano", "Benin City", "Onitsha", "Aba",
@@ -80,18 +80,13 @@ export function NigeriaUsQuoteForm() {
 
       const currency = 'USD';
 
-      // 1. Calculate volumetric weight in lbs
-      // converting kg to lbs for weight
       const weightInLbs = weight * 2.20462;
       const volumetricWeightInLbs = (length * width * height) / 5000 * 2.20462;
 
-      // 2. Determine chargeable weight in lbs
       const chargeableWeightInLbs = Math.max(weightInLbs, volumetricWeightInLbs);
       
-      // 3. Define minimum weight in lbs
       const minWeightInLbs = 10;
 
-      // 4. Determine final chargeable weight in lbs, considering the minimum
       const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 
       const ratePerLbs = 8.00;
@@ -130,7 +125,7 @@ Calculation based on Standard Shipping:
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
+    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12" suppressHydrationWarning>
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>
@@ -140,7 +135,7 @@ Calculation based on Standard Shipping:
       <CardContent>
         {!result ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" suppressHydrationWarning>
             <div className="grid md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}

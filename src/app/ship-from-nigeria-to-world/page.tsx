@@ -7,11 +7,6 @@ import {
   Box,
   Globe,
   Check,
-  DollarSign,
-  Truck,
-  Shield,
-  Star,
-  ExternalLink,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
@@ -56,35 +51,36 @@ export default function ShipFromNigeriaToWorldPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
-        <section className="relative w-full aspect-[12/5] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
-          <Image
-            src={placeholders.nigeriaWorldHero.url}
-            alt="International Shipping from Nigeria to the World"
-            fill
-            className="object-cover object-top"
-            data-ai-hint={placeholders.nigeriaWorldHero.hint}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
-            <div className="max-w-2xl">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
+      <main className="pt-24 md:pt-32">
+        <section className="relative w-full md:aspect-[12/5] min-h-[500px] flex items-center bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right" className="relative z-10">
+                <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-6 leading-tight">
                   International Shipping <br /> from Nigeria to the World
                 </h1>
-                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
+                <p className="text-xl text-gray-600 mb-8 max-w-xl">
                   Your #1 choice for shipping parcels, documents, and cargo to the UK, US, Canada, Europe, and over 200 countries worldwide.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="bg-white text-destructive font-semibold hover:bg-gray-100 transition-colors">
+                  <Button asChild size="lg" className="bg-primary text-white font-semibold hover:bg-primary/90 transition-colors">
                     <Link href="/contact">Get a Custom Quote</Link>
                   </Button>
                 </div>
             </div>
+            <div className="relative aspect-square w-full max-w-[500px] mx-auto" data-aos="fade-left">
+              <Image
+                src={placeholders.nigeriaWorldHero.url}
+                alt="International Shipping from Nigeria to the World"
+                fill
+                className="object-contain object-top"
+                data-ai-hint={placeholders.nigeriaWorldHero.hint}
+                priority
+              />
+            </div>
           </div>
         </section>
 
-        <section id="process" className="py-20 bg-white">
+        <section id="process" className="py-20 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16" data-aos="fade-up">
                     <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">How to Ship Internationally from Nigeria</h2>

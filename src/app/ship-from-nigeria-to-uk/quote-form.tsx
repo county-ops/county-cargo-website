@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Loader2, ArrowRightLeft } from 'lucide-react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { Label } from '@/components/ui/label';
 
 const nigerianCities = [
@@ -54,7 +54,6 @@ type ShippingCostOutput = {
   details: string;
 }
 
-// Currency Converter constants
 const GBP_TO_NGN_RATE = 2150;
 
 export function NigeriaUkQuoteForm() {
@@ -62,7 +61,6 @@ export function NigeriaUkQuoteForm() {
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Currency converter state
   const [gbp, setGbp] = useState('1');
   const [ngn, setNgn] = useState((1 * GBP_TO_NGN_RATE).toFixed(2));
   const [lastChanged, setLastChanged] = useState<'gbp' | 'ngn'>('gbp');
@@ -81,7 +79,6 @@ export function NigeriaUkQuoteForm() {
     },
   });
 
-  // Effect to update currency converter when estimate is calculated
   useEffect(() => {
     if (result && result.currency === 'GBP') {
       const newGbp = result.estimatedCost ?? 1;
@@ -90,7 +87,6 @@ export function NigeriaUkQuoteForm() {
     }
   }, [result]);
 
-  // Currency converter effects
   useEffect(() => {
     if (lastChanged === 'gbp') {
       const gbpValue = parseFloat(gbp);
@@ -160,7 +156,7 @@ Calculation based on Standard Shipping:
 - Shipping Cost: ₦${estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
         `.trim().replace(/^\s+/gm, '');
 
-      } else { // Express service
+      } else {
         const rate = 24.00;
         const handlingCharge = 20;
         const minWeight = 1;
@@ -206,7 +202,7 @@ Calculation based on 48hrs Express Shipping:
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
+    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12" suppressHydrationWarning>
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>
@@ -216,7 +212,7 @@ Calculation based on 48hrs Express Shipping:
       <CardContent>
         {!result ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" suppressHydrationWarning>
             <div className="grid md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
@@ -374,9 +370,6 @@ Calculation based on 48hrs Express Shipping:
                           <Input id="ngn-input" type="number" value={ngn} onChange={handleNgnChange} placeholder="e.g. 215000" min="1" />
                       </div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-4 text-center hidden">
-                      *Exchange rate is an estimate (1 GBP ≈ {GBP_TO_NGN_RATE} NGN) and may not reflect the actual rate.
-                  </p>
               </div>
             )}
           </div>

@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Loader2 } from 'lucide-react';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/form';
 import { nigerianCitiesToStates, nigerianShippingRates } from '@/lib/pricing-data';
 
 const ukCities = [
@@ -170,7 +170,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12">
+    <Card className="w-full max-w-2xl mx-auto shadow-2xl my-12" suppressHydrationWarning>
       <CardHeader>
         <CardTitle className="text-3xl font-bold">Instant Shipping Estimate</CardTitle>
         <CardDescription>
@@ -180,7 +180,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
       <CardContent>
         {!result ? (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" suppressHydrationWarning>
             <div className="grid md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
@@ -340,5 +340,3 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
     </Card>
   );
 }
-
-    
