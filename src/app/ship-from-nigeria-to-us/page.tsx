@@ -46,22 +46,23 @@ const processSteps = [
 const pricingTiers = [
   {
     title: 'Standard Shipping',
-    price: '$8.00',
-    per: '/lbs',
+    price: '₦15,500',
+    per: '/kg',
     features: [
-      '10 lbs minimum chargeable weight',
+      '10kg minimum chargeable weight',
       'Delivery in 7-14 working days',
       'No handling charges',
       'Full tracking included',
     ],
   },
   {
-    title: 'Documents & Small Parcels',
+    title: 'DHL EXPRESS 3-5 DAY',
     price: 'Contact Us',
     per: 'for rates',
     features: [
-      'Ideal for documents and small items',
-      'Express delivery available',
+      'Documents & small parcels shipping',
+      'Delivery in 3-5 working days',
+      'Ideal for urgent shipments',
       'Full tracking included',
     ],
   },
@@ -71,33 +72,34 @@ export default function ShipFromNigeriaToUsPage() {
   return (
     <>
       <Header />
-      <main className="pt-16">
-        <section className="relative w-full aspect-[16/7] min-h-[500px] flex items-end overflow-hidden bg-gray-900 pb-12 md:pb-20">
-          <Image
-            src={placeholders.nigeriaUsHero.url}
-            alt="Shipping from Nigeria to the US"
-            fill
-            className="object-cover object-top"
-            data-ai-hint={placeholders.nigeriaUsHero.hint}
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full" data-aos="fade-right">
-            <div className="max-w-2xl bg-transparent p-0">
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight hero-text-glow">
-                  Shipping from Nigeria <br /> to the US
-                </h1>
-                <p className="text-xl md:text-2xl text-white mb-8 max-w-xl hero-text-glow">
-                  Fast, reliable, and affordable international shipping. We handle the logistics so you can focus on what matters.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg" className="bg-white text-destructive font-bold hover:bg-gray-100 transition-all shadow-lg hover:scale-105">
-                    <Link href="#quote">Get a Quote Now</Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all">
-                    <Link href="#process">How it Works</Link>
-                  </Button>
-                </div>
+      <main className="pt-20 sm:pt-24 md:pt-28">
+        <section className="relative w-full min-h-[400px] sm:min-h-[500px] flex items-center bg-white overflow-hidden py-10 sm:py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div data-aos="fade-right" className="relative z-10 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary mb-4 sm:mb-6 leading-tight">
+                Shipping from Nigeria <br /> to the US
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto md:mx-0">
+                Fast, reliable, and affordable international shipping. We handle the logistics so you can focus on what matters.
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center md:justify-start">
+                <Button asChild size="lg" className="w-full sm:w-auto bg-primary text-white font-semibold hover:bg-primary/90 transition-colors shadow-lg">
+                  <Link href="#quote">Get a Quote Now</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-primary text-primary hover:bg-primary hover:text-white transition-colors">
+                  <Link href="#process">How it Works</Link>
+                </Button>
+              </div>
+            </div>
+            <div className="relative aspect-square w-full max-w-[520px] mx-auto" data-aos="fade-left">
+              <Image
+                src={placeholders.nigeriaUsHero.url}
+                alt="Shipping from Nigeria to the US"
+                fill
+                className="object-contain object-center drop-shadow-2xl"
+                data-ai-hint={placeholders.nigeriaUsHero.hint}
+                priority
+              />
             </div>
           </div>
         </section>
@@ -122,6 +124,42 @@ export default function ShipFromNigeriaToUsPage() {
             </div>
         </section>
         
+        <section id="pricing" className="py-20 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-16" data-aos="fade-up">
+                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Our Shipping Rates to the US</h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Transparent and competitive pricing for your shipping needs from Nigeria to the US.</p>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    {pricingTiers.map((tier, index) => {
+                        const tierColors = [
+                          { border: "border-blue-500 hover:border-blue-600 hover:shadow-blue-100/30", bg: "bg-blue-50/10" },
+                          { border: "border-pink-500 hover:border-pink-600 hover:shadow-pink-100/30", bg: "bg-pink-50/10" }
+                        ];
+                        const colors = tierColors[index % tierColors.length];
+                        return (
+                          <div key={index} className={`rounded-2xl border-2 p-8 transition-all duration-300 hover:shadow-xl flex flex-col justify-between ${colors.bg} ${colors.border}`} data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+                            <div>
+                                <h3 className="text-2xl font-semibold text-secondary mb-4">{tier.title}</h3>
+                                <p className="text-4xl font-bold text-primary mb-4">
+                                    <span className="text-lg font-normal text-gray-500">{tier.title.includes('Contact') || tier.title.includes('DHL') || tier.title.includes('Documents') ? '' : 'from '}</span>{tier.price}
+                                    <span className="text-lg font-normal text-gray-500"> {tier.per}</span>
+                                </p>
+                                <ul className="text-gray-600 space-y-2">
+                                    {tier.features.map((feature, i) => (
+                                        <li key={i} className="flex items-center">
+                                            <Check className="h-5 w-5 text-green-500 mr-2 shrink-0" />{feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                          </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+        
         <section id="quote" className="py-20 bg-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <NigeriaUsQuoteForm />
@@ -135,7 +173,7 @@ export default function ShipFromNigeriaToUsPage() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Ship from Nigeria to the US?</h2>
                 <p className="text-xl mb-10 opacity-90">Join thousands of satisfied businesses and individuals using County Cargo.</p>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold px-10 py-6 text-lg rounded-full transition-all shadow-xl hover:scale-105">
-                    <Link href="#quote">Start Shipping Now</Link>
+                    <Link href="https://ship.countycargo.com">Start Shipping Now</Link>
                 </Button>
             </div>
         </section>

@@ -2,8 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -34,16 +35,18 @@ const navLinks = [
 
 export function Header() {
   const [isSheetOpen, setSheetOpen] = React.useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   const desktopNav = (
-     <div className="hidden md:flex items-center justify-center flex-1 space-x-6 lg:space-x-8">
+     <div className="hidden lg:flex items-center justify-center flex-1 space-x-6 lg:space-x-8">
       {navLinks.map((link) => (
         link.submenu ? (
           <DropdownMenu key={link.label}>
             <DropdownMenuTrigger asChild>
-              <Link href={link.href} className="text-secondary hover:text-primary transition-colors flex items-center gap-1">
-                {link.label} <ChevronDown className="w-4 h-4" />
-              </Link>
+              <span className="text-secondary hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer select-none">
+                {link.label} <ChevronDown className="w-4 h-4 shrink-0" />
+              </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="bg-primary border-none shadow-lg text-primary-foreground">
               {link.submenu.map(sublink => (
@@ -54,7 +57,7 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Link key={link.label} href={link.href} className="text-secondary hover:text-primary transition-colors">
+          <Link key={link.label} href={link.href} className="text-secondary hover:text-primary transition-colors inline-flex items-center">
             {link.label}
           </Link>
         )
@@ -76,44 +79,142 @@ export function Header() {
         <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
         
         <div className="border-t border-gray-200 pt-4 pb-2">
-            <Link href="http://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
-            <Link href="https://ship.countycargo.com/register" className="block px-3 py-2 mt-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
+            <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
+            <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 mt-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
         </div>
     </div>
   )
 
   return (
     <>
-      <RollingRibbon />
-      <header className="bg-white shadow-lg fixed w-full z-50 top-[40px]">
+      {isHome && (
+        <div className="fixed w-full z-[65] top-0">
+          <RollingRibbon />
+        </div>
+      )}
+      <header className={`bg-white shadow-lg fixed w-full z-[100] ${isHome ? 'top-[36px]' : 'top-0'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-14 sm:h-16">
+            {/* Logo */}
             <div className="flex items-center">
               <Link href="/">
-                <Image src="/county-logo.png" alt="County Cargo Logo" width={68.6} height={19.6} />
+                <Image
+                  src="/county-logo.png"
+                  alt="County Cargo Logo"
+                  width={120}
+                  height={34}
+                  className="h-7 sm:h-8 w-auto"
+                  priority
+                />
               </Link>
             </div>
-            
+
+            {/* Desktop Nav */}
             {desktopNav}
 
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" asChild>
-                <Link href="http://ship.countycargo.com/login">Login</Link>
+            {/* Desktop CTA Buttons */}
+            <div className="hidden lg:flex items-center space-x-3">
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="https://ship.countycargo.com/login">Login</Link>
               </Button>
-               <Button asChild>
-                <Link href="https://ship.countycargo.com/register">Register</Link>
+              <Button size="sm" asChild>
+                <Link href="https://ship.countycargo.com/login">Register</Link>
               </Button>
             </div>
 
-            <div className="md:hidden flex items-center">
+            {/* Mobile Hamburger */}
+            <div className="lg:hidden flex items-center">
               <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
                 <SheetTrigger asChild>
-                   <Button variant="ghost" size="icon">
-                    <Menu className="h-6 w-6 text-secondary" />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-10 w-10 rounded-md"
+                    aria-label="Open navigation menu"
+                  >
+                    <Menu className="h-5 w-5 text-secondary" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="bg-white w-full">
-                  {mobileNav}
+                <SheetContent side="right" className="bg-white w-[85vw] max-w-sm flex flex-col p-0 overflow-y-auto">
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <SheetDescription className="sr-only">Main navigation links for County Cargo</SheetDescription>
+
+                  {/* Sheet header */}
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+                    <Link href="/" onClick={() => setSheetOpen(false)}>
+                      <Image src="/county-logo.png" alt="County Cargo Logo" width={100} height={28} className="h-7 w-auto" />
+                    </Link>
+                  </div>
+
+                  {/* Nav links */}
+                  <nav className="flex-1 px-4 py-4 space-y-1">
+                    {[
+                      { href: '/', label: 'Home' },
+                    ].map(link => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setSheetOpen(false)}
+                        className="flex items-center px-3 py-3 rounded-lg text-base font-semibold text-secondary hover:text-primary hover:bg-blue-50 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+
+                    {/* Services accordion */}
+                    <div className="px-3 pt-2 pb-1">
+                      <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Services</p>
+                      {[
+                        { href: '/shipping-from-uk-to-nigeria', label: 'UK → Nigeria' },
+                        { href: '/ship-from-us-to-nigeria', label: 'US → Nigeria' },
+                        { href: '/ship-from-nigeria-to-uk', label: 'Nigeria → UK' },
+                        { href: '/ship-from-nigeria-to-us', label: 'Nigeria → US' },
+                        { href: '/ship-from-nigeria-to-world', label: 'Nigeria → World' },
+                      ].map(link => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setSheetOpen(false)}
+                          className="flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:text-primary hover:bg-blue-50 transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+
+                    {[
+                      { href: '/about', label: 'About Us' },
+                      { href: '/contact', label: 'Contact' },
+                      { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
+                    ].map(link => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setSheetOpen(false)}
+                        className="flex items-center px-3 py-3 rounded-lg text-base font-semibold text-secondary hover:text-primary hover:bg-blue-50 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+
+                  {/* Mobile CTA */}
+                  <div className="px-4 pb-6 pt-2 border-t border-gray-100 space-y-3">
+                    <Link
+                      href="https://ship.countycargo.com/login"
+                      onClick={() => setSheetOpen(false)}
+                      className="flex items-center justify-center w-full px-4 py-3 rounded-xl border-2 border-primary text-primary font-bold text-base hover:bg-blue-50 transition-colors"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="https://ship.countycargo.com/login"
+                      onClick={() => setSheetOpen(false)}
+                      className="flex items-center justify-center w-full px-4 py-3 rounded-xl bg-primary text-white font-bold text-base hover:bg-blue-700 transition-colors"
+                    >
+                      Register Free
+                    </Link>
+                  </div>
                 </SheetContent>
               </Sheet>
             </div>

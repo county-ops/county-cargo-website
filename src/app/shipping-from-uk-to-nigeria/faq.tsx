@@ -15,7 +15,7 @@ const faqItems = [
     },
     {
         question: 'What is the cost of shipping from UK to Nigeria?',
-        answer: 'Our shipping costs to Nigeria vary depending on the weight, dimensions, and chosen shipping speed (Standard, 48hrs Express, or 24hrs Express). We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section above for detailed rates, starting from £5.80/kg. This covers your UK to Nigeria cargo needs.'
+        answer: 'Our shipping costs to Nigeria vary depending on the weight, dimensions, and chosen shipping speed (Standard, 48hrs Express, or 24hrs Express). We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section above for detailed rates, starting from £6.00/kg. This covers your UK to Nigeria cargo needs.'
     },
     {
         question: 'How long does it take to ship from UK to Nigeria?',

@@ -1,0 +1,202 @@
+[
+  {
+    "storeName": "ASOS",
+    "country": "UK",
+    "category": "Fashion",
+    "websiteUrl": "https://www.asos.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Next",
+    "country": "UK",
+    "category": "Fashion",
+    "websiteUrl": "https://www.next.co.uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Marks & Spencer",
+    "country": "UK",
+    "category": "Department",
+    "websiteUrl": "https://www.marksandspencer.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "John Lewis",
+    "country": "UK",
+    "category": "Department",
+    "websiteUrl": "https://www.johnlewis.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Boots",
+    "country": "UK",
+    "category": "Health & Beauty",
+    "websiteUrl": "https://www.boots.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Sephora UK",
+    "country": "UK",
+    "category": "Beauty",
+    "websiteUrl": "https://www.sephora.co.uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Dune London",
+    "country": "UK",
+    "category": "Footwear",
+    "websiteUrl": "https://www.dunelondon.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Clarks",
+    "country": "UK",
+    "category": "Footwear",
+    "websiteUrl": "https://www.clarks.com/en-gb",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Zara UK",
+    "country": "UK",
+    "category": "Fashion",
+    "websiteUrl": "https://www.zara.com/uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Sports Direct",
+    "country": "UK",
+    "category": "Sports",
+    "websiteUrl": "https://www.sportsdirect.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Matalan",
+    "country": "UK",
+    "category": "Fashion",
+    "websiteUrl": "https://www.matalan.co.uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "JD Sports",
+    "country": "UK",
+    "category": "Sports",
+    "websiteUrl": "https://www.jdsports.co.uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Selfridges",
+    "country": "UK",
+    "category": "Luxury Department",
+    "websiteUrl": "https://www.selfridges.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Harrods",
+    "country": "UK",
+    "category": "Luxury Department",
+    "websiteUrl": "https://www.harrods.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Argos",
+    "country": "UK",
+    "category": "General",
+    "websiteUrl": "https://www.argos.co.uk",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Amazon US",
+    "country": "US",
+    "category": "General",
+    "websiteUrl": "https://www.amazon.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Walmart",
+    "country": "US",
+    "category": "General",
+    "websiteUrl": "https://www.walmart.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Target",
+    "country": "US",
+    "category": "General",
+    "websiteUrl": "https://www.target.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Macy's",
+    "country": "US",
+    "category": "Department",
+    "websiteUrl": "https://www.macys.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Nike US",
+    "country": "US",
+    "category": "Sports",
+    "websiteUrl": "https://www.nike.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Adidas US",
+    "country": "US",
+    "category": "Sports",
+    "websiteUrl": "https://www.adidas.com/us",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Foot Locker",
+    "country": "US",
+    "category": "Footwear",
+    "websiteUrl": "https://www.footlocker.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Best Buy",
+    "country": "US",
+    "category": "Electronics",
+    "websiteUrl": "https://www.bestbuy.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Nordstrom",
+    "country": "US",
+    "category": "Department",
+    "websiteUrl": "https://www.nordstrom.com",
+    "logoUrl": "",
+    "isActive": true
+  },
+  {
+    "storeName": "Saks Fifth Avenue",
+    "country": "US",
+    "category": "Luxury Department",
+    "websiteUrl": "https://www.saksfifthavenue.com",
+    "logoUrl": "",
+    "isActive": true
+  }
+]

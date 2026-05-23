@@ -77,29 +77,26 @@ export function NigeriaUsQuoteForm() {
     try {
       const { from, to, weight, length, width, height } = values;
 
-      const currency = 'USD';
+      const currency = 'NGN';
 
-      const weightInLbs = weight * 2.20462;
-      const volumetricWeightInLbs = (length * width * height) / 5000 * 2.20462;
+      const volumetricWeight = (length * width * height) / 5000;
+      const chargeableWeight = Math.max(weight, volumetricWeight);
+      const minWeight = 10;
+      const finalChargeableWeight = Math.max(chargeableWeight, minWeight);
 
-      const chargeableWeightInLbs = Math.max(weightInLbs, volumetricWeightInLbs);
-      
-      const minWeightInLbs = 10;
-
-      const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
-
-      const ratePerLbs = 8.00;
-      const estimatedCost = finalChargeableWeightInLbs * ratePerLbs;
+      const ratePerKg = 15500;
+      const estimatedCost = finalChargeableWeight * ratePerKg;
 
       const details = `
 Calculation based on Standard Shipping:
 - Destination: ${from} to ${to}
-- Rate: $${ratePerLbs.toFixed(2)}/lbs
-- Actual Weight: ${weightInLbs.toFixed(2)} lbs
-- Volumetric Weight: ${volumetricWeightInLbs.toFixed(2)} lbs
-- Chargeable Weight: ${chargeableWeightInLbs.toFixed(2)} lbs
-- Minimum Chargeable Weight: ${minWeightInLbs.toFixed(2)} lbs
-- Final Chargeable Weight: ${finalChargeableWeightInLbs.toFixed(2)} lbs
+- Rate: ₦${ratePerKg.toLocaleString()}/kg
+- Actual Weight: ${weight.toFixed(2)} kg
+- Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
+- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
+- Minimum Chargeable Weight: ${minWeight.toFixed(2)} kg
+- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
+- Shipping Cost: ₦${estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
       `.trim().replace(/^\s+/gm, '');
 
 
@@ -234,7 +231,6 @@ Calculation based on Standard Shipping:
                     )}
                   />
                 </div>
-                <p className="text-xs text-muted-foreground pt-2">Note: Your package weight in kg will be converted to lbs for pricing.</p>
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
@@ -246,7 +242,7 @@ Calculation based on Standard Shipping:
           <div className="space-y-4 text-center">
             <div>
                 <p className="text-muted-foreground">Estimated Cost</p>
-                <p className="text-5xl font-bold">${result.estimatedCost.toFixed(2)}</p>
+                <p className="text-5xl font-bold">₦{result.estimatedCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p className="text-sm text-muted-foreground">{result.currency}</p>
             </div>
             <div className='p-4 bg-muted/50 rounded-lg text-left'>

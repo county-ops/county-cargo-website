@@ -16,7 +16,7 @@ const faqItems = [
     },
     {
         question: 'What is the cost of shipping from US to Nigeria?',
-        answer: 'Our standard shipping rate is $4.50 per pound (lbs) for delivery to Lagos and $5.00 per pound (lbs) for all other cities in Nigeria. The minimum chargeable weight for any shipment is 5 lbs. This makes us one of the cheapest shipping to Nigeria options available. You can use our online calculator for an instant estimate for your US to Nigeria cargo.'
+        answer: 'Our standard shipping rate is $5.00 per pound (lbs) for delivery to Lagos and $5.50 per pound (lbs) for all other cities in Nigeria. The minimum chargeable weight for any shipment is 5 lbs. This makes us one of the cheapest shipping to Nigeria options available. You can use our online calculator for an instant estimate for your US to Nigeria cargo.'
     },
     {
         question: 'How long does it take to ship from US to Nigeria?',

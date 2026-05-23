@@ -56,7 +56,11 @@ type ShippingCostOutput = {
 const USD_TO_NGN_RATE = 1500;
 const ADDITIONAL_NAIRA = 20;
 
-export function UsNigeriaQuoteForm() {
+export function UsNigeriaQuoteForm({
+  onEstimateChange,
+}: {
+  onEstimateChange?: (value: number | null) => void;
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<ShippingCostOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -138,7 +142,7 @@ export function UsNigeriaQuoteForm() {
 
       const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 
-      const ratePerLbs = to === 'Lagos' ? 4.50 : 5.00;
+      const ratePerLbs = to === 'Lagos' ? 5.00 : 5.50;
       const estimatedCost = finalChargeableWeightInLbs * ratePerLbs;
 
       const details = `
@@ -159,6 +163,10 @@ Calculation based on Standard Shipping:
         details
       });
 
+      if (onEstimateChange) {
+        onEstimateChange(estimatedCost);
+      }
+
     } catch (e) {
       setError('Failed to get estimation. Please try again.');
       console.error(e);
@@ -173,6 +181,9 @@ Calculation based on Standard Shipping:
     setError(null);
     setUsd('1');
     setLastChanged('usd');
+    if (onEstimateChange) {
+      onEstimateChange(null);
+    }
   };
 
   return (

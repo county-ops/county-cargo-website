@@ -22,7 +22,7 @@ const privacy = [
     { title: '2. How We Use Your Information', content: <ul><li>Process shipments and track deliveries</li><li>Customer support and communication</li><li>Secure payment processing</li><li>Compliance with legal obligations</li><li>Service improvement and analytics</li></ul> },
     { title: '3. Sharing & Security', content: <div><ul><li>Service providers: shipping partners, payment processors, IT vendors</li><li>Legal compliance</li><li>Business transactions: mergers, acquisitions</li><li>Protection of rights</li></ul><p>We do not sell or rent personal information.</p></div> },
     { title: '4. Your Rights', content: <ul><li>Access and correction</li><li>Deletion (with exceptions)</li><li>Opt-out of marketing</li><li>Data portability and restriction of processing</li></ul> },
-    { title: '5. Contact', content: <address className="not-italic">County Cargo<br />Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria<br />Email: info@countycargo.com<br />Phone: +2348110000421, +2348110000423</address> },
+    { title: '5. Contact', content: <address className="not-italic">County Cargo<br />Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria<br />Phone: +2348110000421, +2348110000423</address> },
 ];
 
 export default function InfoPage() {
@@ -91,8 +91,8 @@ export default function InfoPage() {
 
         // FAQ Items
         document.querySelectorAll('.faq-item').forEach(item => {
-            const questionEl = item.querySelector('h3');
-            const answerEl = item.querySelector('.faq-answer');
+            const questionEl = item.querySelector('h3') as HTMLElement | null;
+            const answerEl = item.querySelector('.faq-answer') as HTMLElement | null;
             if (!questionEl || !answerEl) return;
 
             const originalQuestion = (questionEl as HTMLElement).dataset.originalHtml || questionEl.innerHTML;
@@ -184,7 +184,6 @@ export default function InfoPage() {
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+2348110000421",
-              "email": "info@countycargo.com",
               "contactType": "customer service"
             },
             "mainEntityOfPage": {
@@ -223,7 +222,7 @@ export default function InfoPage() {
                         <th>State / FCT</th>
                         <th>Door-to-Door (£/kg)</th>
                         <th>Collection (£/kg)</th>
-                        <th>Min Weight (kg) for delivery</th>
+                        <th>Min Weight (kg) for FREE delivery</th>
                         <th>Avg Delivery (working day)</th>
                     </tr>
                 </thead>
