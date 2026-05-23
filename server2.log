@@ -1,0 +1,29 @@
+   ▲ Next.js 15.5.9
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.104:3000
+
+ ✓ Starting...
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\User\Desktop\My app\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * C:\Users\User\Desktop\My app\county cargo\package-lock.json
+
+ ✓ Ready in 1023ms
+ ⨯ Error: Cannot find module '../../../chunks/ssr/[turbopack]_runtime.js'
+Require stack:
+- C:\Users\User\Desktop\My app\county cargo\.next\server\app\dashboard\tracking-receipts\page.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\server\require.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\server\load-components.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\build\utils.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\build\swc\options.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\build\swc\index.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\server\config.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\cli\next-test.js
+- C:\Users\User\Desktop\My app\county cargo\node_modules\next\dist\bin\next
+    at Object.<anonymous> (C:\Users\User\Desktop\My app\county cargo\.next\server\app\dashboard\tracking-receipts\page.js:1:7) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}

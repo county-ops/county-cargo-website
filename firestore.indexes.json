@@ -1,0 +1,46 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "package_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "customerId", "order": "ASCENDING" },
+        { "fieldPath": "notifiedAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "package_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "notifiedAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "package_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "customerId", "order": "ASCENDING" },
+        { "fieldPath": "visibleToCustomer", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "package_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "customerEmail", "order": "ASCENDING" },
+        { "fieldPath": "visibleToCustomer", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "package_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "notificationSent", "order": "ASCENDING" },
+        { "fieldPath": "visibleToCustomer", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
+
