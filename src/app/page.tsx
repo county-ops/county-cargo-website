@@ -236,7 +236,7 @@ export default function Home() {
               <p className="text-base sm:text-lg text-gray-800 max-w-2xl mx-auto">Latest news and insights from the logistics world.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8">
-              {blogPosts.map((post, index) => (
+              {blogPosts.slice(0, 3).map((post, index) => (
                 <div key={index} className="blog-card bg-gray-50 rounded-xl shadow-md overflow-hidden transition-all duration-300 group" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                   <div className="overflow-hidden">
                     <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
