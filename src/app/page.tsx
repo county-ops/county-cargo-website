@@ -235,16 +235,16 @@ export default function Home() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-3 sm:mb-4">From Our Blog</h2>
               <p className="text-base sm:text-lg text-gray-800 max-w-2xl mx-auto">Latest news and insights from the logistics world.</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {blogPosts.slice(0, 3).map((post, index) => (
-                <div key={index} className="blog-card bg-gray-50 rounded-xl shadow-md overflow-hidden transition-all duration-300 group" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
+                <div key={index} className="blog-card bg-gray-50 rounded-lg shadow-md overflow-hidden transition-all duration-300 group h-full flex flex-col" data-aos="fade-up" data-aos-delay={`${100 * (index + 1)}`}>
                   <div className="overflow-hidden">
-                    <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <Image src={post.image} alt={post.title} data-ai-hint={post.imageHint} width={640} height={384} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                   </div>
-                  <div className="p-5 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-semibold text-secondary mb-2 sm:mb-3">{post.title}</h3>
-                    <p className="text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">{post.description}</p>
-                    <Link href={post.url} className="text-primary font-semibold hover:underline text-sm sm:text-base">Read More &rarr;</Link>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl font-semibold text-secondary mb-3">{post.title}</h3>
+                    <p className="text-gray-800 mb-4 flex-grow">{post.description}</p>
+                    <Link href={post.url} className="text-primary font-semibold hover:underline mt-auto">Read More &rarr;</Link>
                   </div>
                 </div>
               ))}
