@@ -1745,16 +1745,28 @@ export async function verifyShipmentAndNotify(
         const invoiceId = `INV-${shipmentData.shipmentId}-${String(invoiced + 1).padStart(3, '0')}`;
         
         let custAddress = '';
+        let custEmail = pkg.customerEmail || '';
+        let custPhone = pkg.customerPhone || '';
+        let custName = pkg.customerName || '';
         if (pkg.customerId) {
             const custSnap = await getDoc(doc(db, 'users', pkg.customerId));
-            if (custSnap.exists()) custAddress = custSnap.data().address || '';
+            if (custSnap.exists()) {
+                const custData = custSnap.data();
+                custAddress = custData.address || '';
+                if (custData.email) custEmail = custData.email;
+                custPhone = custData.phone_number || custData.phone || custPhone;
+                if (custData.firstname && custData.lastname) {
+                    custName = `${custData.firstname} ${custData.lastname}`;
+                }
+            }
         }
 
         batch.set(invoiceRef, {
             invoiceId,
             customerId: pkg.customerId,
-            customerName: pkg.customerName,
-            customerEmail: pkg.customerEmail,
+            customerName: custName,
+            customerEmail: custEmail,
+            customerPhone: custPhone,
             customerAddress: custAddress,
             packageDocId: pkgDocId,
             trackingNumber: pkg.trackingNumber || '',
@@ -2016,17 +2028,29 @@ export async function createPackageReceiptWithInvoice(data: Partial<PackageRecei
     const invoiceId = `INV-${Date.now().toString().slice(-6)}`;
     
     let custAddress = '';
+    let custEmail = data.customerEmail || '';
+    let custPhone = data.customerPhone || '';
+    let custName = data.customerName || '';
     if (data.customerId) {
         const custSnap = await getDoc(doc(db, 'users', data.customerId));
-        if (custSnap.exists()) custAddress = custSnap.data().address || '';
+        if (custSnap.exists()) {
+            const custData = custSnap.data();
+            custAddress = custData.address || '';
+            if (custData.email) custEmail = custData.email;
+            custPhone = custData.phone_number || custData.phone || custPhone;
+            if (custData.firstname && custData.lastname) {
+                custName = `${custData.firstname} ${custData.lastname}`;
+            }
+        }
     }
 
     const invoiceDoc = await addDoc(invoiceRef, {
         invoiceId,
         invoiceDate: Timestamp.now(),
         customerId: data.customerId,
-        customerName: data.customerName,
-        customerEmail: data.customerEmail,
+        customerName: custName,
+        customerEmail: custEmail,
+        customerPhone: custPhone,
         customerAddress: custAddress,
         packageDocId: receiptDoc.id,
         trackingNumber: data.trackingNumber || '',
@@ -2168,9 +2192,20 @@ export async function generateInvoiceForPackage(
     const invoiceId = `INV-${Date.now().toString().slice(-7)}`;
 
     let custAddress = '';
+    let custEmail = pkg.customerEmail || '';
+    let custPhone = pkg.customerPhone || '';
+    let custName = pkg.customerName || '';
     if (pkg.customerId) {
         const custSnap = await getDoc(doc(db, 'users', pkg.customerId));
-        if (custSnap.exists()) custAddress = custSnap.data().address || '';
+        if (custSnap.exists()) {
+            const custData = custSnap.data();
+            custAddress = custData.address || '';
+            if (custData.email) custEmail = custData.email;
+            custPhone = custData.phone_number || custData.phone || custPhone;
+            if (custData.firstname && custData.lastname) {
+                custName = `${custData.firstname} ${custData.lastname}`;
+            }
+        }
     }
 
     const invoiceDoc = await addDoc(collection(db, 'invoices'), {
@@ -2178,9 +2213,9 @@ export async function generateInvoiceForPackage(
         invoiceDate: Timestamp.now(),
         dueDate: Timestamp.fromDate(dueDate),
         customerId: pkg.customerId || '',
-        customerName: pkg.customerName || '',
-        customerEmail: pkg.customerEmail || '',
-        customerPhone: pkg.customerPhone || '',
+        customerName: custName,
+        customerEmail: custEmail,
+        customerPhone: custPhone,
         customerAddress: custAddress,
         packageDocId,
         trackingNumber: pkg.trackingNumber || '',
