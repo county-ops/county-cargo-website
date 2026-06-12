@@ -49,6 +49,40 @@ function inputCls() {
   return 'border-blue-200 focus:border-blue-500 focus:ring-blue-500/20 rounded-lg text-sm h-9';
 }
 
+const getBaseCurrency = (location: string | undefined, shipmentId: string | undefined, selectedCurrency: string | undefined) => {
+  const loc = (location || '').toLowerCase();
+  const shipId = (shipmentId || '').toLowerCase();
+  const curr = (selectedCurrency || 'GBP').toUpperCase();
+
+  if (curr !== 'NGN') {
+    return curr;
+  }
+
+  if (
+    loc.includes('us') || 
+    loc.includes('usa') || 
+    loc.includes('houston') || 
+    loc.includes('united states') || 
+    shipId.includes('-us-') || 
+    shipId.includes('us-') || 
+    shipId.startsWith('us')
+  ) {
+    return 'USD';
+  }
+  
+  return 'GBP';
+};
+
+const getCurrencySymbol = (currency: string) => {
+  switch (currency) {
+    case 'GBP': return '£';
+    case 'USD': return '$';
+    case 'EUR': return '€';
+    case 'NGN': return '₦';
+    default: return currency;
+  }
+};
+
 export default function InvoiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
   const { profile } = useProfile();
@@ -122,6 +156,9 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
   const subtotal = n(form.weight) * n(form.rate);
   const fees = n(form.handlingFee) + n(form.deliveryFee) + n(form.storageFee) + n(form.pendingCardFee) + (form.pickupRequired ? n(form.pickupFee) : 0);
   const grandTotal = subtotal + fees - n(form.discount);
+
+  const baseCurrency = getBaseCurrency(form.location, invoice?.shipmentId, form.currency);
+  const baseSymbol = getCurrencySymbol(baseCurrency);
 
   const handleSave = async () => {
     if (!invoice) return;
@@ -414,7 +451,7 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
                   <Field label="Weight (kg)">
                     <Input type="number" value={form.weight} onChange={set('weight')} className={inputCls()} />
                   </Field>
-                  <Field label="Rate (£/kg)">
+                  <Field label={`Rate (${baseSymbol}/kg)`}>
                     <Input type="number" value={form.rate} onChange={set('rate')} className={inputCls()} />
                   </Field>
                 </div>
@@ -427,14 +464,14 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
                         <SelectValue placeholder="Fee..." />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="15">£15 (Default)</SelectItem>
-                        <SelectItem value="20">£20</SelectItem>
-                        <SelectItem value="30">£30</SelectItem>
+                        <SelectItem value="15">{baseSymbol}15 (Default)</SelectItem>
+                        <SelectItem value="20">{baseSymbol}20</SelectItem>
+                        <SelectItem value="30">{baseSymbol}30</SelectItem>
                         <SelectItem value="custom">Custom</SelectItem>
                       </SelectContent>
                     </Select>
                     <div className="relative flex-1">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">£</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">{baseSymbol}</span>
                       <Input type="number" value={form.pendingCardFee} onChange={set('pendingCardFee')} className={cn(inputCls(), "pl-7")} />
                     </div>
                   </div>
@@ -452,14 +489,14 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
                         <SelectValue placeholder="Fee..." />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="10">£10</SelectItem>
-                        <SelectItem value="20">£20</SelectItem>
-                        <SelectItem value="30">£30</SelectItem>
+                        <SelectItem value="10">{baseSymbol}10</SelectItem>
+                        <SelectItem value="20">{baseSymbol}20</SelectItem>
+                        <SelectItem value="30">{baseSymbol}30</SelectItem>
                         <SelectItem value="custom">Custom</SelectItem>
                       </SelectContent>
                     </Select>
                     <div className="relative flex-1">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">£</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">{baseSymbol}</span>
                       <Input type="number" value={form.deliveryFee} onChange={set('deliveryFee')} className={cn(inputCls(), "pl-7")} placeholder="0.00" />
                     </div>
                   </div>
@@ -490,14 +527,14 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
                               <SelectValue placeholder="Fee..." />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="10">£10</SelectItem>
-                              <SelectItem value="20">£20</SelectItem>
-                              <SelectItem value="30">£30</SelectItem>
+                              <SelectItem value="10">{baseSymbol}10</SelectItem>
+                              <SelectItem value="20">{baseSymbol}20</SelectItem>
+                              <SelectItem value="30">{baseSymbol}30</SelectItem>
                               <SelectItem value="custom">Custom</SelectItem>
                             </SelectContent>
                           </Select>
                           <div className="relative flex-1">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">£</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">{baseSymbol}</span>
                             <Input type="number" value={form.pickupFee} onChange={set('pickupFee')} className={cn(inputCls(), "pl-7")} placeholder="0.00" />
                           </div>
                         </div>
@@ -515,52 +552,52 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
               <p className="text-xs font-bold text-blue-600 uppercase mb-2 border-b border-blue-100 pb-2">Invoice Breakdown</p>
               <div className="flex justify-between py-1.5">
                 <span className="text-muted-foreground">Cargo Weight Charge</span>
-                <span className="font-medium">{form.currency} {subtotal.toFixed(2)}</span>
+                <span className="font-medium">{baseCurrency} {subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between py-1.5">
                 <span className="text-muted-foreground">Handling Charges</span>
-                <span>{form.currency} {n(form.pendingCardFee).toFixed(2)}</span>
+                <span>{baseCurrency} {n(form.pendingCardFee).toFixed(2)}</span>
               </div>
               {n(form.deliveryFee) > 0 && (
                 <div className="flex justify-between py-1.5 text-blue-700">
                   <span>Delivery Fee {form.deliveryLocation && <span className="text-xs opacity-70">({form.deliveryLocation})</span>}</span>
-                  <span>{form.currency} {n(form.deliveryFee).toFixed(2)}</span>
+                  <span>{baseCurrency} {n(form.deliveryFee).toFixed(2)}</span>
                 </div>
               )}
               {form.pickupRequired && (
                 <div className="flex justify-between py-1.5 text-amber-700">
                   <span>Pickup Fee {form.pickupLocation && <span className="text-xs opacity-70">({form.pickupLocation})</span>}</span>
-                  <span>{form.currency} {n(form.pickupFee).toFixed(2)}</span>
+                  <span>{baseCurrency} {n(form.pickupFee).toFixed(2)}</span>
                 </div>
               )}
               {n(form.handlingFee) > 0 && (
                 <div className="flex justify-between py-1.5">
                   <span className="text-muted-foreground">Handling Fee</span>
-                  <span>{form.currency} {n(form.handlingFee).toFixed(2)}</span>
+                  <span>{baseCurrency} {n(form.handlingFee).toFixed(2)}</span>
                 </div>
               )}
               {n(form.storageFee) > 0 && (
                 <div className="flex justify-between py-1.5">
                   <span className="text-muted-foreground">Additional Charges (Storage)</span>
-                  <span>{form.currency} {n(form.storageFee).toFixed(2)}</span>
+                  <span>{baseCurrency} {n(form.storageFee).toFixed(2)}</span>
                 </div>
               )}
               {n(form.discount) > 0 && (
                 <div className="flex justify-between py-1.5 text-emerald-600">
                   <span>Discount</span>
-                  <span>−{form.currency} {n(form.discount).toFixed(2)}</span>
+                  <span>−{baseCurrency} {n(form.discount).toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between items-center border-t-2 border-blue-600 pt-2 mt-1">
                 <span className="font-bold text-base text-blue-700">Grand Total</span>
-                <span className="font-black text-xl text-blue-700">{form.currency} {grandTotal.toFixed(2)}</span>
+                <span className="font-black text-xl text-blue-700">{baseCurrency} {grandTotal.toFixed(2)}</span>
               </div>
 
               {n(form.exchangeRate) > 0 && (
                 <div className="flex justify-between items-center border-t border-blue-200 pt-2 mt-1 bg-blue-50/50 -mx-5 px-5 py-2">
                   <div className="flex flex-col">
                     <span className="font-bold text-[10px] text-blue-500 uppercase leading-none">Converted Total</span>
-                    <span className="text-[10px] text-muted-foreground italic">Rate: 1 {form.currency} = {n(form.exchangeRate)} NGN</span>
+                    <span className="text-[10px] text-muted-foreground italic">Rate: 1 {baseCurrency} = {n(form.exchangeRate)} NGN</span>
                   </div>
                   <span className="font-bold text-lg text-blue-800">₦{(grandTotal * n(form.exchangeRate)).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>

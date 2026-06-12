@@ -308,7 +308,7 @@ export default function MyPackageDetailPage({ params }: { params: Promise<{ id: 
               <div className="p-8 pt-0 space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <InfoItem label="Statement #" value={invoice.invoiceId} />
-                  <InfoItem label="Total Value" value={`${invoice.currency} ${invoice.amount?.toLocaleString(undefined, { minimumFractionDigits: 2 })}`} />
+                  <InfoItem label="Total Value" value={`${invoice.currency} ${Number(invoice.currency === 'NGN' && invoice.exchangeRate ? (invoice.convertedAmount || (invoice.amount * invoice.exchangeRate)) : (invoice.convertedAmount || invoice.amount)).toLocaleString(undefined, { minimumFractionDigits: 2 })}`} />
                 </div>
                 <Link href={`/dashboard/admin/invoices/${invoice.docId}`} target="_blank">
                   <Button className="w-full h-14 rounded-2xl font-black bg-blue-950 hover:bg-slate-900 shadow-xl shadow-slate-200 gap-3 text-base">

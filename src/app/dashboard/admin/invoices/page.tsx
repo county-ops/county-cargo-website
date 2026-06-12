@@ -242,7 +242,7 @@ export default function InvoicesPage() {
                 </td>
                 <td className="px-4 py-3">
                   <span className="font-bold text-blue-700 dark:text-blue-400">
-                    {inv.currency || 'GBP'} {Number(inv.amount || 0).toFixed(2)}
+                    {inv.currency || 'GBP'} {Number(inv.currency === 'NGN' && inv.exchangeRate ? (inv.convertedAmount || (inv.amount * inv.exchangeRate)) : (inv.convertedAmount || inv.amount)).toFixed(2)}
                   </span>
                 </td>
                 <td className="px-4 py-3"><StatusBadge status={inv.status} /></td>

@@ -126,7 +126,7 @@ export default function MyInvoicesPage() {
                       )}
                       <div className="flex items-center gap-2 text-base font-black text-blue-950 col-span-full mt-1">
                         <span className="text-blue-600">{invoice.currency}</span>
-                        <span>{invoice.amount.toFixed(2)}</span>
+                        <span>{Number(invoice.currency === 'NGN' && invoice.exchangeRate ? (invoice.convertedAmount || (invoice.amount * invoice.exchangeRate)) : (invoice.convertedAmount || invoice.amount)).toFixed(2)}</span>
                       </div>
                       {invoice.dueDate && invoice.paymentStatus !== 'paid' && (
                         <div className={cn(

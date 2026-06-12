@@ -31,6 +31,40 @@ const PAYMENT_META: Record<string, { label: string; cls: string }> = {
   paid:      { label: 'Paid',      cls: 'bg-emerald-50 text-emerald-700 border-emerald-300' },
 };
 
+const getBaseCurrency = (location: string | undefined, shipmentId: string | undefined, selectedCurrency: string | undefined) => {
+  const loc = (location || '').toLowerCase();
+  const shipId = (shipmentId || '').toLowerCase();
+  const curr = (selectedCurrency || 'GBP').toUpperCase();
+
+  if (curr !== 'NGN') {
+    return curr;
+  }
+
+  if (
+    loc.includes('us') || 
+    loc.includes('usa') || 
+    loc.includes('houston') || 
+    loc.includes('united states') || 
+    shipId.includes('-us-') || 
+    shipId.includes('us-') || 
+    shipId.startsWith('us')
+  ) {
+    return 'USD';
+  }
+  
+  return 'GBP';
+};
+
+const getCurrencySymbol = (currency: string) => {
+  switch (currency) {
+    case 'GBP': return '£';
+    case 'USD': return '$';
+    case 'EUR': return '€';
+    case 'NGN': return '₦';
+    default: return currency;
+  }
+};
+
 export default function MyInvoiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
   const { profile } = useProfile();
@@ -106,6 +140,9 @@ export default function MyInvoiceDetailPage({ params }: { params: Promise<{ id: 
     + n(invoice.handlingFee) 
     + n(invoice.storageFee) 
     - n(invoice.discount);
+
+  const baseCurrency = getBaseCurrency(invoice.location, invoice.shipmentId, invoice.currency);
+  const baseSymbol = getCurrencySymbol(baseCurrency);
 
   return (
     <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full pb-10">
@@ -202,7 +239,7 @@ export default function MyInvoiceDetailPage({ params }: { params: Promise<{ id: 
                   <tr>
                     <td className="px-6 py-5 font-medium text-slate-900">{invoice.description || 'Cargo Package'}</td>
                     <td className="px-6 py-5 text-center text-slate-600">{invoice.weight} kg</td>
-                    <td className="px-6 py-5 text-right text-slate-600">{invoice.currency} {n(invoice.rate).toFixed(2)}/kg</td>
+                    <td className="px-6 py-5 text-right text-slate-600">{baseCurrency} {n(invoice.rate).toFixed(2)}/kg</td>
                   </tr>
                 </tbody>
               </table>
@@ -235,48 +272,48 @@ export default function MyInvoiceDetailPage({ params }: { params: Promise<{ id: 
             <div className="space-y-3 text-sm px-2">
               <div className="flex justify-between text-slate-600">
                 <span>Cargo Weight Charge</span>
-                <span className="font-medium text-slate-900">{invoice.currency} {subtotal.toFixed(2)}</span>
+                <span className="font-medium text-slate-900">{baseCurrency} {subtotal.toFixed(2)}</span>
               </div>
               
               {n(invoice.pendingCardFee) > 0 && (
                 <div className="flex justify-between text-slate-600">
                   <span>Handling Charges</span>
-                  <span className="font-medium text-slate-900">{invoice.currency} {n(invoice.pendingCardFee).toFixed(2)}</span>
+                  <span className="font-medium text-slate-900">{baseCurrency} {n(invoice.pendingCardFee).toFixed(2)}</span>
                 </div>
               )}
               
               {n(invoice.deliveryFee) > 0 && (
                 <div className="flex justify-between text-slate-600">
                   <span>Delivery Fee {invoice.deliveryLocation && <span className="text-xs opacity-70">({invoice.deliveryLocation})</span>}</span>
-                  <span className="font-medium text-slate-900">{invoice.currency} {n(invoice.deliveryFee).toFixed(2)}</span>
+                  <span className="font-medium text-slate-900">{baseCurrency} {n(invoice.deliveryFee).toFixed(2)}</span>
                 </div>
               )}
               
               {n(invoice.pickupFee) > 0 && invoice.pickupRequired && (
                 <div className="flex justify-between text-slate-600">
                   <span>Pickup Fee {invoice.pickupLocation && <span className="text-xs opacity-70">({invoice.pickupLocation})</span>}</span>
-                  <span className="font-medium text-slate-900">{invoice.currency} {n(invoice.pickupFee).toFixed(2)}</span>
+                  <span className="font-medium text-slate-900">{baseCurrency} {n(invoice.pickupFee).toFixed(2)}</span>
                 </div>
               )}
               
               {n(invoice.handlingFee) > 0 && (
                 <div className="flex justify-between text-slate-600">
                   <span>Additional Handling</span>
-                  <span className="font-medium text-slate-900">{invoice.currency} {n(invoice.handlingFee).toFixed(2)}</span>
+                  <span className="font-medium text-slate-900">{baseCurrency} {n(invoice.handlingFee).toFixed(2)}</span>
                 </div>
               )}
 
               {n(invoice.storageFee) > 0 && (
                 <div className="flex justify-between text-slate-600">
                   <span>Storage Fee</span>
-                  <span className="font-medium text-slate-900">{invoice.currency} {n(invoice.storageFee).toFixed(2)}</span>
+                  <span className="font-medium text-slate-900">{baseCurrency} {n(invoice.storageFee).toFixed(2)}</span>
                 </div>
               )}
               
               {n(invoice.discount) > 0 && (
                 <div className="flex justify-between text-emerald-600">
                   <span>Discount</span>
-                  <span className="font-medium">−{invoice.currency} {n(invoice.discount).toFixed(2)}</span>
+                  <span className="font-medium">−{baseCurrency} {n(invoice.discount).toFixed(2)}</span>
                 </div>
               )}
             </div>
@@ -285,7 +322,7 @@ export default function MyInvoiceDetailPage({ params }: { params: Promise<{ id: 
               <div className="flex justify-between items-center">
                 <span className="text-base font-bold text-slate-900">Total</span>
                 <div className="text-right">
-                  <div className="text-2xl font-black tracking-tight text-blue-950 leading-none">{invoice.currency} {grandTotal.toFixed(2)}</div>
+                  <div className="text-2xl font-black tracking-tight text-blue-950 leading-none">{baseCurrency} {grandTotal.toFixed(2)}</div>
                   {n(invoice.exchangeRate) > 0 && (
                     <div className="text-sm font-bold text-blue-600 mt-2">
                       ≈ ₦{(grandTotal * n(invoice.exchangeRate)).toLocaleString(undefined, { minimumFractionDigits: 2 })}
