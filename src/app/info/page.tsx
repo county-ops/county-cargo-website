@@ -584,11 +584,136 @@ const terms = [
 ];
 
 const privacy = [
-    { title: '1. Information We Collect', content: <ul><li>Personal information: Name, email, phone, address, company details</li><li>Shipping information: Origin, destination, package contents, instructions</li><li>Payment information</li><li>Technical info: IP, browser, OS, browsing behavior</li></ul> },
-    { title: '2. How We Use Your Information', content: <ul><li>Process shipments and track deliveries</li><li>Customer support and communication</li><li>Secure payment processing</li><li>Compliance with legal obligations</li><li>Service improvement and analytics</li></ul> },
-    { title: '3. Sharing & Security', content: <div><ul><li>Service providers: shipping partners, payment processors, IT vendors</li><li>Legal compliance</li><li>Business transactions: mergers, acquisitions</li><li>Protection of rights</li></ul><p>We do not sell or rent personal information.</p></div> },
-    { title: '4. Your Rights', content: <ul><li>Access and correction</li><li>Deletion (with exceptions)</li><li>Opt-out of marketing</li><li>Data portability and restriction of processing</li></ul> },
-    { title: '5. Contact', content: <address className="not-italic">County Cargo<br />Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos 102214, Lagos, Nigeria<br />Phone: +2348110000421, +2348110000423</address> },
+  {
+    title: '1. Information We Collect',
+    content: (
+      <div>
+        <p>We may collect the following information:</p>
+        <p className="mt-2 font-semibold">Personal Information</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Full name</li>
+          <li>Email address</li>
+          <li>Telephone number</li>
+          <li>Residential or delivery address</li>
+          <li>Billing address</li>
+          <li>Government-issued identification where required</li>
+          <li>Customer account details</li>
+        </ul>
+        <p className="mt-3 font-semibold">Shipment Information</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Tracking numbers</li>
+          <li>Sender and recipient details</li>
+          <li>Package descriptions</li>
+          <li>Weight and dimensions</li>
+          <li>Shipping history</li>
+          <li>Delivery instructions</li>
+        </ul>
+        <p className="mt-3 font-semibold">Payment Information</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Payment confirmations</li>
+          <li>Transaction history</li>
+          <li>Billing information</li>
+        </ul>
+        <p className="mt-2 font-medium italic">County Cargo does not store your debit or credit card details.</p>
+        <p className="mt-3 font-semibold">Technical Information</p>
+        <p className="mt-1">When you use our website or mobile application, we may automatically collect:</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>IP address</li>
+          <li>Browser type</li>
+          <li>Device information</li>
+          <li>Operating system</li>
+          <li>Cookies</li>
+          <li>Website usage information</li>
+          <li>App usage information</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: '2. How We Use Your Information',
+    content: (
+      <div>
+        <p>We use your information to:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>Process and manage shipments.</li>
+          <li>Create and manage your customer account.</li>
+          <li>Provide shipment tracking.</li>
+          <li>Deliver customer support.</li>
+          <li>Process payments and invoices.</li>
+          <li>Verify your identity where necessary.</li>
+          <li>Contact you regarding your shipments.</li>
+          <li>Send delivery updates and service notifications.</li>
+          <li>Improve our website, mobile application and services.</li>
+          <li>Detect and prevent fraud.</li>
+          <li>Comply with legal and regulatory obligations.</li>
+          <li>Respond to law enforcement or government requests where legally required.</li>
+        </ul>
+        <p className="mt-2 font-medium">We will only use your personal information for lawful purposes.</p>
+      </div>
+    )
+  },
+  {
+    title: '3. Sharing and Security',
+    content: (
+      <div>
+        <p>County Cargo values your privacy and will never sell your personal information.</p>
+        <p className="mt-2 font-semibold">We may share your information only where necessary with:</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Airlines</li>
+          <li>Shipping lines</li>
+          <li>Customs authorities</li>
+          <li>Government agencies</li>
+          <li>Courier partners</li>
+          <li>Warehouse partners</li>
+          <li>Payment service providers</li>
+          <li>Professional advisers, including solicitors and auditors</li>
+          <li>IT and cloud service providers supporting our business</li>
+        </ul>
+        <p className="mt-3 font-semibold">We implement appropriate technical and organisational measures to protect your information against:</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>Unauthorised access</li>
+          <li>Loss</li>
+          <li>Misuse</li>
+          <li>Alteration</li>
+          <li>Disclosure</li>
+          <li>Cybersecurity threats</li>
+        </ul>
+        <p className="mt-3">Although we take reasonable steps to safeguard your information, no method of electronic storage or internet transmission is completely secure. Accordingly, we cannot guarantee absolute security.</p>
+      </div>
+    )
+  },
+  {
+    title: '4. Your Rights',
+    content: (
+      <div>
+        <p>Subject to applicable law, you may have the right to:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>Access the personal information we hold about you.</li>
+          <li>Request correction of inaccurate information.</li>
+          <li>Request deletion of your personal information where legally permitted.</li>
+          <li>Restrict or object to certain processing activities.</li>
+          <li>Withdraw consent where processing is based on consent.</li>
+          <li>Request a copy of your personal information in a portable format where applicable.</li>
+          <li>Lodge a complaint with the relevant data protection authority if you believe your privacy rights have been infringed.</li>
+        </ul>
+        <p className="mt-2">To exercise any of these rights, please contact us using the details below.</p>
+      </div>
+    )
+  },
+  {
+    title: '5. Contact Us',
+    content: (
+      <div>
+        <address className="not-italic">
+          <strong>County Cargo</strong><br />
+          Email: <a href="mailto:info@countycargo.com" className="text-blue-600 hover:underline">info@countycargo.com</a><br />
+          Website: <a href="https://www.countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a><br />
+          Office Address: Liverpool, United Kingdom
+        </address>
+        <p className="mt-2">We will endeavour to respond to all privacy enquiries within a reasonable timeframe.</p>
+      </div>
+    )
+  }
 ];
 
 export default function InfoPage() {
@@ -827,12 +952,30 @@ export default function InfoPage() {
           </div>
 
           <h2 id="privacy" className="mt-12">Privacy Policy</h2>
+          
+          <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Effective Date: July 7, 2026</p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              County Cargo (“we”, “our”, “us”) is committed to protecting your privacy and ensuring that your personal information is handled securely and responsibly. This Privacy Policy explains how we collect, use, store and protect your personal information when you use our website, mobile application or any of our services.
+            </p>
+          </div>
+
           {privacy.map((item, index) => (
             <div className="faq-item" key={`privacy-${index}`}>
               <h3 className="faq-toggle">{item.title}</h3>
               <div className="faq-answer">{item.content}</div>
             </div>
           ))}
+
+          <div className="mt-6 mb-12 p-4 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700 leading-relaxed">
+            <p className="font-semibold mb-2">Updates to this Privacy Policy</p>
+            <p className="mb-4">
+              County Cargo may update this Privacy Policy from time to time to reflect changes in our services, legal obligations or business operations. The latest version will always be available on our website and mobile application.
+            </p>
+            <p className="font-medium italic border-t pt-3 mt-3">
+              By using County Cargo’s services, website or mobile application, you acknowledge that you have read and understood this Privacy Policy.
+            </p>
+          </div>
 
           <h2 id="prices" className="mt-12">Shipping Price List – All Nigerian States</h2>
             <table id="price-table">
