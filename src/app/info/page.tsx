@@ -716,6 +716,199 @@ const privacy = [
   }
 ];
 
+const userAgreement = [
+  {
+    title: '1. Acceptance of this Agreement',
+    content: (
+      <div>
+        <p>By creating a County Cargo account, using our website or mobile application, requesting our services or authorising us to handle your shipments, you confirm that:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>you have read and understood this Agreement;</li>
+          <li>you agree to comply with this Agreement;</li>
+          <li>you have accepted our Terms & Conditions and Privacy Policy.</li>
+        </ul>
+        <p className="mt-2">If you do not agree, you must not use County Cargo’s services.</p>
+      </div>
+    )
+  },
+  {
+    title: '2. Eligibility',
+    content: (
+      <div>
+        <p>You confirm that:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>you are at least 18 years of age or have the legal authority to enter into this Agreement;</li>
+          <li>all information provided during registration is accurate and complete;</li>
+          <li>you will promptly update your account information if it changes.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: '3. Your County Cargo Account',
+    content: (
+      <div>
+        <p>You are responsible for maintaining the confidentiality of your login details.</p>
+        <p className="mt-2 font-semibold">You agree to:</p>
+        <ul className="list-disc pl-5 mt-1 space-y-1">
+          <li>keep your password secure;</li>
+          <li>notify County Cargo immediately of any unauthorised use of your account;</li>
+          <li>accept responsibility for all activities carried out using your account.</li>
+        </ul>
+        <p className="mt-2 text-gray-500 italic">County Cargo is not responsible for losses resulting from your failure to protect your account credentials.</p>
+      </div>
+    )
+  },
+  {
+    title: '4. Acceptable Use',
+    content: (
+      <div>
+        <p>You agree that you will not:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>use County Cargo’s services for unlawful purposes;</li>
+          <li>provide false or misleading information;</li>
+          <li>upload malicious software or harmful code;</li>
+          <li>attempt to gain unauthorised access to County Cargo’s systems;</li>
+          <li>interfere with the operation or security of our website or mobile application;</li>
+          <li>impersonate another person or business;</li>
+          <li>use the platform to transport prohibited or illegal goods.</li>
+        </ul>
+        <p className="mt-2">County Cargo reserves the right to investigate any suspected misuse.</p>
+      </div>
+    )
+  },
+  {
+    title: '5. Customer Responsibilities',
+    content: (
+      <div>
+        <p>You agree to:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>provide accurate shipment information;</li>
+          <li>ensure goods are legally owned or lawfully entrusted to you;</li>
+          <li>comply with all customs and import/export regulations;</li>
+          <li>pay all charges when due;</li>
+          <li>package goods appropriately for international transport;</li>
+          <li>obtain insurance for valuable or fragile goods where required.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: '6. Payments',
+    content: (
+      <div>
+        <p>You agree to pay all applicable:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>shipping charges;</li>
+          <li>storage charges;</li>
+          <li>customs duties;</li>
+          <li>taxes;</li>
+          <li>administrative fees;</li>
+          <li>legal recovery costs where applicable.</li>
+        </ul>
+        <p className="mt-2">Failure to pay may result in suspension of your account, refusal to release shipments and recovery action in accordance with County Cargo’s Terms & Conditions.</p>
+      </div>
+    )
+  },
+  {
+    title: '7. Intellectual Property',
+    content: (
+      <div>
+        <p>All content on the County Cargo website and mobile application, including logos, branding, graphics, software, text and images, is owned by or licensed to County Cargo.</p>
+        <p className="mt-2">You may not copy, reproduce, distribute, modify, publish or commercially exploit any content without County Cargo’s prior written consent.</p>
+      </div>
+    )
+  },
+  {
+    title: '8. Account Suspension or Termination',
+    content: (
+      <div>
+        <p>County Cargo may suspend or terminate your account without prior notice if you:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>breach this Agreement;</li>
+          <li>fail to pay outstanding charges;</li>
+          <li>engage in fraudulent or unlawful activity;</li>
+          <li>abuse County Cargo staff;</li>
+          <li>misuse our services.</li>
+        </ul>
+        <p className="mt-2">Termination does not affect your obligation to pay any outstanding amounts.</p>
+      </div>
+    )
+  },
+  {
+    title: '9. Communications',
+    content: (
+      <div>
+        <p>By creating an account, you agree that County Cargo may contact you by:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1">
+          <li>email;</li>
+          <li>SMS;</li>
+          <li>telephone;</li>
+          <li>WhatsApp;</li>
+          <li>push notifications;</li>
+          <li>customer portal messages.</li>
+        </ul>
+        <p className="mt-2">These communications may include shipment updates, invoices, account notifications, security alerts and service announcements.</p>
+      </div>
+    )
+  },
+  {
+    title: '10. Limitation of Liability',
+    content: (
+      <div>
+        <p>County Cargo provides its website, mobile application and online services on an “as available” basis.</p>
+        <p className="mt-2">To the fullest extent permitted by law, County Cargo shall not be liable for interruptions, technical failures, data loss, system outages or any indirect or consequential loss arising from your use of the platform.</p>
+        <p className="mt-2">Nothing in this Agreement excludes liability that cannot legally be excluded under applicable law.</p>
+      </div>
+    )
+  },
+  {
+    title: '11. Privacy',
+    content: (
+      <div>
+        <p>Your use of County Cargo’s services is subject to our Privacy Policy, which explains how we collect, use, store and protect your personal information.</p>
+      </div>
+    )
+  },
+  {
+    title: '12. Changes to this Agreement',
+    content: (
+      <div>
+        <p>County Cargo may update this Agreement from time to time.</p>
+        <p className="mt-2">The latest version will always be published on our website and mobile application. Continued use of our services after any update constitutes acceptance of the revised Agreement.</p>
+      </div>
+    )
+  },
+  {
+    title: '13. Governing Law',
+    content: (
+      <div>
+        <p>This Agreement shall be governed by the laws applicable to the County Cargo entity providing the relevant services. Any disputes shall be subject to the jurisdiction of the competent courts in that jurisdiction, unless otherwise required by applicable law.</p>
+      </div>
+    )
+  },
+  {
+    title: '14. Contact Us',
+    content: (
+      <div>
+        <address className="not-italic">
+          <strong>County Cargo</strong><br />
+          Email: <a href="mailto:info@countycargo.com" className="text-blue-600 hover:underline">info@countycargo.com</a><br />
+          Website: <a href="https://www.countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a>
+        </address>
+      </div>
+    )
+  },
+  {
+    title: '15. Acceptance',
+    content: (
+      <div>
+        <p>By selecting “I Agree”, creating an account, using the County Cargo website or mobile application, or requesting any County Cargo service, you acknowledge that you have read, understood and agree to be legally bound by this User Agreement, together with the County Cargo Terms & Conditions and Privacy Policy.</p>
+      </div>
+    )
+  }
+];
+
 export default function InfoPage() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [selectedState, setSelectedState] = useState('');
@@ -975,6 +1168,34 @@ export default function InfoPage() {
             <p className="font-medium italic border-t pt-3 mt-3">
               By using County Cargo’s services, website or mobile application, you acknowledge that you have read and understood this Privacy Policy.
             </p>
+          </div>
+
+          <h2 id="agreement" className="mt-12">User Agreement</h2>
+          
+          <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+            <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-2">Effective Date: July 7, 2026</p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              Welcome to County Cargo. This User Agreement (“Agreement”) governs your access to and use of the County Cargo website, mobile application, customer portal and related services. By creating an account, accessing or using our services, you agree to be legally bound by this Agreement.
+            </p>
+          </div>
+
+          <div className="protected-document-viewer protected-watermark-bg select-none">
+            {userAgreement.map((item, index) => (
+              <div className="faq-item" key={`agreement-${index}`}>
+                <h3 className="faq-toggle">{item.title}</h3>
+                <div className="faq-answer">{item.content}</div>
+              </div>
+            ))}
+            
+            <div className="mt-6 pt-6 border-t border-gray-200 text-center">
+              <p className="text-sm text-gray-600 mb-3">Accept the User Agreement and start tracking your cargo:</p>
+              <a 
+                href="https://ship.countycargo.com/login" 
+                className="inline-block bg-primary text-white font-semibold px-5 py-2.5 rounded-md hover:bg-blue-700 transition-colors text-sm"
+              >
+                Sign Up to Start Tracking &amp; Managing Shipments
+              </a>
+            </div>
           </div>
 
           <h2 id="prices" className="mt-12">Shipping Price List – All Nigerian States</h2>
