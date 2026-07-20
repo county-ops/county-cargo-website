@@ -1,6 +1,5 @@
-'use client';
-
 import React from 'react';
+import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +13,14 @@ import {
   ExternalLink
 } from 'lucide-react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Contact County Cargo | UK & Nigeria Offices & Support',
+  description: 'Get in touch with County Cargo. Reach our logistics support teams in London, Lagos, and Abuja for help with air freight, sea freight, cargo shipping, or custom shipping quotes.',
+  alternates: {
+    canonical: 'https://countycargo.com/contact',
+  },
+};
 
 export default function ContactPage() {
   return (

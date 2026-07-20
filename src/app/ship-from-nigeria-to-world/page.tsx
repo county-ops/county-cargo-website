@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: 'International Shipping from Nigeria | Ship to 200+ Countries | County Cargo',
   description: 'Your #1 choice for international shipping from Nigeria. Ship parcels, documents, and cargo to the UK, US, Canada, Europe, and over 200 countries worldwide. Get a free quote today for reliable and affordable export services.',
   keywords: 'international shipping from nigeria, ship from nigeria, nigeria to world cargo, send parcel from nigeria, nigeria export services, cheap shipping from nigeria, fast shipping from nigeria, reliable shipping from nigeria, nigeria to usa, nigeria to uk, nigeria to canada, dhl nigeria',
+  alternates: {
+    canonical: 'https://countycargo.com/ship-from-nigeria-to-world',
+  },
 };
 
 const processSteps = [
@@ -49,6 +52,32 @@ const popularDestinations = [
 export default function ShipFromNigeriaToWorldPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Nigeria to World Shipping Services",
+            "provider": {
+              "@type": "Organization",
+              "name": "County Cargo",
+              "url": "https://countycargo.com"
+            },
+            "serviceType": "Cargo & Shipping Freight Services",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Worldwide"
+            },
+            "description": "Export cargo, parcels, and documents from Nigeria to over 200 countries worldwide, including the US, UK, Canada, Europe, and Asia.",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "NGN",
+              "description": "Global export cargo rates calculated based on destination country and weight."
+            }
+          })
+        }}
+      />
       <Header />
       <main className="pt-20 sm:pt-24 md:pt-28">
         <section className="relative w-full sm:aspect-[12/5] min-h-[380px] sm:min-h-[500px] flex items-center bg-white overflow-hidden py-10 sm:py-0">

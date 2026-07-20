@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: 'Shipping from Nigeria to UK | County Cargo',
   description: 'Ship packages from Nigeria to the UK. County Cargo offers fast, reliable, and affordable international shipping services. Get a quote today!',
   keywords: 'international shipping from nigeria to uk, ship from nigeria to uk, nigeria to uk cargo, send parcel from nigeria to uk, nigeria export services to uk, cheap shipping from nigeria to uk, fast shipping from nigeria to uk, reliable shipping from nigeria to uk',
+  alternates: {
+    canonical: 'https://countycargo.com/ship-from-nigeria-to-uk',
+  },
 };
 
 const processSteps = [
@@ -82,6 +85,32 @@ const pricingTiers = [
 export default function ShipFromNigeriaToUkPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Nigeria to UK Shipping Services",
+            "provider": {
+              "@type": "Organization",
+              "name": "County Cargo",
+              "url": "https://countycargo.com"
+            },
+            "serviceType": "Cargo & Shipping Freight Services",
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Kingdom"
+            },
+            "description": "Send packages, documents, and foodstuff from Nigeria to the United Kingdom with our economy and express cargo delivery services.",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "NGN",
+              "description": "Export cargo shipping rates calculated per kg."
+            }
+          })
+        }}
+      />
       <Header />
       <main className="pt-20 sm:pt-24 md:pt-28">
         <section className="relative w-full min-h-[400px] sm:min-h-[500px] flex items-center bg-white overflow-hidden py-10 sm:py-12">

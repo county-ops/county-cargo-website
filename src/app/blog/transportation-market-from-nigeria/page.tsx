@@ -10,6 +10,9 @@ import { Faq } from './faq';
 export const metadata: Metadata = {
   title: 'Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide',
   description: 'Learn how the transportation market from Nigeria works and how County Cargo handles export shipping to the UK, USA, and worldwide with safe, cost-effective logistics solutions.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog/transportation-market-from-nigeria',
+  },
 };
 
 export default function TransportationMarketPage() {

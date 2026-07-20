@@ -8,6 +8,9 @@ import blogPosts from '@/lib/blog-posts.json';
 export const metadata: Metadata = {
   title: 'Blog | County Cargo',
   description: 'Latest news, insights, and guides on international shipping and logistics from the County Cargo team.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog',
+  },
 };
 
 export default function BlogPage() {

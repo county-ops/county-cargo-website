@@ -24,6 +24,9 @@ export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria | London, Liverpool to Lagos, Abuja | County Cargo',
   description: 'Looking to ship from UK to Nigeria? County Cargo offers fast, reliable, and affordable shipping from the UK to Nigeria. Get your free UK address today and enjoy seamless delivery of your goods.',
   keywords: 'ship from UK to Nigeria, shipping to Nigeria, UK to Nigeria cargo, send parcel to Nigeria, UK personal shopper Nigeria, cheapest shipping to Nigeria, fast shipping Nigeria, reliable shipping UK Nigeria, freight forwarding Nigeria, UK shipping address Nigeria, shipping to Lagos, shipping to Abuja, shipping to Kano, shipping to Kaduna, shipping to Port-Harcourt, shipping to Ibadan, Osun, Borno, shipping from Liverpool, shipping from London, shipping from Birmingham, shipping from Leicester, shipping from Nottingham, shipping from Leeds',
+  alternates: {
+    canonical: 'https://countycargo.com/shipping-from-uk-to-nigeria',
+  },
 };
 
 const processSteps = [
@@ -124,6 +127,32 @@ const transitRoutes = [
 export default function ShipFromUkToNigeriaPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "UK to Nigeria Shipping Services",
+            "provider": {
+              "@type": "Organization",
+              "name": "County Cargo",
+              "url": "https://countycargo.com"
+            },
+            "serviceType": "Cargo & Shipping Freight Services",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Nigeria"
+            },
+            "description": "Fast and affordable air and sea freight services from the United Kingdom (London, Manchester, Birmingham, Liverpool, Leeds) directly to Nigeria (Lagos, Abuja, Port Harcourt, and nationwide).",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "GBP",
+              "description": "Custom air and sea freight cargo shipping rates calculated per kg."
+            }
+          })
+        }}
+      />
       <Header />
       <main className="pt-20 sm:pt-24 md:pt-28">
         <section className="relative w-full min-h-[400px] sm:min-h-[500px] flex items-center bg-white overflow-hidden py-10 sm:py-12">

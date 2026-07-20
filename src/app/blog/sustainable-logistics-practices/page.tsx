@@ -9,6 +9,9 @@ import { Faq } from './faq';
 export const metadata: Metadata = {
   title: 'Sustainable Logistics Practices: Reshaping the Modern Supply Chain | County Cargo',
   description: 'Discover how green logistics and sustainable supply chain initiatives are reducing carbon emissions, optimizing transit routes, and lowering shipping costs for modern businesses.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog/sustainable-logistics-practices',
+  },
 };
 
 export default function SustainableLogisticsPage() {

@@ -9,6 +9,9 @@ import { cn } from '@/lib/utils';
 export const metadata: Metadata = {
   title: 'Shop from US Stores | County Cargo',
   description: 'Browse a list of popular US online stores and ship your purchases to Nigeria with County Cargo.',
+  alternates: {
+    canonical: 'https://countycargo.com/us-stores',
+  },
 };
 
 const stores = [

@@ -1,12 +1,9 @@
 
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
+import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { DeliveryCalculator } from '@/components/delivery-calculator';
+import { InfoEffects } from '@/components/info-effects';
 import { electronicsPrices, nigerianShippingRates } from '@/lib/pricing-data';
 
 
@@ -909,188 +906,15 @@ const userAgreement = [
   }
 ];
 
+export const metadata: Metadata = {
+  title: 'Terms, Privacy & Shipping Rates | County Cargo',
+  description: 'View County Cargo terms and conditions, user agreement, privacy policy, and shipping price lists for all Nigerian states and fixed-item electronics.',
+  alternates: {
+    canonical: 'https://countycargo.com/info',
+  },
+};
+
 export default function InfoPage() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [selectedState, setSelectedState] = useState('');
-    const [weight, setWeight] = useState(1);
-    const [deliveryResult, setDeliveryResult] = useState<string | null>(null);
-
-    const handleCalculate = () => {
-        if (!selectedState || !weight || weight <= 0) {
-            alert("Please select a state and enter a valid weight.");
-            return;
-        }
-
-        const stateData = nigerianShippingRates.find(p => p.destination === selectedState);
-        if (!stateData) {
-            alert("Invalid state selected.");
-            return;
-        }
-        const extraPerKg = stateData.doorToDoor;
-
-        let resultText = "";
-        electronicsPrices.forEach(item => {
-            const basePrice = item.price;
-            const total = basePrice + (extraPerKg * weight);
-            resultText += `${item.item}: £${total.toFixed(2)}\n`;
-        });
-        setDeliveryResult(resultText);
-    };
-
-  useEffect(() => {
-    const toggles = document.querySelectorAll('.faq-toggle');
-    const toggleHandler = (event: Event) => {
-      const toggle = event.currentTarget as HTMLElement;
-      toggle.classList.toggle('active');
-      const answer = toggle.nextElementSibling as HTMLElement;
-      if (answer.style.maxHeight) {
-        answer.style.maxHeight = '';
-      } else {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    };
-    toggles.forEach(toggle => toggle.addEventListener('click', toggleHandler));
-
-    const backToTopButton = document.getElementById('backToTop');
-    const handleScroll = () => {
-      if (backToTopButton) {
-        backToTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    if(backToTopButton) {
-        backToTopButton.addEventListener('click', scrollToTop);
-    }
-    
-    const searchInput = document.getElementById('search-bar') as HTMLInputElement;
-
-    const handleSearch = () => {
-        const query = searchInput.value.toLowerCase().trim();
-        const terms = query.split(/\s+/).filter(Boolean);
-
-        // FAQ Items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            const questionEl = item.querySelector('h3') as HTMLElement | null;
-            const answerEl = item.querySelector('.faq-answer') as HTMLElement | null;
-            if (!questionEl || !answerEl) return;
-
-            const originalQuestion = (questionEl as HTMLElement).dataset.originalHtml || questionEl.innerHTML;
-            const originalAnswer = (answerEl as HTMLElement).dataset.originalHtml || answerEl.innerHTML;
-            (questionEl as HTMLElement).dataset.originalHtml = originalQuestion;
-            (answerEl as HTMLElement).dataset.originalHtml = originalAnswer;
-
-            questionEl.innerHTML = originalQuestion;
-            answerEl.innerHTML = originalAnswer;
-            
-            if (!query) {
-                (item as HTMLElement).style.display = '';
-                return;
-            }
-
-            const text = (questionEl.innerText + ' ' + answerEl.innerText).toLowerCase();
-            const isMatch = terms.some(term => text.includes(term));
-
-            if (isMatch) {
-                (item as HTMLElement).style.display = '';
-                terms.forEach(term => {
-                    const regex = new RegExp(`(${term})`, 'gi');
-                    questionEl.innerHTML = questionEl.innerHTML.replace(regex, '<mark>$1</mark>');
-                    answerEl.innerHTML = answerEl.innerHTML.replace(regex, '<mark>$1</mark>');
-                });
-            } else {
-                (item as HTMLElement).style.display = 'none';
-            }
-        });
-
-        // Table Rows
-        document.querySelectorAll('#price-table tbody tr, #electronics-price-table tbody tr').forEach(row => {
-            const rowText = (row as HTMLElement).innerText.toLowerCase();
-            
-            row.querySelectorAll('td').forEach(td => {
-                if (!(td as HTMLElement).dataset.originalHtml) {
-                    (td as HTMLElement).dataset.originalHtml = td.innerHTML;
-                }
-                td.innerHTML = (td as HTMLElement).dataset.originalHtml || '';
-            });
-
-            if (!query) {
-                (row as HTMLElement).style.display = '';
-                return;
-            }
-
-            const isMatch = terms.some(term => rowText.includes(term));
-            
-            if (isMatch) {
-                 (row as HTMLElement).style.display = '';
-                terms.forEach(term => {
-                    const regex = new RegExp(`(${term})`, 'gi');
-                    row.querySelectorAll('td').forEach(td => {
-                        td.innerHTML = td.innerHTML.replace(regex, '<mark>$1</mark>');
-                    });
-                });
-            } else {
-                 (row as HTMLElement).style.display = 'none';
-            }
-        });
-
-    };
-
-    searchInput?.addEventListener('input', handleSearch);
-
-
-    return () => {
-      toggles.forEach(toggle => toggle.removeEventListener('click', toggleHandler));
-      window.removeEventListener('scroll', handleScroll);
-      if(backToTopButton) {
-        backToTopButton.removeEventListener('click', scrollToTop);
-      }
-      searchInput?.removeEventListener('input', handleSearch);
-    };
-  }, []);
-
-  useEffect(() => {
-    // Disable right click (context menu) on the entire page
-    const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-    };
-    
-    // Disable copy, cut, paste on the entire page
-    const handleCopyCutPaste = (e: ClipboardEvent) => {
-      e.preventDefault();
-    };
-    
-    // Disable common keyboard shortcuts
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const key = e.key.toLowerCase();
-      const isMetaOrCtrl = e.ctrlKey || e.metaKey;
-      
-      // Block Ctrl+C, Ctrl+X, Ctrl+A, Ctrl+S, Ctrl+P
-      if (isMetaOrCtrl && (key === 'c' || key === 'x' || key === 'a' || key === 's' || key === 'p')) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('copy', handleCopyCutPaste);
-    document.addEventListener('cut', handleCopyCutPaste);
-    document.addEventListener('paste', handleCopyCutPaste);
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('copy', handleCopyCutPaste);
-      document.removeEventListener('cut', handleCopyCutPaste);
-      document.removeEventListener('paste', handleCopyCutPaste);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
   return (
     <>
       <script
@@ -1117,7 +941,7 @@ export default function InfoPage() {
       />
       <Header />
       <main className="info-page">
-        <div className="info-container" ref={containerRef}>
+        <div className="info-container">
           <h1>County Cargo – Info Page</h1>
           <input type="text" id="search-bar" placeholder="Search terms across Terms, Privacy &amp; Price List..." />
           
@@ -1241,42 +1065,13 @@ export default function InfoPage() {
                 </tbody>
             </table>
             
-            <h3 className="text-xl font-semibold text-secondary mt-8 mb-4">Calculate Final Delivery Cost to Your Destination</h3>
-            <p className="text-lg text-gray-800 mb-4">Enter your Nigerian state and package weight to see total cost including delivery from Lagos office:</p>
-            <div className="flex flex-col sm:flex-row gap-4 items-center bg-gray-50 p-4 rounded-lg">
-                <select
-                    value={selectedState}
-                    onChange={(e) => setSelectedState(e.target.value)}
-                    className="w-full sm:w-1/3 p-2 border rounded-md"
-                >
-                    <option value="">Select State</option>
-                    {nigerianShippingRates.map(p => <option key={p.destination} value={p.destination}>{p.destination}</option>)}
-                </select>
-                <div className="flex items-center gap-2">
-                    <Label htmlFor="package-weight">Package weight (kg):</Label>
-                    <Input
-                        id="package-weight"
-                        type="number"
-                        value={weight}
-                        onChange={(e) => setWeight(Number(e.target.value))}
-                        min="1"
-                        className="w-24"
-                    />
-                </div>
-                <Button onClick={handleCalculate}>Calculate Total Cost (£)</Button>
-            </div>
-            {deliveryResult && (
-                <div className="mt-6 bg-blue-50 p-4 rounded-lg">
-                    <h4 className="font-bold text-lg mb-2">Estimated Delivery Costs to {selectedState}:</h4>
-                    <pre className="text-sm whitespace-pre-wrap font-sans">{deliveryResult}</pre>
-                </div>
-            )}
+            <DeliveryCalculator />
 
-
-          <div id="backToTop">↑ Top</div>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
-}
+            <div id="backToTop">↑ Top</div>
+          </div>
+        </main>
+        <Footer />
+        <InfoEffects />
+      </>
+    );
+  }

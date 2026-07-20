@@ -9,6 +9,9 @@ import { Faq } from './faq';
 export const metadata: Metadata = {
   title: 'AI in Warehouse Management: Driving Smarter Fulfillment Hubs | County Cargo',
   description: 'Learn how Artificial Intelligence is transforming warehouse management, inventory auditing, pick-and-pack routing, and predictive replenishment cycles for logistics firms.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog/ai-in-warehouse-management',
+  },
 };
 
 export default function AiInWarehousePage() {

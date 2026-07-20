@@ -23,6 +23,9 @@ import { UsStoreBanner } from '@/components/promo-banner';
 export const metadata: Metadata = {
   title: 'Shipping from US to Nigeria (Door-to-Door) | County Cargo',
   description: 'Fast, Reliable & Affordable Shipping from the US to Nigeria. Get your free US shipping address to shop American stores. We deliver to your doorstep in Nigeria.',
+  alternates: {
+    canonical: 'https://countycargo.com/ship-from-us-to-nigeria',
+  },
 };
 
 const processSteps = [
@@ -82,6 +85,32 @@ const pricingTiers = [
 export default function ShipFromUsToNigeriaPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "US to Nigeria Shipping Services",
+            "provider": {
+              "@type": "Organization",
+              "name": "County Cargo",
+              "url": "https://countycargo.com"
+            },
+            "serviceType": "Cargo & Shipping Freight Services",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Nigeria"
+            },
+            "description": "Fast and reliable door-to-door cargo shipping and package consolidation services from the United States to Lagos, Abuja, and nationwide in Nigeria.",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "USD",
+              "description": "Custom US-to-Nigeria shipping rates calculated per lb/kg."
+            }
+          })
+        }}
+      />
       <Header />
       <main className="pt-20 sm:pt-24 md:pt-28">
         <section className="relative w-full min-h-[400px] sm:min-h-[500px] flex items-center bg-white overflow-hidden py-10 sm:py-12">

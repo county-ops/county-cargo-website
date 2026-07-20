@@ -1,4 +1,5 @@
 
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -19,6 +20,14 @@ import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import blogPosts from '@/lib/blog-posts.json';
+
+export const metadata: Metadata = {
+  title: 'County Cargo | UK & USA to Nigeria Shipping, Cargo & Air Freight',
+  description: 'Fast, reliable air and sea freight cargo shipping services from the UK and USA to Nigeria, and export services from Nigeria worldwide. Consolidated shipping and doorstep delivery.',
+  alternates: {
+    canonical: 'https://countycargo.com',
+  },
+};
 
 const services = [
   {
@@ -109,6 +118,83 @@ const stats = [
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "@id": "https://countycargo.com/#organization",
+              "name": "County Cargo",
+              "url": "https://countycargo.com",
+              "logo": "https://countycargo.com/county-logo.png",
+              "sameAs": [
+                "https://www.facebook.com/CountyCargo",
+                "https://x.com/CountyCargo",
+                "https://www.instagram.com/countycargo/",
+                "https://www.tiktok.com/@countycargong"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+2348110000421",
+                "contactType": "customer service",
+                "areaServed": ["GB", "US", "NG"],
+                "availableLanguage": ["en"]
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/#lagos-office",
+              "name": "County Cargo Lagos Office",
+              "image": "https://countycargo.com/nigeria-market-packing-enhanced.png",
+              "telephone": "+2348110000421",
+              "url": "https://countycargo.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi",
+                "addressLocality": "Lagos",
+                "postalCode": "102214",
+                "addressCountry": "NG"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 6.5484,
+                "longitude": 3.3409
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00",
+                  "closes": "17:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Saturday",
+                  "opens": "10:00",
+                  "closes": "14:00"
+                }
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/#abuja-office",
+              "name": "County Cargo Abuja Office",
+              "telephone": "+2348110000423",
+              "url": "https://countycargo.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Shop HF426, Turai Yar'adua Block, Wuye Ultra Modern Market, 697 Idris Gidado Street",
+                "addressLocality": "Abuja",
+                "addressCountry": "NG"
+              }
+            }
+          ])
+        }}
+      />
       <Header />
       <main>
         {/* Hero */}

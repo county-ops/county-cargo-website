@@ -8,6 +8,9 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'About County Cargo | Professional Shipping & Logistics',
   description: 'Discover County Cargo—your premier logistics partner. We deliver fast, secure, and compliant shipping solutions connecting Nigeria, the UK, the USA, and worldwide.',
+  alternates: {
+    canonical: 'https://countycargo.com/about',
+  },
 };
 
 const specialistServices = [
