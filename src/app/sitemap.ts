@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/uk-stores',
     '/us-stores',
     '/blog',
+    '/blog/shipping-industry-nigeria-2026',
     '/blog/nigeria-cargo-update-august-2026',
     '/blog/ai-in-warehouse-management',
     '/blog/sustainable-logistics-practices',
