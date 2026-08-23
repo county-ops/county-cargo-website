@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/faq',
     '/info',
     '/shipping-from-uk-to-nigeria',
+    '/ship-cargo-uk-to-nigeria',
     '/ship-from-us-to-nigeria',
     '/ship-from-nigeria-to-uk',
     '/ship-from-nigeria-to-us',
