@@ -199,6 +199,9 @@ export default function NigeriaCargoUpdateAugust2026Page() {
                 <Button asChild variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-6 py-2.5">
                   <Link href="/shipping-from-uk-to-nigeria">UK to Nigeria Shipping</Link>
                 </Button>
+                <Button asChild variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-6 py-2.5">
+                  <Link href="/ship-from-us-to-nigeria">US to Nigeria Shipping</Link>
+                </Button>
               </div>
             </div>
 

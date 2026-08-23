@@ -48,7 +48,7 @@ const processSteps = [
 
 const pricingTiers = [
   {
-    title: 'Standard Shipping to Lagos',
+    title: 'Standard Air Freight to Lagos',
     price: '$5.00',
     per: '/lbs',
     features: [
@@ -59,7 +59,7 @@ const pricingTiers = [
     ],
   },
   {
-    title: 'Standard Shipping (Other States)',
+    title: 'Standard Air Freight (Other States)',
     price: '$5.50',
     per: '/lbs',
     features: [

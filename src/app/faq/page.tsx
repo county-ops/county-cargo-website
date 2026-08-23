@@ -17,7 +17,7 @@ export default function FaqPage() {
       <Header />
       <main className="pt-20 faq-page">
         <div className="faq-container">
-          <h1>County Cargo – Frequently Asked Questions</h1>
+          <h1>Frequently Asked Questions (FAQ) – County Cargo Shipping Support</h1>
           <input type="text" id="faq-search" placeholder="Search for a question..." />
 
           <div className="faq-item">

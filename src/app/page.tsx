@@ -191,6 +191,40 @@ export default function Home() {
                 "addressLocality": "Abuja",
                 "addressCountry": "NG"
               }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/#liverpool-office",
+              "name": "County Cargo Liverpool Warehouse",
+              "image": "https://countycargo.com/london.jpg",
+              "url": "https://countycargo.com",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Unit G6, 67-83 Queens Dock Commercial Centre, Norfolk Street",
+                "addressLocality": "Liverpool",
+                "postalCode": "L1 0BG",
+                "addressCountry": "GB"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 53.3980,
+                "longitude": -2.9818
+              },
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00",
+                  "closes": "17:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Saturday",
+                  "opens": "10:00",
+                  "closes": "14:00"
+                }
+              ]
             }
           ])
         }}

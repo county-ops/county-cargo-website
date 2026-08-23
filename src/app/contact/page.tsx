@@ -25,6 +25,63 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/contact/#lagos-office",
+              "name": "County Cargo Lagos Office",
+              "image": "https://countycargo.com/nigeria-market-packing-enhanced.png",
+              "telephone": "+2348110000421",
+              "url": "https://countycargo.com/contact",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi",
+                "addressLocality": "Lagos",
+                "postalCode": "102214",
+                "addressCountry": "NG"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/contact/#abuja-office",
+              "name": "County Cargo Abuja Office",
+              "telephone": "+2348110000423",
+              "url": "https://countycargo.com/contact",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Shop HF426, Turai Yar'adua Block, Wuye Ultra Modern Market, 697 Idris Gidado Street",
+                "addressLocality": "Abuja",
+                "addressCountry": "NG"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/contact/#liverpool-office",
+              "name": "County Cargo Liverpool Warehouse",
+              "image": "https://countycargo.com/london.jpg",
+              "url": "https://countycargo.com/contact",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Unit G6, 67-83 Queens Dock Commercial Centre, Norfolk Street",
+                "addressLocality": "Liverpool",
+                "postalCode": "L1 0BG",
+                "addressCountry": "GB"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 53.3980,
+                "longitude": -2.9818
+              }
+            }
+          ])
+        }}
+      />
       <Header />
       <main className="pt-14 sm:pt-16 min-h-screen bg-gradient-to-tr from-blue-50/70 via-white to-sky-50/50">
         {/* Elegant Hero Banner */}
@@ -130,6 +187,26 @@ export default function ContactPage() {
                       <Phone className="w-4 h-4" />
                     </div>
                     <a href="tel:+2348110000423" className="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium mt-1.5 block">+234 811 000 0423</a>
+                  </div>
+                </div>
+
+                {/* Liverpool Warehouse & Support */}
+                <div className="space-y-3 pb-5 border-b border-slate-100">
+                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider">Liverpool Warehouse &amp; Support</h3>
+                  
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Unit%20G6%2C%2067-83%20Queens%20Dock%20Commercial%20Centre%2C%20Norfolk%20Street%2C%20Liverpool%2C%20L1%200BG" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1 text-sm leading-relaxed group/link font-medium"
+                    >
+                      Unit G6, 67-83 Queens Dock Commercial Centre, Norfolk Street, Liverpool, L1 0BG, UK
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover/link:opacity-100 transition-opacity shrink-0" />
+                    </a>
                   </div>
                 </div>
 

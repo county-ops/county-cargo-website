@@ -705,7 +705,7 @@ const privacy = [
           <strong>County Cargo</strong><br />
           Email: <a href="mailto:info@countycargo.com" className="text-blue-600 hover:underline">info@countycargo.com</a><br />
           Website: <a href="https://countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a><br />
-          Office Address: Liverpool, United Kingdom
+          Office Address: Unit G6, 67-83 Queens Dock Commercial Centre, Norfolk Street, Liverpool, L1 0BG, UK
         </address>
         <p className="mt-2">We will endeavour to respond to all privacy enquiries within a reasonable timeframe.</p>
       </div>
@@ -942,7 +942,7 @@ export default function InfoPage() {
       <Header />
       <main className="info-page">
         <div className="info-container">
-          <h1>County Cargo – Info Page</h1>
+          <h1>County Cargo Information, Pricing &amp; Terms</h1>
           <input type="text" id="search-bar" placeholder="Search terms across Terms, Privacy &amp; Price List..." />
           
           <h2 id="terms">Terms & Conditions</h2>

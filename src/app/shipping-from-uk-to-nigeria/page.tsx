@@ -49,7 +49,7 @@ const processSteps = [
 
 const pricingTiers = [
   {
-    title: 'Standard Shipping',
+    title: 'Standard Air Freight Shipping',
     price: '£6.00',
     per: '/kg',
     features: [
@@ -60,7 +60,7 @@ const pricingTiers = [
     ],
   },
   {
-    title: '48hrs Express Shipping',
+    title: '48hrs Express Air Cargo',
     price: '£22.00',
     per: '/kg',
     features: [
@@ -71,7 +71,7 @@ const pricingTiers = [
     ],
   },
   {
-    title: '24hrs Express Shipping',
+    title: '24hrs Express Air Cargo',
     price: '£24.00',
     per: '/kg',
     features: [
@@ -130,27 +130,49 @@ export default function ShipFromUkToNigeriaPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": "UK to Nigeria Shipping Services",
-            "provider": {
-              "@type": "Organization",
-              "name": "County Cargo",
-              "url": "https://countycargo.com"
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "name": "UK to Nigeria Shipping Services",
+              "provider": {
+                "@type": "Organization",
+                "name": "County Cargo",
+                "url": "https://countycargo.com"
+              },
+              "serviceType": "Cargo & Shipping Freight Services",
+              "areaServed": {
+                "@type": "Country",
+                "name": "Nigeria"
+              },
+              "description": "Fast and affordable air and sea freight services from the United Kingdom (London, Manchester, Birmingham, Liverpool, Leeds) directly to Nigeria (Lagos, Abuja, Port Harcourt, and nationwide).",
+              "offers": {
+                "@type": "Offer",
+                "priceCurrency": "GBP",
+                "description": "Custom air and sea freight cargo shipping rates calculated per kg."
+              }
             },
-            "serviceType": "Cargo & Shipping Freight Services",
-            "areaServed": {
-              "@type": "Country",
-              "name": "Nigeria"
-            },
-            "description": "Fast and affordable air and sea freight services from the United Kingdom (London, Manchester, Birmingham, Liverpool, Leeds) directly to Nigeria (Lagos, Abuja, Port Harcourt, and nationwide).",
-            "offers": {
-              "@type": "Offer",
-              "priceCurrency": "GBP",
-              "description": "Custom air and sea freight cargo shipping rates calculated per kg."
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "@id": "https://countycargo.com/shipping-from-uk-to-nigeria/#liverpool-office",
+              "name": "County Cargo Liverpool Warehouse",
+              "image": "https://countycargo.com/london.jpg",
+              "url": "https://countycargo.com/shipping-from-uk-to-nigeria",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Unit G6, 67-83 Queens Dock Commercial Centre, Norfolk Street",
+                "addressLocality": "Liverpool",
+                "postalCode": "L1 0BG",
+                "addressCountry": "GB"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 53.3980,
+                "longitude": -2.9818
+              }
             }
-          })
+          ])
         }}
       />
       <Header />
@@ -187,6 +209,32 @@ export default function ShipFromUkToNigeriaPage() {
         </section>
 
         <UkStoreBanner />
+
+        {/* Local Coverage Section */}
+        <section className="py-12 bg-slate-50 border-y border-slate-100">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-secondary mb-4">Servicing Liverpool, Manchester &amp; the North West</h2>
+                        <p className="text-slate-600 leading-relaxed mb-4">
+                            County Cargo operates its primary UK consolidation and logistics warehouse in <strong>Liverpool</strong>. This allows us to serve individuals and business shippers across <strong>Manchester, Preston, Bolton, Warrington</strong>, and all surrounding areas of North West England.
+                        </p>
+                        <p className="text-slate-600 leading-relaxed">
+                            You can ship online orders directly to our Liverpool warehouse or arrange local drop-offs. We handle secure weekly air cargo and sea freight consolidations directly to Lagos, Abuja, and nationwide Nigeria.
+                        </p>
+                    </div>
+                    <div className="bg-white p-6 rounded-2xl border shadow-sm space-y-4">
+                        <h3 className="text-lg font-bold text-secondary">Our Liverpool Warehouse Address</h3>
+                        <div className="text-sm text-slate-600 space-y-2">
+                            <p className="font-semibold text-primary">County Cargo UK Depot</p>
+                            <p>Unit G6, 67-83 Queens Dock Commercial Centre</p>
+                            <p>Norfolk Street, Liverpool, L1 0BG, United Kingdom</p>
+                        </div>
+                        <p className="text-xs text-slate-400">Please note: Register on our portal to obtain your unique customer ID before shipping goods to our warehouse.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="process" className="py-14 sm:py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
