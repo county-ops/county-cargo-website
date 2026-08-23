@@ -9,6 +9,9 @@ import { Faq } from './faq';
 export const metadata: Metadata = {
   title: 'Nigeria Cargo Update: What UK and US Shippers Need to Know in August 2026 | County Cargo',
   description: 'Aviation disruption in Lagos and Abuja, a new United Cargo fee, rising sea freight prices and Nigeria Customs changes — County Cargo breaks down what UK and US shippers need to know in August 2026.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog/nigeria-cargo-update-august-2026',
+  },
 };
 
 export default function NigeriaCargoUpdateAugust2026Page() {
