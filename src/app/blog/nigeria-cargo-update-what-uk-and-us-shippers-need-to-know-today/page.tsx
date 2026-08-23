@@ -7,11 +7,14 @@ import { ArrowRight, Plane, Ship, FileText, AlertTriangle, CheckCircle, DollarSi
 import { Faq } from './faq';
 
 export const metadata: Metadata = {
-  title: 'Nigeria Cargo Update: What UK and US Shippers Need to Know in August 2026 | County Cargo',
-  description: 'Aviation disruption in Lagos and Abuja, a new United Cargo fee, rising sea freight prices and Nigeria Customs changes — County Cargo breaks down what UK and US shippers need to know in August 2026.',
+  title: 'Nigeria Cargo Update: What UK and US Shippers Need to Know today | County Cargo',
+  description: 'Aviation disruption in Lagos and Abuja, a new United Cargo fee, rising sea freight prices and Nigeria Customs changes — County Cargo breaks down what UK and US shippers need to know today.',
+  alternates: {
+    canonical: 'https://countycargo.com/blog/nigeria-cargo-update-what-uk-and-us-shippers-need-to-know-today',
+  },
 };
 
-export default function NigeriaCargoUpdateAugust2026Page() {
+export default function NigeriaCargoUpdateTodayPage() {
   return (
     <>
       <Header />
@@ -26,13 +29,13 @@ export default function NigeriaCargoUpdateAugust2026Page() {
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-4">
-              <AlertTriangle className="w-3.5 h-3.5" /> Shipping Update — August 2026
+              <AlertTriangle className="w-3.5 h-3.5" /> Shipping Update — Today
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Nigeria Cargo Update: What UK and US Shippers Need to Know in August 2026</h1>
+            <h1 className="text-4xl md:text-5xl font-bold hero-text-glow">Nigeria Cargo Update: What UK and US Shippers Need to Know today</h1>
             <p className="text-lg md:text-xl mt-4 max-w-3xl mx-auto hero-text-glow">
-              Aviation disruption, a new US carrier fee, rising sea freight costs and Nigeria Customs changes — here is everything that may affect your shipment this month.
+              Aviation disruption, a new US carrier fee, rising sea freight costs and Nigeria Customs changes — here is everything that may affect your shipment today.
             </p>
-            <p className="text-sm mt-5 text-gray-300">By County Cargo Staff &nbsp;·&nbsp; 17 August 2026</p>
+            <p className="text-sm mt-5 text-gray-300">By County Cargo Staff &nbsp;·&nbsp; 18 August 2026</p>
           </div>
         </section>
 
@@ -43,48 +46,65 @@ export default function NigeriaCargoUpdateAugust2026Page() {
               If you are sending cargo from the United Kingdom or United States to Nigeria, recent developments across the aviation and maritime industries may affect shipping costs, transit times and cargo clearance. At County Cargo, we monitor these changes so that customers can make informed decisions and prepare properly before shipping.
             </p>
             <p>
-              Here is the latest update covering air cargo, sea freight, airport operations, Customs clearance and freight costs as of August 2026.
+              Here is the latest update covering air cargo, sea freight, airport operations, Customs clearance and freight costs.
             </p>
 
             {/* Air Cargo */}
-            <h2 className="flex items-center gap-3"><Plane className="w-7 h-7 text-primary shrink-0" /> Air-Cargo Operations in Lagos and Abuja</h2>
+            <h2 className="flex items-center gap-3"><Plane className="w-7 h-7 text-primary shrink-0" /> Air-cargo operations in Lagos and Abuja</h2>
             <p>
               Aviation-union action temporarily disrupted flight operations at airports in Lagos and Abuja on 11 August 2026. Access to certain terminals was restricted, resulting in flight cancellations, delays and a temporary backlog.
             </p>
             <p>
-              Flight operations subsequently resumed, although the dispute responsible for the disruption was not immediately resolved. There was no confirmed prolonged closure of international cargo terminals or NAHCO warehouses.
+              Flight operations subsequently resumed, although the dispute responsible for the disruption was not immediately resolved.
+            </p>
+            <p>
+              There was no confirmed prolonged closure of international cargo terminals or NAHCO warehouses. However, airport disruption can sometimes affect cargo handling, collection, clearance and onward delivery from Lagos to Abuja or other Nigerian destinations.
             </p>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 my-8 not-prose">
               <p className="flex items-start gap-3 text-amber-900 text-base font-medium">
                 <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-                Airport disruption can sometimes affect cargo handling, collection, clearance and onward delivery from Lagos to Abuja or other Nigerian destinations. Customers with time-sensitive shipments should allow a small amount of additional time and avoid arranging important events around an estimated delivery date until the cargo has cleared.
+                Customers with time-sensitive shipments should therefore allow a small amount of additional time and avoid arranging important events around an estimated delivery date until the cargo has cleared.
               </p>
             </div>
 
             {/* US Air Cargo Costs */}
-            <h2 className="flex items-center gap-3"><DollarSign className="w-7 h-7 text-primary shrink-0" /> Possible Increase in US Air-Cargo Costs</h2>
+            <h2 className="flex items-center gap-3"><DollarSign className="w-7 h-7 text-primary shrink-0" /> Possible increase in US air-cargo costs</h2>
             <p>
-              United Cargo introduced a revised Market Disruption Fee for air waybills issued from 15 August 2026. The fee is based on the shipment&apos;s chargeable weight and may affect cargo transported directly or indirectly through United Cargo&apos;s network. Other carriers and forwarding partners may also review their charges in response to fuel prices, supplier costs and wider market conditions.
+              United Cargo introduced a revised Market Disruption Fee for air waybills issued from 15 August 2026.
             </p>
             <p>
-              This does not automatically mean that every County Cargo shipment from the United States will increase in price. The effect depends on the carrier, routing and service used for a particular shipment. Customers shipping from the USA to Nigeria should obtain a current quotation before sending large or unusually heavy consignments.
+              The fee is based on the shipment’s chargeable weight and may affect cargo transported directly or indirectly through United Cargo’s network. Other carriers and forwarding partners may also review their charges in response to fuel prices, supplier costs and wider market conditions.
             </p>
+            <p>
+              This does not automatically mean that every County Cargo shipment from the United States will increase in price. The effect depends on the carrier, routing and service used for a particular shipment.
+            </p>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 my-8 not-prose">
+              <p className="flex items-start gap-3 text-blue-950 text-base font-medium">
+                <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                Customers shipping from the USA to Nigeria should obtain a current quotation before sending large or unusually heavy consignments.
+              </p>
+            </div>
 
             {/* Sea Freight */}
-            <h2 className="flex items-center gap-3"><Ship className="w-7 h-7 text-primary shrink-0" /> Sea-Freight Prices and Port Congestion</h2>
+            <h2 className="flex items-center gap-3"><Ship className="w-7 h-7 text-primary shrink-0" /> Sea-freight prices and port congestion</h2>
             <p>
-              Global container freight prices increased slightly during the week ending 13 August 2026. Drewry&apos;s World Container Index rose by 1% to approximately $4,339 for a 40-foot container. Shipping companies have also reported continuing congestion, vessel-schedule changes, restricted capacity and cancelled sailings across parts of the international shipping network.
+              Global container freight prices increased slightly during the week ending 13 August 2026. Drewry’s World Container Index rose by 1% to approximately $4,339 for a 40-foot container.
+            </p>
+            <p>
+              Shipping companies have also reported continuing congestion, vessel-schedule changes, restricted capacity and cancelled sailings across parts of the international shipping network.
             </p>
             <p>
               Maersk identified infrastructure bottlenecks in several regions, including West Africa, as one of the factors contributing to higher costs and reduced schedule reliability.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6 my-10 not-prose">
+            <p>For customers using sea cargo from the UK to Nigeria, this means:</p>
+            <div className="grid md:grid-cols-2 gap-6 my-8 not-prose">
               {[
                 { icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />, text: 'Sailing and arrival dates should be treated as estimates.' },
                 { icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />, text: 'Cargo may occasionally be moved to a later sailing if space is unavailable.' },
                 { icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />, text: 'Port congestion can affect unloading and clearance times.' },
                 { icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />, text: 'Freight quotations may change when carrier surcharges or fuel costs are adjusted.' },
+                { icon: <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />, text: 'Customers should ship early when items are needed for a particular occasion.' }
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-gray-50 border border-gray-200 rounded-xl p-5">
                   {item.icon}
@@ -94,13 +114,16 @@ export default function NigeriaCargoUpdateAugust2026Page() {
             </div>
 
             <p>
-              Sea cargo remains a practical and economical option for boxes, household goods, personal effects, equipment and non-urgent consignments. It is most suitable when the customer can allow sufficient time for the full journey — and when you ship early.
+              Sea cargo remains a practical and economical option for boxes, household goods, personal effects, equipment and non-urgent consignments. However, it is most suitable when the customer can allow sufficient time for the full journey.
             </p>
 
             {/* Nigeria Customs */}
-            <h2 className="flex items-center gap-3"><FileText className="w-7 h-7 text-primary shrink-0" /> Nigeria Customs and Cargo Clearance</h2>
+            <h2 className="flex items-center gap-3"><FileText className="w-7 h-7 text-primary shrink-0" /> Nigeria Customs and cargo clearance</h2>
             <p>
-              No new nationwide Nigeria Customs shutdown or major cargo-clearance suspension was confirmed during the review period. Nigeria Customs continues to implement the 2026 Fiscal Policy Measures and Tariff Amendments, which include revisions to:
+              No new nationwide Nigeria Customs shutdown or major cargo-clearance suspension was confirmed during the review period.
+            </p>
+            <p>
+              Nigeria Customs continues to implement the 2026 Fiscal Policy Measures and Tariff Amendments. These measures include revisions to:
             </p>
             <ul>
               <li>Import duties and adjustment taxes</li>
@@ -115,21 +138,24 @@ export default function NigeriaCargoUpdateAugust2026Page() {
             </p>
             <div className="bg-red-50 border border-red-200 rounded-xl p-6 my-8 not-prose">
               <p className="text-red-900 text-base font-medium">
-                An incorrect description, undeclared restricted item or incomplete document can result in inspection, additional charges, seizure or delayed clearance. Contact County Cargo before packing if you have any doubt about an item.
+                An incorrect description, undeclared restricted item or incomplete document can result in inspection, additional charges, seizure or delayed clearance.
               </p>
             </div>
 
             {/* Exchange Rates */}
-            <h2>Exchange Rates and Nigerian Clearance Costs</h2>
+            <h2>Exchange rates and Nigerian clearance costs</h2>
             <p>
-              The Central Bank of Nigeria recorded an official exchange rate of approximately <strong>₦1,357.61 to the US dollar</strong> on 14 August 2026. The rate remained relatively stable during the week, but Nigerian Customs duties and other locally assessed charges can still change according to the applicable exchange rate on the date of assessment.
+              The Central Bank of Nigeria recorded an official exchange rate of approximately <strong>₦1,357.61 to the US dollar</strong> on 14 August 2026.
+            </p>
+            <p>
+              The rate remained relatively stable during the week, but Nigerian Customs duties and other locally assessed charges can still change according to the applicable exchange rate on the date of assessment.
             </p>
             <p>
               Customers importing commercial or high-value goods should avoid relying on an old Customs estimate. The final amount may depend on the declared value, applicable HS code, exchange rate, duty percentage and any regulatory charges.
             </p>
 
             {/* How to reduce delays */}
-            <h2>How Customers Can Reduce the Risk of Delays</h2>
+            <h2>How customers can reduce the risk of delays</h2>
             <p>Customers shipping from the UK or USA to Nigeria can help prevent avoidable delays by following these steps:</p>
 
             <div className="space-y-4 my-8 not-prose">
@@ -202,11 +228,11 @@ export default function NigeriaCargoUpdateAugust2026Page() {
             {/* Sources */}
             <h2>Sources</h2>
             <ul className="text-sm text-gray-600">
-              <li>United Cargo Market Disruption Fee announcement</li>
-              <li>Drewry World Container Index — week ending 13 August 2026</li>
-              <li>Maersk freight and congestion update, reported by Reuters</li>
-              <li>Central Bank of Nigeria official exchange rate — 14 August 2026</li>
-              <li>Nigeria Customs Service — 2026 Fiscal Policy Measures and Tariff Amendments</li>
+              <li>United Cargo Market Disruption Fee</li>
+              <li>Drewry World Container Index</li>
+              <li>Maersk freight and congestion update reported by Reuters</li>
+              <li>Central Bank of Nigeria exchange rates</li>
+              <li>Nigeria Customs fiscal-policy announcement</li>
             </ul>
 
           </div>

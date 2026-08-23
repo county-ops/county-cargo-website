@@ -704,7 +704,7 @@ const privacy = [
         <address className="not-italic">
           <strong>County Cargo</strong><br />
           Email: <a href="mailto:info@countycargo.com" className="text-blue-600 hover:underline">info@countycargo.com</a><br />
-          Website: <a href="https://www.countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a><br />
+          Website: <a href="https://countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a><br />
           Office Address: Liverpool, United Kingdom
         </address>
         <p className="mt-2">We will endeavour to respond to all privacy enquiries within a reasonable timeframe.</p>
@@ -891,7 +891,7 @@ const userAgreement = [
         <address className="not-italic">
           <strong>County Cargo</strong><br />
           Email: <a href="mailto:info@countycargo.com" className="text-blue-600 hover:underline">info@countycargo.com</a><br />
-          Website: <a href="https://www.countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a>
+          Website: <a href="https://countycargo.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">www.countycargo.com</a>
         </address>
       </div>
     )
