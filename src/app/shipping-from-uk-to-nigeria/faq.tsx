@@ -19,7 +19,7 @@ const faqItems = [
     },
     {
         question: 'How long does it take to ship from UK to Nigeria?',
-        answer: 'Standard shipping typically takes 5-10 working days. For fast shipping Nigeria, our 48hrs Express option delivers in 2 working days, and our 24hrs Express option delivers in 1 working day. Delivery times are from when the parcel leaves our UK warehouse. We are committed to reliable shipping UK Nigeria for all your packages.'
+        answer: 'Standard air freight shipping typically takes 5–10 working days. For urgent consignments, County Cargo Express delivers from the UK to Lagos in an estimated 2–3 working days, starting from international flight departure. Delivery times are subject to airline schedules and customs clearance. Sea cargo takes approximately 30–45 working days.'
     },
     {
         question: 'Is my parcel insured when shipping from UK to Nigeria?',

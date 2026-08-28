@@ -65,7 +65,7 @@ const pricingTiers = [
     per: '/kg',
     features: [
       '1kg minimum weight',
-      'Fast delivery in 48 hours',
+      'Estimated 2–3 working days (Lagos)',
       'Full tracking included',
       '£20 handling charge',
     ],
@@ -76,8 +76,8 @@ const pricingTiers = [
     per: '/kg',
     features: [
       '1kg minimum weight',
-      'Super-fast delivery in 24 hours',
-      'Highest priority handling',
+      'Highest priority next-flight dispatch',
+      'Full tracking included',
       '£20 handling charge',
     ],
   },
@@ -209,6 +209,24 @@ export default function ShipFromUkToNigeriaPage() {
         </section>
 
         <UkStoreBanner />
+
+        {/* Express Shipping Spotlight Banner */}
+        <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 text-white py-3.5 px-4 text-center text-sm sm:text-base border-b border-blue-900/50">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <span className="inline-flex items-center gap-1.5 font-bold text-amber-400">
+              ⚡ Need Urgent Delivery?
+            </span>
+            <span>
+              County Cargo Express delivers UK to Lagos in <strong>2–3 working days</strong>.
+            </span>
+            <Link
+              href="/express-shipping-uk-to-nigeria"
+              className="underline underline-offset-4 font-bold text-white hover:text-amber-300 transition-colors"
+            >
+              View Express Service &amp; Rates &rarr;
+            </Link>
+          </div>
+        </div>
 
         {/* Local Coverage Section */}
         <section className="py-12 bg-slate-50 border-y border-slate-100">

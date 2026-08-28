@@ -1,14 +1,4 @@
 {
-  "hosting": {
-    "public": "out",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "cleanUrls": true,
-    "trailingSlash": false
-  },
   "apphosting": {
     "backendId": "county-cargo-website",
     "rootDir": ".",

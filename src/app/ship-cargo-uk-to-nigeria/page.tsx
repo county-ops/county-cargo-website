@@ -162,10 +162,17 @@ export default function ShipCargoUkToNigeriaPage() {
               <Plane className="w-5 h-5 text-primary shrink-0" /> Express Air Cargo
             </h3>
             <p>
-              Express cargo is designed for urgent and time-sensitive shipments. It is often suitable for documents, important personal items, samples and smaller packages needed within a few days.
+              <Link href="/express-shipping-uk-to-nigeria" className="font-semibold text-primary underline underline-offset-2 hover:opacity-80">
+                County Cargo Express
+              </Link>{' '}
+              is designed for urgent and time-sensitive shipments. It is often suitable for documents, important personal items, samples and smaller packages needed within a few days.
             </p>
             <p>
-              County Cargo’s estimated express delivery time from the UK to Lagos is 2–3 working days, subject to acceptance, flight availability and customs clearance.
+              County Cargo’s estimated express delivery time from the UK to Lagos is 2–3 working days, subject to acceptance, flight availability and customs clearance. Explore our full{' '}
+              <Link href="/express-shipping-uk-to-nigeria" className="text-primary font-medium underline underline-offset-2 hover:opacity-80">
+                UK to Nigeria Express shipping guide
+              </Link>{' '}
+              for regional collection points and pricing.
             </p>
 
             <h3 className="text-xl font-bold text-secondary mt-6 mb-3 flex items-center gap-2">
