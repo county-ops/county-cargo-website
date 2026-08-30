@@ -107,8 +107,7 @@ export function UkNigeriaQuoteForm() {
           return;
         }
 
-        const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
-        const shippingCost = finalChargeableWeight * statePriceInfo.doorToDoor;
+        const shippingCost = chargeableWeight * statePriceInfo.doorToDoor;
         const handlingCharge = 15;
         estimatedCost = shippingCost + handlingCharge;
 
@@ -119,8 +118,6 @@ Calculation based on Standard Shipping:
 - Actual Weight: ${weight.toFixed(2)} kg
 - Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
 - Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
-- Minimum Weight for destination: ${statePriceInfo.minWeight} kg
-- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
 - Shipping Cost: £${shippingCost.toFixed(2)}
 - Handling Charge: £${handlingCharge.toFixed(2)}
         `.trim();
