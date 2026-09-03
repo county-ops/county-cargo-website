@@ -1,102 +1,823 @@
-
 [
   {
-    "title": "Nigeria Cargo Update: What UK and US Shippers Need to Know today",
+    "title": "Shipping Barrels from UK to Nigeria | County Cargo",
+    "image": "/uk-nigeria-barrels.jpg",
+    "imageHint": "Standard blue 55-gallon shipping barrels and cargo boxes in UK warehouse ready for shipping to Nigeria",
+    "author": "County Cargo UK Operations Team",
+    "publicationDate": "2026-09-03",
+    "category": "UK Shipping Guides",
+    "tags": [
+      "Shipping barrels from UK to Nigeria",
+      "UK to Nigeria cargo",
+      "London to Lagos",
+      "Send a barrel to Nigeria",
+      "Doorstep collection UK",
+      "Air & Sea Cargo"
+    ],
+    "description": "Ship barrels, boxes and personal belongings from the UK to Nigeria with County Cargo. Reliable air and sea cargo services to Lagos, Abuja and destinations across Nigeria.",
+    "url": "/shipping-barrels-from-uk-to-nigeria"
+  },
+  {
+    "title": "Shipping Barrels from the USA to Nigeria | The US Barrels Guide",
+    "image": "/us-barrels-nigeria.jpg",
+    "imageHint": "Shipping barrels, boxes and personal belongings in US warehouse ready for Nigeria export",
+    "author": "County Cargo US Operations Team",
+    "publicationDate": "2026-09-02",
+    "category": "US Shipping Guides",
+    "tags": [
+      "The US Barrels Guide",
+      "Shipping barrels from USA to Nigeria",
+      "Send a barrel from US to Nigeria",
+      "US to Nigeria cargo shipping",
+      "Air & Sea cargo barrels",
+      "Nationwide US shipping to Nigeria"
+    ],
+    "description": "The complete US barrels guide. Ship 55-gallon drums, boxes and personal belongings from anywhere in the USA to Nigeria with County Cargo. Affordable air and sea cargo to Lagos, Abuja and all 36 states.",
+    "url": "/shipping-barrels-from-the-usa-to-nigeria"
+  },
+  {
+    "title": "UK and USA to Nigeria Cargo Update: How to Avoid Shipping Delays This Week",
+    "image": "/cargo-update-delays-september.jpg",
+    "imageHint": "Boeing 747 cargo freighter loading ULD containers at international airport tarmac at sunrise",
+    "author": "County Cargo Operations Team",
+    "publicationDate": "2026-09-02",
+    "category": "Shipping Updates",
+    "tags": [
+      "Shipping cargo to Nigeria",
+      "UK to Nigeria cargo",
+      "USA to Nigeria shipping",
+      "air cargo to Lagos",
+      "cargo delivery to Abuja",
+      "Nigeria customs clearance"
+    ],
+    "description": "Shipping cargo from the UK or USA to Nigeria? Follow these practical steps to avoid customs delays, missed shipment cut-offs and unexpected charges.",
+    "url": "/blog/uk-usa-nigeria-cargo-update-september-2026"
+  },
+  {
+    "title": "Free Delivery to Abuja | UK-to-Abuja & US to Abuja",
+    "image": "/abuja-free-delivery.jpg",
+    "imageHint": "County Cargo delivery vehicle and courier delivering parcels with Aso Rock in Abuja Nigeria",
+    "author": "County Cargo Abuja Dispatch Team",
+    "publicationDate": "2026-08-30",
+    "category": "Offers & Services",
+    "tags": [
+      "Free Delivery Abuja",
+      "UK to Abuja",
+      "Abuja Cargo",
+      "Air Freight",
+      "10kg Offer"
+    ],
+    "description": "Ship cargo from the UK to Abuja with County Cargo and receive free Abuja delivery on eligible shipments weighing at least 10 kg. Request a quote today.",
+    "url": "/blog/free-delivery-to-abuja"
+  },
+  {
+    "title": "Shipping from London to Lagos: Cost, Delivery Time and Complete Guide",
+    "image": "/london-to-lagos-freight.jpg",
+    "imageHint": "London Tower Bridge and Lagos Lekki-Ikoyi Link Bridge connected by air cargo flight route",
+    "author": "County Cargo London Dispatch Manager",
+    "publicationDate": "2026-08-30",
+    "category": "London to Nigeria",
+    "tags": [
+      "London to Lagos",
+      "Air Cargo",
+      "Peckham",
+      "Woolwich",
+      "Ladipo Hub",
+      "Shipping Cost"
+    ],
+    "description": "Complete London to Lagos air cargo guide. Compare £6.00/kg standard air (5-7 days) and express courier (3-5 days). Pickup across Peckham, Woolwich, Wembley, and Croydon.",
+    "url": "/blog/shipping-from-london-to-lagos"
+  },
+  {
+    "title": "Shipping from London to Abuja: Prices, Delivery and Customs Guide",
+    "image": "/london-to-abuja-cargo.jpg",
+    "imageHint": "Air cargo pallets being offloaded at airport cargo terminal for Abuja delivery",
+    "author": "County Cargo UK-Abuja Logistics Lead",
+    "publicationDate": "2026-08-30",
+    "category": "London to Nigeria",
+    "tags": [
+      "London to Abuja",
+      "Air Freight",
+      "FCT Delivery",
+      "Garki Depot",
+      "Customs Guide"
+    ],
+    "description": "Comprehensive guide for shipping cargo from London to Abuja. Learn about air freight rates, flight arrival at Nnamdi Azikiwe Airport, Garki/Wuse depot collection, and FCT delivery.",
+    "url": "/blog/shipping-from-london-to-abuja"
+  },
+  {
+    "title": "Shipping from London to Kano: Air Cargo, Cost and Delivery Guide",
+    "image": "/sq-nigeria-uk.png",
+    "imageHint": "Bonded cargo transit truck moving freight from Lagos customs to Kano Sabon Gari commercial hub",
+    "author": "County Cargo Northern Nigeria Operations Specialist",
+    "publicationDate": "2026-08-30",
+    "category": "London to Nigeria",
+    "tags": [
+      "London to Kano",
+      "Air Cargo Kano",
+      "Sabon Gari Depot",
+      "Northern Logistics",
+      "Rates per kg"
+    ],
+    "description": "Master guide for sending air cargo from London to Kano. Covers collection across London, airport arrival, secure bonded onward transit, and pickup at Sabon Gari commercial depot.",
+    "url": "/blog/shipping-from-london-to-kano"
+  },
+  {
+    "title": "How Much Does Shipping from Nigeria to Canada Cost?",
+    "image": "/nigeria-to-canada-cost.jpg",
+    "imageHint": "Digital shipping cost calculator and Canadian export cargo boxes with Toronto skyline",
+    "author": "County Cargo Logistics Team",
+    "publicationDate": "2026-08-30",
+    "category": "Export Rates",
+    "tags": [
+      "Nigeria to Canada",
+      "Shipping Cost",
+      "Air Freight",
+      "Toronto",
+      "Calgary"
+    ],
+    "description": "Complete breakdown of air cargo and parcel rates from Nigeria to Toronto, Calgary, Vancouver, Ottawa, and Montreal. Learn how freight per kg and volumetric weight apply.",
+    "url": "/blog/shipping-cost-from-nigeria-to-canada"
+  },
+  {
+    "title": "Customs Documents Needed to Ship from Nigeria to Canada",
+    "image": "/canada-customs-documents.jpg",
+    "imageHint": "CBSA Canada customs clearance forms, NEPC export certificate and commercial invoice",
+    "author": "County Cargo Compliance Specialist",
+    "publicationDate": "2026-08-30",
+    "category": "Customs & Compliance",
+    "tags": [
+      "Canada Customs",
+      "CBSA",
+      "NEPC Export",
+      "Documentation",
+      "Nigeria"
+    ],
+    "description": "Essential checklist of export documents required by the Canada Border Services Agency (CBSA) and Nigerian authorities including Commercial Invoice, NEPC certificate, and declaration forms.",
+    "url": "/blog/customs-documents-shipping-nigeria-to-canada"
+  },
+  {
+    "title": "Items You Can and Cannot Send from Nigeria to Canada",
+    "image": "/nigeria-canada-food-items.jpg",
+    "imageHint": "Vacuum-sealed authentic Nigerian food packages garri egusi and export box",
+    "author": "County Cargo Food & Cargo Inspector",
+    "publicationDate": "2026-08-30",
+    "category": "Export Compliance",
+    "tags": [
+      "Foodstuff",
+      "Prohibited Items",
+      "Canada Imports",
+      "CFIA Rules",
+      "Nigeria Export"
+    ],
+    "description": "Learn what food, textiles, and personal effects can be shipped from Nigeria to Canada under CFIA rules, and avoid contraband seizures at Canadian ports.",
+    "url": "/blog/permitted-prohibited-items-nigeria-to-canada"
+  },
+  {
+    "title": "Complete Guide to Shipping Cargo from Nigeria to the USA",
+    "image": "/service-nigeria-to-us-enhanced.png",
+    "imageHint": "Air cargo plane loading freight from Lagos airport to Houston and Atlanta USA",
+    "author": "County Cargo US Trade Manager",
+    "publicationDate": "2026-08-30",
+    "category": "USA Shipping",
+    "tags": [
+      "Nigeria to USA",
+      "Air Cargo",
+      "Houston",
+      "Dallas",
+      "Atlanta",
+      "New York"
+    ],
+    "description": "Master guide to sending air cargo, e-commerce merchandise, and personal belongings from Nigeria to Houston, Dallas, Atlanta, New York, and nationwide USA.",
+    "url": "/blog/complete-guide-shipping-cargo-nigeria-to-usa"
+  },
+  {
+    "title": "Nigeria-to-USA Air Cargo Costs and Delivery Times Explained",
+    "image": "/blog-7-nigeria-us.png",
+    "imageHint": "DHL Express 3 to 5 day air cargo delivery timeline scale rate from Lagos to USA",
+    "author": "County Cargo Pricing Specialist",
+    "publicationDate": "2026-08-30",
+    "category": "Freight Analysis",
+    "tags": [
+      "USA Air Cargo",
+      "Delivery Time",
+      "Shipping Rates",
+      "Express Courier",
+      "Lagos to US"
+    ],
+    "description": "Compare DHL Express (3–5 days) and standard air cargo (5–10 days) timelines and per-kg pricing from Lagos and Abuja to American destination hubs.",
+    "url": "/blog/nigeria-to-usa-air-cargo-cost-delivery-time"
+  },
+  {
+    "title": "How to Send Food and Personal Belongings from Nigeria to America",
+    "image": "/NIGERIA TO THE US.png",
+    "imageHint": "Commercial food packaging garri dried pepper fish FDA compliance Nigeria to US",
+    "author": "County Cargo Food & Relocation Expert",
+    "publicationDate": "2026-08-30",
+    "category": "Food & Personal",
+    "tags": [
+      "Nigerian Food",
+      "FDA Notice",
+      "Personal Belongings",
+      "US Relocation",
+      "Houston"
+    ],
+    "description": "How to package permitted Nigerian dry foodstuffs (garri, egusi, spices) and personal clothes for FDA compliant entry into the United States.",
+    "url": "/blog/how-to-send-food-personal-belongings-nigeria-to-america"
+  },
+  {
+    "title": "Complete Guide to Shipping from Nigeria to the UK",
+    "image": "/service-nigeria-uk-enhanced.png",
+    "imageHint": "Freight forwarders preparing export cargo from Lagos to London and Manchester UK",
+    "author": "County Cargo UK Route Manager",
+    "publicationDate": "2026-08-30",
+    "category": "UK Shipping",
+    "tags": [
+      "Nigeria to UK",
+      "London Cargo",
+      "Air Freight",
+      "NEPC Export",
+      "Liverpool Depot"
+    ],
+    "description": "Comprehensive guide for shipping cargo, African food, fashion, and personal luggage from Lagos and Abuja to London, Manchester, Birmingham, and Liverpool.",
+    "url": "/blog/complete-guide-shipping-from-nigeria-to-uk"
+  },
+  {
+    "title": "How Much Does Cargo from Nigeria to the UK Cost?",
+    "image": "/blog-6-nigeria-uk.png",
+    "imageHint": "Calculating freight rate per kg for air cargo from Lagos airport to London UK",
+    "author": "County Cargo Finance Analyst",
+    "publicationDate": "2026-08-30",
+    "category": "UK Shipping Rates",
+    "tags": [
+      "UK Freight Rates",
+      "Price per kg",
+      "Handling Fees",
+      "London Delivery",
+      "Nigeria"
+    ],
+    "description": "Transparent breakdown of air cargo costs per kg, handling fees, customs clearance charges, and door delivery fees from Nigeria to the United Kingdom.",
+    "url": "/blog/cargo-cost-from-nigeria-to-uk"
+  },
+  {
+    "title": "UK Customs, Packaging and Restricted Items Explained",
+    "image": "/uk-customs-inspection.jpg",
+    "imageHint": "UK HMRC customs officer inspecting cargo parcels with handheld digital scanner",
+    "author": "County Cargo Customs Advisor",
+    "publicationDate": "2026-08-30",
+    "category": "UK Customs",
+    "tags": [
+      "HMRC",
+      "UK Customs",
+      "Prohibited Items",
+      "Packaging Rules",
+      "Food Rules"
+    ],
+    "description": "Avoid HMRC customs delays by understanding UK import duty thresholds, DEFRA food regulations, packaging standards, and restricted goods from Nigeria.",
+    "url": "/blog/uk-customs-packaging-restricted-items-explained"
+  },
+  {
+    "title": "How to Ship Goods from Nigeria to Germany",
+    "image": "/blog-1-nigeria-export.png",
+    "imageHint": "Air freight export cargo from Lagos to Frankfurt Berlin and Hamburg Germany",
+    "author": "County Cargo European Route Expert",
+    "publicationDate": "2026-08-30",
+    "category": "European Shipping",
+    "tags": [
+      "Nigeria to Germany",
+      "Frankfurt Airport",
+      "Berlin Cargo",
+      "EU Logistics",
+      "Air Cargo"
+    ],
+    "description": "Step-by-step export guide for sending commercial merchandise, personal effects, and samples from Nigeria to Frankfurt, Berlin, Munich, and Hamburg.",
+    "url": "/blog/how-to-ship-goods-from-nigeria-to-germany"
+  },
+  {
+    "title": "German Customs Requirements for Cargo Arriving from Nigeria",
+    "image": "/blog-3-ai-warehouse.png",
+    "imageHint": "German Zoll customs inspection EU import VAT EORI number declaration for Nigeria freight",
+    "author": "County Cargo European Compliance Officer",
+    "publicationDate": "2026-08-30",
+    "category": "German Customs",
+    "tags": [
+      "German Customs",
+      "Zoll",
+      "EORI Number",
+      "EU Import VAT",
+      "Customs Clearance"
+    ],
+    "description": "Detailed analysis of German Zoll customs procedures, EORI registration, commercial invoice rules, and EU VAT regulations for Nigerian imports.",
+    "url": "/blog/german-customs-requirements-cargo-from-nigeria"
+  },
+  {
+    "title": "Air Freight from Nigeria to Germany: Cost and Delivery Guide",
+    "image": "/hero-skyblue.png",
+    "imageHint": "Air cargo plane transit timeline and cost per kg from Lagos to Frankfurt Germany",
+    "author": "County Cargo Logistics Analyst",
+    "publicationDate": "2026-08-30",
+    "category": "German Logistics",
+    "tags": [
+      "Germany Freight Rates",
+      "Delivery Time",
+      "Frankfurt Logistics",
+      "EU Air Cargo"
+    ],
+    "description": "Compare express air courier and standard cargo delivery times (3–8 days) and freight costs per kg from Nigeria to German commercial hubs.",
+    "url": "/blog/air-freight-nigeria-to-germany-cost-delivery"
+  },
+  {
+    "title": "Complete Guide to Shipping from Nigeria to France",
+    "image": "/HERO.png",
+    "imageHint": "Export cargo dispatch from Lagos Nigeria to Paris CDG Airport and Lyon France",
+    "author": "County Cargo French Route Manager",
+    "publicationDate": "2026-08-30",
+    "category": "France Shipping",
+    "tags": [
+      "Nigeria to France",
+      "Paris CDG",
+      "Lyon",
+      "Marseille",
+      "French Customs"
+    ],
+    "description": "Everything you need to know about exporting African fashion, foodstuffs, and commercial cargo from Nigeria to Paris, Lyon, Marseille, and Toulouse.",
+    "url": "/blog/complete-guide-shipping-from-nigeria-to-france"
+  },
+  {
+    "title": "Documents Required to Export Goods from Nigeria to France",
+    "image": "/france-export-docs.jpg",
+    "imageHint": "French customs Douane export documentation, EUR.1 certificate and model cargo aircraft",
+    "author": "County Cargo Trade Advisor",
+    "publicationDate": "2026-08-30",
+    "category": "French Customs",
+    "tags": [
+      "French Customs",
+      "Douane",
+      "NEPC Export",
+      "Commercial Invoice",
+      "France Trade"
+    ],
+    "description": "Essential documentation guide for clearing customs in France. Covers commercial invoices, EUR.1 forms, packing lists, and NEPC registration.",
+    "url": "/blog/documents-required-export-goods-nigeria-to-france"
+  },
+  {
+    "title": "Sending Food, Clothing and Personal Belongings to France",
+    "image": "/france-african-fashion-food.jpg",
+    "imageHint": "African Ankara fabrics, lace attire and packaged Nigerian food provisions ready for Paris",
+    "author": "County Cargo Personal Effects Specialist",
+    "publicationDate": "2026-08-30",
+    "category": "Personal Effects",
+    "tags": [
+      "African Fashion",
+      "Nigerian Food in France",
+      "Personal Effects",
+      "Paris Cargo"
+    ],
+    "description": "Practical guide to packaging traditional Nigerian attire, lace, and permitted dry food for stress-free delivery to family and businesses in France.",
+    "url": "/blog/sending-food-clothing-personal-belongings-to-france"
+  },
+  {
+    "title": "Complete Guide to Shipping Cargo from Nigeria to Turkey",
+    "image": "/the world.png",
+    "imageHint": "Air and ocean freight route connecting Nigeria to Istanbul and Turkish ports",
+    "author": "County Cargo Middle East & Turkey Expert",
+    "publicationDate": "2026-08-30",
+    "category": "Turkey Shipping",
+    "tags": [
+      "Nigeria to Turkey",
+      "Istanbul Cargo",
+      "Commercial Trade",
+      "Textiles",
+      "Air Cargo"
+    ],
+    "description": "Complete shipping guide for traders, commercial importers, and individuals moving cargo from Nigeria to Istanbul, Ankara, Izmir, and Bursa.",
+    "url": "/blog/complete-guide-shipping-cargo-nigeria-to-turkey"
+  },
+  {
+    "title": "Nigeria-to-Turkey Air Freight Cost and Customs Guide",
+    "image": "/service-nigeria-world.png",
+    "imageHint": "Air freight cargo dispatch connecting Lagos and Abuja to Istanbul Airport Turkey",
+    "author": "County Cargo Pricing Analyst",
+    "publicationDate": "2026-08-30",
+    "category": "Turkey Logistics",
+    "tags": [
+      "Turkey Customs",
+      "Shipping Rates",
+      "Istanbul Airport",
+      "Turkish Trade"
+    ],
+    "description": "Detailed breakdown of air cargo rates per kg, Turkish customs duty thresholds, and delivery schedules from Lagos to major Turkish cities.",
+    "url": "/blog/nigeria-to-turkey-air-freight-cost-customs-guide"
+  },
+  {
+    "title": "Permitted and Restricted Items When Shipping to Turkey",
+    "image": "/US TO NIGERIA.jpg",
+    "imageHint": "Customs compliance checklist permitted agricultural food and restricted goods Turkey",
+    "author": "County Cargo Compliance Officer",
+    "publicationDate": "2026-08-30",
+    "category": "Turkey Compliance",
+    "tags": [
+      "Prohibited Items",
+      "Turkey Import Rules",
+      "Agricultural Rules",
+      "Customs Safety"
+    ],
+    "description": "Safety checklist of items allowed for import into Turkey. Learn rules on agricultural products, commercial samples, liquids, and restricted items.",
+    "url": "/blog/permitted-restricted-items-shipping-to-turkey"
+  },
+  {
+    "title": "Nigeria Customs Clearance Guide for Air and Sea Cargo",
     "image": "/blog-9-nigeria-cargo-august-2026.jpg",
+    "imageHint": "Nigeria customs clearance document inspection cargo container Lagos airport",
+    "author": "County Cargo Logistics Team",
+    "publicationDate": "2026-08-29",
+    "category": "Customs & Compliance",
+    "tags": [
+      "Customs",
+      "Nigeria",
+      "Form M",
+      "PAAR",
+      "Air Freight",
+      "Sea Freight"
+    ],
+    "description": "Comprehensive step-by-step guide to Nigeria Customs clearance for air and sea freight. Learn about Form M, PAAR documentation, duty calculations, and avoiding delays at Lagos ports.",
+    "url": "/blog/nigeria-customs-clearance-guide"
+  },
+  {
+    "title": "How to Ship Electronics from the UK to Nigeria Safely",
+    "image": "/blog-5-uk-shopping.png",
+    "imageHint": "Shipping laptops phones electronics securely packed in boxes to Nigeria",
+    "author": "County Cargo Packaging Specialist",
+    "publicationDate": "2026-08-29",
+    "category": "Shipping Guides",
+    "tags": [
+      "Electronics",
+      "Laptops",
+      "Phones",
+      "UK to Nigeria",
+      "Packaging"
+    ],
+    "description": "Learn how to safely package, insure, and clear phones, laptops, TVs, and household electronics when shipping from London, Liverpool, and across the UK to Nigeria.",
+    "url": "/blog/shipping-electronics-uk-to-nigeria"
+  },
+  {
+    "title": "Shipping Personal Belongings from the UK to Nigeria",
+    "image": "/nigeria to uk.jpg",
+    "imageHint": "Family moving personal effects clothes shoes cargo box shipping UK Nigeria",
+    "author": "County Cargo Relocation Expert",
+    "publicationDate": "2026-08-29",
+    "category": "Personal Shipping",
+    "tags": [
+      "Personal Belongings",
+      "Relocation",
+      "UK to Nigeria",
+      "Luggage Shipping"
+    ],
+    "description": "Complete relocation guide for sending personal effects, clothes, household items, and gifts from the UK to Nigeria without excess baggage fees.",
+    "url": "/blog/shipping-personal-belongings-to-nigeria"
+  },
+  {
+    "title": "How to Ship Commercial Goods to Nigeria",
+    "image": "/shipping-commercial-goods-to-nigeria.jpg",
+    "imageHint": "County Cargo logistics officer overseeing UK and US air and sea commercial cargo consignments to Nigeria",
+    "author": "County Cargo Trade Advisor",
+    "publicationDate": "2026-08-29",
+    "category": "Commercial Cargo",
+    "tags": [
+      "Commercial Cargo",
+      "B2B Logistics",
+      "Wholesale",
+      "Import Duty",
+      "Nigeria Trade"
+    ],
+    "description": "Step-by-step commercial shipping guide for businesses importing goods into Nigeria. Covers commercial invoices, HS codes, bulk freight, and customs documentation.",
+    "url": "/blog/shipping-commercial-goods-to-nigeria"
+  },
+  {
+    "title": "Air Freight vs Sea Freight to Nigeria: Cost, Speed and Benefits",
+    "image": "/cargo-plane-hero.png",
+    "imageHint": "Air cargo plane loading versus ocean container ship for Nigeria transit",
+    "author": "County Cargo Freight Strategist",
+    "publicationDate": "2026-08-29",
+    "category": "Freight Analysis",
+    "tags": [
+      "Air Freight",
+      "Sea Freight",
+      "Cost Comparison",
+      "Delivery Speed",
+      "Nigeria Logistics"
+    ],
+    "description": "In-depth comparison of air freight and ocean sea freight to Nigeria. Compare costs per kg, transit times, weight limits, and choose the best shipping method for your cargo.",
+    "url": "/blog/air-freight-vs-sea-freight-to-nigeria"
+  },
+  {
+    "title": "How Much Does It Cost to Ship Cargo to Nigeria?",
+    "image": "/blog-4-us-nigeria.png",
+    "imageHint": "Calculating shipping rate per kg cargo box price scale Nigeria freight",
+    "author": "County Cargo Pricing Analyst",
+    "publicationDate": "2026-08-29",
+    "category": "Pricing & Costs",
+    "tags": [
+      "Shipping Rates",
+      "Freight Cost",
+      "Price per kg",
+      "Handling Fees",
+      "Nigeria Shipping"
+    ],
+    "description": "Complete breakdown of cargo shipping costs from the UK and USA to Nigeria. Learn how freight rates per kg, volumetric weight, handling charges, and customs duties affect your total bill.",
+    "url": "/blog/cargo-shipping-cost-to-nigeria"
+  },
+  {
+    "title": "How to Calculate Volumetric Weight for Air Cargo",
+    "image": "/service-uk-nigeria-new.jpg",
+    "imageHint": "Measuring cargo box dimensions length width height for volumetric weight formula",
+    "author": "County Cargo Operations Team",
+    "publicationDate": "2026-08-29",
+    "category": "Guides & Calculators",
+    "tags": [
+      "Volumetric Weight",
+      "Dimensional Weight",
+      "Air Freight Formula",
+      "Cargo Calculator"
+    ],
+    "description": "Learn how volumetric (dimensional) weight is calculated for air freight to Nigeria. Master the (L x W x H) / 5000 formula and discover practical tips to minimize dimensional weight charges.",
+    "url": "/blog/how-to-calculate-volumetric-weight"
+  },
+  {
+    "title": "How Long Does Shipping from the UK to Nigeria Take?",
+    "image": "/london.jpg",
+    "imageHint": "Transit calendar timeline clock cargo flight London to Lagos delivery",
+    "author": "County Cargo Dispatch Manager",
+    "publicationDate": "2026-08-29",
+    "category": "Transit Timelines",
+    "tags": [
+      "Delivery Time",
+      "UK to Nigeria",
+      "Express Cargo",
+      "Ocean Shipping Time"
+    ],
+    "description": "Real transit timeline guide for shipping from the UK to Nigeria. Covers express air cargo (3–5 days), standard air freight (5–10 days), and sea cargo (4–6 weeks) including customs processing.",
+    "url": "/blog/uk-to-nigeria-shipping-time"
+  },
+  {
+    "title": "Items You Cannot Ship to Nigeria: Prohibited & Restricted Cargo",
+    "image": "/blog-2-sustainable.png",
+    "imageHint": "Prohibited items warning sign customs inspection restricted goods Nigeria",
+    "author": "County Cargo Compliance Officer",
+    "publicationDate": "2026-08-29",
+    "category": "Customs & Compliance",
+    "tags": [
+      "Prohibited Items",
+      "Restricted Cargo",
+      "Customs Rules",
+      "Hazardous Goods"
+    ],
+    "description": "Essential safety checklist of prohibited and restricted items for shipping to Nigeria. Avoid customs seizure by learning rules on batteries, liquids, perfumes, food, and regulated goods.",
+    "url": "/blog/prohibited-items-shipping-to-nigeria"
+  },
+  {
+    "title": "How to Package Cargo for Shipping to Nigeria",
+    "image": "/nigeria-market-packing-enhanced.png",
+    "imageHint": "Bubble wrap cardboard box strapping heavy duty packing cargo Nigeria",
+    "author": "County Cargo Packaging Specialist",
+    "publicationDate": "2026-08-29",
+    "category": "Packaging Guides",
+    "tags": [
+      "Packaging",
+      "Box Packing",
+      "Protection",
+      "Freight Care"
+    ],
+    "description": "Step-by-step packaging guide to protect your cargo during international transit to Nigeria. Includes advice on double-wall boxes, cushioning, sealing, labeling, and fragile items.",
+    "url": "/blog/how-to-package-cargo-for-nigeria"
+  },
+  {
+    "title": "Shipping from the USA and Texas to Nigeria: Complete Guide",
+    "image": "/service-us-to-nigeria-enhanced.png",
+    "imageHint": "Cargo plane shipping from Texas USA to Lagos Abuja Nigeria freight",
+    "author": "County Cargo US Operations Team",
+    "publicationDate": "2026-08-29",
+    "category": "US Shipping Guides",
+    "tags": [
+      "USA to Nigeria",
+      "Texas Shipping",
+      "Houston Hub",
+      "US Air Cargo",
+      "Sea Freight USA"
+    ],
+    "description": "Complete guide to shipping cargo from the United States and Texas to Nigeria. Covers our Irving/Dallas receiving center, air cargo rates, ocean container options, and door delivery.",
+    "url": "/blog/shipping-from-usa-texas-to-nigeria"
+  },
+  {
+    "title": "Door-to-Door Cargo Delivery to Lagos, Abuja and Other Nigerian Cities",
+    "image": "/blog-8-international.png",
+    "imageHint": "Delivery truck arriving at doorstep in Lagos Abuja Nigeria cargo dispatch",
+    "author": "County Cargo Delivery Specialist",
+    "publicationDate": "2026-08-29",
+    "category": "Delivery Logistics",
+    "tags": [
+      "Door-to-Door",
+      "Lagos Delivery",
+      "Abuja Cargo",
+      "Nigeria Logistics",
+      "Local Dispatch"
+    ],
+    "description": "How County Cargo delivers packages directly to your door in Lagos, Abuja, Port Harcourt, Ibadan, Kano, and across all 36 Nigerian states. Learn how final-mile delivery works.",
+    "url": "/blog/door-to-door-cargo-delivery-nigeria"
+  },
+  {
+    "title": "Nigeria Cargo Update: What UK and US Shippers Need to Know today",
+    "image": "/hero-enhanced.png",
     "imageHint": "Lagos Nigeria port cargo containers aircraft shipping freight",
     "author": "County Cargo Staff",
     "publicationDate": "2026-08-18",
     "category": "Shipping Updates",
-    "tags": ["Nigeria", "shipping update", "UK to Nigeria", "USA to Nigeria", "today"],
+    "tags": [
+      "Nigeria",
+      "shipping update",
+      "UK to Nigeria",
+      "USA to Nigeria",
+      "today"
+    ],
     "description": "Aviation disruption, a new US carrier fee, rising sea freight costs and Nigeria Customs changes — everything UK and US shippers need to know today.",
     "url": "/blog/nigeria-cargo-update-what-uk-and-us-shippers-need-to-know-today"
   },
   {
-    "title": "Transportation Market from Nigeria: An Export Guide",
-    "image": "/blog-1-nigeria-export.png",
-    "imageHint": "Nigerian businessman cargo port export",
+    "title": "Shipping from Nigeria to the UK: Reliable Cargo & Freight Solutions",
+    "image": "/service-nigeria-uk.png",
+    "imageHint": "Air and sea freight solutions from Nigeria to UK destinations",
     "author": "County Cargo Staff",
-    "publicationDate": "2023-11-22",
-    "category": "Guides",
-    "tags": ["export", "Nigeria", "transportation market"],
-    "description": "Learn how the transportation market from Nigeria works and how to ship your goods worldwide.",
-    "url": "/blog/transportation-market-from-nigeria"
+    "publicationDate": "2026-08-22",
+    "category": "Shipping Guides",
+    "tags": [
+      "Nigeria to UK",
+      "Air Freight",
+      "Sea Freight",
+      "NEPC Export",
+      "UK Customs",
+      "Food Shipping"
+    ],
+    "description": "Move your cargo from Nigeria to the UK with confidence. Comprehensive guide covering air & sea freight, export rules, customs clearance, and delivery across the UK.",
+    "url": "/blog/shipping-from-nigeria-to-the-uk-reliable-cargo-and-freight-solutions"
   },
   {
-    "title": "Sustainable Logistics Practices",
-    "image": "/blog-2-sustainable.png",
-    "imageHint": "Black female logistics manager green warehouse sustainability",
+    "title": "Shipping from Nigeria to the US: Reliable Cargo & Freight Solutions",
+    "image": "/service-nigeria-us.png",
+    "imageHint": "Air and ocean cargo solutions from Nigeria to USA destinations",
     "author": "County Cargo Staff",
-    "publicationDate": "2023-10-20",
-    "category": "Sustainability",
-    "tags": ["green logistics", "supply chain", "environment"],
-    "description": "How green initiatives are reshaping the supply chain for a better future.",
-    "url": "/blog/sustainable-logistics-practices"
+    "publicationDate": "2026-08-25",
+    "category": "Shipping Guides",
+    "tags": [
+      "Nigeria to USA",
+      "Air Freight",
+      "Sea Freight",
+      "NEPC Export",
+      "US Customs",
+      "Food Shipping",
+      "Houston",
+      "Atlanta",
+      "Dallas",
+      "New York"
+    ],
+    "description": "Move your cargo from Nigeria to the United States of America with confidence. Comprehensive guide covering air & sea freight, export rules, customs clearance, and nationwide delivery across the USA.",
+    "url": "/blog/shipping-from-nigeria-to-the-us-reliable-cargo-and-freight-solutions"
   },
   {
-    "title": "AI in Warehouse Management",
-    "image": "/blog-3-ai-warehouse.png",
-    "imageHint": "Black tech engineer AI warehouse automation",
+    "title": "Door-to-Door Shipping from Nigeria to the World",
+    "image": "/Send and Receive Goods Worldwide with County Cargo.jpg",
+    "imageHint": "International door-to-door cargo dispatch from Nigeria to 200+ countries worldwide",
     "author": "County Cargo Staff",
-    "publicationDate": "2023-10-15",
-    "category": "Technology",
-    "tags": ["AI", "warehouse", "automation"],
-    "description": "The impact of artificial intelligence on inventory accuracy and efficiency.",
-    "url": "/blog/ai-in-warehouse-management"
+    "publicationDate": "2026-08-28",
+    "category": "Shipping Guides",
+    "tags": [
+      "Door-to-Door",
+      "Worldwide Shipping",
+      "DHL Express",
+      "Nigeria Export",
+      "NEPC",
+      "200+ Countries",
+      "Food Shipping"
+    ],
+    "description": "Ship from Nigeria to the UK, USA, Canada, Australia, Germany, Europe, Asia, Africa and 200+ destinations worldwide. Complete guide covering door-to-door freight, DHL Express 3–5 day delivery, food rules, and NEPC export documentation.",
+    "url": "/blog/door-to-door-shipping-from-nigeria-to-the-world"
   },
   {
-    "title": "Navigating US to Nigeria Shipping: A Complete Guide",
-    "image": "/blog-4-us-nigeria.png",
-    "imageHint": "Black woman international shipping office USA Nigeria",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-11-01",
-    "category": "Guides",
-    "tags": ["shipping", "USA", "Nigeria"],
-    "description": "Learn how to easily ship your goods from the United States to Nigeria with our comprehensive guide.",
-    "url": "/ship-from-us-to-nigeria"
+    "title": "Documents Required for Exporting Goods from Nigeria to the UK",
+    "image": "/nigeria-export-documents-guide.jpg",
+    "imageHint": "Official export documentation, Form NXP, and NEPC trade compliance documents in Nigeria",
+    "author": "County Cargo Trade Advisor",
+    "publicationDate": "2026-09-01",
+    "category": "Export Guides",
+    "tags": [
+      "Export goods from Nigeria to the UK",
+      "Form NXP",
+      "NEPC certificate",
+      "Nigeria customs export",
+      "Commercial cargo UK"
+    ],
+    "description": "Step-by-step regulatory breakdown of documentation needed for exporting commercial merchandise, agricultural foodstuffs, and personal effects from Nigeria to the UK.",
+    "url": "/blog/documents-required-for-exporting-goods-from-nigeria"
   },
   {
-    "title": "Shop from Any UK Store & Ship to Nigeria: Your Ultimate Guide",
-    "image": "/blog-5-uk-shopping.png",
-    "imageHint": "Black woman online shopping UK stores Nigeria delivery",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-11-05",
-    "category": "Guides",
-    "tags": ["shopping", "UK", "Nigeria"],
-    "description": "Discover how to shop from your favorite UK stores and get your purchases delivered to your doorstep in Nigeria.",
-    "url": "/shipping-from-uk-to-nigeria"
+    "title": "Nigeria to UK Air Freight Explained: Transit Times & Costs",
+    "image": "/nigeria-to-uk-air-freight.png",
+    "imageHint": "Cargo freighter aircraft loading transatlantic shipments from Lagos to London and Manchester",
+    "author": "County Cargo Air Operations Team",
+    "publicationDate": "2026-09-02",
+    "category": "Air Freight Guides",
+    "tags": [
+      "Air freight from Nigeria to the UK",
+      "Nigeria to UK cargo",
+      "Air cargo Lagos to London",
+      "Volumetric weight",
+      "HMRC clearance"
+    ],
+    "description": "In-depth operational explanation of how air freight works from Nigeria to the United Kingdom, from airport departures in Lagos to final doorstep delivery.",
+    "url": "/blog/nigeria-to-uk-air-freight-explained"
   },
   {
-    "title": "Seamless Shipping from Nigeria to the UK: A Step-by-Step Guide",
-    "image": "/blog-6-nigeria-uk.png",
-    "imageHint": "Black Nigerian couple packing shipping boxes UK dispatch",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-11-10",
-    "category": "Guides",
-    "tags": ["export", "Nigeria", "UK"],
-    "description": "Our guide makes shipping from Nigeria to the UK simple and stress-free. Learn about the process and get started today.",
-    "url": "/ship-from-nigeria-to-uk"
+    "title": "Sending Food Products from Nigeria to the UK: DEFRA Rules",
+    "image": "/sending-food-products-nigeria-uk.jpg",
+    "imageHint": "Commercially vacuum-sealed Nigerian dried food products, egusi, smoked fish, and garri",
+    "author": "County Cargo Food Freight Specialist",
+    "publicationDate": "2026-09-02",
+    "category": "Food Shipping",
+    "tags": [
+      "Send food from Nigeria to UK",
+      "DEFRA food regulations",
+      "Vacuum seal African food",
+      "Ship egusi and garri to UK",
+      "UK customs clearance"
+    ],
+    "description": "Comprehensive guide explaining which Nigerian foodstuffs are permitted into the UK, packaging protocols, and how County Cargo ensures smooth customs clearance.",
+    "url": "/blog/sending-food-products-from-nigeria-to-the-uk"
   },
   {
-    "title": "How to Ship from Nigeria to the US: A Comprehensive Guide",
-    "image": "/blog-7-nigeria-us.png",
-    "imageHint": "Black logistics officer cargo plane airport Nigeria USA",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-11-15",
-    "category": "Guides",
-    "tags": ["export", "Nigeria", "USA"],
-    "description": "Everything you need to know about sending packages, documents, and cargo from Nigeria to the United States.",
-    "url": "/ship-from-nigeria-to-us"
+    "title": "Shipping Personal Belongings from Nigeria to the UK",
+    "image": "/shipping-personal-belongings-nigeria-uk.jpg",
+    "imageHint": "Packed personal effects, traditional clothing, books, and excess luggage for UK relocation",
+    "author": "County Cargo Relocation Team",
+    "publicationDate": "2026-09-02",
+    "category": "Relocation Guides",
+    "tags": [
+      "Shipping personal belongings Nigeria to UK",
+      "Student excess baggage",
+      "Send luggage to UK",
+      "ToR tax relief",
+      "Lagos to London cargo"
+    ],
+    "description": "Practical advice for students, families, and individuals sending personal effects, traditional clothing, books, and luggage from Nigeria to UK addresses.",
+    "url": "/blog/shipping-personal-belongings-from-nigeria-to-the-uk"
   },
   {
-    "title": "The Ultimate Guide to International Shipping from Nigeria",
-    "image": "/blog-8-international.png",
-    "imageHint": "Black African entrepreneur world map international shipping office",
-    "author": "County Cargo Staff",
-    "publicationDate": "2023-11-20",
-    "category": "Guides",
-    "tags": ["international", "shipping", "export"],
-    "description": "Exporting from Nigeria? Our guide covers shipping to over 200 countries worldwide.",
-    "url": "/ship-from-nigeria-to-world"
+    "title": "How to Ship from the UK to Nigeria: Complete Step-by-Step Guide",
+    "image": "/service-uk-to-nigeria-enhanced.png",
+    "imageHint": "County Cargo UK logistics team receiving parcels for air and sea freight to Nigeria",
+    "author": "County Cargo UK Team",
+    "publicationDate": "2026-09-02",
+    "category": "UK Shipping Guides",
+    "tags": [
+      "Shipping from the UK to Nigeria",
+      "UK to Nigeria cargo",
+      "Liverpool depot",
+      "Send parcels to Nigeria",
+      "Lagos customs clearance"
+    ],
+    "description": "Authoritative walkthrough covering parcel preparation, Liverpool warehouse receiving, air cargo vs sea freight barrels, Lagos customs clearance, and Nigerian doorstep delivery.",
+    "url": "/blog/how-to-ship-from-the-uk-to-nigeria"
+  },
+  {
+    "title": "Liverpool to Lagos Cargo Services: Air Freight & Sea Barrels",
+    "image": "/liverpool-to-lagos-cargo.jpg",
+    "imageHint": "Queens Dock Liverpool depot preparing air cargo and sea freight shipments for Lagos",
+    "author": "County Cargo Liverpool Branch",
+    "publicationDate": "2026-09-02",
+    "category": "UK Route Guides",
+    "tags": [
+      "Liverpool to Lagos shipping",
+      "Queens Dock cargo depot",
+      "Liverpool to Nigeria cargo",
+      "Merseyside shipping barrels",
+      "Air freight to Lagos"
+    ],
+    "description": "Comprehensive logistics guide for residents, businesses, and Nigerian diaspora across Liverpool, Merseyside, and Greater Manchester shipping cargo directly to Lagos.",
+    "url": "/blog/liverpool-to-lagos-cargo-services"
+  },
+  {
+    "title": "Liverpool to Abuja Cargo Services: Fast Air Freight to the FCT",
+    "image": "/liverpool-to-abuja-cargo.jpg",
+    "imageHint": "Air cargo dispatch from Liverpool depot to Abuja Federal Capital Territory",
+    "author": "County Cargo Abuja Route Specialist",
+    "publicationDate": "2026-09-02",
+    "category": "UK Route Guides",
+    "tags": [
+      "Liverpool to Abuja cargo",
+      "Air cargo to Abuja",
+      "Send parcel Liverpool to Abuja",
+      "Wuye Market Abuja office",
+      "Abuja doorstep delivery"
+    ],
+    "description": "Detailed shipping guide for customers sending personal effects, electronics, documents, and commercial goods from Liverpool to Abuja FCT.",
+    "url": "/blog/liverpool-to-abuja-cargo-services"
   }
 ]

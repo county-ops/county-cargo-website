@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { FaqEffects } from '@/components/faq-effects';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions (FAQ) | County Cargo Shipping Support',
@@ -12,8 +13,27 @@ export const metadata: Metadata = {
 };
 
 export default function FaqPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'What items are prohibited from shipping?', acceptedAnswer: { '@type': 'Answer', text: 'Prohibited items include hazardous materials, flammable liquids, explosives, illegal substances, and live animals. Please check our detailed guidelines for a complete list.' } },
+      { '@type': 'Question', name: 'How do I track my package?', acceptedAnswer: { '@type': 'Answer', text: 'Once your package is dispatched, you will receive a tracking number via email. You can use this number on our website\'s tracking page to monitor its journey in real-time.' } },
+      { '@type': 'Question', name: 'What are your shipping rates?', acceptedAnswer: { '@type': 'Answer', text: 'Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our customer service personnel or using our online rate estimator.' } },
+      { '@type': 'Question', name: 'Can I Send Food Produce with County Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, County Cargo accepts non-perishable food items. Ensure all food products are safely and securely packaged. Fresh or frozen food is not accepted without prior approval. Always check import requirements for your destination country.' } },
+      { '@type': 'Question', name: 'Which countries and routes do you ship from and to?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo provides shipping from the UK and the US directly to Nigeria (Lagos, Abuja, and nationwide), as well as export services shipping from Nigeria to the UK, the US, and over 200 countries worldwide.' } },
+      { '@type': 'Question', name: 'What Shipping Methods Are Available?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo offers Air Freight (fast delivery) and Sea Freight (affordable, slower delivery).' } },
+      { '@type': 'Question', name: 'How Long Will Shipping Take?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight takes approximately 7–10 working days. Sea Freight takes approximately 5–6 weeks. Transit times may vary due to customs and destination processing.' } },
+      { '@type': 'Question', name: 'What Are the Weight and Size Limits for Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight: Minimum 10 kg to Lagos, 25 kg to other Nigerian destinations. Sea Freight: Minimum 50 kg for all Nigerian destinations.' } },
+      { '@type': 'Question', name: 'Will I Pay Customs Duty When Shipping to Nigeria?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Customs duties may apply depending on the type of goods. Personal effects and gifts are generally included in our quotes. High-value or commercial cargo may require extra documentation or fees.' } },
+      { '@type': 'Question', name: 'Can I Send Phones, Laptops & Gadgets?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Electronics including phones, laptops, tablets, and consoles are accepted but may require proof of purchase.' } },
+      { '@type': 'Question', name: 'Which Ports in Nigeria Do You Ship To?', acceptedAnswer: { '@type': 'Answer', text: 'Primary sea freight destination is Tin Can Island Port, Apapa, Lagos, with service to many other Nigerian cities.' } },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={faqSchema} />
       <Header />
       <main className="pt-20 faq-page">
         <div className="faq-container">

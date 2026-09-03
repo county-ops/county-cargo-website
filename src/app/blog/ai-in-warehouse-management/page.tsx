@@ -5,6 +5,8 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Cpu, BarChart2, ShieldAlert, CheckCircle, Database } from 'lucide-react';
 import { Faq } from './faq';
+import { JsonLd } from '@/components/json-ld';
+import { SocialShare } from '@/components/social-share';
 
 export const metadata: Metadata = {
   title: 'AI in Warehouse Management: Driving Smarter Fulfillment Hubs | County Cargo',
@@ -14,15 +16,39 @@ export const metadata: Metadata = {
   },
 };
 
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'AI in Warehouse Management: Driving Smarter Fulfillment Hubs',
+  description: 'Learn how Artificial Intelligence is transforming warehouse management, inventory auditing, pick-and-pack routing, and predictive replenishment cycles for logistics firms.',
+  url: 'https://countycargo.com/blog/ai-in-warehouse-management',
+  datePublished: '2026-01-01',
+  dateModified: '2026-01-01',
+  image: 'https://countycargo.com/blog-3-ai-warehouse.png',
+  author: {
+    '@type': 'Organization',
+    name: 'County Cargo',
+    url: 'https://countycargo.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'County Cargo',
+    logo: { '@type': 'ImageObject', url: 'https://countycargo.com/county-logo.png' },
+  },
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': 'https://countycargo.com/#website' },
+};
+
 export default function AiInWarehousePage() {
   return (
     <>
+      <JsonLd data={blogPostingSchema} />
       <Header />
       <main className="pt-16">
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.65), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(15, 23, 42, 0.85)), url('/blog-3-ai-warehouse.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -94,6 +120,7 @@ export default function AiInWarehousePage() {
                 <p>Artificial Intelligence has graduated from a futuristic concept to a fundamental necessity in modern warehouse operations. By speeding up fulfillment, optimizing consolidated cargo routes, and ensuring absolute inventory accuracy, AI keeps global trade bridges operating smoothly, securely, and cost-effectively.</p>
                 <p>As technology marches forward, County Cargo will continue adopting state-of-the-art software systems to connect Lagos, London, and Houston with premier transit efficiency.</p>
 
+                <SocialShare title="AI in Warehouse Management: Driving Smarter Fulfillment Hubs | County Cargo" />
             </div>
         </article>
 

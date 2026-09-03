@@ -23,7 +23,7 @@ const navLinks = [
     submenu: [
       { href: '/shipping-from-uk-to-nigeria', label: 'Shipping from UK to Nigeria' },
       { href: '/ship-from-us-to-nigeria', label: 'Shipping from US to Nigeria' },
-      { href: '/ship-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
+      { href: '/shipping-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
       { href: '/ship-from-nigeria-to-us', label: 'Shipping from Nigeria to US' },
       { href: '/ship-from-nigeria-to-world', label: 'Shipping from Nigeria to World' },
     ]
@@ -71,7 +71,7 @@ export function Header() {
         <Link href="/#services" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Services</Link>
         <Link href="/shipping-from-uk-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Nigeria</Link>
         <Link href="/ship-from-us-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from US to Nigeria</Link>
-        <Link href="/ship-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
+        <Link href="/shipping-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
         <Link href="/ship-from-nigeria-to-world" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to World</Link>
         <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>

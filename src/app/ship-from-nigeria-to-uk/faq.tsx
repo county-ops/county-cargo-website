@@ -9,49 +9,91 @@ import {
 } from '@/components/ui/accordion';
 
 const faqItems = [
-    {
-        question: 'What is the cost of shipping from Nigeria to the UK?',
-        answer: 'The cost varies depending on the package weight, dimensions, and the shipping service you choose (e.g., air freight, sea freight). We offer competitive rates and you can get a precise quote using our online shipping calculator or by contacting our customer service team.'
-    },
-    {
-        question: 'How long does shipping from Nigeria to the UK take?',
-        answer: 'Delivery times depend on the service. Air freight is the fastest option, typically taking 3-7 business days. Sea freight is more economical for larger shipments but takes longer, usually several weeks.'
-    },
-    {
-        question: 'What items are prohibited for shipping to the UK?',
-        answer: 'Prohibited items typically include hazardous materials, flammable liquids, batteries, perishable foods, illegal substances, and currency. There are also restrictions on certain food items and agricultural products. Please check our detailed restricted items list or contact customer support for clarification.'
-    },
-     {
-        question: 'Do I need to handle customs clearance myself?',
-        answer: 'County Cargo assists with the customs clearance process. We will guide you on the necessary documentation to ensure a smooth process. However, any customs duties or taxes imposed by the UK government are the responsibility of the recipient.'
-    },
-    {
-        question: 'How can I track my shipment to the UK?',
-        answer: 'Once your shipment is booked and dispatched, you will receive a unique tracking number via email. You can use this number on our website to monitor the status and location of your package in real-time as it makes its way to the UK.'
-    },
-]
+  {
+    question: 'How much does it cost to ship from Nigeria to the UK?',
+    answer:
+      'The cost depends on the shipment’s weight, dimensions, contents, destination and transportation method. Request a quotation based on your actual cargo details using our shipping calculator or by contacting our customer service team.',
+  },
+  {
+    question: 'Can I ship food from Nigeria to the UK?',
+    answer:
+      'Some food products may be permitted, but restrictions vary by product. Permitted dried foods (such as egusi, garri, ogbono, plantain flour, and dried spices) can typically be shipped, but you should always confirm the acceptability of a specific food product before sending it.',
+  },
+  {
+    question: 'Can I ship personal belongings from Nigeria to the UK?',
+    answer:
+      'Permitted personal belongings can be shipped subject to applicable transportation, export and UK import requirements.',
+  },
+  {
+    question: 'Is air freight faster than sea freight?',
+    answer:
+      'Generally, yes. Air freight is normally selected when speed is more important, while sea freight is commonly used for larger shipments where transit time is less critical.',
+  },
+  {
+    question: 'Do I need export documentation from Nigeria?',
+    answer:
+      'Formal exports require appropriate documentation. NEPC provides guidance on exporter registration and export documentation (such as commercial invoices and packing lists).',
+  },
+  {
+    question: 'Does County Cargo ship to Manchester and Liverpool?',
+    answer:
+      'County Cargo provides international shipping solutions for UK destinations nationwide, including London, Manchester, Birmingham, Liverpool, Leeds, and beyond. Confirm destination coverage and delivery options when requesting your quotation.',
+  },
+];
 
 export function Faq() {
-    return (
-        <section id="faq" className="py-20 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">Frequently Asked Questions</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">Find answers to common questions about shipping from Nigeria to the UK.</p>
-                </div>
-                 <Accordion type="single" collapsible className="w-full space-y-4">
-                    {faqItems.map((item, index) => (
-                        <AccordionItem value={`item-${index}`} key={index} className="bg-white p-6 rounded-lg shadow-md border-b-0">
-                            <AccordionTrigger className="w-full text-left flex justify-between items-center text-xl font-semibold text-secondary focus:outline-none hover:no-underline">
-                                <span>{item.question}</span>
-                            </AccordionTrigger>
-                            <AccordionContent className="mt-4 text-gray-800">
-                                <p>{item.answer}</p>
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </div>
-        </section>
-    );
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqItems.map((item) => ({
+      '@type': 'Question',
+      'name': item.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.answer,
+      },
+    })),
+  };
+
+  return (
+    <section id="faq" className="py-16 sm:py-24 bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16" data-aos="fade-up">
+          <span className="inline-block px-3 py-1 bg-blue-50 text-primary text-xs font-bold tracking-wider uppercase rounded-full mb-3">
+            Got Questions?
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            Find answers to common questions about shipping from Nigeria to the UK.
+          </p>
+        </div>
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          {faqItems.map((item, index) => (
+            <AccordionItem
+              value={`item-${index}`}
+              key={index}
+              className="bg-gray-50 border border-gray-200/80 p-5 sm:p-6 rounded-xl shadow-sm transition-all hover:border-primary/40"
+              data-aos="fade-up"
+              data-aos-delay={`${index * 60}`}
+            >
+              <AccordionTrigger className="w-full text-left flex justify-between items-center text-lg sm:text-xl font-semibold text-secondary focus:outline-none hover:no-underline gap-4">
+                <span>{item.question}</span>
+              </AccordionTrigger>
+              <AccordionContent className="mt-3 sm:mt-4 text-gray-700 text-sm sm:text-base leading-relaxed">
+                <p>{item.answer}</p>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
 }
+
+

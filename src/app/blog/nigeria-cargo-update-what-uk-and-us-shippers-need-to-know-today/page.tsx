@@ -5,6 +5,8 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Plane, Ship, FileText, AlertTriangle, CheckCircle, DollarSign } from 'lucide-react';
 import { Faq } from './faq';
+import { JsonLd } from '@/components/json-ld';
+import { SocialShare } from '@/components/social-share';
 
 export const metadata: Metadata = {
   title: 'Nigeria Cargo Update: What UK and US Shippers Need to Know today | County Cargo',
@@ -14,9 +16,36 @@ export const metadata: Metadata = {
   },
 };
 
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'Nigeria Cargo Update: What UK and US Shippers Need to Know Today',
+  description: 'Aviation disruption in Lagos and Abuja, a new United Cargo fee, rising sea freight prices and Nigeria Customs changes — County Cargo breaks down what UK and US shippers need to know today.',
+  url: 'https://countycargo.com/blog/nigeria-cargo-update-what-uk-and-us-shippers-need-to-know-today',
+  datePublished: '2026-08-18',
+  dateModified: '2026-08-18',
+  image: 'https://countycargo.com/blog-9-nigeria-cargo-august-2026.jpg',
+  author: {
+    '@type': 'Organization',
+    name: 'County Cargo',
+    url: 'https://countycargo.com',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'County Cargo',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://countycargo.com/county-logo.png',
+    },
+  },
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': 'https://countycargo.com/#website' },
+};
+
 export default function NigeriaCargoUpdateTodayPage() {
   return (
     <>
+      <JsonLd data={blogPostingSchema} />
       <Header />
       <main className="pt-16">
         <section
@@ -234,6 +263,8 @@ export default function NigeriaCargoUpdateTodayPage() {
               <li>Central Bank of Nigeria exchange rates</li>
               <li>Nigeria Customs fiscal-policy announcement</li>
             </ul>
+
+            <SocialShare title="Nigeria Cargo Update: What UK and US Shippers Need to Know Today | County Cargo" />
 
           </div>
         </article>

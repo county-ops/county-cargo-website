@@ -6,6 +6,8 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Plane, Ship, Package, CheckCircle } from 'lucide-react';
 import { Faq } from './faq';
+import { JsonLd } from '@/components/json-ld';
+import { SocialShare } from '@/components/social-share';
 
 export const metadata: Metadata = {
   title: 'Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide',
@@ -15,15 +17,30 @@ export const metadata: Metadata = {
   },
 };
 
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide',
+  description: 'Learn how the transportation market from Nigeria works and how County Cargo handles export shipping to the UK, USA, and worldwide with safe, cost-effective logistics solutions.',
+  url: 'https://countycargo.com/blog/transportation-market-from-nigeria',
+  datePublished: '2026-01-01',
+  dateModified: '2026-01-01',
+  author: { '@type': 'Organization', name: 'County Cargo', url: 'https://countycargo.com' },
+  publisher: { '@type': 'Organization', name: 'County Cargo', logo: { '@type': 'ImageObject', url: 'https://countycargo.com/county-logo.png' } },
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': 'https://countycargo.com/#website' },
+};
+
 export default function TransportationMarketPage() {
   return (
     <>
+      <JsonLd data={blogPostingSchema} />
       <Header />
       <main className="pt-16">
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(30, 64, 175, 0.7), rgba(31, 41, 55, 0.8)), url('https://images.unsplash.com/photo-1578575437130-5278ce682623?auto=format&fit=crop&w=1200&q=80')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(31, 41, 55, 0.85)), url('/blog-1-nigeria-export.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -163,6 +180,7 @@ export default function TransportationMarketPage() {
                 <p>Whether sending commercial goods or personal cargo, choosing the right export method and professional cargo handler makes the difference between delay and dependable delivery.</p>
 
             </div>
+            <SocialShare title="Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide | County Cargo" />
         </article>
 
         <Faq />

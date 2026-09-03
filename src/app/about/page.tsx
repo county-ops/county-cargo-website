@@ -58,13 +58,13 @@ export default function AboutPage() {
                   Seamless Global Shipping, <br className="hidden md:block"/>Done Right.
                 </h2>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-                  At County Cargo, we are a premier international logistics provider specializing in seamless, reliable, and secure cargo and parcel shipping solutions. We bridge the distance between **Nigeria, the United Kingdom, and the United States**, offering specialized air consolidations built on trust, efficiency, and safety.
+                  Operated by <strong>County Service Group</strong>, County Cargo is an international logistics provider specializing in seamless, reliable, and secure air freight, ocean shipping, and door-to-door cargo forwarding. We bridge the trade corridor between <strong>Nigeria, the United Kingdom, and the United States</strong>, offering scheduled consolidations built on transparency, compliance, and care.
                 </p>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-                  Headquartered in the heart of Lagos at Ladipo-Oshodi, our global operation integrates designated logistics hubs in London (UK) and Houston (USA). This footprint enables us to coordinate smooth cargo consolidations, streamline receipt procedures, and execute nationwide deliveries across Nigeria with zero hassle.
+                  Our operational footprint integrates verified receiving hubs in <strong>Liverpool</strong> (Unit G6, Queens Dock Commercial Centre, L1 0BG), <strong>Lagos</strong> (Suite F8, Magnet Shopping Plaza, Ladipo-Oshodi), <strong>Abuja</strong> (Wuye Ultra Modern Market), and <strong>Texas</strong> (1234 N Belt Line Rd, Irving). This infrastructure enables us to coordinate smooth cargo consolidations, handle end-to-end customs clearance, and execute nationwide doorstep deliveries across Nigeria and the UK.
                 </p>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-                  We strictly operate in complete compliance with aviation safety regulations and airline security guidelines. By marrying compliance with an absolute customer-first approach, we guarantee that your goods arrive safely and on time.
+                  We operate in complete compliance with aviation safety regulations, UK HMRC &amp; DEFRA requirements, and Nigerian Customs Service protocols. Our focus is on clear communication, certified weight transparency, and dependable delivery schedules.
                 </p>
               </div>
 

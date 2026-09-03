@@ -79,9 +79,40 @@ export default function ContactPage() {
                   </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 px-6 pb-6 text-slate-700">
+                {/* UK Office & Liverpool Depot */}
+                <div className="space-y-3 pb-5 border-b border-slate-100">
+                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🇬🇧 United Kingdom Office &amp; Receiving Depot (Liverpool)</span>
+                  </h3>
+                  
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Unit%20G6%2C%20Queens%20Dock%20Commercial%20Centre%2C%2067-83%20Norfolk%20Street%2C%20Liverpool%2C%20L1%200BG" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1 text-sm leading-relaxed group/link font-medium"
+                    >
+                      Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG, United Kingdom
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover/link:opacity-100 transition-opacity shrink-0" />
+                    </a>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <a href="tel:+2348110000421" className="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium mt-1.5 block">+234 811 000 0421 (Support &amp; WhatsApp)</a>
+                  </div>
+                </div>
+
                 {/* Lagos Office */}
                 <div className="space-y-3 pb-5 border-b border-slate-100">
-                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider">Lagos Office</h3>
+                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🇳🇬 Nigeria Office (Lagos Hub &amp; Clearing)</span>
+                  </h3>
                   
                   <div className="flex items-start gap-3.5">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
@@ -108,7 +139,9 @@ export default function ContactPage() {
 
                 {/* Abuja Office */}
                 <div className="space-y-3 pb-5 border-b border-slate-100">
-                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider">Abuja Office</h3>
+                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🇳🇬 Nigeria Office (Abuja Hub)</span>
+                  </h3>
                   
                   <div className="flex items-start gap-3.5">
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
@@ -133,6 +166,28 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* US Warehouse */}
+                <div className="space-y-3 pb-5 border-b border-slate-100">
+                  <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🇺🇸 United States Receiving Warehouse (Texas)</span>
+                  </h3>
+                  
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=1234+N+Belt+Line+Rd+Irving+TX+75061" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1 text-sm leading-relaxed group/link font-medium"
+                    >
+                      1234 N Belt Line Rd, Irving, TX 75061, United States
+                      <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover/link:opacity-100 transition-opacity shrink-0" />
+                    </a>
+                  </div>
+                </div>
+
                 {/* Hours Only */}
                 <div className="space-y-4">
                   <div className="flex items-start gap-3.5">
@@ -143,9 +198,9 @@ export default function ContactPage() {
                       <p className="font-semibold text-[#0a2a5e] text-xs uppercase tracking-wider">Opening Hours</p>
                       <div className="text-slate-600 text-sm font-medium space-y-0.5">
                         <p>Monday – Friday: 9:00 AM – 5:00 PM</p>
-                        <p>Saturday: 10:00 AM – 2:00 PM</p>
+                        <p>Saturday: 10:00 AM – 2:00 PM (Lagos &amp; Liverpool)</p>
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-1 font-normal">Closed on Sundays & Public Holidays</p>
+                      <p className="text-[11px] text-slate-400 mt-1 font-normal">Closed on Sundays &amp; Public Holidays</p>
                     </div>
                   </div>
                 </div>

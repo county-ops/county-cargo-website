@@ -5,6 +5,8 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Leaf, Recycle, ShieldCheck, Zap, Globe } from 'lucide-react';
 import { Faq } from './faq';
+import { JsonLd } from '@/components/json-ld';
+import { SocialShare } from '@/components/social-share';
 
 export const metadata: Metadata = {
   title: 'Sustainable Logistics Practices: Reshaping the Modern Supply Chain | County Cargo',
@@ -14,15 +16,30 @@ export const metadata: Metadata = {
   },
 };
 
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: 'Sustainable Logistics Practices: Reshaping the Modern Supply Chain',
+  description: 'Discover how green logistics and sustainable supply chain initiatives are reducing carbon emissions, optimizing transit routes, and lowering shipping costs for modern businesses.',
+  url: 'https://countycargo.com/blog/sustainable-logistics-practices',
+  datePublished: '2026-01-01',
+  dateModified: '2026-01-01',
+  author: { '@type': 'Organization', name: 'County Cargo', url: 'https://countycargo.com' },
+  publisher: { '@type': 'Organization', name: 'County Cargo', logo: { '@type': 'ImageObject', url: 'https://countycargo.com/county-logo.png' } },
+  inLanguage: 'en-GB',
+  isPartOf: { '@id': 'https://countycargo.com/#website' },
+};
+
 export default function SustainableLogisticsPage() {
   return (
     <>
+      <JsonLd data={blogPostingSchema} />
       <Header />
       <main className="pt-16">
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.65), rgba(6, 78, 59, 0.75)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.70), rgba(6, 78, 59, 0.80)), url('/blog-2-sustainable.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -101,6 +118,7 @@ export default function SustainableLogisticsPage() {
                 <p>County Cargo is committed to exploring new green processes to connect continents responsibly. Together, we can ensure international logistics supports global progress and environmental preservation.</p>
 
             </div>
+            <SocialShare title="Sustainable Logistics Practices: Reshaping the Modern Supply Chain | County Cargo" />
         </article>
 
         <Faq />
