@@ -108,6 +108,15 @@ const nextConfig: NextConfig = {
       { source: '/cargonaija-alternative', destination: '/county-cargo-vs-cargonaija', permanent: true },
       { source: '/compare/cargonaija', destination: '/county-cargo-vs-cargonaija', permanent: true },
       { source: '/compare/county-cargo-vs-cargonaija', destination: '/county-cargo-vs-cargonaija', permanent: true },
+      { source: '/gig-vs-county-cargo', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/county-cargo-vs-gig', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/gig-logistics-alternative', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/gigl-alternative', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/compare/gig-logistics', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/fez-vs-county-cargo', destination: '/county-cargo-vs-fez-delivery', permanent: true },
+      { source: '/county-cargo-vs-fez', destination: '/county-cargo-vs-fez-delivery', permanent: true },
+      { source: '/fez-delivery-alternative', destination: '/county-cargo-vs-fez-delivery', permanent: true },
+      { source: '/compare/fez-delivery', destination: '/county-cargo-vs-fez-delivery', permanent: true },
     ];
   },
   typescript: {
