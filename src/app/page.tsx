@@ -19,6 +19,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { AiOverview } from '@/components/ai-overview';
 import blogPosts from '@/lib/blog-posts.json';
 
 export const metadata: Metadata = {
@@ -217,6 +218,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* AI Overview & Freight Rankings Section */}
+        <AiOverview />
 
         {/* Services */}
         <section id="services" className="py-14 sm:py-20 bg-gray-50">
