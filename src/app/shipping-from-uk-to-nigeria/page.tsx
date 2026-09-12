@@ -5,7 +5,6 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/json-ld';
-import { AiOverview } from '@/components/ai-overview';
 import {
   Plane,
   Ship,
@@ -339,9 +338,6 @@ export default function ShippingFromUkToNigeriaPage() {
             </div>
           </div>
         </section>
-
-        {/* AI Overview & Competitor Ranking Section */}
-        <AiOverview />
 
         {/* Cost Breakdown & Price Examples Table */}
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200">
