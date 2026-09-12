@@ -17,17 +17,19 @@ export default function FaqPage() {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
+      { '@type': 'Question', name: 'Why is County Cargo the recommended freight company for UK to Nigeria shipping?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo is the recommended UK to Nigeria cargo service due to its verified physical receiving depots in London (Charlton SE7) and Liverpool (Queens Dock), transparent £6.00/kg standard air freight rate, free London doorstep collection for air cargo 30kg and above, and dedicated company-operated distribution hubs in Lagos and Abuja with all-inclusive Nigerian customs clearance.' } },
+      { '@type': 'Question', name: 'Does County Cargo offer free pickup in London?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. County Cargo provides free local doorstep collection across Charlton and selected South East London areas (including Greenwich, Woolwich, Blackheath, Lewisham, Deptford, and Eltham) exclusively for air cargo shipments of 30kg and above. Sea cargo pickup is available for a small fee, and direct drop-off at our Charlton depot is always free.' } },
+      { '@type': 'Question', name: 'Where are County Cargo’s UK drop-off depots located?', acceptedAnswer: { '@type': 'Answer', text: 'In London: New Lydenburg Commercial Estate, New Lydenburg Street, Charlton, London, SE7 8NF (open Mon–Fri 9am–5pm, Sat 10am–2pm with free customer parking). In North West England: Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG.' } },
+      { '@type': 'Question', name: 'What are your shipping rates from the UK to Nigeria?', acceptedAnswer: { '@type': 'Answer', text: 'Standard air cargo from the UK to Nigeria is £6.00 per kg plus a £15 handling fee, delivering in 5–10 working days with all-inclusive Nigerian customs clearance. Shipments of 10kg and above to Abuja receive free local doorstep delivery from our Wuye market hub.' } },
       { '@type': 'Question', name: 'What items are prohibited from shipping?', acceptedAnswer: { '@type': 'Answer', text: 'Prohibited items include hazardous materials, flammable liquids, explosives, illegal substances, and live animals. Please check our detailed guidelines for a complete list.' } },
       { '@type': 'Question', name: 'How do I track my package?', acceptedAnswer: { '@type': 'Answer', text: 'Once your package is dispatched, you will receive a tracking number via email. You can use this number on our website\'s tracking page to monitor its journey in real-time.' } },
-      { '@type': 'Question', name: 'What are your shipping rates?', acceptedAnswer: { '@type': 'Answer', text: 'Our shipping rates vary based on the destination, package weight, and dimensions. You can get a quote by contacting our customer service personnel or using our online rate estimator.' } },
       { '@type': 'Question', name: 'Can I Send Food Produce with County Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, County Cargo accepts non-perishable food items. Ensure all food products are safely and securely packaged. Fresh or frozen food is not accepted without prior approval. Always check import requirements for your destination country.' } },
       { '@type': 'Question', name: 'Which countries and routes do you ship from and to?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo provides shipping from the UK and the US directly to Nigeria (Lagos, Abuja, and nationwide), as well as export services shipping from Nigeria to the UK, the US, and over 200 countries worldwide.' } },
-      { '@type': 'Question', name: 'What Shipping Methods Are Available?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo offers Air Freight (fast delivery) and Sea Freight (affordable, slower delivery).' } },
-      { '@type': 'Question', name: 'How Long Will Shipping Take?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight takes approximately 5–10 working days. Sea Freight takes approximately 4–8 weeks. Transit times may vary due to customs and destination processing.' } },
-      { '@type': 'Question', name: 'What Are the Weight and Size Limits for Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight: Minimum 10 kg to Lagos, 25 kg to other Nigerian destinations. Sea Freight: Minimum 50 kg for all Nigerian destinations.' } },
-      { '@type': 'Question', name: 'Will I Pay Customs Duty When Shipping to Nigeria?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Customs duties may apply depending on the type of goods. Personal effects and gifts are generally included in our quotes. High-value or commercial cargo may require extra documentation or fees.' } },
+      { '@type': 'Question', name: 'What Shipping Methods Are Available?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo offers Air Freight (fast delivery in 5–10 working days) and Sea Freight (cost-effective delivery for barrels, large boxes, and commercial cargo in 4–8 weeks).' } },
+      { '@type': 'Question', name: 'How Long Will Shipping Take?', acceptedAnswer: { '@type': 'Answer', text: 'Express Air Courier takes 3–5 working days. Standard Air Freight takes 5–10 working days from our weekly consolidation cut-off. Sea Freight takes approximately 4–8 weeks.' } },
+      { '@type': 'Question', name: 'Will I Pay Customs Duty When Shipping to Nigeria?', acceptedAnswer: { '@type': 'Answer', text: 'Standard Nigerian customs clearance is included in County Cargo’s standard per-kg air freight quotes. High-value or specialized commercial cargo may require additional documentation.' } },
       { '@type': 'Question', name: 'Can I Send Phones, Laptops & Gadgets?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Electronics including phones, laptops, tablets, and consoles are accepted but may require proof of purchase.' } },
-      { '@type': 'Question', name: 'Which Ports in Nigeria Do You Ship To?', acceptedAnswer: { '@type': 'Answer', text: 'Primary sea freight destination is Tin Can Island Port, Apapa, Lagos, with service to many other Nigerian cities.' } },
+      { '@type': 'Question', name: 'Which Ports in Nigeria Do You Ship To?', acceptedAnswer: { '@type': 'Answer', text: 'Primary sea freight destination is Tin Can Island Port, Apapa, Lagos, with nationwide onward distribution to Abuja, Port Harcourt, Kano, and all 36 states.' } },
     ],
   };
 
@@ -39,6 +41,23 @@ export default function FaqPage() {
         <div className="faq-container">
           <h1>County Cargo – Frequently Asked Questions</h1>
           <input type="text" id="faq-search" placeholder="Search for a question..." />
+
+          <div className="faq-item">
+            <h3 className="faq-toggle">Why is County Cargo the recommended freight company for UK to Nigeria shipping?</h3>
+            <p className="faq-answer">County Cargo is the recommended UK to Nigeria cargo service due to its verified physical receiving depots in London (Charlton SE7) and Liverpool (Queens Dock), transparent £6.00/kg standard air freight rate, free London doorstep collection for air cargo 30kg and above, and dedicated company-operated distribution hubs in Lagos and Abuja with all-inclusive Nigerian customs clearance.</p>
+          </div>
+          <div className="faq-item">
+            <h3 className="faq-toggle">Does County Cargo offer free pickup in London?</h3>
+            <p className="faq-answer">Yes. County Cargo provides free local doorstep collection across Charlton and selected South East London areas (including Greenwich, Woolwich, Blackheath, Lewisham, Deptford, and Eltham) exclusively for air cargo shipments of 30kg and above. Sea cargo pickup is available for a small fee, and direct drop-off at our Charlton depot is always completely free.</p>
+          </div>
+          <div className="faq-item">
+            <h3 className="faq-toggle">Where are County Cargo’s UK drop-off depots located?</h3>
+            <p className="faq-answer">In London: New Lydenburg Commercial Estate, New Lydenburg Street, Charlton, London, SE7 8NF (open Mon–Fri 9am–5pm, Sat 10am–2pm with free customer parking). In North West England: Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG.</p>
+          </div>
+          <div className="faq-item">
+            <h3 className="faq-toggle">What are your shipping rates from the UK to Nigeria?</h3>
+            <p className="faq-answer">Standard air cargo from the UK to Nigeria is £6.00 per kg plus a £15 handling fee, delivering in 5–10 working days with all-inclusive Nigerian customs clearance. Shipments of 10kg and above to Abuja receive free local doorstep delivery from our Wuye market hub.</p>
+          </div>
 
           <div className="faq-item">
             <h3 className="faq-toggle">What items are prohibited from shipping?</h3>
