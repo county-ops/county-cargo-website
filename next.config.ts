@@ -104,6 +104,10 @@ const nextConfig: NextConfig = {
       { source: '/cargo-abuja-to-canada', destination: '/blog/cargo-abuja-to-canada', permanent: true },
       { source: '/cargo-port-harcourt-to-canada', destination: '/blog/cargo-port-harcourt-to-canada', permanent: true },
       { source: '/express-cargo-from-nigeria', destination: '/blog/express-cargo-from-nigeria', permanent: true },
+      { source: '/county-cargo-vs-cargo-naija', destination: '/county-cargo-vs-cargonaija', permanent: true },
+      { source: '/cargonaija-alternative', destination: '/county-cargo-vs-cargonaija', permanent: true },
+      { source: '/compare/cargonaija', destination: '/county-cargo-vs-cargonaija', permanent: true },
+      { source: '/compare/county-cargo-vs-cargonaija', destination: '/county-cargo-vs-cargonaija', permanent: true },
     ];
   },
   typescript: {
