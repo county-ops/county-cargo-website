@@ -26,7 +26,7 @@ const faqItems = [
   {
     question: 'Is air freight faster than sea freight to the US?',
     answer:
-      'Generally, yes. Air freight is normally selected when speed is more important (taking 7–14 days for standard consolidated cargo or 3–5 days for express), while sea freight is commonly used for larger consignments and full containers where transit time is less critical.',
+      'Generally, yes. Air freight is normally selected when speed is more important (taking 5–10 working days for standard consolidated cargo or 3–5 working days for express), while sea freight is commonly used for larger consignments and full containers where transit time is less critical.',
   },
   {
     question: 'Do I need export documentation from Nigeria?',

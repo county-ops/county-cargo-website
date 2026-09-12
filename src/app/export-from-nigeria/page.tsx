@@ -51,7 +51,7 @@ const countryRoutes = [
     country: 'Canada',
     flag: '🇨🇦',
     href: '/shipping-from-nigeria-to-canada',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 10 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5–10 Working Days (Standard)',
     hubs: 'Toronto, Calgary, Vancouver, Ottawa, Montreal, Edmonton',
     features: 'CBSA customs clearance, CFIA dry food compliance, doorstep delivery.',
   },
@@ -59,7 +59,7 @@ const countryRoutes = [
     country: 'United States',
     flag: '🇺🇸',
     href: '/shipping-from-nigeria-to-usa',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 10 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5–10 Working Days (Standard)',
     hubs: 'Houston, Dallas, Atlanta, New York, Chicago, Maryland, Washington DC',
     features: 'US CBP clearance, FDA Prior Notice filing for foodstuffs, nationwide delivery.',
   },
@@ -67,7 +67,7 @@ const countryRoutes = [
     country: 'United Kingdom',
     flag: '🇬🇧',
     href: '/shipping-from-nigeria-to-uk',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 7 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5 – 7 Days (Standard)',
     hubs: 'London, Liverpool (Depot L1 0BG), Manchester, Birmingham, Leeds',
     features: 'HMRC customs clearance, DEFRA food compliance, Liverpool distribution depot.',
   },
@@ -75,7 +75,7 @@ const countryRoutes = [
     country: 'Germany',
     flag: '🇩🇪',
     href: '/shipping-from-nigeria-to-germany',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 8 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5 – 8 Days (Standard)',
     hubs: 'Frankfurt (FRA Hub), Berlin, Hamburg, Munich, Cologne, Düsseldorf',
     features: 'German Zoll customs clearance, EU VAT paperwork, door delivery across Germany.',
   },
@@ -83,7 +83,7 @@ const countryRoutes = [
     country: 'France',
     flag: '🇫🇷',
     href: '/shipping-from-nigeria-to-france',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 8 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5 – 8 Days (Standard)',
     hubs: 'Paris (CDG Hub), Lyon, Marseille, Toulouse, Bordeaux, Lille',
     features: 'Douane française clearance, African fashion & dry food specialists.',
   },
@@ -91,7 +91,7 @@ const countryRoutes = [
     country: 'Turkey',
     flag: '🇹🇷',
     href: '/shipping-from-nigeria-to-turkey',
-    deliveryTime: '3 – 5 Days (Express) | 5 – 8 Days (Standard)',
+    deliveryTime: '3–5 Working Days (Express) | 5 – 8 Days (Standard)',
     hubs: 'Istanbul (IST Hub), Ankara, Izmir, Bursa, Antalya, Adana',
     features: 'Turkish Ministry of Trade clearance, B2B commercial sample dispatch.',
   },
@@ -275,8 +275,8 @@ export default function ExportFromNigeriaPillarPage() {
                       <td className="p-4 font-bold text-secondary flex items-center gap-2">
                         <span>{r.flag}</span> {r.country}
                       </td>
-                      <td className="p-4 font-semibold text-primary">3 – 5 Days</td>
-                      <td className="p-4 text-gray-800">5 – 10 Days</td>
+                      <td className="p-4 font-semibold text-primary">3–5 Working Days</td>
+                      <td className="p-4 text-gray-800">5–10 Working Days</td>
                       <td className="p-4 text-xs text-gray-600">{r.hubs.split(',')[0]} &amp; regional hubs</td>
                       <td className="p-4 text-xs font-semibold text-gray-800">
                         {r.country === 'Canada' && 'CBSA & CFIA'}

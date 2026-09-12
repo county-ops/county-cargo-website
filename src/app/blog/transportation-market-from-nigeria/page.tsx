@@ -15,6 +15,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://countycargo.com/blog/transportation-market-from-nigeria',
   },
+  openGraph: {
+    title: 'Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide',
+    description: 'Learn how the transportation market from Nigeria works and how County Cargo handles export shipping to the UK, USA, and worldwide with safe, cost-effective logistics solutions.',
+    url: 'https://countycargo.com/blog/transportation-market-from-nigeria',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: 'https://countycargo.com/images/blog/nigeria-transportation-market-logistics.jpg',
+        width: 1200,
+        height: 675,
+        alt: 'Strategic freight and logistics planning for the Nigerian transportation market',
+      },
+    ],
+  },
 };
 
 const blogPostingSchema = {
@@ -22,6 +36,7 @@ const blogPostingSchema = {
   '@type': 'BlogPosting',
   headline: 'Transportation Market from Nigeria: Reliable Cargo Shipping to UK, USA & Worldwide',
   description: 'Learn how the transportation market from Nigeria works and how County Cargo handles export shipping to the UK, USA, and worldwide with safe, cost-effective logistics solutions.',
+  image: 'https://countycargo.com/images/blog/nigeria-transportation-market-logistics.jpg',
   url: 'https://countycargo.com/blog/transportation-market-from-nigeria',
   datePublished: '2026-01-01',
   dateModified: '2026-01-01',
@@ -40,7 +55,7 @@ export default function TransportationMarketPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(31, 41, 55, 0.85)), url('/blog-1-nigeria-export.png')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(31, 41, 55, 0.85)), url('/images/blog/nigeria-transportation-market-logistics.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

@@ -5,18 +5,21 @@ import { useEffect, useState } from 'react';
 
 interface SocialShareProps {
   title: string;
+  url?: string;
 }
 
 /**
  * Social sharing buttons for blog posts.
  * Shares the current page URL via Facebook, WhatsApp, X/Twitter, and Email.
  */
-export function SocialShare({ title }: SocialShareProps) {
-  const [url, setUrl] = useState('');
+export function SocialShare({ title, url: initialUrl }: SocialShareProps) {
+  const [url, setUrl] = useState(initialUrl || '');
 
   useEffect(() => {
-    setUrl(window.location.href);
-  }, []);
+    if (!initialUrl) {
+      setUrl(window.location.href);
+    }
+  }, [initialUrl]);
 
   if (!url) return null;
 

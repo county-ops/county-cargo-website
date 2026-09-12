@@ -185,7 +185,7 @@ const pricingTiers = [
     origin: 'Lagos to USA',
     price: '₦15,500',
     per: '/kg',
-    delivery: '7–14 Working Days',
+    delivery: '5–10 Working Days',
     minWeight: '10kg minimum chargeable weight',
     features: [
       'Weekly scheduled air dispatch',

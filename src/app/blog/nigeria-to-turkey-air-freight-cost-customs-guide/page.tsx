@@ -26,7 +26,7 @@ export default function TurkeyAirFreightCostCustomsPost() {
     '@type': 'BlogPosting',
     headline: 'Nigeria-to-Turkey Air Freight Cost and Customs Guide',
     description: 'Comprehensive analysis of Turkish air cargo rates per kg, volumetric weight formulas, and customs documentation.',
-    image: 'https://countycargo.com/blog-4-us-nigeria.png',
+    image: 'https://countycargo.com/US TO NIGERIA.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function TurkeyAirFreightCostCustomsPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Turkey Freight Rates &amp; Customs
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air freight to Turkey is billed based on chargeable weight (actual vs volumetric weight). Express Air Courier delivers in <strong>3 to 5 days</strong> while Standard Air Cargo takes <strong>5 to 8 working days</strong>. Commercial goods require clear invoice itemization for Turkish customs clearance.
+                Air freight to Turkey is billed based on chargeable weight (actual vs volumetric weight). Express Air Courier delivers in <strong>3 to 5 working days</strong> while Standard Air Cargo takes <strong>5 to 10 working days</strong>. Commercial goods require clear invoice itemization for Turkish customs clearance.
               </p>
             </div>
 

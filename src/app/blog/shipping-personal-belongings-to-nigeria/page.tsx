@@ -26,7 +26,7 @@ export default function ShippingPersonalBelongingsToNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'Shipping Personal Belongings from the UK to Nigeria',
     description: 'Affordable, secure door-to-door relocation and personal effects cargo solutions from the UK to Nigeria.',
-    image: 'https://countycargo.com/blog-6-nigeria-uk.png',
+    image: 'https://countycargo.com/images/blog/shipping-personal-belongings-uk-to-nigeria.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {

@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+        url: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Export documentation and cargo clearing for shipments from Nigeria to the UK',
+        height: 675,
+        alt: 'Export documentation and certification for shipments from Nigeria to the UK',
       },
     ],
   },
@@ -43,7 +43,7 @@ export default function DocumentsRequiredForExportingGoodsPage() {
     headline: 'Documents Required for Exporting Goods from Nigeria to the UK',
     description:
       'Step-by-step regulatory breakdown of documentation needed for exporting commercial merchandise, agricultural foodstuffs, and personal effects from Nigeria to the UK.',
-    image: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+    image: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
     datePublished: '2026-09-01T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {

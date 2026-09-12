@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+        url: 'https://countycargo.com/liverpool-to-abuja-cargo.jpg',
         width: 1200,
         height: 630,
         alt: 'Liverpool to Abuja Cargo Freight Services',
@@ -43,7 +43,7 @@ export default function LiverpoolToAbujaCargoServicesPage() {
     headline: 'Liverpool to Abuja Cargo Services: Fast Air Freight from Merseyside to the Federal Capital',
     description:
       'Detailed shipping guide for customers sending personal effects, electronics, documents, and commercial goods from Liverpool to Abuja FCT.',
-    image: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+    image: 'https://countycargo.com/liverpool-to-abuja-cargo.jpg',
     datePublished: '2026-09-02T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {

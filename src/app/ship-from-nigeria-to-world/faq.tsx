@@ -51,7 +51,7 @@ export const worldFaqItems = [
   {
     question: 'How long does international shipping from Nigeria take?',
     answer:
-      'Transit times vary depending on the destination, selected shipping mode, and customs clearance. DHL Express takes 3–5 working days, standard consolidated air cargo typically takes 7–14 working days, while sea freight is designed for larger consignments where transit time is less critical.',
+      'Transit times vary depending on the destination, selected shipping mode, and customs clearance. DHL Express takes 3–5 working days, standard consolidated air cargo typically takes 5–10 working days, while sea freight is designed for larger consignments where transit time is less critical.',
   },
   {
     question: 'How can I get a shipping price from Nigeria?',

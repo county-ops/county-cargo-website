@@ -24,7 +24,7 @@ const blogPostingSchema = {
   url: 'https://countycargo.com/blog/ai-in-warehouse-management',
   datePublished: '2026-01-01',
   dateModified: '2026-01-01',
-  image: 'https://countycargo.com/blog-3-ai-warehouse.png',
+  image: 'https://countycargo.com/images/blog/ai-warehouse-automated-sorting.jpg',
   author: {
     '@type': 'Organization',
     name: 'County Cargo',
@@ -48,7 +48,7 @@ export default function AiInWarehousePage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(15, 23, 42, 0.85)), url('/blog-3-ai-warehouse.png')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.75), rgba(15, 23, 42, 0.85)), url('/images/blog/ai-warehouse-automated-sorting.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

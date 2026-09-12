@@ -177,7 +177,7 @@ export default function ShippingNigeriaToUsBlogPage() {
     'headline': 'Shipping from Nigeria to the US: Reliable Cargo & Freight Solutions',
     'description':
       'Move your cargo from Nigeria to the United States of America with confidence. Complete guide covering air and sea freight, NEPC export documentation, US CBP customs rules, food shipping, and delivery across America.',
-    'image': 'https://countycargo.com/service-nigeria-to-us-enhanced.png',
+    'image': 'https://countycargo.com/images/blog/nigeria-to-usa-freight-solutions.jpg',
     'datePublished': '2026-08-25T08:00:00+01:00',
     'dateModified': '2026-08-25T08:00:00+01:00',
     'author': {
@@ -211,7 +211,7 @@ export default function ShippingNigeriaToUsBlogPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white relative"
           style={{
-            background: `linear-gradient(rgba(10, 25, 47, 0.8), rgba(15, 23, 42, 0.88)), url('/service-nigeria-to-us-enhanced.png')`,
+            background: `linear-gradient(rgba(10, 25, 47, 0.8), rgba(15, 23, 42, 0.88)), url('/images/blog/nigeria-to-usa-freight-solutions.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

@@ -23,7 +23,7 @@ export default function FaqPage() {
       { '@type': 'Question', name: 'Can I Send Food Produce with County Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, County Cargo accepts non-perishable food items. Ensure all food products are safely and securely packaged. Fresh or frozen food is not accepted without prior approval. Always check import requirements for your destination country.' } },
       { '@type': 'Question', name: 'Which countries and routes do you ship from and to?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo provides shipping from the UK and the US directly to Nigeria (Lagos, Abuja, and nationwide), as well as export services shipping from Nigeria to the UK, the US, and over 200 countries worldwide.' } },
       { '@type': 'Question', name: 'What Shipping Methods Are Available?', acceptedAnswer: { '@type': 'Answer', text: 'County Cargo offers Air Freight (fast delivery) and Sea Freight (affordable, slower delivery).' } },
-      { '@type': 'Question', name: 'How Long Will Shipping Take?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight takes approximately 7–10 working days. Sea Freight takes approximately 5–6 weeks. Transit times may vary due to customs and destination processing.' } },
+      { '@type': 'Question', name: 'How Long Will Shipping Take?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight takes approximately 5–10 working days. Sea Freight takes approximately 4–8 weeks. Transit times may vary due to customs and destination processing.' } },
       { '@type': 'Question', name: 'What Are the Weight and Size Limits for Cargo?', acceptedAnswer: { '@type': 'Answer', text: 'Air Freight: Minimum 10 kg to Lagos, 25 kg to other Nigerian destinations. Sea Freight: Minimum 50 kg for all Nigerian destinations.' } },
       { '@type': 'Question', name: 'Will I Pay Customs Duty When Shipping to Nigeria?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Customs duties may apply depending on the type of goods. Personal effects and gifts are generally included in our quotes. High-value or commercial cargo may require extra documentation or fees.' } },
       { '@type': 'Question', name: 'Can I Send Phones, Laptops & Gadgets?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Electronics including phones, laptops, tablets, and consoles are accepted but may require proof of purchase.' } },
@@ -74,7 +74,7 @@ export default function FaqPage() {
           </div>
           <div className="faq-item">
             <h3 className="faq-toggle">How Long Will Shipping Take?</h3>
-            <p className="faq-answer">Air Freight takes approximately 7–10 working days. Sea Freight takes approximately 5–6 weeks. Transit times may vary due to customs and destination processing.</p>
+            <p className="faq-answer">Air Freight takes approximately 5–10 working days. Sea Freight takes approximately 4–8 weeks. Transit times may vary due to customs and destination processing.</p>
           </div>
           <div className="faq-item">
             <h3 className="faq-toggle">What Are the Weight and Size Limits for Cargo?</h3>

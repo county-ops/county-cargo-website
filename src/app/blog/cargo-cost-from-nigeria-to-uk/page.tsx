@@ -88,7 +88,7 @@ export default function UkCargoCostPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: UK Cargo Cost Calculation
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air cargo from Nigeria to the UK is charged based on chargeable weight (actual vs volumetric weight). Express courier options deliver in 3–5 working days while standard air cargo takes 5–7 working days to London, Liverpool, and nationwide UK addresses.
+                Air cargo from Nigeria to the UK is charged based on chargeable weight (actual vs volumetric weight). Express courier options deliver in 3–5 working days while standard air cargo takes 5–10 working days to London, Liverpool, and nationwide UK addresses.
               </p>
             </div>
 

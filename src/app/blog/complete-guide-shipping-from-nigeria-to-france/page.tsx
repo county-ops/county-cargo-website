@@ -26,7 +26,7 @@ export default function CompleteGuideShippingFrancePost() {
     '@type': 'BlogPosting',
     headline: 'Complete Guide to Shipping from Nigeria to France',
     description: 'Master guide for air freight dispatches, French Douane customs clearance, and door delivery in Paris, Lyon, and Marseille.',
-    image: 'https://countycargo.com/HERO.png',
+    image: 'https://countycargo.com/images/blog/complete-guide-nigeria-to-france-cargo.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function CompleteGuideShippingFrancePost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Shipping from Nigeria to France
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo offers air cargo options from Nigeria to France arriving at Paris Charles de Gaulle (CDG). Delivery takes <strong>3 to 5 days</strong> for Express Courier and <strong>5 to 8 working days</strong> for Standard Air Freight, serving Paris, Lyon, Marseille, Toulouse, Bordeaux, and Lille.
+                County Cargo offers air cargo options from Nigeria to France arriving at Paris Charles de Gaulle (CDG). Delivery takes <strong>3 to 5 working days</strong> for Express Courier and <strong>5 to 10 working days</strong> for Standard Air Freight, serving Paris, Lyon, Marseille, Toulouse, Bordeaux, and Lille.
               </p>
             </div>
 

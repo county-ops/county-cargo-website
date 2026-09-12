@@ -133,7 +133,7 @@ export default function ShippingFromNigeriaToCanadaPage() {
               Shipping from Nigeria to Canada
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 max-w-3xl mx-auto font-light">
-              Express Air Courier (3–5 days) &amp; Standard Air Cargo (5–10 days) to Toronto, Calgary, Vancouver, Ottawa, and Montreal.
+              Express Air Courier (3–5 working days) &amp; Standard Air Cargo (5–10 working days) to Toronto, Calgary, Vancouver, Ottawa, and Montreal.
             </p>
 
             {/* Answer-First Summary */}

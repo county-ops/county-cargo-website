@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shipping from London to Abuja: Prices, Delivery & Customs',
     description: 'Comprehensive guide for shipping cargo from London to Abuja. Learn air cargo rates (£6.00/kg), flight schedules, Garki/Wuse depot collection & FCT delivery.',
-    images: [{ url: 'https://countycargo.com/london-to-abuja-cargo.jpg', alt: 'Air freight dispatch from Greater London to Abuja Nnamdi Azikiwe Airport' }],
+    images: [{ url: 'https://countycargo.com/london-to-abuja-cargo.jpg', alt: 'Air cargo flight consignment for Abuja FCT' }],
   },
 };
 
@@ -118,7 +118,7 @@ export default function ShippingFromLondonToAbujaPost() {
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Direct Answer: Shipping from London to Abuja
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Standard air cargo from London to Abuja costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 8 working days</strong>. Express Air Courier delivers urgent packages in <strong>3 to 5 working days</strong>. Cargo flies into Nigeria via direct air routes (cleared at Nnamdi Azikiwe Airport ABV or transferred from airport customs) for pickup at our central Abuja depot (servicing Garki, Wuse, Utako, and Maitama) or FCT door delivery.
+                Standard air cargo from London to Abuja costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 10 working days</strong>. Express Air Courier delivers urgent packages in <strong>3 to 5 working days</strong>. Cargo flies into Nigeria via direct air routes (cleared at Nnamdi Azikiwe Airport ABV or transferred from airport customs) for pickup at our central Abuja depot (servicing Garki, Wuse, Utako, and Maitama) or FCT door delivery.
               </p>
             </div>
 
@@ -126,6 +126,26 @@ export default function ShippingFromLondonToAbujaPost() {
             <p className="text-gray-700">
               County Cargo provides daily doorstep pick-up services across all London boroughs: Peckham, Woolwich, Lewisham, Croydon, Wembley, Barking, Dagenham, Tottenham, and Enfield. Consignments are consolidated in our London warehouse, weighed, inspected, and loaded onto direct international flights to Nigeria.
             </p>
+
+            {/* Official Charlton Drop-Off Point Callout */}
+            <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 not-prose">
+              <div>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">
+                  📍 Official London Drop-Off Point
+                </span>
+                <h3 className="font-bold text-slate-900 text-base">
+                  Drop off your Abuja cargo directly at our Charlton receiving point (SE7 8NF)
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">
+                  Visit New Lydenburg Commercial Estate in Charlton or schedule free collection across South East London.
+                </p>
+              </div>
+              <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-bold shrink-0">
+                <Link href="/shipping-from-london-to-nigeria">
+                  View Charlton Depot <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </Button>
+            </div>
 
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary">London to Abuja Shipping Options &amp; Rates</h2>
             <div className="overflow-x-auto border border-gray-200 rounded-xl my-4">
@@ -171,7 +191,7 @@ export default function ShippingFromLondonToAbujaPost() {
                   <Link href="/shipping-from-uk-to-nigeria">Book London Pickup</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/447405556668" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
                   </a>
                 </Button>

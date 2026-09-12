@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'How long does air cargo shipping from Nigeria to Germany take?',
-    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major German addresses. Standard Air Cargo takes 5 to 8 working days including customs clearance at Frankfurt Airport (FRA).',
+    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major German addresses. Standard Air Cargo takes 5 to 10 working days including customs clearance at Frankfurt Airport (FRA).',
   },
   {
     question: 'Which German cities does County Cargo deliver to?',
@@ -131,7 +131,7 @@ export default function ShippingFromNigeriaToGermanyPage() {
               Shipping from Nigeria to Germany
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 max-w-3xl mx-auto font-light">
-              Express Air Courier (3–5 days) &amp; Standard Air Cargo (5–8 days) to Frankfurt, Berlin, Munich, Hamburg, and Cologne.
+              Express Air Courier (3–5 working days) &amp; Standard Air Cargo (5–10 working days) to Frankfurt, Berlin, Munich, Hamburg, and Cologne.
             </p>
 
             {/* Answer-First Summary */}
@@ -140,7 +140,7 @@ export default function ShippingFromNigeriaToGermanyPage() {
                 <CheckCircle2 className="w-4 h-4 text-green-400" /> Answer-First Summary: Nigeria to Germany Export Service
               </h2>
               <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-normal">
-                County Cargo connects Lagos and Abuja to major commercial hubs in Germany. Express Air Courier delivers in 3 to 5 working days, while Standard Air Cargo delivers in 5 to 8 working days. We manage German Zoll customs clearance, EU VAT paperwork, and doorstep delivery across Berlin, Frankfurt, Hamburg, Munich, Cologne, and Düsseldorf.
+                County Cargo connects Lagos and Abuja to major commercial hubs in Germany. Express Air Courier delivers in 3 to 5 working days, while Standard Air Cargo delivers in 5 to 10 working days. We manage German Zoll customs clearance, EU VAT paperwork, and doorstep delivery across Berlin, Frankfurt, Hamburg, Munich, Cologne, and Düsseldorf.
               </p>
             </div>
 

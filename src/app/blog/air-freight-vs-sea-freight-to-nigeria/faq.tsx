@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'How long does sea freight take from the UK/US to Lagos port?',
     answer:
-      'Sea freight from UK ports (Tilbury, Liverpool, Felixstowe) or US ports (Houston, New York) to Lagos (Apapa/Tin Can) takes approximately 4 to 6 weeks, including ocean transit and port customs clearing.',
+      'Sea freight from UK ports (Tilbury, Liverpool, Felixstowe) or US ports (Houston, New York) to Lagos (Apapa/Tin Can) takes approximately 4 to 8 weeks, including ocean transit and port customs clearing.',
   },
 ];
 

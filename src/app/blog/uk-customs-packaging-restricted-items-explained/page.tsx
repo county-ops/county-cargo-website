@@ -26,7 +26,7 @@ export default function UkCustomsPackagingPost() {
     '@type': 'BlogPosting',
     headline: 'UK Customs, Packaging and Restricted Items Explained',
     description: 'Comprehensive compliance guide for HMRC rules, UK food safety regulations, and proper packaging techniques.',
-    image: 'https://countycargo.com/sq-nigeria-uk.png',
+    image: 'https://countycargo.com/uk-customs-inspection.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

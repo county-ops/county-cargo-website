@@ -79,6 +79,48 @@ export default function ContactPage() {
                   </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 px-6 pb-6 text-slate-700">
+                {/* London Charlton Drop-Off Point */}
+                <div className="space-y-3 pb-5 border-b border-slate-100">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <span>🇬🇧 London Drop-Off Point (Charlton)</span>
+                    </h3>
+                    <Link
+                      href="/shipping-from-london-to-nigeria"
+                      className="text-xs font-bold text-blue-600 hover:underline inline-flex items-center gap-1"
+                    >
+                      Full Details <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                  
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <a 
+                        href="https://www.google.com/maps/dir/?api=1&destination=New+Lydenburg+Commercial+Estate,+New+Lydenburg+Street,+Charlton,+London,+SE7+8NF" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1 text-sm leading-relaxed group/link font-medium"
+                      >
+                        New Lydenburg Commercial Estate, New Lydenburg Street, Charlton, London, SE7 8NF
+                        <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover/link:opacity-100 transition-opacity shrink-0" />
+                      </a>
+                      <p className="text-xs text-slate-400 mt-0.5">Drop-off &amp; local pickup (Free for air cargo 30kg+, sea cargo for a small fee) serving Charlton &amp; SE London</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 shadow-sm border border-blue-100">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <a href="tel:07405556668" className="text-slate-600 hover:text-blue-600 transition-colors text-sm font-medium block">07405 556668 (London Depot Line &amp; WhatsApp)</a>
+                    </div>
+                  </div>
+                </div>
+
                 {/* UK Office & Liverpool Depot */}
                 <div className="space-y-3 pb-5 border-b border-slate-100">
                   <h3 className="font-extrabold text-sm text-blue-600 uppercase tracking-wider flex items-center gap-1.5">

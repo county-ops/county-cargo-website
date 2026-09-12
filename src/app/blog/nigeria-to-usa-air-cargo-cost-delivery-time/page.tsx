@@ -12,7 +12,7 @@ import { Faq } from './faq';
 
 export const metadata: Metadata = {
   title: 'Nigeria-to-USA Air Cargo Costs and Delivery Times Explained',
-  description: 'Compare DHL Express (3-5 days) and standard air cargo (5-10 days) timelines and per-kg pricing from Lagos and Abuja to American destination hubs.',
+  description: 'Compare DHL Express (3–5 working days) and standard air cargo (5–10 working days) timelines and per-kg pricing from Lagos and Abuja to American destination hubs.',
   keywords: 'Nigeria to USA air cargo cost, delivery time Lagos to Houston Atlanta, express shipping to New York Dallas, per kg freight rate US',
   alternates: {
     canonical: 'https://countycargo.com/blog/nigeria-to-usa-air-cargo-cost-delivery-time',
@@ -88,7 +88,7 @@ export default function UsaAirCargoCostDeliveryPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: USA Delivery Options
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Delivery from Nigeria to the US takes <strong>3 to 5 days</strong> for Express Air Courier (via DHL) and <strong>5 to 10 working days</strong> for Standard Air Cargo. Rates are charged based on volumetric weight or actual weight, whichever is greater.
+                Delivery from Nigeria to the US takes <strong>3 to 5 working days</strong> for Express Air Courier (via DHL) and <strong>5 to 10 working days</strong> for Standard Air Cargo. Rates are charged based on volumetric weight or actual weight, whichever is greater.
               </p>
             </div>
 

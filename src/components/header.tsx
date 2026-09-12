@@ -22,6 +22,7 @@ const navLinks = [
     label: 'Services',
     submenu: [
       { href: '/shipping-from-uk-to-nigeria', label: 'Shipping from UK to Nigeria' },
+      { href: '/shipping-from-london-to-nigeria', label: 'London Charlton Drop-Off' },
       { href: '/ship-from-us-to-nigeria', label: 'Shipping from US to Nigeria' },
       { href: '/shipping-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
       { href: '/ship-from-nigeria-to-us', label: 'Shipping from Nigeria to US' },
@@ -70,6 +71,7 @@ export function Header() {
         <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Home</Link>
         <Link href="/#services" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Services</Link>
         <Link href="/shipping-from-uk-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Nigeria</Link>
+        <Link href="/shipping-from-london-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">London Charlton Drop-Off</Link>
         <Link href="/ship-from-us-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from US to Nigeria</Link>
         <Link href="/shipping-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
@@ -166,6 +168,7 @@ export function Header() {
                       <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Services</p>
                       {[
                         { href: '/shipping-from-uk-to-nigeria', label: 'UK → Nigeria' },
+                        { href: '/shipping-from-london-to-nigeria', label: 'London Charlton Drop-Off' },
                         { href: '/ship-from-us-to-nigeria', label: 'US → Nigeria' },
                         { href: '/ship-from-nigeria-to-uk', label: 'Nigeria → UK' },
                         { href: '/ship-from-nigeria-to-us', label: 'Nigeria → US' },

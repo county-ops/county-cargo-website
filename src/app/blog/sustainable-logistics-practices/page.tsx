@@ -39,7 +39,7 @@ export default function SustainableLogisticsPage() {
         <section
           className="min-h-[50vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.70), rgba(6, 78, 59, 0.80)), url('/blog-2-sustainable.png')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.70), rgba(6, 78, 59, 0.80)), url('/images/blog/sustainable-green-logistics-packaging.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

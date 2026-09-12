@@ -69,7 +69,7 @@ export default function AirVsSeaFreightPost() {
               Air Freight vs Sea Freight to Nigeria: Cost, Speed &amp; Benefits
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
-              How to choose between fast air cargo (3–10 days) and economical sea freight (4–6 weeks) based on weight, volume, and budget.
+              How to choose between fast air cargo (3–10 days) and economical sea freight (4–8 weeks) based on weight, volume, and budget.
             </p>
             <div className="flex items-center justify-center gap-4 text-xs sm:text-sm text-gray-300 mt-6">
               <span>By County Cargo Freight Strategist</span>
@@ -88,7 +88,7 @@ export default function AirVsSeaFreightPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Air vs Sea Freight
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air freight to Nigeria is fast (3–5 days express, 5–10 days standard) and charged per kilogram, making it ideal for parcels under 100kg, electronics, and urgent items. Sea freight is slower (4–6 weeks) but charged per cubic meter (CBM) or container load, making it 60–80% cheaper per unit for heavy machinery, furniture, and bulk cargo over 200kg.
+                Air freight to Nigeria is fast (3–5 working days express, 5–10 working days standard) and charged per kilogram, making it ideal for parcels under 100kg, electronics, and urgent items. Sea freight is slower (4–8 weeks) but charged per cubic meter (CBM) or container load, making it 60–80% cheaper per unit for heavy machinery, furniture, and bulk cargo over 200kg.
               </p>
             </div>
 

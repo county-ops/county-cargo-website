@@ -21,7 +21,7 @@ const faqs = [
   {
     question: 'How long does sea cargo take from UK to Lagos port?',
     answer:
-      'Sea freight shipping from UK ports to Apapa or Tin Can Island port in Lagos takes approximately 4 to 6 weeks, covering ocean transit, vessel discharge, and customs clearance.',
+      'Sea freight shipping from UK ports to Apapa or Tin Can Island port in Lagos takes approximately 4 to 8 weeks, covering ocean transit, vessel discharge, and customs clearance.',
   },
 ];
 

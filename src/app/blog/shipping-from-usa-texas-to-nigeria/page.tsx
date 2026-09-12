@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shipping from USA & Texas to Nigeria: Complete Guide | County Cargo',
     description: 'Cargo plane shipping from Texas USA to Lagos Abuja Nigeria freight.',
-    images: [{ url: 'https://countycargo.com/service-us-to-nigeria-enhanced.png', alt: 'US and Texas cargo receiving warehouse dispatch to Lagos and Abuja Nigeria' }],
+    images: [{ url: 'https://countycargo.com/images/blog/texas-depot-usa-to-nigeria-cargo.jpg', alt: 'Texas air and ocean freight facility for Nigeria shipping' }],
   },
 };
 
@@ -31,7 +31,7 @@ export default function ShippingFromUsaTexasToNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'Shipping from the USA and Texas to Nigeria: Complete Guide',
     description: 'Comprehensive US freight guide detailing air and ocean cargo services from Texas and nationwide USA to Lagos, Abuja, and all 36 Nigerian states.',
-    image: 'https://countycargo.com/service-us-to-nigeria-enhanced.png',
+    image: 'https://countycargo.com/images/blog/texas-depot-usa-to-nigeria-cargo.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {
@@ -68,7 +68,7 @@ export default function ShippingFromUsaTexasToNigeriaPost() {
         <section
           className="py-12 md:py-16 text-white relative"
           style={{
-            background: `linear-gradient(rgba(10, 25, 47, 0.85), rgba(15, 23, 42, 0.92)), url('/service-us-to-nigeria-enhanced.png')`,
+            background: `linear-gradient(rgba(10, 25, 47, 0.85), rgba(15, 23, 42, 0.92)), url('/images/blog/texas-depot-usa-to-nigeria-cargo.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -100,7 +100,7 @@ export default function ShippingFromUsaTexasToNigeriaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: USA to Nigeria Shipping
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo provides seamless air freight (7–12 days) and ocean container shipping from the USA to Nigeria via our central Texas hub in Irving, TX (75061). US residents and Nigerian online shoppers get a free US address to consolidate purchases from Amazon, eBay, Walmart, and Apple for doorstep delivery in Lagos, Abuja, and nationwide.
+                County Cargo provides seamless air freight (5–10 working days) and ocean container shipping from the USA to Nigeria via our central Texas hub in Irving, TX (75061). US residents and Nigerian online shoppers get a free US address to consolidate purchases from Amazon, eBay, Walmart, and Apple for doorstep delivery in Lagos, Abuja, and nationwide.
               </p>
             </div>
 

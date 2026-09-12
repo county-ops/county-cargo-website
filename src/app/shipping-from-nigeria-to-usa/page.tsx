@@ -131,7 +131,7 @@ export default function ShippingFromNigeriaToUsaPage() {
               Shipping from Nigeria to the USA
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 max-w-3xl mx-auto font-light">
-              Express Air Courier (3–5 days) &amp; Standard Air Cargo (5–10 days) to Houston, Dallas, Atlanta, NYC, Chicago, and Maryland.
+              Express Air Courier (3–5 working days) &amp; Standard Air Cargo (5–10 working days) to Houston, Dallas, Atlanta, NYC, Chicago, and Maryland.
             </p>
 
             {/* Answer-First Summary */}

@@ -26,7 +26,7 @@ export default function DocumentsRequiredExportFrancePost() {
     '@type': 'BlogPosting',
     headline: 'Documents Required to Export Goods from Nigeria to France',
     description: 'Detailed analysis of French customs paperwork, NEPC documentation, and EU TVA regulations.',
-    image: 'https://countycargo.com/boardroom-team.png',
+    image: 'https://countycargo.com/images/blog/france-export-compliance-documents.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

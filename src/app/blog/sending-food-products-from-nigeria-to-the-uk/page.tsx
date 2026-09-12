@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+        url: 'https://countycargo.com/sending-food-products-nigeria-uk.jpg',
         width: 1200,
         height: 630,
         alt: 'Sending authentic Nigerian food products to the United Kingdom',
@@ -43,7 +43,7 @@ export default function SendingFoodProductsNigeriaToUkPage() {
     headline: 'Sending Food Products from Nigeria to the UK: DEFRA Rules and Packaging Standards',
     description:
       'Comprehensive guide explaining which Nigerian foodstuffs are permitted into the UK, packaging protocols, and how County Cargo ensures smooth customs clearance.',
-    image: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+    image: 'https://countycargo.com/sending-food-products-nigeria-uk.jpg',
     datePublished: '2026-09-02T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {

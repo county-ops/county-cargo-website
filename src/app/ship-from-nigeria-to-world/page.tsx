@@ -384,7 +384,7 @@ export default function ShipFromNigeriaToWorldPage() {
                     <Zap className="w-3.5 h-3.5 text-yellow-200 fill-yellow-200" /> Official Courier Service
                   </span>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3">
-                    Express Shipping from Nigeria with DHL (3–5 Days)
+                    Express Shipping from Nigeria with DHL (3–5 Working Days)
                   </h2>
                   <p className="text-amber-50 text-sm sm:text-base leading-relaxed mb-6">
                     When speed is critical, County Cargo offers an Express Shipping service from Nigeria powered by DHL Express. Delivering across 220+ countries and territories with rapid door-to-door tracking.

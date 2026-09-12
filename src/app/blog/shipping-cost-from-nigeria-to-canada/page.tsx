@@ -26,7 +26,7 @@ export default function ShippingCostFromNigeriaToCanadaPost() {
     '@type': 'BlogPosting',
     headline: 'How Much Does Shipping from Nigeria to Canada Cost?',
     description: 'Detailed analysis of air freight costs, volumetric weight calculations, and Canadian GST/HST import taxes for shipments from Nigeria to Canada.',
-    image: 'https://countycargo.com/the world.png',
+    image: 'https://countycargo.com/nigeria-to-canada-cost.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

@@ -26,7 +26,7 @@ export default function SendingFoodClothingFrancePost() {
     '@type': 'BlogPosting',
     headline: 'Sending Food, Clothing and Personal Belongings to France',
     description: 'Packaging and regulatory guide for personal luggage, African attire, and allowed foodstuffs shipped to France.',
-    image: 'https://countycargo.com/blog-9-nigeria-cargo-august-2026.jpg',
+    image: 'https://countycargo.com/france-african-fashion-food.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

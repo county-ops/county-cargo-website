@@ -26,7 +26,7 @@ export default function CargoShippingCostToNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'How Much Does It Cost to Ship Cargo to Nigeria?',
     description: 'Transparent guide to international freight pricing, handling charges, and volumetric weight rules for shipping to Nigeria.',
-    image: 'https://countycargo.com/blog-4-us-nigeria.png',
+    image: 'https://countycargo.com/images/blog/cargo-shipping-cost-to-nigeria-breakdown.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function CargoShippingCostToNigeriaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Cargo Shipping Costs
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Standard air cargo from the UK to Nigeria costs £6.00 per kilogram with a £15 handling charge per shipment (5–10 day delivery). Air cargo from the USA starts at competitive per-pound/per-kg rates via our Texas receiving warehouse. Freight charges are billed on actual weight or volumetric weight $(L \times W \times H) / 5000$, whichever is greater.
+                Standard air cargo from the UK to Nigeria costs £6.00 per kilogram with a £15 handling charge per shipment (5–10 working days delivery). Air cargo from the USA starts at competitive per-pound/per-kg rates via our Texas receiving warehouse. Freight charges are billed on actual weight or volumetric weight $(L \times W \times H) / 5000$, whichever is greater.
               </p>
             </div>
 
@@ -110,19 +110,19 @@ export default function CargoShippingCostToNigeriaPost() {
                     <td className="p-3 font-semibold">UK to Nigeria Air Cargo</td>
                     <td className="p-3">£6.00 / kg</td>
                     <td className="p-3">£15 per shipment</td>
-                    <td className="p-3">5 – 10 Days</td>
+                    <td className="p-3">5–10 Working Days</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-semibold">USA to Nigeria Air Cargo</td>
                     <td className="p-3">Competitive per kg rate</td>
                     <td className="p-3">$20 per shipment</td>
-                    <td className="p-3">7 – 12 Days</td>
+                    <td className="p-3">5–10 Working Days</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-semibold">Nigeria to UK Express (DHL)</td>
                     <td className="p-3">Zonal Express Tariff</td>
                     <td className="p-3">Included</td>
-                    <td className="p-3">3 – 5 Days</td>
+                    <td className="p-3">3–5 Working Days</td>
                   </tr>
                 </tbody>
               </table>

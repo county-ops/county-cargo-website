@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BookOpen, ArrowRight, ShieldCheck, Truck, Scale, MapPin } from 'lucide-react';
+import { SHIPPING_TIMEFRAMES } from '@/lib/constants';
 
 export interface GuideLink {
   title: string;
@@ -26,7 +27,7 @@ const defaultGuides: GuideLink[] = [
   {
     title: 'UK to Nigeria Shipping Time',
     href: '/blog/uk-to-nigeria-shipping-time',
-    description: 'Compare express air cargo (3–5 days), standard air (5–10 days) and ocean shipping timelines.',
+    description: `Compare express air cargo (${SHIPPING_TIMEFRAMES.EXPRESS_AIR_DAYS}), standard air (${SHIPPING_TIMEFRAMES.STANDARD_AIR}) and sea cargo (${SHIPPING_TIMEFRAMES.SEA_CARGO}) timelines.`,
   },
   {
     title: 'Prohibited Items List',
@@ -62,7 +63,7 @@ export function RelatedGuides({ guides = defaultGuides, currentHref }: RelatedGu
     <section className="my-12 p-6 sm:p-8 bg-gray-50 border border-gray-200 rounded-2xl not-prose">
       <div className="flex items-center gap-2 mb-4 text-secondary font-bold text-lg sm:text-xl">
         <BookOpen className="w-5 h-5 text-primary" />
-        <h2>Related Shipping Guides & Useful Resources</h2>
+        <h2>Related Shipping Guides &amp; Useful Resources</h2>
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         {filteredGuides.map((guide, idx) => (

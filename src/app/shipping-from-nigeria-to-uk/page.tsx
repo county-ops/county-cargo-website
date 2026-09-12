@@ -69,7 +69,7 @@ const faqs = [
   {
     question: 'How long does air cargo shipping take from Nigeria to the UK?',
     answer:
-      'Standard Air Cargo from Nigeria to the UK takes 5 to 7 working days, which includes export consolidation in Lagos, direct transatlantic flight, HMRC customs clearance, and UK distribution. Express Air Courier (for urgent documents and parcels) takes 3 to 5 working days for doorstep delivery across London, Manchester, Birmingham, and Liverpool.',
+      'Standard Air Cargo from Nigeria to the UK takes 5 to 10 working days, which includes export consolidation in Lagos, direct transatlantic flight, HMRC customs clearance, and UK distribution. Express Air Courier (for urgent documents and parcels) takes 3 to 5 working days for doorstep delivery across London, Manchester, Birmingham, and Liverpool.',
   },
   {
     question: 'What authentic Nigerian food items can I legally ship to the UK?',
@@ -186,7 +186,7 @@ const structuredData = {
 const serviceOptions = [
   {
     title: 'Standard Air Cargo',
-    timeline: '5–7 Working Days',
+    timeline: '5–10 Working Days',
     idealFor: 'Foodstuffs, personal effects, fashion apparel, books, and regular parcels',
     features: [
       'Economical per-kg freight rates',
@@ -324,11 +324,11 @@ export default function ShippingFromNigeriaToUkPage() {
 
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 text-center sm:text-left">
                   <div>
-                    <div className="text-2xl sm:text-3xl font-bold text-white">5–7 Days</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-white">5–10 Working Days</div>
                     <div className="text-xs text-blue-200">Standard Air Cargo</div>
                   </div>
                   <div>
-                    <div className="text-2xl sm:text-3xl font-bold text-white">3–5 Days</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-white">3–5 Working Days</div>
                     <div className="text-xs text-blue-200">Express Courier</div>
                   </div>
                   <div>

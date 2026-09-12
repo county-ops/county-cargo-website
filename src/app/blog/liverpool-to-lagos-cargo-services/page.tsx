@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+        url: 'https://countycargo.com/liverpool-to-lagos-cargo.jpg',
         width: 1200,
         height: 630,
         alt: 'Liverpool to Lagos Cargo Services at Queens Dock Commercial Centre',
@@ -43,7 +43,7 @@ export default function LiverpoolToLagosCargoServicesPage() {
     headline: 'Liverpool to Lagos Cargo Services: Air Freight, Sea Barrels & Depot Drop-Off',
     description:
       'Comprehensive logistics guide for residents, businesses, and Nigerian diaspora across Liverpool, Merseyside, and Greater Manchester shipping cargo directly to Lagos.',
-    image: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+    image: 'https://countycargo.com/liverpool-to-lagos-cargo.jpg',
     datePublished: '2026-09-02T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {
@@ -106,7 +106,7 @@ export default function LiverpoolToLagosCargoServicesPage() {
                 <CheckCircle2 className="w-4 h-4" /> Direct Answer: Shipping from Liverpool to Lagos
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo operates a direct physical depot at Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG. Shippers in Liverpool, Wirral, Chester, and Greater Manchester can drop off parcels, electronics, boxes, and 55-gallon jumbo shipping barrels with zero appointment necessary. We provide weekly air cargo (5–10 days) and regular sea freight (4–6 weeks) with full customs clearance and collection at our Ladipo-Oshodi Lagos hub or doorstep delivery across Lagos State.
+                County Cargo operates a direct physical depot at Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG. Shippers in Liverpool, Wirral, Chester, and Greater Manchester can drop off parcels, electronics, boxes, and 55-gallon jumbo shipping barrels with zero appointment necessary. We provide weekly air cargo (5–10 working days) and regular sea freight (4–8 weeks) with full customs clearance and collection at our Ladipo-Oshodi Lagos hub or doorstep delivery across Lagos State.
               </p>
             </div>
 
@@ -130,7 +130,7 @@ export default function LiverpoolToLagosCargoServicesPage() {
             <div className="grid md:grid-cols-2 gap-6 my-4 not-prose">
               <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2">
                 <h3 className="font-bold text-secondary text-base flex items-center gap-2">
-                  <Plane className="w-5 h-5 text-primary" /> Air Freight (5–10 Days)
+                  <Plane className="w-5 h-5 text-primary" /> Air Freight (5–10 Working Days)
                 </h3>
                 <p className="text-xs text-slate-600">
                   Ideal for clothing, laptops, smartphones, cosmetics, and urgent parcels. Consolidated weekly and flown directly to Lagos with airport customs clearing included.
@@ -139,7 +139,7 @@ export default function LiverpoolToLagosCargoServicesPage() {
 
               <div className="p-5 bg-white border border-slate-200 rounded-xl shadow-sm space-y-2">
                 <h3 className="font-bold text-secondary text-base flex items-center gap-2">
-                  <Ship className="w-5 h-5 text-primary" /> Sea Cargo Barrels (4–6 Weeks)
+                  <Ship className="w-5 h-5 text-primary" /> Sea Cargo Barrels (4–8 Weeks)
                 </h3>
                 <p className="text-xs text-slate-600">
                   Ideal for standard 55-gallon jumbo plastic drums, machinery, household goods, and bulk pallets shipped via ocean vessel into Lagos Apapa / Tin Can Port.

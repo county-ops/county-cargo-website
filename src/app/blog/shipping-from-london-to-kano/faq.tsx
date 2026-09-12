@@ -46,7 +46,7 @@ const faqs = [
   {
     question: 'How do I request an accurate London-to-Kano cargo quotation?',
     answer:
-      'Click "Request Quotation" on our website or contact our UK operations team via phone or WhatsApp (+44 7438 827464) with your parcel weight and dimensions.',
+      'Click "Request Quotation" on our website or contact our UK operations team via phone or WhatsApp (07405 556668) with your parcel weight and dimensions.',
   },
 ];
 

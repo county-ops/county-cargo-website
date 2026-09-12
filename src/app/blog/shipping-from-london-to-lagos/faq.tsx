@@ -16,7 +16,7 @@ const faqs = [
   {
     question: 'How long does cargo take from London to Lagos?',
     answer:
-      'Express Air Courier takes 3 to 5 working days, while Standard Air Cargo takes 5 to 7 working days from London collection to Lagos arrival and customs clearance.',
+      'Express Air Courier takes 3 to 5 working days, while Standard Air Cargo takes 5 to 10 working days from London collection to Lagos arrival and customs clearance.',
   },
   {
     question: 'Can County Cargo collect my shipment from my home in London?',
@@ -46,7 +46,7 @@ const faqs = [
   {
     question: 'How do I request an accurate London-to-Lagos cargo quotation?',
     answer:
-      'Click "Request Quotation" on our website or contact our UK operations team via phone or WhatsApp (+44 7438 827464) with your item descriptions and weight.',
+      'Click "Request Quotation" on our website or contact our UK operations team via phone or WhatsApp (07405 556668) with your item descriptions and weight.',
   },
 ];
 

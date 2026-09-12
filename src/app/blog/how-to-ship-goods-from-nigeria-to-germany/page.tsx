@@ -26,7 +26,7 @@ export default function HowToShipGoodsGermanyPost() {
     '@type': 'BlogPosting',
     headline: 'How to Ship Goods from Nigeria to Germany',
     description: 'Complete export guide covering air cargo dispatches, Zoll customs paperwork, and doorstep delivery across Germany.',
-    image: 'https://countycargo.com/blog-1-nigeria-export.png',
+    image: 'https://countycargo.com/images/blog/nigeria-to-germany-air-freight-hub.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function HowToShipGoodsGermanyPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Shipping from Nigeria to Germany
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Exporting goods from Nigeria to Germany is straightforward with County Cargo's air cargo service. Packages depart Lagos and Abuja for Frankfurt Airport (FRA), clearing German Zoll customs before final-mile delivery across Berlin, Hamburg, Munich, Cologne, and Düsseldorf in 3 to 8 working days.
+                Exporting goods from Nigeria to Germany is straightforward with County Cargo's air cargo service. Packages depart Lagos and Abuja for Frankfurt Airport (FRA), clearing German Zoll customs before final-mile delivery across Berlin, Hamburg, Munich, Cologne, and Düsseldorf in 5 to 10 working days.
               </p>
             </div>
 

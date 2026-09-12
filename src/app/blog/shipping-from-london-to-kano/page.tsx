@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shipping from London to Kano: Air Cargo, Cost & Delivery Guide',
     description: 'Master guide for sending air cargo from London to Kano. Covers collection across London, airport arrival, bonded onward transit & Sabon Gari depot pickup.',
-    images: [{ url: 'https://countycargo.com/sq-nigeria-uk.png', alt: 'Bonded cargo transit moving freight from customs to Kano Sabon Gari depot' }],
+    images: [{ url: 'https://countycargo.com/images/blog/london-to-kano-air-cargo.jpg', alt: 'Air freight cargo containers at Mallam Aminu Kano Airport' }],
   },
 };
 
@@ -44,7 +44,7 @@ export default function ShippingFromLondonToKanoPost() {
     '@type': 'BlogPosting',
     headline: 'Shipping from London to Kano: Air Cargo, Cost and Delivery Guide',
     description: 'Authoritative guide for shipping personal effects, commercial merchandise, and express parcels from London to Kano with confirmed rates and Sabon Gari depot pickup.',
-    image: 'https://countycargo.com/sq-nigeria-uk.png',
+    image: 'https://countycargo.com/images/blog/london-to-kano-air-cargo.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -127,6 +127,26 @@ export default function ShippingFromLondonToKanoPost() {
               We collect parcels across London: Barking, Dagenham, Woolwich, Peckham, Lewisham, Croydon, Wembley, Tottenham, and Enfield. Consignments are processed, weighed, and flown into Nigerian gateways.
             </p>
 
+            {/* Official Charlton Drop-Off Point Callout */}
+            <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 not-prose">
+              <div>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">
+                  📍 Official London Drop-Off Point
+                </span>
+                <h3 className="font-bold text-slate-900 text-base">
+                  Drop off your Kano cargo directly at our Charlton depot (SE7 8NF)
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">
+                  Visit New Lydenburg Commercial Estate in Charlton or schedule free collection across South East London.
+                </p>
+              </div>
+              <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-bold shrink-0">
+                <Link href="/shipping-from-london-to-nigeria">
+                  View Charlton Depot <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </Button>
+            </div>
+
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary">London to Kano Rates &amp; Delivery Schedule</h2>
             <div className="overflow-x-auto border border-gray-200 rounded-xl my-4">
               <table className="w-full text-left text-sm text-gray-700">
@@ -171,7 +191,7 @@ export default function ShippingFromLondonToKanoPost() {
                   <Link href="/shipping-from-uk-to-nigeria">Book London Cargo</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/447405556668" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
                   </a>
                 </Button>

@@ -24,15 +24,15 @@ import { Faq } from './faq';
 
 export const metadata: Metadata = {
   title: 'Shipping from London to Lagos: Cost, Delivery Time & Guide',
-  description: 'Complete London to Lagos air cargo guide. Compare £6.00/kg standard air (5-7 days) & express (3-5 days). Collection in Peckham, Woolwich & Wembley.',
+  description: 'Complete London to Lagos air cargo guide. Compare £6.00/kg standard air (5–10 working days) & express (3–5 working days). Collection in Peckham, Woolwich & Wembley.',
   keywords: 'Shipping from London to Lagos, Cargo from London to Lagos, Air cargo from London to Lagos, London-to-Lagos shipping cost, London-to-Lagos cargo price per kilogram, Send a parcel from London to Lagos, Express delivery from London to Lagos',
   alternates: {
     canonical: 'https://countycargo.com/blog/shipping-from-london-to-lagos',
   },
   openGraph: {
     title: 'Shipping from London to Lagos: Cost, Delivery Time & Guide',
-    description: 'Complete London to Lagos air cargo guide. Compare £6.00/kg standard air (5-7 days) & express (3-5 days). Collection across Greater London.',
-    images: [{ url: 'https://countycargo.com/london-to-lagos-freight.jpg', alt: 'Air cargo plane loading at London airport for direct flight to Lagos Nigeria' }],
+    description: 'Complete London to Lagos air cargo guide. Compare £6.00/kg standard air (5–10 working days) & express (3–5 working days). Collection across Greater London.',
+    images: [{ url: 'https://countycargo.com/london-to-lagos-freight.jpg', alt: 'Air freight pallet loading for London to Lagos cargo' }],
   },
 };
 
@@ -118,7 +118,7 @@ export default function ShippingFromLondonToLagosPost() {
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Direct Answer: Shipping from London to Lagos
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Standard air cargo from London to Lagos costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 7 working days</strong>. Express Air Courier delivers urgent parcels in <strong>3 to 5 working days</strong>. Consignments clear customs at Murtala Muhammed International Airport (LOS) and can be picked up at our central Ladipo-Oshodi dispatch hub or delivered to your door in Lagos.
+                Standard air cargo from London to Lagos costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 10 working days</strong>. Express Air Courier delivers urgent parcels in <strong>3 to 5 working days</strong>. Consignments clear customs at Murtala Muhammed International Airport (LOS) and can be picked up at our central Ladipo-Oshodi dispatch hub or delivered to your door in Lagos.
               </p>
             </div>
 
@@ -126,6 +126,26 @@ export default function ShippingFromLondonToLagosPost() {
             <p className="text-gray-700">
               Whether you are a Nigerian living in London sending personal belongings to family, an online seller shipping commercial inventory, a student moving luggage, or a business exporting goods, County Cargo provides reliable air shipping connecting London directly to Lagos. We collect from households across Central, North, South, East, and West London including key diaspora neighborhoods like Peckham, Woolwich, Lewisham, Croydon, Wembley, Barking, Dagenham, Tottenham, and Enfield.
             </p>
+
+            {/* Charlton Drop-Off Feature Callout */}
+            <div className="p-5 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 not-prose">
+              <div>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">
+                  📍 Official London Drop-Off Point
+                </span>
+                <h3 className="font-bold text-slate-900 text-base">
+                  Drop off your Lagos cargo directly at our Charlton depot (SE7 8NF)
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">
+                  Bring boxes and barrels to New Lydenburg Commercial Estate, or book free collection in South East London.
+                </p>
+              </div>
+              <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-bold shrink-0">
+                <Link href="/shipping-from-london-to-nigeria">
+                  View Charlton Depot <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </Button>
+            </div>
 
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary">How much does shipping from London to Lagos cost?</h2>
             <div className="overflow-x-auto border border-gray-200 rounded-xl my-4">
@@ -194,7 +214,7 @@ export default function ShippingFromLondonToLagosPost() {
                   <Link href="/shipping-from-uk-to-nigeria">Book London Cargo</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/447405556668" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
                   </a>
                 </Button>

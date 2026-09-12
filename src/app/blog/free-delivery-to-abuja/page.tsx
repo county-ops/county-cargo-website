@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free Delivery to Abuja | UK-to-Abuja & US to Abuja',
     description: 'Ship cargo from the UK to Abuja with County Cargo and receive free Abuja delivery on eligible shipments weighing at least 10 kg. Request a quote today.',
-    images: [{ url: 'https://countycargo.com/abuja-free-delivery.jpg', alt: 'County Cargo delivery vehicle distributing free freight packages in Abuja FCT' }],
+    images: [{ url: 'https://countycargo.com/abuja-free-delivery.jpg', alt: 'Free doorstep cargo delivery van arriving in Abuja' }],
   },
 };
 

@@ -26,7 +26,7 @@ export default function GermanCustomsRequirementsPost() {
     '@type': 'BlogPosting',
     headline: 'German Customs Requirements for Cargo Arriving from Nigeria',
     description: 'Expert guide to German Zoll customs rules, duty tariffs, commercial invoice documentation, and agricultural restrictions.',
-    image: 'https://countycargo.com/blog-3-ai-warehouse.png',
+    image: 'https://countycargo.com/images/blog/german-customs-clearance-inspection.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

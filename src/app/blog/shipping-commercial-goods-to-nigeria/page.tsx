@@ -110,7 +110,7 @@ export default function ShippingCommercialGoodsToNigeriaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Summary: Commercial Cargo Logistics
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Commercial shipping to Nigeria requires valid commercial invoices, detailed packing lists with HS codes, and compliance with Form M/PAAR regulations for formal imports. Businesses can ship via consolidated air cargo (5–10 days) for time-sensitive stock or 20ft/40ft sea containers (4–6 weeks) for bulk goods. County Cargo provides full supplier consolidation, warehouse receiving in the UK and US, and Lagos port clearing.
+                Commercial shipping to Nigeria requires valid commercial invoices, detailed packing lists with HS codes, and compliance with Form M/PAAR regulations for formal imports. Businesses can ship via consolidated air cargo (5–10 working days) for time-sensitive stock or 20ft/40ft sea containers (4–8 weeks) for bulk goods. County Cargo provides full supplier consolidation, warehouse receiving in the UK and US, and Lagos port clearing.
               </p>
             </div>
 
@@ -125,8 +125,8 @@ export default function ShippingCommercialGoodsToNigeriaPost() {
               Depending on order urgency and profit margins, commercial importers choose between air freight and sea freight:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-gray-700">
-              <li><strong>Air Freight:</strong> Ideal for high-value merchandise, electronics, pharmaceuticals, and urgent restocks. Delivered in 5–10 days.</li>
-              <li><strong>Sea Freight (LCL/FCL):</strong> Ideal for heavy machinery, furniture, building materials, and bulk retail goods. Delivered in 4–6 weeks.</li>
+              <li><strong>Air Freight:</strong> Ideal for high-value merchandise, electronics, pharmaceuticals, and urgent restocks. Delivered in 5–10 working days.</li>
+              <li><strong>Sea Freight (LCL/FCL):</strong> Ideal for heavy machinery, furniture, building materials, and bulk retail goods. Delivered in 4–8 weeks.</li>
             </ul>
 
             <div className="p-5 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-between gap-4 my-8">

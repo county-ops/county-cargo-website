@@ -26,7 +26,7 @@ export default function PermittedRestrictedItemsTurkeyPost() {
     '@type': 'BlogPosting',
     headline: 'Permitted and Restricted Items When Shipping to Turkey',
     description: 'Detailed safety guide for commercial samples, textiles, dry foodstuffs, and banned items when shipping to Turkey.',
-    image: 'https://countycargo.com/US TO NIGERIA.jpg',
+    image: 'https://countycargo.com/service-us-nigeria-new.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

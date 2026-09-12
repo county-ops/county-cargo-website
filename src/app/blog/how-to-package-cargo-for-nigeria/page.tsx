@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'How to Package Cargo for Shipping to Nigeria | Packing Guide',
     description: 'Master international freight packing techniques to protect your personal effects and commercial goods during transit to Nigeria.',
-    images: [{ url: 'https://countycargo.com/nigeria-market-packing-enhanced.png', alt: 'Bubble wrap cardboard box strapping heavy duty packing cargo Nigeria' }],
+    images: [{ url: 'https://countycargo.com/images/blog/how-to-package-cargo-boxes.jpg', alt: 'Proper box packaging and tape sealing for international shipping' }],
   },
 };
 
@@ -31,7 +31,7 @@ export default function HowToPackageCargoForNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'How to Package Cargo for Shipping to Nigeria',
     description: 'Master international freight packing techniques to protect your personal effects and commercial goods during transit to Nigeria.',
-    image: 'https://countycargo.com/nigeria-market-packing-enhanced.png',
+    image: 'https://countycargo.com/images/blog/how-to-package-cargo-boxes.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {

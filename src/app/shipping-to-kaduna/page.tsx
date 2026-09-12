@@ -25,7 +25,7 @@ const kadunaFaqs = [
   },
   {
     question: 'How long does shipping to Kaduna take from the UK?',
-    answer: 'Air cargo to Kaduna takes approximately 7 to 12 working days from UK collection to doorstep delivery.',
+    answer: 'Air cargo to Kaduna takes approximately 5 to 10 working days from UK collection to doorstep delivery.',
   },
 ];
 

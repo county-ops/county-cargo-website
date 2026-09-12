@@ -26,7 +26,7 @@ export default function PermittedProhibitedItemsCanadaPost() {
     '@type': 'BlogPosting',
     headline: 'Items You Can and Cannot Send from Nigeria to Canada',
     description: 'Detailed safety guide for exporting foodstuff, attire, electronics, and personal luggage to Canada.',
-    image: 'https://countycargo.com/blog-2-sustainable.png',
+    image: 'https://countycargo.com/nigeria-canada-food-items.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

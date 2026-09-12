@@ -26,7 +26,7 @@ export default function CompleteGuideShippingUkPost() {
     '@type': 'BlogPosting',
     headline: 'Complete Guide to Shipping from Nigeria to the UK',
     description: 'Master guide to air cargo, express shipping, HMRC rules, and door delivery across the United Kingdom.',
-    image: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+    image: 'https://countycargo.com/images/blog/complete-guide-nigeria-to-uk-freight.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function CompleteGuideShippingUkPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Nigeria to UK Cargo
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo provides daily and bi-weekly air freight dispatches from Lagos and Abuja to the UK, offering express 3–5 day door delivery and standard 5–7 day cargo. We also operate a physical receiving depot at Queens Dock, Liverpool (L1 0BG) for UK distributions.
+                County Cargo provides daily and bi-weekly air freight dispatches from Lagos and Abuja to the UK, offering express 3–5 day door delivery and standard 5–10 working days cargo. We also operate a physical receiving depot at Queens Dock, Liverpool (L1 0BG) for UK distributions.
               </p>
             </div>
 

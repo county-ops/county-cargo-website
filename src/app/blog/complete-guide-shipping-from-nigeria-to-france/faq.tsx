@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'How long does air freight take from Lagos to Paris CDG Airport?',
     answer:
-      'Air cargo from Lagos (LOS) or Abuja (ABV) to Paris Charles de Gaulle (CDG) takes 3 to 5 working days for Express Courier and 5 to 8 working days for Standard Air Freight.',
+      'Air cargo from Lagos (LOS) or Abuja (ABV) to Paris Charles de Gaulle (CDG) takes 3 to 5 working days for Express Courier and 5 to 10 working days for Standard Air Freight.',
   },
   {
     question: 'Which cities in France are covered for door delivery?',

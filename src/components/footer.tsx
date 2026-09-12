@@ -49,12 +49,12 @@ export function Footer() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10">
-                    <div className="text-center sm:text-left md:col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
+                    <div className="text-center sm:text-left">
                         <div className="flex justify-center sm:justify-start items-center mb-3 sm:mb-4">
                             <Image src="/county-logo.png" alt="County Cargo Logo" width={280} height={80} className="h-16 sm:h-20 w-auto" />
                         </div>
-                        <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
+                        <p className="text-gray-400 text-sm leading-relaxed">
                             County Cargo (operated by County Service Group) delivers reliable air freight, sea freight, express parcel delivery, and customs clearance between the UK, USA, and Nigeria.
                         </p>
                     </div>
@@ -62,8 +62,9 @@ export function Footer() {
                     <div className="text-center sm:text-left">
                         <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Core Routes</h3>
                         <ul className="space-y-2 text-sm">
-                            <li><Link href="/shipping-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Nigeria to UK Cargo</Link></li>
                             <li><Link href="/shipping-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK to Nigeria Cargo</Link></li>
+                            <li><Link href="/shipping-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Nigeria to UK Cargo</Link></li>
+                            <li><Link href="/export-from-nigeria" className="text-gray-400 hover:text-white transition-colors">Nigeria Export Hub</Link></li>
                             <li><Link href="/shipping-barrels-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK Barrels Shipping</Link></li>
                             <li><Link href="/shipping-barrels-from-the-usa-to-nigeria" className="text-gray-400 hover:text-white transition-colors">US Barrels Shipping</Link></li>
                             <li><Link href="/shipping-from-nigeria-to-usa" className="text-gray-400 hover:text-white transition-colors">Nigeria to USA Cargo</Link></li>
@@ -71,52 +72,49 @@ export function Footer() {
                     </div>
 
                     <div className="text-center sm:text-left">
-                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Company</h3>
+                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Company &amp; Guides</h3>
                         <ul className="space-y-2 text-sm">
                             <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Hubs</Link></li>
-                            <li><Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Shipping Guides</Link></li>
+                            <li><Link href="/blog" className="text-primary font-bold hover:underline transition-colors">All Shipping Guides &amp; Blog Index</Link></li>
+                            <li><a href="https://ship.countycargo.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Track Shipment</a></li>
                             <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">Route FAQ</Link></li>
+                            <li><Link href="/info" className="text-gray-400 hover:text-white transition-colors">Rates &amp; Terms</Link></li>
                         </ul>
                     </div>
 
                     <div className="text-center sm:text-left">
-                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contact Us</h3>
-                        <ul className="space-y-3 text-gray-400 text-sm sm:text-base">
+                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contact &amp; Social</h3>
+                        <ul className="space-y-3 text-gray-400 text-sm mb-4">
                             <li className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left">
-                                <Phone className="h-4 w-4 sm:h-5 sm:w-5 mb-2 sm:mb-0 sm:mr-3 shrink-0 text-primary" />
+                                <Phone className="h-4 w-4 mb-1 sm:mb-0 sm:mr-2 shrink-0 text-primary" />
                                 <a href="tel:+2348110000421" className="hover:text-white transition-colors">+234 811 000 0421</a>
                             </li>
                             <li className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left">
-                                {/* WhatsApp quick contact */}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="currentColor" className="h-4 w-4 sm:h-5 sm:w-5 mb-2 sm:mb-0 sm:mr-3 shrink-0 text-[#25D366]" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="currentColor" className="h-4 w-4 mb-1 sm:mb-0 sm:mr-2 shrink-0 text-[#25D366]" aria-hidden="true">
                                     <path d="M24 4C12.95 4 4 12.95 4 24c0 3.55.93 6.88 2.55 9.77L4 44l10.5-2.5A19.87 19.87 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4zm8.78 24.24c-.48-.24-2.84-1.4-3.28-1.56-.44-.16-.76-.24-1.08.24-.32.48-1.24 1.56-1.52 1.88-.28.32-.56.36-1.04.12-.48-.24-2.04-.75-3.88-2.39-1.44-1.28-2.4-2.86-2.68-3.34-.28-.48-.03-.74.21-.98.22-.22.48-.56.72-.84.24-.28.32-.48.48-.8.16-.32.08-.6-.04-.84-.12-.24-1.08-2.6-1.48-3.56-.4-.96-.8-.82-1.08-.84-.28-.02-.6-.02-.92-.02s-.84.12-1.28.6c-.44.48-1.68 1.64-1.68 4s1.72 4.64 1.96 4.96c.24.32 3.38 5.16 8.2 7.24 1.15.5 2.04.8 2.74 1.02 1.15.36 2.2.31 3.03.19.92-.14 2.84-1.16 3.24-2.28.4-1.12.4-2.08.28-2.28-.12-.2-.44-.32-.92-.56z" />
                                 </svg>
                                 <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20need%20a%20shipping%20quote" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">WhatsApp Us</a>
                             </li>
                             <li className="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left">
-                                <Mail className="h-4 w-4 sm:h-5 sm:w-5 mb-2 sm:mb-0 sm:mr-3 shrink-0 text-primary" />
+                                <Mail className="h-4 w-4 mb-1 sm:mb-0 sm:mr-2 shrink-0 text-primary" />
                                 <a href="mailto:info@countycargo.com" className="hover:text-white transition-colors">info@countycargo.com</a>
                             </li>
                         </ul>
-                    </div>
-                    
-                    <div className="text-center sm:text-left">
-                        <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Follow Us</h3>
-                        <div className="flex space-x-4 justify-center sm:justify-start">
-                            <Link href="https://www.facebook.com/CountyCargo" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on Facebook" className="text-blue-600 transition-opacity hover:opacity-80"><Facebook className="h-6 w-6" /></Link>
+                        <div className="flex space-x-3 justify-center sm:justify-start">
+                            <Link href="https://www.facebook.com/CountyCargo" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on Facebook" className="text-blue-600 transition-opacity hover:opacity-80"><Facebook className="h-5 w-5" /></Link>
                             <Link href="https://x.com/CountyCargo" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on X (Twitter)" className="text-white transition-opacity hover:opacity-80">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                                     <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
                                     <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
                                 </svg>
                             </Link>
                             <Link href="https://www.tiktok.com/@countycargong" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on TikTok" className="text-cyan-400 transition-opacity hover:opacity-80">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                                     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
                                 </svg>
                             </Link>
-                            <Link href="https://www.instagram.com/countycargo/" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on Instagram" className="text-pink-500 transition-opacity hover:opacity-80"><Instagram className="h-6 w-6" /></Link>
+                            <Link href="https://www.instagram.com/countycargo/" target="_blank" rel="noopener noreferrer me" aria-label="County Cargo on Instagram" className="text-pink-500 transition-opacity hover:opacity-80"><Instagram className="h-5 w-5" /></Link>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ export default function NigeriaCustomsClearanceGuidePost() {
     headline: 'Nigeria Customs Clearance Guide for Air and Sea Cargo',
     description:
       'Step-by-step breakdown of Nigeria Customs clearance procedures for air and ocean freight. Includes Form M requirements, PAAR processing, duty calculation rules, and expert tips for fast release.',
-    image: 'https://countycargo.com/blog-9-nigeria-cargo-august-2026.jpg',
+    image: 'https://countycargo.com/images/blog/nigeria-customs-clearance-apapa-tincan.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {
@@ -190,7 +190,7 @@ export default function NigeriaCustomsClearanceGuidePost() {
                     <td className="p-3 font-semibold">Commercial Merchandise</td>
                     <td className="p-3">10% – 35% (by HS Code)</td>
                     <td className="p-3">7.5% VAT + CISS + ETLS</td>
-                    <td className="p-3">3 – 5 Days (Sea)</td>
+                    <td className="p-3">3–5 Working Days (Sea)</td>
                   </tr>
                 </tbody>
               </table>

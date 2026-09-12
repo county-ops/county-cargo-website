@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'How long does air freight take from Lagos to Istanbul Airport (IST)?',
     answer:
-      'Air cargo from Lagos (LOS) or Abuja (ABV) to Istanbul Airport (IST) takes 3 to 5 working days for Express Courier and 5 to 8 working days for Standard Air Freight.',
+      'Air cargo from Lagos (LOS) or Abuja (ABV) to Istanbul Airport (IST) takes 3 to 5 working days for Express Courier and 5 to 10 working days for Standard Air Freight.',
   },
   {
     question: 'Can commercial traders send sample merchandise from Nigeria to Turkey?',

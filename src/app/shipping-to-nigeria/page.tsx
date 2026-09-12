@@ -40,7 +40,7 @@ const pillarFaqs = [
   {
     question: 'How long does shipping from the UK and USA to Nigeria take?',
     answer:
-      'Air cargo from the UK takes 5 to 10 working days (3 to 5 days for Express Air). Air cargo from the USA takes 7 to 12 working days. Sea freight from the UK/USA to Lagos ports (Apapa/Tin Can) takes 4 to 6 weeks.',
+      'Air cargo from the UK takes 5 to 10 working days (3 to 5 working days for Express Air). Air cargo from the USA takes 5 to 10 working days. Sea freight from the UK/USA to Lagos ports (Apapa/Tin Can) takes 4 to 8 weeks.',
   },
   {
     question: 'How are cargo shipping charges calculated?',
@@ -164,7 +164,7 @@ export default function ShippingToNigeriaPillarPage() {
                 <CheckCircle2 className="w-4 h-4" /> Master Guide Overview: Shipping to Nigeria
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Shipping cargo from the UK and USA to Nigeria is streamlined through County Cargo’s air freight (5–10 days from UK, 7–12 days from USA) and sea freight (4–6 weeks) networks. Standard UK air cargo starts at £6.00/kg with full customs clearing and doorstep delivery across Lagos, Abuja, Port Harcourt, Kano, Kaduna, and all 36 Nigerian states.
+                Shipping cargo from the UK and USA to Nigeria is streamlined through County Cargo’s air freight (5–10 working days from UK, 5–10 working days from USA) and sea freight (4–8 weeks) networks. Standard UK air cargo starts at £6.00/kg with full customs clearing and doorstep delivery across Lagos, Abuja, Port Harcourt, Kano, Kaduna, and all 36 Nigerian states.
               </p>
             </div>
 
@@ -178,25 +178,25 @@ export default function ShippingToNigeriaPillarPage() {
             <div className="grid sm:grid-cols-2 gap-4 not-prose my-6">
               <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-2xs">
                 <h3 className="font-bold text-secondary text-lg flex items-center gap-2 mb-2">
-                  <Plane className="w-5 h-5 text-primary" /> Express Air Courier (3–5 Days)
+                  <Plane className="w-5 h-5 text-primary" /> Express Air Courier (3–5 Working Days)
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600">Powered by DHL Express integration for urgent documents, luxury items, and time-sensitive care packages.</p>
               </div>
               <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-2xs">
                 <h3 className="font-bold text-secondary text-lg flex items-center gap-2 mb-2">
-                  <Plane className="w-5 h-5 text-primary" /> Standard Air Cargo (5–10 Days)
+                  <Plane className="w-5 h-5 text-primary" /> Standard Air Cargo (5–10 Working Days)
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600">Our most popular £6.00/kg service from London and Liverpool to Lagos, ideal for clothes, shoes, and personal effects.</p>
               </div>
               <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-2xs">
                 <h3 className="font-bold text-secondary text-lg flex items-center gap-2 mb-2">
-                  <Ship className="w-5 h-5 text-emerald-600" /> Ocean LCL Freight (4–6 Weeks)
+                  <Ship className="w-5 h-5 text-emerald-600" /> Ocean LCL Freight (4–8 Weeks)
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600">Economical shared container shipping billed per CBM for bulky household goods, furniture, and heavy boxes.</p>
               </div>
               <div className="p-5 bg-white border border-gray-200 rounded-xl shadow-2xs">
                 <h3 className="font-bold text-secondary text-lg flex items-center gap-2 mb-2">
-                  <Ship className="w-5 h-5 text-emerald-600" /> Ocean FCL Containers (4–6 Weeks)
+                  <Ship className="w-5 h-5 text-emerald-600" /> Ocean FCL Containers (4–8 Weeks)
                 </h3>
                 <p className="text-xs sm:text-sm text-gray-600">Dedicated 20ft and 40ft shipping containers for commercial importers and major household relocations.</p>
               </div>

@@ -88,7 +88,7 @@ export default function AirFreightGermanyCostDeliveryPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Germany Air Freight Options
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air freight from Nigeria to Germany takes <strong>3 to 5 days</strong> via Express Air Courier and <strong>5 to 8 working days</strong> via Standard Air Cargo. Rates are charged per kg based on chargeable weight to Frankfurt Airport (FRA) before final delivery across Germany.
+                Air freight from Nigeria to Germany takes <strong>3 to 5 working days</strong> via Express Air Courier and <strong>5 to 10 working days</strong> via Standard Air Cargo. Rates are charged per kg based on chargeable weight to Frankfurt Airport (FRA) before final delivery across Germany.
               </p>
             </div>
 

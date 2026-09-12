@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'How to Calculate Volumetric Weight for Air Cargo | Formula Guide',
     description: 'Learn how dimensional volumetric weight is calculated for air freight to Nigeria using the (L x W x H) / 5000 formula.',
-    images: [{ url: 'https://countycargo.com/service-uk-to-nigeria-enhanced.png', alt: 'Measuring cargo box dimensions for volumetric weight calculation' }],
+    images: [{ url: 'https://countycargo.com/images/blog/air-cargo-volumetric-weight-guide.jpg', alt: 'Measuring box dimensions with tape measure for volumetric weight' }],
   },
 };
 
@@ -31,7 +31,7 @@ export default function HowToCalculateVolumetricWeightPost() {
     '@type': 'BlogPosting',
     headline: 'How to Calculate Volumetric Weight for Air Cargo',
     description: 'Master the air cargo volumetric weight formula with step-by-step examples and tips to minimize dimensional weight charges on Nigeria cargo.',
-    image: 'https://countycargo.com/service-uk-to-nigeria-enhanced.png',
+    image: 'https://countycargo.com/images/blog/air-cargo-volumetric-weight-guide.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {
@@ -68,7 +68,7 @@ export default function HowToCalculateVolumetricWeightPost() {
         <section
           className="py-12 md:py-16 text-white relative"
           style={{
-            background: `linear-gradient(rgba(10, 25, 47, 0.85), rgba(15, 23, 42, 0.92)), url('/service-uk-to-nigeria-enhanced.png')`,
+            background: `linear-gradient(rgba(10, 25, 47, 0.85), rgba(15, 23, 42, 0.92)), url('/images/blog/air-cargo-volumetric-weight-guide.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

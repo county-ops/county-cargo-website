@@ -26,7 +26,7 @@ export default function CustomsDocumentsCanadaPost() {
     '@type': 'BlogPosting',
     headline: 'Customs Documents Needed to Ship from Nigeria to Canada',
     description: 'Complete documentation guide for exporting goods from Nigeria to Canada under CBSA regulations.',
-    image: 'https://countycargo.com/blog-8-international.png',
+    image: 'https://countycargo.com/canada-customs-documents.jpg',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {

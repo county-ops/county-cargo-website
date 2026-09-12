@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const exportCountryPages = [
+    '/export-from-nigeria-to-uk',
     '/shipping-from-nigeria-to-canada',
     '/shipping-from-nigeria-to-usa',
     '/shipping-from-nigeria-to-uk',
@@ -28,14 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ship-from-nigeria-to-us',
     '/ship-from-nigeria-to-world',
     '/shipping-from-london-to-nigeria',
+    '/london-drop-off',
     '/uk-stores',
     '/us-stores',
   ].map((route) => ({ route, priority: 0.9, changeFrequency: 'monthly' as const }));
 
   const regionalPages = [
-    '/shipping-barrels-from-uk-to-nigeria',
-    '/shipping-barrels-from-the-usa-to-nigeria',
-    '/shipping-barrels-from-chicago-to-nigeria',
     '/shipping-from-liverpool-to-nigeria',
     '/shipping-from-london-to-nigeria',
     '/shipping-from-manchester-to-nigeria',
@@ -62,7 +61,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
-    '/blog/uk-usa-nigeria-cargo-update-september-2026',
+    '/blog/cargo-lagos-to-london',
+    '/blog/cargo-abuja-to-london',
+    '/blog/shipping-lagos-to-uk',
+    '/blog/cargo-abuja-to-uk',
+    '/blog/cargo-kano-to-uk',
+    '/blog/cargo-kaduna-to-uk',
+    '/blog/shipping-north-west-england-leeds-to-nigeria',
+    '/blog/shipping-to-nigeria-from-manchester-free-collection',
+    '/blog/shipping-to-nigeria-from-liverpool-free-collection',
+    '/blog/shipping-south-east-north-west-london-to-nigeria',
     '/blog/free-delivery-to-abuja',
     '/blog/shipping-from-london-to-lagos',
     '/blog/shipping-from-london-to-abuja',
@@ -91,6 +99,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/shipping-commercial-goods-to-nigeria',
     '/blog/air-freight-vs-sea-freight-to-nigeria',
     '/blog/cargo-shipping-cost-to-nigeria',
+    '/blog/uk-to-nigeria-shipping-rates',
+    '/shipping-rates-uk-to-nigeria',
     '/blog/how-to-calculate-volumetric-weight',
     '/blog/uk-to-nigeria-shipping-time',
     '/blog/prohibited-items-shipping-to-nigeria',
@@ -101,16 +111,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/shipping-from-nigeria-to-the-uk-reliable-cargo-and-freight-solutions',
     '/blog/shipping-from-nigeria-to-the-us-reliable-cargo-and-freight-solutions',
     '/blog/door-to-door-shipping-from-nigeria-to-the-world',
-    '/blog/documents-required-for-exporting-goods-from-nigeria',
-    '/blog/nigeria-to-uk-air-freight-explained',
-    '/blog/sending-food-products-from-nigeria-to-the-uk',
-    '/blog/shipping-personal-belongings-from-nigeria-to-the-uk',
-    '/blog/how-to-ship-from-the-uk-to-nigeria',
-    '/blog/liverpool-to-lagos-cargo-services',
-    '/blog/liverpool-to-abuja-cargo-services',
     '/blog/ai-in-warehouse-management',
     '/blog/sustainable-logistics-practices',
     '/blog/transportation-market-from-nigeria',
+    '/blog/cargo-port-harcourt-to-uk',
+    '/blog/cargo-benin-city-to-uk',
+    '/blog/cargo-onitsha-to-uk',
+    '/blog/cargo-enugu-to-uk',
+    '/blog/cargo-ibadan-to-uk',
+    '/blog/cargo-aba-to-uk',
+    '/blog/cargo-warri-to-uk',
+    '/blog/cargo-calabar-to-uk',
+    '/blog/cargo-lagos-to-houston',
+    '/blog/cargo-lagos-to-maryland',
+    '/blog/cargo-lagos-to-new-york',
+    '/blog/cargo-abuja-to-usa',
+    '/blog/cargo-port-harcourt-to-usa',
+    '/blog/cargo-benin-city-to-usa',
+    '/blog/cargo-lagos-to-toronto',
+    '/blog/cargo-abuja-to-canada',
+    '/blog/cargo-port-harcourt-to-canada',
+    '/blog/express-cargo-from-nigeria',
   ].map((route) => ({ route, priority: 0.8, changeFrequency: 'monthly' as const }));
 
   const allPages = [

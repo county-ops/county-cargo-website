@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+        url: 'https://countycargo.com/shipping-personal-belongings-nigeria-uk.jpg',
         width: 1200,
         height: 630,
         alt: 'Shipping personal luggage and clothing from Nigeria to the UK',
@@ -43,7 +43,7 @@ export default function ShippingPersonalBelongingsNigeriaToUkPage() {
     headline: 'Shipping Personal Belongings from Nigeria to the UK: Relocation & Excess Baggage Guide',
     description:
       'Practical advice for students, families, and individuals sending personal effects, traditional clothing, books, and luggage from Nigeria to UK addresses.',
-    image: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+    image: 'https://countycargo.com/shipping-personal-belongings-nigeria-uk.jpg',
     datePublished: '2026-09-02T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {
@@ -106,7 +106,7 @@ export default function ShippingPersonalBelongingsNigeriaToUkPage() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Answer: How to Ship Personal Belongings to the UK?
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Shipping personal effects and excess luggage via air freight with County Cargo is up to 70% cheaper than paying commercial airline excess baggage fees at the airport check-in counter. Items are dropped off at our Lagos (Ladipo-Oshodi) or Abuja (Wuye Market) depot, packed and weighed, flown on scheduled air freighters to London or Manchester, and delivered directly to your UK residence in 5 to 7 working days with full tracking.
+                Shipping personal effects and excess luggage via air freight with County Cargo is up to 70% cheaper than paying commercial airline excess baggage fees at the airport check-in counter. Items are dropped off at our Lagos (Ladipo-Oshodi) or Abuja (Wuye Market) depot, packed and weighed, flown on scheduled air freighters to London or Manchester, and delivered directly to your UK residence in 5 to 10 working days with full tracking.
               </p>
             </div>
 

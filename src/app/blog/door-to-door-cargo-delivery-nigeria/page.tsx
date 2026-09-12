@@ -26,7 +26,7 @@ export default function DoorToDoorCargoDeliveryNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'Door-to-Door Cargo Delivery to Lagos, Abuja and Other Nigerian Cities',
     description: 'How County Cargo manages international pickup in the UK/US, ocean or air freight, Lagos customs clearing, and final doorstep delivery in Nigeria.',
-    image: 'https://countycargo.com/blog-8-international.png',
+    image: 'https://countycargo.com/images/blog/door-to-door-delivery-nigeria-cities.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {

@@ -26,7 +26,7 @@ export default function ProhibitedItemsShippingToNigeriaPost() {
     '@type': 'BlogPosting',
     headline: 'Items You Cannot Ship to Nigeria: Prohibited & Restricted Cargo',
     description: 'Crucial compliance reference outlining prohibited, restricted, and hazardous goods for international shipping into Nigeria.',
-    image: 'https://countycargo.com/blog-2-sustainable.png',
+    image: 'https://countycargo.com/images/blog/nigeria-customs-prohibited-items-inspection.jpg',
     datePublished: '2026-08-29T08:00:00+01:00',
     dateModified: '2026-08-29T08:00:00+01:00',
     author: {

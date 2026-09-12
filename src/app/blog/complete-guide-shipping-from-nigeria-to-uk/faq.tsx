@@ -11,7 +11,7 @@ const faqs = [
   {
     question: 'How long does air cargo take from Lagos or Abuja to the UK?',
     answer:
-      'Air cargo from Lagos (LOS) or Abuja (ABV) to London Heathrow (LHR) or Manchester (MAN) takes 3 to 5 working days for Express Courier and 5 to 7 working days for Standard Air Cargo.',
+      'Air cargo from Lagos (LOS) or Abuja (ABV) to London Heathrow (LHR) or Manchester (MAN) takes 3 to 5 working days for Express Courier and 5 to 10 working days for Standard Air Cargo.',
   },
   {
     question: 'Can County Cargo collect packages from my home in Lagos or Abuja?',

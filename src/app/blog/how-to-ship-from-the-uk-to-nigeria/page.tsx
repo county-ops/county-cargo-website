@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+        url: 'https://countycargo.com/images/blog/uk-to-nigeria-step-by-step-shipping.jpg',
         width: 1200,
-        height: 630,
+        height: 675,
         alt: 'Step by step shipping from the UK to Nigeria',
       },
     ],
@@ -40,10 +40,10 @@ export default function HowToShipFromUkToNigeriaPage() {
   const blogPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: 'How to Ship from the UK to Nigeria: Complete Step-by-Step Guide',
+    headline: 'How to Ship from the UK to Nigeria: Step-by-Step Logistics Guide',
     description:
-      'Authoritative walkthrough covering parcel preparation, Liverpool warehouse receiving, air cargo vs sea freight barrels, Lagos customs clearance, and Nigerian doorstep delivery.',
-    image: 'https://countycargo.com/service-uk-nigeria-new.jpg',
+      'Complete guide on shipping parcels, electronics, barrels, and commercial freight from the UK to Nigeria via County Cargo.',
+    image: 'https://countycargo.com/images/blog/uk-to-nigeria-step-by-step-shipping.jpg',
     datePublished: '2026-09-02T08:00:00+01:00',
     dateModified: '2026-09-03T08:00:00+01:00',
     author: {
@@ -106,7 +106,7 @@ export default function HowToShipFromUkToNigeriaPage() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Answer: How Do You Ship from the UK to Nigeria?
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                To ship cargo from the UK to Nigeria with County Cargo: (1) Pack your goods and drop them off at our Liverpool depot (Unit G6, Queens Dock, L1 0BG) or book a nationwide UK collection; (2) Choose between Standard Air Cargo (5–10 days), Express Air (3–5 days), or Ocean Sea Freight Barrels (4–6 weeks); (3) County Cargo handles transatlantic transit and all Nigerian customs clearance in Lagos; (4) Collect your package at our Ladipo-Oshodi Lagos hub or receive direct doorstep delivery to Lagos, Abuja, Port Harcourt, and any state across Nigeria.
+                To ship cargo from the UK to Nigeria with County Cargo: (1) Pack your goods and drop them off at our Liverpool depot (Unit G6, Queens Dock, L1 0BG) or book a nationwide UK collection; (2) Choose between Standard Air Cargo (5–10 working days), Express Air (3–5 working days), or Ocean Sea Freight Barrels (4–8 weeks); (3) County Cargo handles transatlantic transit and all Nigerian customs clearance in Lagos; (4) Collect your package at our Ladipo-Oshodi Lagos hub or receive direct doorstep delivery to Lagos, Abuja, Port Harcourt, and any state across Nigeria.
               </p>
             </div>
 
@@ -119,7 +119,7 @@ export default function HowToShipFromUkToNigeriaPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Standard Air Cargo (5–10 working days):</strong> Recommended for clothing, electronics, shoes, gifts, cosmetics, and everyday packages.</li>
               <li><strong>Express Air Courier (3–5 working days):</strong> For urgent contracts, business spare parts, and time-critical deliveries.</li>
-              <li><strong>Sea Freight &amp; 55-Gallon Barrels (4–6 weeks):</strong> The most economical method for shipping heavy provisions, appliances, generators, drums, and full container loads (FCL).</li>
+              <li><strong>Sea Freight &amp; 55-Gallon Barrels (4–8 weeks):</strong> The most economical method for shipping heavy provisions, appliances, generators, drums, and full container loads (FCL).</li>
             </ul>
 
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary pt-4">

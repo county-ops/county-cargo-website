@@ -26,7 +26,7 @@ export default function CompleteGuideShippingUsaPost() {
     '@type': 'BlogPosting',
     headline: 'Complete Guide to Shipping Cargo from Nigeria to the USA',
     description: 'Comprehensive walkthrough for air cargo, express shipping, FDA regulations, and customs clearance from Nigeria to America.',
-    image: 'https://countycargo.com/service-nigeria-to-us-enhanced.png',
+    image: 'https://countycargo.com/blog-4-us-nigeria.png',
     datePublished: '2026-08-30T08:00:00+01:00',
     dateModified: '2026-08-30T08:00:00+01:00',
     author: {
@@ -88,7 +88,7 @@ export default function CompleteGuideShippingUsaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Nigeria to USA Air Cargo
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo offers express air courier (3–5 days) and standard air cargo (5–10 days) from Lagos and Abuja to major US hubs including Houston, Dallas, Atlanta, New York, Chicago, Maryland, Washington DC, and New Jersey. All food shipments comply with US FDA Prior Notice regulations.
+                County Cargo offers express air courier (3–5 working days) and standard air cargo (5–10 working days) from Lagos and Abuja to major US hubs including Houston, Dallas, Atlanta, New York, Chicago, Maryland, Washington DC, and New Jersey. All food shipments comply with US FDA Prior Notice regulations.
               </p>
             </div>
 
