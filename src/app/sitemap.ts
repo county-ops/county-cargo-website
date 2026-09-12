@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/shipping-from-uk-to-nigeria',
     '/shipping-from-uk-to-lagos',
     '/shipping-from-uk-to-abuja',
+    '/shipping-from-uk-to-port-harcourt',
+    '/shipping-from-usa-to-nigeria',
+    '/shipping-from-usa-to-lagos',
+    '/shipping-from-usa-to-abuja',
+    '/shipping-from-usa-to-port-harcourt',
     '/shipping-rates-uk-to-nigeria',
     '/ship-from-us-to-nigeria',
     '/ship-from-nigeria-to-uk',
@@ -67,6 +72,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/how-to-ship-from-usa-to-nigeria',
+    '/blog/shipping-to-lagos-from-usa',
+    '/blog/shipping-to-abuja-from-usa',
     '/blog/cargo-lagos-to-london',
     '/blog/cargo-abuja-to-london',
     '/blog/shipping-lagos-to-uk',

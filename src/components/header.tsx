@@ -24,8 +24,12 @@ const navLinks = [
       { href: '/shipping-from-uk-to-nigeria', label: 'Shipping from UK to Nigeria' },
       { href: '/shipping-from-uk-to-lagos', label: 'Shipping from UK to Lagos' },
       { href: '/shipping-from-uk-to-abuja', label: 'Shipping from UK to Abuja' },
+      { href: '/shipping-from-uk-to-port-harcourt', label: 'Shipping from UK to Port Harcourt' },
       { href: '/shipping-from-london-to-nigeria', label: 'London Charlton Drop-Off' },
-      { href: '/ship-from-us-to-nigeria', label: 'Shipping from US to Nigeria' },
+      { href: '/shipping-from-usa-to-nigeria', label: 'Shipping from USA to Nigeria' },
+      { href: '/shipping-from-usa-to-lagos', label: 'Shipping from USA to Lagos' },
+      { href: '/shipping-from-usa-to-abuja', label: 'Shipping from USA to Abuja' },
+      { href: '/shipping-from-usa-to-port-harcourt', label: 'Shipping from USA to Port Harcourt' },
       { href: '/shipping-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
       { href: '/ship-from-nigeria-to-us', label: 'Shipping from Nigeria to US' },
       { href: '/ship-from-nigeria-to-world', label: 'Shipping from Nigeria to World' },
@@ -75,8 +79,12 @@ export function Header() {
         <Link href="/shipping-from-uk-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Nigeria</Link>
         <Link href="/shipping-from-uk-to-lagos" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Lagos</Link>
         <Link href="/shipping-from-uk-to-abuja" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Abuja</Link>
+        <Link href="/shipping-from-uk-to-port-harcourt" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Port Harcourt</Link>
         <Link href="/shipping-from-london-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">London Charlton Drop-Off</Link>
-        <Link href="/ship-from-us-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from US to Nigeria</Link>
+        <Link href="/shipping-from-usa-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from USA to Nigeria</Link>
+        <Link href="/shipping-from-usa-to-lagos" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from USA to Lagos</Link>
+        <Link href="/shipping-from-usa-to-abuja" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from USA to Abuja</Link>
+        <Link href="/shipping-from-usa-to-port-harcourt" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from USA to Port Harcourt</Link>
         <Link href="/shipping-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
         <Link href="/ship-from-nigeria-to-world" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to World</Link>
