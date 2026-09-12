@@ -202,14 +202,32 @@ export default function UkToNigeriaShippingRatesPage() {
               </div>
             </div>
 
+            <div className="grid sm:grid-cols-3 gap-4 my-8">
+              <Link href="/shipping-from-uk-to-nigeria" className="p-4 bg-white border border-primary/20 rounded-xl hover:shadow-md transition-all group">
+                <span className="text-xs font-bold text-primary uppercase">Main Route Guide</span>
+                <h4 className="font-bold text-secondary text-base group-hover:text-primary mt-1">Shipping from UK to Nigeria</h4>
+                <p className="text-xs text-gray-500 mt-1">Master cargo guide with instant rate calculator &amp; weekly schedules.</p>
+              </Link>
+              <Link href="/shipping-from-uk-to-lagos" className="p-4 bg-white border border-primary/20 rounded-xl hover:shadow-md transition-all group">
+                <span className="text-xs font-bold text-primary uppercase">Lagos Dedicated</span>
+                <h4 className="font-bold text-secondary text-base group-hover:text-primary mt-1">UK to Lagos Cargo</h4>
+                <p className="text-xs text-gray-500 mt-1">From £6.00/kg. Ladipo-Oshodi depot collection &amp; mainland/island delivery.</p>
+              </Link>
+              <Link href="/shipping-from-uk-to-abuja" className="p-4 bg-white border border-primary/20 rounded-xl hover:shadow-md transition-all group">
+                <span className="text-xs font-bold text-emerald-600 uppercase">Special Promo</span>
+                <h4 className="font-bold text-secondary text-base group-hover:text-primary mt-1">Shipping from UK to Abuja</h4>
+                <p className="text-xs text-gray-500 mt-1">From £6.50/kg with 100% Free Doorstep Delivery on qualifying 10kg+ shipments.</p>
+              </Link>
+            </div>
+
             <div className="p-6 bg-gradient-to-r from-blue-900 to-slate-900 rounded-2xl text-white my-8 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <h3 className="text-xl font-bold">Book UK Cargo Collection or Get an Instant Quote</h3>
-                <p className="text-sm text-blue-100 mt-1">Nationwide UK drop-off or doorstep pickup available.</p>
+                <h3 className="text-xl font-bold">Calculate UK to Nigeria Shipping Cost</h3>
+                <p className="text-sm text-blue-100 mt-1">Try our instant rate calculator with zero personal info required.</p>
               </div>
               <Button asChild className="bg-primary hover:bg-primary/90 text-white font-bold text-base px-6 py-3 shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria">
-                  View Master UK Page <ArrowRight className="ml-2 w-5 h-5" />
+                <Link href="/shipping-from-uk-to-nigeria#quote-calculator">
+                  Instant Calculator <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
             </div>

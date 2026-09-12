@@ -52,7 +52,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
                     <div className="text-center sm:text-left">
                         <div className="flex justify-center sm:justify-start items-center mb-3 sm:mb-4">
-                            <Image src="/county-logo.png" alt="County Cargo Logo" width={280} height={80} className="h-16 sm:h-20 w-auto" />
+                            <Image src="/county-cargo-logo-transparent.png" alt="County Cargo" width={280} height={80} className="h-16 sm:h-20 w-auto" />
                         </div>
                         <p className="text-gray-400 text-sm leading-relaxed">
                             County Cargo (operated by County Service Group) delivers reliable air freight, sea freight, express parcel delivery, and customs clearance between the UK, USA, and Nigeria.
@@ -62,11 +62,12 @@ export function Footer() {
                     <div className="text-center sm:text-left">
                         <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Core Routes</h3>
                         <ul className="space-y-2 text-sm">
-                            <li><Link href="/shipping-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK to Nigeria Cargo</Link></li>
+                            <li><Link href="/shipping-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">Shipping from UK to Nigeria</Link></li>
+                            <li><Link href="/shipping-from-uk-to-lagos" className="text-gray-400 hover:text-white transition-colors">UK to Lagos Cargo</Link></li>
+                            <li><Link href="/shipping-from-uk-to-abuja" className="text-gray-400 hover:text-white transition-colors">Shipping from UK to Abuja</Link></li>
+                            <li><Link href="/shipping-rates-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK to Nigeria Shipping Cost &amp; Rates</Link></li>
                             <li><Link href="/shipping-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Nigeria to UK Cargo</Link></li>
-                            <li><Link href="/export-from-nigeria" className="text-gray-400 hover:text-white transition-colors">Nigeria Export Hub</Link></li>
-                            <li><Link href="/shipping-barrels-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK Barrels Shipping</Link></li>
-                            <li><Link href="/shipping-barrels-from-the-usa-to-nigeria" className="text-gray-400 hover:text-white transition-colors">US Barrels Shipping</Link></li>
+                            <li><Link href="/shipping-barrels-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK Barrels Shipping to Nigeria</Link></li>
                             <li><Link href="/shipping-from-nigeria-to-usa" className="text-gray-400 hover:text-white transition-colors">Nigeria to USA Cargo</Link></li>
                         </ul>
                     </div>

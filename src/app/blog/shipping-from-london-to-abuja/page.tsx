@@ -184,15 +184,18 @@ export default function ShippingFromLondonToAbujaPost() {
             <div className="p-6 bg-blue-900 text-white rounded-2xl text-center space-y-4">
               <h3 className="text-xl font-bold">Ready to Ship Cargo from London to Abuja?</h3>
               <p className="text-sm text-blue-100 max-w-xl mx-auto">
-                Schedule a London pickup or request a quote for your Abuja cargo.
+                Schedule a London pickup or calculate your exact cost with our <Link href="/shipping-from-uk-to-abuja" className="underline font-bold text-amber-400">UK to Abuja Cargo Hub</Link> (including Free Doorstep Delivery on 10kg+).
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/shipping-from-uk-to-nigeria">Book London Pickup</Link>
+                  <Link href="/shipping-from-uk-to-abuja">UK to Abuja Rates &amp; Free Delivery</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447405556668" target="_blank" rel="noopener noreferrer">
-                    <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
+                  <Link href="/shipping-from-uk-to-nigeria">Main UK-Nigeria Service</Link>
+                </Button>
+                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
+                  <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="w-4 h-4 mr-2 text-emerald-400" /> WhatsApp Abuja Team
                   </a>
                 </Button>
               </div>

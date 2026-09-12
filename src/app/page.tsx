@@ -33,9 +33,23 @@ const services = [
   {
     icon: <Truck className="h-6 w-6 text-primary" />,
     title: 'Shipping from UK to Nigeria',
-    description: 'Fast and affordable air and sea freight services from our UK warehouse directly to your doorstep in Nigeria.',
+    description: 'Weekly air freight and sea cargo from London and Liverpool depots directly to your doorstep across Nigeria.',
     href: '/shipping-from-uk-to-nigeria',
     image: '/service-uk-to-nigeria-enhanced.png'
+  },
+  {
+    icon: <Truck className="h-6 w-6 text-primary" />,
+    title: 'Shipping from UK to Lagos',
+    description: 'Air cargo from £6.00/kg to Murtala Muhammed Airport. Ladipo-Oshodi hub pickup or mainland & island doorstep delivery.',
+    href: '/shipping-from-uk-to-lagos',
+    image: '/london-to-lagos-freight.jpg'
+  },
+  {
+    icon: <Truck className="h-6 w-6 text-primary" />,
+    title: 'Shipping from UK to Abuja',
+    description: 'Air cargo from £6.50/kg with Wuye Market depot pickup and 100% Free Doorstep Delivery on qualifying 10kg+ consignments.',
+    href: '/shipping-from-uk-to-abuja',
+    image: '/london-to-abuja-cargo.jpg'
   },
   {
     icon: <Package className="h-6 w-6 text-primary" />,
@@ -45,13 +59,6 @@ const services = [
     image: '/service-us-to-nigeria-enhanced.png'
   },
   {
-    icon: <Globe className="h-6 w-6 text-primary" />,
-    title: 'Shipping from Nigeria to the World',
-    description: 'Export goods from Nigeria to over 200 countries worldwide with our reliable international courier partners.',
-    href: '/ship-from-nigeria-to-world',
-    image: '/nigeria-market-packing-enhanced.png'
-  },
-  {
     icon: <Truck className="h-6 w-6 text-primary" />,
     title: 'Shipping from Nigeria to UK',
     description: 'Send packages, documents, and foodstuff from Nigeria to the United Kingdom with our economy/express delivery services.',
@@ -59,18 +66,11 @@ const services = [
     image: '/service-nigeria-uk-enhanced.png'
   },
   {
-    icon: <Package className="h-6 w-6 text-primary" />,
-    title: 'Shipping from Nigeria to US',
-    description: 'Send packages, documents, and foodstuff from Nigeria to the United States with our economy/express delivery services.',
-    href: '/ship-from-nigeria-to-us',
-    image: '/service-nigeria-to-us-enhanced.png'
-  },
-  {
-    icon: <ShoppingBag className="h-6 w-6 text-primary" />,
-    title: 'Shop for Me',
-    description: 'Can\'t pay on international sites? We purchase items on your behalf from UK/US stores and ship them to you.',
-    href: '#services',
-    image: '/service-uk-to-nigeria-enhanced.png' // Fallback or use a generic one
+    icon: <Globe className="h-6 w-6 text-primary" />,
+    title: 'Shipping from Nigeria to the World',
+    description: 'Export goods from Nigeria to over 200 countries worldwide with our reliable international courier partners.',
+    href: '/ship-from-nigeria-to-world',
+    image: '/nigeria-market-packing-enhanced.png'
   },
 ];
 

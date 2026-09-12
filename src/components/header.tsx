@@ -22,6 +22,8 @@ const navLinks = [
     label: 'Services',
     submenu: [
       { href: '/shipping-from-uk-to-nigeria', label: 'Shipping from UK to Nigeria' },
+      { href: '/shipping-from-uk-to-lagos', label: 'Shipping from UK to Lagos' },
+      { href: '/shipping-from-uk-to-abuja', label: 'Shipping from UK to Abuja' },
       { href: '/shipping-from-london-to-nigeria', label: 'London Charlton Drop-Off' },
       { href: '/ship-from-us-to-nigeria', label: 'Shipping from US to Nigeria' },
       { href: '/shipping-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
@@ -71,6 +73,8 @@ export function Header() {
         <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Home</Link>
         <Link href="/#services" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Services</Link>
         <Link href="/shipping-from-uk-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Nigeria</Link>
+        <Link href="/shipping-from-uk-to-lagos" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Lagos</Link>
+        <Link href="/shipping-from-uk-to-abuja" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from UK to Abuja</Link>
         <Link href="/shipping-from-london-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">London Charlton Drop-Off</Link>
         <Link href="/ship-from-us-to-nigeria" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from US to Nigeria</Link>
         <Link href="/shipping-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
@@ -101,8 +105,8 @@ export function Header() {
             <div className="flex items-center">
               <Link href="/">
                 <Image
-                  src="/county-logo.png"
-                  alt="County Cargo Logo"
+                  src="/county-cargo-logo-transparent.png"
+                  alt="County Cargo"
                   width={120}
                   height={34}
                   className="h-7 sm:h-8 w-auto"

@@ -24,6 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePages = [
     '/shipping-from-uk-to-nigeria',
+    '/shipping-from-uk-to-lagos',
+    '/shipping-from-uk-to-abuja',
+    '/shipping-rates-uk-to-nigeria',
     '/ship-from-us-to-nigeria',
     '/ship-from-nigeria-to-uk',
     '/ship-from-nigeria-to-us',

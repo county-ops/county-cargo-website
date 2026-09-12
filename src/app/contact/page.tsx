@@ -264,12 +264,24 @@ export default function ContactPage() {
                   Find quick answers regarding our rates, restricted items, packaging rules, and delivery schedules:
                 </p>
                 <div className="flex flex-col gap-2.5 pt-1.5">
+                  <Link href="/shipping-from-uk-to-nigeria" className="text-blue-600 hover:text-blue-700 text-sm font-bold flex items-center gap-1.5 transition-colors group/main">
+                    Shipping from UK to Nigeria (Full Guide &amp; Instant Calculator)
+                    <ArrowRight className="w-4 h-4 group-hover/main:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link href="/shipping-from-uk-to-lagos" className="text-blue-600 hover:text-blue-700 text-sm font-bold flex items-center gap-1.5 transition-colors group/lagos">
+                    UK to Lagos Cargo Services &amp; Ladipo Hub Pickup
+                    <ArrowRight className="w-4 h-4 group-hover/lagos:translate-x-1 transition-transform" />
+                  </Link>
+                  <Link href="/shipping-from-uk-to-abuja" className="text-blue-600 hover:text-blue-700 text-sm font-bold flex items-center gap-1.5 transition-colors group/abuja">
+                    Shipping from UK to Abuja (Wuye Market Hub &amp; Free Delivery Promo)
+                    <ArrowRight className="w-4 h-4 group-hover/abuja:translate-x-1 transition-transform" />
+                  </Link>
                   <Link href="/faq" className="text-blue-600 hover:text-blue-700 text-sm font-bold flex items-center gap-1.5 transition-colors group/faq">
                     Read our Frequently Asked Questions (FAQ) 
                     <ArrowRight className="w-4 h-4 group-hover/faq:translate-x-1 transition-transform" />
                   </Link>
                   <Link href="/info" className="text-blue-600 hover:text-blue-700 text-sm font-bold flex items-center gap-1.5 transition-colors group/rates">
-                    Check Detailed Rates & Pricing lists 
+                    Check Detailed Rates &amp; Pricing lists 
                     <ArrowRight className="w-4 h-4 group-hover/rates:translate-x-1 transition-transform" />
                   </Link>
                 </div>

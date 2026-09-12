@@ -207,15 +207,18 @@ export default function ShippingFromLondonToLagosPost() {
             <div className="p-6 bg-blue-900 text-white rounded-2xl text-center space-y-4">
               <h3 className="text-xl font-bold">Ready to Ship from London to Lagos?</h3>
               <p className="text-sm text-blue-100 max-w-xl mx-auto">
-                Schedule a doorstep collection in London or get an instant quote for your Lagos cargo.
+                Schedule a doorstep collection in London or calculate your exact cost with our <Link href="/shipping-from-uk-to-lagos" className="underline font-bold text-amber-400">UK to Lagos Cargo Hub</Link>.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/shipping-from-uk-to-nigeria">Book London Cargo</Link>
+                  <Link href="/shipping-from-uk-to-lagos">UK to Lagos Cargo Guide &amp; Rates</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447405556668" target="_blank" rel="noopener noreferrer">
-                    <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
+                  <Link href="/shipping-from-uk-to-nigeria">Main UK-Nigeria Service</Link>
+                </Button>
+                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
+                  <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="w-4 h-4 mr-2 text-emerald-400" /> WhatsApp Depot
                   </a>
                 </Button>
               </div>

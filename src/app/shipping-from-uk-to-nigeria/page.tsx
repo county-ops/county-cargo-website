@@ -40,21 +40,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { UkNigeriaQuoteForm } from './quote-form';
+import { ShippingCalculator } from '@/components/shipping-calculator';
 
 export const metadata: Metadata = {
-  title: 'Shipping From UK to Nigeria: 2026 Prices and Guide',
+  title: 'Shipping from UK to Nigeria | Air & Sea Cargo | County Cargo',
   description:
-    'Comprehensive 2026 guide for shipping cargo from the UK to Nigeria. Compare air freight rates (£6.00/kg), express delivery (3–5 working days), sea cargo barrels, customs clearance, and door-to-door delivery across Lagos, Abuja, and all 36 states.',
+    'Ship cargo from the UK to Nigeria from £6/kg. Weekly air freight, sea cargo, UK collection and delivery options for Lagos, Abuja and nationwide.',
   keywords:
-    'Shipping from UK to Nigeria, UK to Nigeria cargo, Air cargo from UK to Nigeria, Sea cargo from UK to Nigeria, UK to Nigeria shipping prices, Door-to-door cargo to Nigeria, Send a parcel from UK to Nigeria, London to Lagos cargo, Liverpool to Nigeria shipping, Manchester to Nigeria cargo',
+    'UK to Nigeria cargo, Shipping from UK to Nigeria, Cargo from UK to Nigeria, UK to Lagos cargo, Shipping from UK to Lagos, UK to Abuja cargo, Shipping from UK to Abuja, Air cargo UK to Nigeria, Sea cargo UK to Nigeria, London to Nigeria cargo, Liverpool to Nigeria cargo, Door-to-door cargo to Nigeria, Cheap shipping from UK to Nigeria, UK to Nigeria shipping cost, UK to Nigeria cargo calculator',
   alternates: {
     canonical: 'https://countycargo.com/shipping-from-uk-to-nigeria',
   },
   openGraph: {
-    title: 'Shipping From UK to Nigeria: 2026 Prices and Guide',
+    title: 'Shipping from UK to Nigeria | Air & Sea Cargo | County Cargo',
     description:
-      'Fast, secure air cargo and sea freight from the UK to Nigeria. Drop off at our Liverpool depot or book UK collection. Doorstep delivery across Lagos, Abuja, Port Harcourt, and nationwide.',
+      'Ship cargo from the UK to Nigeria from £6/kg. Weekly air freight, sea cargo, UK collection and delivery options for Lagos, Abuja and nationwide.',
     url: 'https://countycargo.com/shipping-from-uk-to-nigeria',
     siteName: 'County Cargo',
     images: [
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: 'https://countycargo.com/service-uk-nigeria-new.jpg',
         width: 1200,
         height: 630,
-        alt: 'County Cargo Air Freight and Sea Cargo from UK to Nigeria',
+        alt: 'County Cargo - Shipping from the UK to Nigeria',
       },
     ],
   },
@@ -261,80 +261,74 @@ export default function ShippingFromUkToNigeriaPage() {
         <section
           className="relative py-16 sm:py-20 lg:py-24 text-white overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(10, 25, 47, 0.90) 0%, rgba(15, 23, 42, 0.95) 100%), url('/service-uk-nigeria-new.jpg')`,
+            backgroundImage: `linear-gradient(135deg, rgba(10, 25, 47, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%), url('/service-uk-nigeria-new.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs sm:text-sm font-semibold">
-                  <Plane className="w-4 h-4 text-blue-400" />
-                  <span>Shipping From UK to Nigeria: 2026 Prices &amp; Complete Guide</span>
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs sm:text-sm font-semibold">
+                <Plane className="w-4 h-4 text-blue-400" />
+                <span>UK to Nigeria Cargo Forwarding • Weekly Flights &amp; Sea Containers</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight hero-text-glow leading-tight">
+                Shipping from the UK to Nigeria
+              </h1>
+
+              {/* Concise Direct Answer Immediately Below H1 */}
+              <div className="p-5 sm:p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-slate-100 text-left sm:text-base leading-relaxed space-y-3">
+                <div className="flex items-center gap-2 font-bold text-white text-base sm:text-lg">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <span>Verified Shipping Rates &amp; Service Summary:</span>
                 </div>
-
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight hero-text-glow leading-tight">
-                  Shipping from the UK to Nigeria
-                </h1>
-
-                <p className="text-base sm:text-lg md:text-xl text-blue-100 font-light leading-relaxed max-w-2xl">
-                  Air and sea cargo prices, delivery times, customs rules, and door-to-door delivery from London, Liverpool, Manchester, and Birmingham directly to Lagos, Abuja, Kano, and nationwide across all 36 Nigerian states.
+                <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
+                  Shipping cargo from the UK to Nigeria with County Cargo starts at <strong>£6.00 per kg</strong> for Lagos and <strong>£6.50 per kg</strong> for Abuja (+ £15 handling fee per consignment). Air cargo transit time is <strong>5 to 10 working days</strong> from our weekly consolidation cut-off every Wednesday at 5:00 PM. Drop off free of charge at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Warehouse (L1 0BG)</strong>, or book UK doorstep collection (free across London for air freight 30kg+). Door-to-door delivery covers Lagos, Abuja, Port Harcourt, Kano, and all 36 states with complete customs clearance included.
                 </p>
-
-                {/* Direct Quotable Summary Block for AI Search & Users */}
-                <div className="p-4 sm:p-5 bg-white/10 backdrop-blur-md rounded-xl border border-white/15 text-slate-100 text-sm sm:text-base leading-relaxed">
-                  <p className="font-medium text-white flex items-center gap-2 mb-1.5">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                    <strong>2026 Verified Shipping Summary:</strong>
-                  </p>
-                  <p>
-                    Standard air cargo from the UK to Nigeria costs <strong>£6.00 per kg</strong> plus a <strong>£15 handling fee</strong> with delivery in <strong>5 to 10 working days</strong>. Express Air Courier delivers in <strong>3 to 5 working days</strong>, while Sea Cargo barrels arrive in <strong>4 to 8 weeks</strong>. Doorstep collection is available across Greater London, Liverpool depot (L1 0BG drop-off), Manchester, and Birmingham, with complete customs clearance and final delivery in Lagos, Abuja, Kano, and all 36 states.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-                  <a href="#quote-calculator">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
-                      Request UK-to-Nigeria Quote
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  </a>
-                  <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20ship%20from%20the%20UK%20to%20Nigeria" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold">
-                      <MessageSquare className="w-4 h-4 mr-2 text-emerald-400" />
-                      Speak with UK Depot
-                    </Button>
-                  </a>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/10 text-center sm:text-left">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/15 text-xs sm:text-sm">
                   <div>
-                    <div className="text-2xl sm:text-3xl font-bold text-white">£6.00 / kg</div>
-                    <div className="text-xs text-blue-200">Standard Air Rate (+£15 fee)</div>
+                    <span className="text-blue-200 block">Lagos Air Cargo:</span>
+                    <strong className="text-white">£6.00 / kg + £15 fee</strong>
                   </div>
                   <div>
-                    <div className="text-2xl sm:text-3xl font-bold text-white">5–10 Working Days</div>
-                    <div className="text-xs text-blue-200">Air Cargo Transit</div>
+                    <span className="text-blue-200 block">Abuja Air Cargo:</span>
+                    <strong className="text-white">£6.50 / kg + £15 fee</strong>
                   </div>
                   <div>
-                    <div className="text-2xl sm:text-3xl font-bold text-white">36 States</div>
-                    <div className="text-xs text-blue-200">Nigeria Doorstep Reach</div>
+                    <span className="text-blue-200 block">Air Transit Time:</span>
+                    <strong className="text-white">5–10 Working Days</strong>
+                  </div>
+                  <div>
+                    <span className="text-blue-200 block">Sea Cargo Barrels:</span>
+                    <strong className="text-white">From £190 (4–8 Weeks)</strong>
                   </div>
                 </div>
               </div>
 
-              {/* Instant Freight Estimate Calculator */}
-              <div id="quote-calculator" className="lg:col-span-5">
-                <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-2xl text-slate-800 border border-slate-100">
-                  <div className="mb-4">
-                    <span className="text-xs font-bold text-primary uppercase tracking-wider block">Instant Calculator</span>
-                    <h2 className="text-xl font-bold text-secondary">Calculate UK to Nigeria Shipping Cost</h2>
-                    <p className="text-xs text-slate-500 mt-1">Select your UK departure city and Nigerian destination.</p>
-                  </div>
-                  <UkNigeriaQuoteForm />
-                </div>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
+                <a href="#quote-calculator">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
+                    Calculate UK to Nigeria Shipping Cost
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </a>
+                <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20ship%20from%20the%20UK%20to%20Nigeria" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold">
+                    <MessageSquare className="w-4 h-4 mr-2 text-emerald-400" />
+                    WhatsApp UK Operations (+234 811 000 0421)
+                  </Button>
+                </a>
               </div>
+            </div>
+
+            {/* Prominent Above-the-Fold Calculator */}
+            <div className="mt-10">
+              <ShippingCalculator
+                title="UK to Nigeria Shipping Cost Calculator"
+                subtitle="Calculate accurate air and sea cargo costs from London, Liverpool, and nationwide UK to Lagos, Abuja, and all Nigerian states."
+                defaultDestination="Lagos"
+              />
             </div>
           </div>
         </section>
@@ -698,6 +692,20 @@ export default function ShippingFromUkToNigeriaPage() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </section>
+        {/* Review Metadata & Editorial Timestamp */}
+        <section className="py-6 bg-slate-100 border-t border-slate-200 text-xs text-slate-500">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div className="flex items-center gap-2">
+              <UserCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>
+                <strong>Last reviewed:</strong> 12 September 2026 by <em>County Cargo UK Operations &amp; Logistics Team</em>
+              </span>
+            </div>
+            <p className="max-w-xl text-[11px] leading-relaxed">
+              Disclaimer: Rates quoted are subject to volumetric check and standard airline/port tariffs. £15 standard handling fee applies to air consignments. Free London collection applies to air cargo 30kg and above. Free Abuja delivery applies to qualifying consignments of 10kg+ while promotion remains active.
+            </p>
           </div>
         </section>
       </main>
