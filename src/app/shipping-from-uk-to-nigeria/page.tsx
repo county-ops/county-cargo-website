@@ -225,6 +225,7 @@ const pricingExamples = [
 ];
 
 const supportingRoutes = [
+  { title: 'County Cargo vs CargoNaija', href: '/county-cargo-vs-cargonaija', desc: 'Direct 2026 comparison of UK rates, depots, free pickup terms & transit speeds.' },
   { title: 'London to Nigeria Shipping', href: '/shipping-from-london-to-nigeria', desc: 'Doorstep collection across Peckham, Woolwich, Wembley, Croydon & Greater London.' },
   { title: 'London to Lagos Guide', href: '/blog/shipping-from-london-to-lagos', desc: 'Direct air cargo to Murtala Muhammed Airport & Ladipo hub pickup.' },
   { title: 'London to Abuja Guide', href: '/blog/shipping-from-london-to-abuja', desc: 'Air cargo arriving via Nnamdi Azikiwe Airport & Garki depot collection.' },
