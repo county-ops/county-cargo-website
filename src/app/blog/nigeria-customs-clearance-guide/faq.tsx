@@ -1,3 +1,4 @@
+import { JsonLd } from '@/components/json-ld';
 import React from 'react';
 import { HelpCircle } from 'lucide-react';
 import {
@@ -36,7 +37,22 @@ const faqs = [
 ];
 
 export function Faq() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
+    <>
+      <JsonLd data={faqSchema} />
     <section className="py-12 bg-gray-50 border-t border-gray-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2 mb-6">
@@ -57,5 +73,6 @@ export function Faq() {
         </Accordion>
       </div>
     </section>
+    </>
   );
 }

@@ -117,6 +117,39 @@ const nextConfig: NextConfig = {
       { source: '/county-cargo-vs-fez', destination: '/county-cargo-vs-fez-delivery', permanent: true },
       { source: '/fez-delivery-alternative', destination: '/county-cargo-vs-fez-delivery', permanent: true },
       { source: '/compare/fez-delivery', destination: '/county-cargo-vs-fez-delivery', permanent: true },
+      { source: '/cargonaija-vs-county-cargo', destination: '/county-cargo-vs-cargonaija', permanent: true },
+      { source: '/gig-logistics-vs-county-cargo', destination: '/county-cargo-vs-gig-logistics', permanent: true },
+      { source: '/fez-delivery-vs-county-cargo', destination: '/county-cargo-vs-fez-delivery', permanent: true },
+      { source: '/ship-from-uk-to-nigeria', destination: '/shipping-from-uk-to-nigeria', permanent: true },
+      { source: '/ship-from-nigeria-to-uk', destination: '/shipping-from-nigeria-to-uk', permanent: true },
+      { source: '/shipping-barrels-from-chicago-to-nigeria', destination: '/shipping-barrels-from-the-usa-to-nigeria', permanent: true },
+      { source: '/shipping-barrels-from-us-to-nigeria', destination: '/shipping-barrels-from-the-usa-to-nigeria', permanent: true },
+      { source: '/blog/shipping-barrels-from-chicago-to-nigeria', destination: '/shipping-barrels-from-the-usa-to-nigeria', permanent: true },
+      { source: '/blog/shipping-barrels-from-us-to-nigeria', destination: '/shipping-barrels-from-the-usa-to-nigeria', permanent: true },
+      { source: '/blog/shipping-barrels-from-the-usa-to-nigeria', destination: '/shipping-barrels-from-the-usa-to-nigeria', permanent: true },
+      { source: '/blog/shipping-barrels-from-uk-to-nigeria', destination: '/shipping-barrels-from-uk-to-nigeria', permanent: true },
+      { source: '/london-drop-off', destination: '/shipping-from-london-to-nigeria', permanent: true },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+        ],
+      },
     ];
   },
   typescript: {

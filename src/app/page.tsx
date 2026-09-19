@@ -27,6 +27,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://countycargo.com',
   },
+  openGraph: {
+    title: 'County Cargo | UK & USA to Nigeria Shipping, Cargo & Air Freight',
+    description: 'Fast, reliable air and sea freight cargo shipping services from the UK and USA to Nigeria, and export services from Nigeria worldwide. Consolidated shipping and doorstep delivery.',
+    url: 'https://countycargo.com',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: '/cargo-plane-hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'County Cargo — UK & USA to Nigeria Shipping, Air & Sea Freight',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'County Cargo | UK & USA to Nigeria Shipping, Cargo & Air Freight',
+    description: 'Fast, reliable air and sea freight cargo shipping services from the UK and USA to Nigeria, and export services from Nigeria worldwide.',
+    images: ['/cargo-plane-hero.png'],
+  },
 };
 
 const services = [

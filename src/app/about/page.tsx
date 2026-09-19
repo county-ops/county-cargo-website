@@ -11,6 +11,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://countycargo.com/about',
   },
+  openGraph: {
+    title: 'About County Cargo | Professional Shipping & Logistics',
+    description: 'Discover County Cargo—your premier logistics partner. We deliver fast, secure, and compliant shipping solutions connecting Nigeria, the UK, the USA, and worldwide.',
+    url: 'https://countycargo.com/about',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: '/service-uk-nigeria-new.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About County Cargo - Global Freight & Logistics',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About County Cargo | Professional Shipping & Logistics',
+    description: 'Discover County Cargo—your premier logistics partner. We deliver fast, secure, and compliant shipping solutions connecting Nigeria, the UK, the USA, and worldwide.',
+    images: ['/service-uk-nigeria-new.jpg'],
+  },
 };
 
 const specialistServices = [

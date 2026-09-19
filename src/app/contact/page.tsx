@@ -20,6 +20,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://countycargo.com/contact',
   },
+  openGraph: {
+    title: 'Contact County Cargo | UK & Nigeria Offices & Support',
+    description: 'Get in touch with County Cargo. Reach our logistics support teams in London, Lagos, and Abuja for help with air freight, sea freight, cargo shipping, or custom shipping quotes.',
+    url: 'https://countycargo.com/contact',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: '/cargo-plane-hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'Contact County Cargo Logistics Support',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact County Cargo | UK & Nigeria Offices & Support',
+    description: 'Get in touch with County Cargo customer support for UK, USA, and Nigeria cargo and freight logistics.',
+    images: ['/cargo-plane-hero.png'],
+  },
 };
 
 export default function ContactPage() {

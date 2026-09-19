@@ -51,32 +51,9 @@ export default function NigeriaCustomsClearanceGuidePost() {
     },
   };
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How long does Nigeria Customs clearance take at Lagos airport or port?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Air cargo clearance at Lagos airport takes 24–48 hours for complete documentation. Sea cargo clearance at Apapa or Tin Can ports takes 3–7 working days.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is Form M and do I need it for personal cargo to Nigeria?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Form M is an official import registration document required by the Central Bank of Nigeria for commercial imports valued above $10,000 USD. Personal door-to-door cargo handled by County Cargo is cleared under consolidated clearing manifests.',
-        },
-      },
-    ],
-  };
-
   return (
     <>
-      <JsonLd data={[blogPostingSchema, faqSchema]} />
+      <JsonLd data={blogPostingSchema} />
       <Header />
       <main className="pt-16 bg-white">
         <Breadcrumbs

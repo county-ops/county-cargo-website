@@ -10,6 +10,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://countycargo.com/faq',
   },
+  openGraph: {
+    title: 'Frequently Asked Questions (FAQ) | County Cargo Shipping Support',
+    description: 'Find answers to common questions about County Cargo shipping rates, prohibited items, transit times for air/sea cargo between UK, US, and Nigeria, and how to track packages.',
+    url: 'https://countycargo.com/faq',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: '/cargo-plane-hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'County Cargo Shipping Support FAQ',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Frequently Asked Questions (FAQ) | County Cargo Shipping Support',
+    description: 'Find answers to common questions about County Cargo shipping rates, transit times, and freight options.',
+    images: ['/cargo-plane-hero.png'],
+  },
 };
 
 export default function FaqPage() {

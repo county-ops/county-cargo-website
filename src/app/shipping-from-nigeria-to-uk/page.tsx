@@ -499,6 +499,14 @@ export default function ShippingFromNigeriaToUkPage() {
                   <Info className="w-4 h-4 shrink-0 mt-0.5 text-emerald-600" />
                   <span>All dried food items are inspected and vacuum-sealed at our Lagos/Abuja depots to preserve freshness and ensure zero odor during transit.</span>
                 </div>
+                <div className="mt-3 text-center">
+                  <Link
+                    href="/export-food-from-nigeria-to-uk"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 underline"
+                  >
+                    Read our complete Nigerian Food Export to UK &amp; DEFRA Guide →
+                  </Link>
+                </div>
               </div>
 
               {/* Prohibited Items */}
@@ -509,7 +517,7 @@ export default function ShippingFromNigeriaToUkPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-secondary">Strictly Prohibited Items</h3>
-                    <p className="text-xs text-red-700 font-medium">Banned by UK Border Force & international aviation regulations</p>
+                    <p className="text-xs text-red-700 font-medium">Banned by UK Border Force &amp; international aviation regulations</p>
                   </div>
                 </div>
                 <ul className="space-y-3 text-sm text-slate-700">
@@ -523,6 +531,14 @@ export default function ShippingFromNigeriaToUkPage() {
                 <div className="mt-6 p-3.5 bg-red-50 rounded-xl text-xs text-red-800 flex items-start gap-2 border border-red-100">
                   <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5 text-red-600" />
                   <span>Attempting to ship prohibited meat, poultry, or unauthorized items will lead to immediate confiscation by UK Customs authorities.</span>
+                </div>
+                <div className="mt-3 text-center">
+                  <Link
+                    href="/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 underline"
+                  >
+                    Commercial Exporter? Read our NEPC, Form NXP &amp; DCTS Guide →
+                  </Link>
                 </div>
               </div>
             </div>

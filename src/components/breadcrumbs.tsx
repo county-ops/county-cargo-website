@@ -9,20 +9,35 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  currentUrl?: string;
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, currentUrl }: BreadcrumbsProps) {
   const allItems = [{ label: 'Home', href: '/' }, ...items];
 
   const breadcrumbListSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: allItems.map((item, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: item.label,
-      item: item.href ? `https://countycargo.com${item.href}` : undefined,
-    })),
+    itemListElement: allItems.map((item, index) => {
+      const isLast = index === allItems.length - 1;
+      const targetUrl = item.href
+        ? `https://countycargo.com${item.href}`
+        : isLast && currentUrl
+        ? currentUrl
+        : undefined;
+
+      const listItem: Record<string, unknown> = {
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.label,
+      };
+
+      if (targetUrl) {
+        listItem.item = targetUrl;
+      }
+
+      return listItem;
+    }),
   };
 
   return (

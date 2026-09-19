@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   },
   description: 'Seamless Global Shipping, Done Right. Reliable air and sea freight cargo services from UK and US to Nigeria, and Nigeria exports worldwide.',
   metadataBase: new URL('https://countycargo.com'),
-  alternates: {
-    canonical: '/',
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   robots: {
     index: true,
@@ -111,6 +111,22 @@ const organizationSchema = {
       ],
       telephone: '+2348110000421',
       email: 'info@countycargo.com',
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          telephone: '+2348110000421',
+          contactType: 'customer service',
+          areaServed: ['GB', 'NG', 'US'],
+          availableLanguage: ['en'],
+        },
+        {
+          '@type': 'ContactPoint',
+          telephone: '+2348110000423',
+          contactType: 'customer support',
+          areaServed: ['NG'],
+          availableLanguage: ['en'],
+        },
+      ],
       sameAs: [
         'https://www.facebook.com/CountyCargo',
         'https://www.instagram.com/countycargo/',
@@ -248,11 +264,7 @@ const organizationSchema = {
             '@type': 'EntryPoint',
             urlTemplate: 'https://countycargo.com/blog?q={search_term_string}',
           },
-          'query-input': {
-            '@type': 'PropertyValueSpecification',
-            valueRequired: true,
-            valueName: 'search_term_string',
-          },
+          'query-input': 'required name=search_term_string',
         },
       ],
       inLanguage: 'en-GB',

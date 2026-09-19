@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://countycargo.com';
+  const lastModDate = new Date('2026-09-19T00:00:00Z');
 
   const homePage = [
     { route: '', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const exportCountryPages = [
     '/export-from-nigeria-to-uk',
+    '/export-food-from-nigeria-to-uk',
     '/shipping-from-nigeria-to-canada',
     '/shipping-from-nigeria-to-usa',
     '/shipping-from-nigeria-to-uk',
@@ -33,11 +35,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/shipping-from-usa-to-port-harcourt',
     '/shipping-rates-uk-to-nigeria',
     '/ship-from-us-to-nigeria',
-    '/ship-from-nigeria-to-uk',
     '/ship-from-nigeria-to-us',
     '/ship-from-nigeria-to-world',
-    '/shipping-from-london-to-nigeria',
-    '/london-drop-off',
+    '/shipping-barrels-from-the-usa-to-nigeria',
+    '/shipping-barrels-from-uk-to-nigeria',
     '/county-cargo-vs-cargonaija',
     '/county-cargo-vs-gig-logistics',
     '/county-cargo-vs-fez-delivery',
@@ -113,8 +114,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/shipping-commercial-goods-to-nigeria',
     '/blog/air-freight-vs-sea-freight-to-nigeria',
     '/blog/cargo-shipping-cost-to-nigeria',
-    '/blog/uk-to-nigeria-shipping-rates',
-    '/shipping-rates-uk-to-nigeria',
     '/blog/how-to-calculate-volumetric-weight',
     '/blog/uk-to-nigeria-shipping-time',
     '/blog/prohibited-items-shipping-to-nigeria',
@@ -146,6 +145,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/cargo-abuja-to-canada',
     '/blog/cargo-port-harcourt-to-canada',
     '/blog/express-cargo-from-nigeria',
+    '/blog/documents-required-for-exporting-goods-from-nigeria',
+    '/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide',
+    '/blog/how-to-ship-from-the-uk-to-nigeria',
+    '/blog/liverpool-to-abuja-cargo-services',
+    '/blog/liverpool-to-lagos-cargo-services',
+    '/blog/nigeria-to-uk-air-freight-explained',
+    '/blog/sending-food-products-from-nigeria-to-the-uk',
+    '/blog/shipping-personal-belongings-from-nigeria-to-the-uk',
+    '/blog/uk-usa-nigeria-cargo-update-september-2026',
   ].map((route) => ({ route, priority: 0.8, changeFrequency: 'monthly' as const }));
 
   const allPages = [
@@ -161,7 +169,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return allPages.map(({ route, priority, changeFrequency }) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date(),
+    lastModified: lastModDate,
     changeFrequency,
     priority,
   }));

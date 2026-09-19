@@ -6,10 +6,31 @@ import { BlogPostCard } from '@/components/blog-post-card';
 import blogPosts from '@/lib/blog-posts.json';
 
 export const metadata: Metadata = {
-  title: 'Blog | County Cargo',
-  description: 'Latest news, insights, and guides on international shipping and logistics from the County Cargo team.',
+  title: 'Shipping & Cargo Blog | County Cargo Guides & Insights',
+  description: 'Latest news, rate updates, customs regulations, and step-by-step guides on international shipping between Nigeria, the UK, the USA, and worldwide.',
   alternates: {
     canonical: 'https://countycargo.com/blog',
+  },
+  openGraph: {
+    title: 'Shipping & Cargo Blog | County Cargo Guides & Insights',
+    description: 'Latest news, rate updates, customs regulations, and step-by-step guides on international shipping between Nigeria, the UK, the USA, and worldwide.',
+    url: 'https://countycargo.com/blog',
+    siteName: 'County Cargo',
+    images: [
+      {
+        url: '/cargo-plane-hero.png',
+        width: 1200,
+        height: 630,
+        alt: 'County Cargo Shipping & Logistics Blog',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shipping & Cargo Blog | County Cargo Guides & Insights',
+    description: 'Latest news, rate updates, and shipping guides from County Cargo.',
+    images: ['/cargo-plane-hero.png'],
   },
 };
 

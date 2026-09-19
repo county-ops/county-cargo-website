@@ -353,6 +353,47 @@ export default function ExportFromNigeriaPillarPage() {
               </ul>
             </div>
 
+            {/* Featured UK Export Corridor Resources */}
+            <div className="p-6 bg-gradient-to-r from-blue-900 to-indigo-900 text-white rounded-2xl not-prose space-y-4 shadow-md">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1">
+                    Featured Export Corridor 🇬🇧
+                  </span>
+                  <h3 className="text-xl font-bold text-white">Exporting from Nigeria to the United Kingdom</h3>
+                  <p className="text-xs text-blue-200 mt-1 max-w-xl">
+                    Dedicated compliance resources, food packaging protocols, and commercial customs guides for the UK route.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <Link
+                  href="/export-from-nigeria-to-uk"
+                  className="p-3.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all group"
+                >
+                  <h4 className="font-bold text-sm text-white group-hover:text-amber-400">UK General Export Hub</h4>
+                  <p className="text-xs text-blue-200 mt-1">Air freight options, delivery times, and Liverpool depot info.</p>
+                  <span className="text-xs font-semibold text-amber-400 mt-2 inline-block">Explore Guide →</span>
+                </Link>
+                <Link
+                  href="/export-food-from-nigeria-to-uk"
+                  className="p-3.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all group"
+                >
+                  <h4 className="font-bold text-sm text-white group-hover:text-emerald-400">Foodstuff Export &amp; DEFRA</h4>
+                  <p className="text-xs text-blue-200 mt-1">Permitted dry foods, vacuum sealing, and zero-odor protocols.</p>
+                  <span className="text-xs font-semibold text-emerald-400 mt-2 inline-block">Food Rules →</span>
+                </Link>
+                <Link
+                  href="/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide"
+                  className="p-3.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-all group"
+                >
+                  <h4 className="font-bold text-sm text-white group-hover:text-blue-300">Commercial &amp; NEPC Guide</h4>
+                  <p className="text-xs text-blue-200 mt-1">Form NXP, commercial invoices, and UK DCTS zero tariffs.</p>
+                  <span className="text-xs font-semibold text-blue-300 mt-2 inline-block">B2B Roadmap →</span>
+                </Link>
+              </div>
+            </div>
+
             {/* Call to Actions */}
             <div className="p-8 bg-blue-900 text-white rounded-3xl text-center space-y-6">
               <h2 className="text-2xl sm:text-3xl font-extrabold">Start Your International Export</h2>

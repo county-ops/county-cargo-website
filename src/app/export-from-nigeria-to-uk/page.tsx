@@ -42,36 +42,149 @@ export const metadata: Metadata = {
 export default function ExportFromNigeriaToUkPage() {
   const articleUrl = 'https://countycargo.com/export-from-nigeria-to-uk';
   
-  const blogPostingSchema = {
+  const structuredData = {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: 'How to Export From Nigeria to the UK in 2026',
-    description: 'Authoritative guide covering shipping options, documentation, NEPC requirements, UK customs clearance, packing rules, and delivery with County Cargo.',
-    image: 'https://countycargo.com/nigeria-export-documents-guide.jpg',
-    datePublished: '2026-09-06T08:00:00+01:00',
-    dateModified: '2026-09-06T08:00:00+01:00',
-    author: {
-      '@type': 'Organization',
-      name: 'County Cargo UK Trade Compliance Team',
-      url: 'https://countycargo.com',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'County Cargo',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://countycargo.com/county-logo.png',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': 'https://countycargo.com/export-from-nigeria-to-uk#service',
+        name: 'Air Cargo & Export Freight Forwarding from Nigeria to the UK',
+        serviceType: 'International Air Freight & Customs Export Services',
+        provider: {
+          '@type': 'Organization',
+          name: 'County Cargo',
+          url: 'https://countycargo.com',
+          logo: 'https://countycargo.com/county-logo.png',
+        },
+        areaServed: [
+          { '@type': 'Country', name: 'Nigeria' },
+          { '@type': 'Country', name: 'United Kingdom' },
+        ],
+        description:
+          'Fast and reliable air cargo export from Nigeria to the UK. Door-to-door and depot delivery for dry African foodstuffs, commercial merchandise, personal luggage, and documents.',
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Nigeria to UK Air Shipping Options',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Express Air Courier (3–5 Working Days)',
+                description: 'Fastest door-to-door delivery from Nigeria to UK with no minimum weight limit.',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Standard Air Cargo (5–7 Working Days)',
+                description: 'Economical consolidated air freight for shipments 10kg and above.',
+              },
+            },
+          ],
+        },
       },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': articleUrl,
-    },
+      {
+        '@type': 'HowTo',
+        '@id': 'https://countycargo.com/export-from-nigeria-to-uk#howto',
+        name: 'How to Export Goods and Foodstuffs from Nigeria to the UK',
+        description: 'Complete step-by-step procedure to export personal belongings, dry African food, and commercial cargo from Nigeria to the UK legally.',
+        step: [
+          {
+            '@type': 'HowToStep',
+            position: 1,
+            name: 'Confirm Item Eligibility and Customs Standards',
+            text: 'Verify your items comply with UK customs and DEFRA food import rules. Prepare an itemised packing list.',
+          },
+          {
+            '@type': 'HowToStep',
+            position: 2,
+            name: 'Select Your Shipping Service',
+            text: 'Choose Express Air Courier (3-5 business days, any weight) or Standard Air Cargo (5-7 business days, min 10kg).',
+          },
+          {
+            '@type': 'HowToStep',
+            position: 3,
+            name: 'Pack and Vacuum-Seal Your Goods',
+            text: 'Pack in double-wall boxes. Vacuum-seal all dried foodstuffs (crayfish, egusi, fish) to meet airline and Port Health rules.',
+          },
+          {
+            '@type': 'HowToStep',
+            position: 4,
+            name: 'Provide Consignor and Consignee Details',
+            text: 'Submit sender details in Nigeria and the recipient UK address, postcode, and telephone number.',
+          },
+          {
+            '@type': 'HowToStep',
+            position: 5,
+            name: 'Drop Off at Lagos/Abuja Hub or Book Pickup',
+            text: 'Drop off at our Lagos or Abuja warehouses, or book a home/office pickup across Nigeria.',
+          },
+          {
+            '@type': 'HowToStep',
+            position: 6,
+            name: 'Clear UK Customs and Receive Delivery',
+            text: 'County Cargo handles UK customs clearance. Collect at our Liverpool depot or receive nationwide doorstep delivery.',
+          },
+        ],
+      },
+      {
+        '@type': 'BlogPosting',
+        '@id': 'https://countycargo.com/export-from-nigeria-to-uk#article',
+        headline: 'How to Export From Nigeria to the UK in 2026',
+        description: 'Authoritative guide covering shipping options, documentation, NEPC requirements, UK customs clearance, packing rules, and delivery with County Cargo.',
+        image: 'https://countycargo.com/nigeria-export-documents-guide.jpg',
+        datePublished: '2026-09-06T08:00:00+01:00',
+        dateModified: '2026-09-19T08:00:00+01:00',
+        author: {
+          '@type': 'Organization',
+          name: 'County Cargo UK Trade Compliance Team',
+          url: 'https://countycargo.com',
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'County Cargo',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://countycargo.com/county-logo.png',
+          },
+        },
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': articleUrl,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://countycargo.com/export-from-nigeria-to-uk#breadcrumbs',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: 'https://countycargo.com',
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Export From Nigeria',
+            item: 'https://countycargo.com/export-from-nigeria',
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: 'Export From Nigeria to the UK',
+            item: 'https://countycargo.com/export-from-nigeria-to-uk',
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <>
-      <JsonLd data={blogPostingSchema} />
+      <JsonLd data={structuredData} />
       <Header />
       <main className="pt-16 bg-white">
         <Breadcrumbs
@@ -92,13 +205,13 @@ export default function ExportFromNigeriaToUkPage() {
         >
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30 mb-4">
-              <Plane className="w-3.5 h-3.5" /> 2026 UK Export Guide
+              <Plane className="w-3.5 h-3.5" /> 2026 UK Export Guide &amp; Services
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold hero-text-glow leading-tight">
               How to Export From Nigeria to the UK in 2026
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
-              Learn how to send personal belongings, food, fashion, and commercial cargo from Nigeria to the United Kingdom safely and legally.
+              Learn how to send personal belongings, authentic African food, fashion, and commercial cargo from Nigeria to the United Kingdom safely and legally.
             </p>
             
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200 mt-6 pt-4 border-t border-white/10">
@@ -106,7 +219,7 @@ export default function ExportFromNigeriaToUkPage() {
               <span>•</span>
               <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-blue-400" /> Reviewed by Logistics Compliance Team</span>
               <span>•</span>
-              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-yellow-400" /> 6 September 2026</span>
+              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-yellow-400" /> Updated September 2026</span>
             </div>
           </div>
         </section>
@@ -123,6 +236,69 @@ export default function ExportFromNigeriaToUkPage() {
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
                 Exporting goods from Nigeria to the UK does not have to be complicated. Whether you are sending personal belongings, gifts, approved food products, fashion items, business stock or product samples, proper preparation can help prevent delays, additional charges and customs problems.
               </p>
+            </div>
+
+            {/* Pillar Topic Shortcuts Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 not-prose">
+              <Link
+                href="/export-food-from-nigeria-to-uk"
+                className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl hover:shadow-md transition-shadow group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block mb-1">
+                    Foodstuff Exporters 🍲
+                  </span>
+                  <h3 className="text-sm font-bold text-gray-900 group-hover:text-emerald-700">
+                    Export Food from Nigeria to UK
+                  </h3>
+                  <p className="text-xs text-gray-600 mt-1">
+                    DEFRA rules, vacuum sealing, approved items (garri, egusi, fish).
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-emerald-700 mt-3 inline-flex items-center gap-1">
+                  Food Export Guide →
+                </span>
+              </Link>
+
+              <Link
+                href="/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide"
+                className="p-4 bg-blue-50 border border-blue-200 rounded-xl hover:shadow-md transition-shadow group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-blue-700 block mb-1">
+                    Commercial Trade 📋
+                  </span>
+                  <h3 className="text-sm font-bold text-gray-900 group-hover:text-blue-700">
+                    Commercial Export &amp; NEPC
+                  </h3>
+                  <p className="text-xs text-gray-600 mt-1">
+                    Form NXP, commercial invoices, UK DCTS zero-tariff benefits.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-blue-700 mt-3 inline-flex items-center gap-1">
+                  Commercial Guide →
+                </span>
+              </Link>
+
+              <Link
+                href="/shipping-from-nigeria-to-uk"
+                className="p-4 bg-amber-50 border border-amber-200 rounded-xl hover:shadow-md transition-shadow group flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-700 block mb-1">
+                    Direct Booking ✈️
+                  </span>
+                  <h3 className="text-sm font-bold text-gray-900 group-hover:text-amber-700">
+                    Get Instant Shipping Quote
+                  </h3>
+                  <p className="text-xs text-gray-600 mt-1">
+                    Express &amp; standard rates from Lagos and Abuja to UK.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-amber-700 mt-3 inline-flex items-center gap-1">
+                  Book Shipment →
+                </span>
+              </Link>
             </div>
 
             <p className="text-gray-700">
@@ -292,18 +468,42 @@ export default function ExportFromNigeriaToUkPage() {
               <li>Assistance identifying documentation that may be required</li>
             </ul>
 
+            {/* Transit and Depot Information Box */}
+            <div className="p-6 bg-slate-50 border border-slate-200 rounded-2xl not-prose space-y-4">
+              <h3 className="text-xl font-bold text-secondary flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-primary" /> Nigerian Drop-off Hubs &amp; UK Delivery Network
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="bg-white p-4 rounded-xl border border-gray-200">
+                  <h4 className="font-bold text-gray-900 mb-1">🇳🇬 Nigeria Drop-off &amp; Collection</h4>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    <strong>Lagos Main Hub:</strong> Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi, Lagos.<br />
+                    <strong>Abuja Office:</strong> Shop HF426, Turai Yar'adua Block, Wuye Ultra Modern Market, Abuja.<br />
+                    <strong>Doorstep Pickup:</strong> Available across Lagos, Abuja, Port Harcourt, Ibadan, and Kano.
+                  </p>
+                </div>
+                <div className="bg-white p-4 rounded-xl border border-gray-200">
+                  <h4 className="font-bold text-gray-900 mb-1">🇬🇧 UK Depot &amp; Doorstep Delivery</h4>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    <strong>UK Receiving Depot:</strong> Unit G6, Queens Dock Commercial Centre, 67–83 Norfolk Street, Liverpool, L1 0BG.<br />
+                    <strong>Doorstep Delivery:</strong> Fast nationwide courier dispatch to London, Manchester, Birmingham, Leeds, Glasgow, and all mainland UK addresses.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             {/* CTAs */}
             <div className="p-6 bg-blue-900 text-white rounded-2xl text-center space-y-4">
               <h3 className="text-xl font-bold">Start Your Nigeria to UK Shipment</h3>
               <p className="text-sm text-blue-100 max-w-xl mx-auto">
-                Contact County Cargo today for a quotation and reliable assistance with your Nigeria to UK shipment.
+                Contact County Cargo today for competitive air freight rates, professional vacuum sealing, and smooth customs clearance from Nigeria to the UK.
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
                   <Link href="/shipping-from-nigeria-to-uk">Book Nigeria Export</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/2348000000000" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20need%20a%20quote%20for%20exporting%20from%20Nigeria%20to%20the%20UK" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> WhatsApp Inquiry
                   </a>
                 </Button>
