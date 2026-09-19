@@ -25,6 +25,10 @@ export interface ServiceComparisonCard {
   handlingFee: number;
   collectionFee: number;
   additionalCharges: number;
+  baseShippingCost?: number;
+  formattedBaseShippingCost?: string;
+  packagingCharge?: number;
+  packagingChargeDisplay?: string;
   totalEstimatedPrice: number;
   formattedTotal: string;
   currency: 'GBP' | 'NGN' | 'USD';
@@ -270,12 +274,12 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
     return `https://ship.countycargo.com/login?${query.toString()}`;
   };
 
-  const createWhatsAppUrl = (serviceName: string, totalDisplay: string, transit: string) => {
+  const createWhatsAppUrl = (serviceName: string, totalDisplay: string, transit: string, breakdownNote?: string) => {
     const text = `Hello County Cargo, I received a quote on your central calculator:
 - Service: ${serviceName}
 - Route: ${fromCountry} (${fromCity}) to ${toCountry} (${toCity})
 - Weight: ${weight} kg (Chargeable: ${chargeableWeight} kg)
-- Total Estimate: ${totalDisplay}
+${breakdownNote ? `- Cost Breakdown: ${breakdownNote}\n` : ''}- Total Estimate: ${totalDisplay}
 - Estimated Transit: ${transit}
 ${params.itemDescription ? `- Description: ${params.itemDescription}` : ''}
 
@@ -495,7 +499,14 @@ I would like to proceed with booking this shipment.`;
 
     const expressCollectionFee = isCollection ? 5000 : 0;
     expressTotalNgn += expressCollectionFee;
-    const expressGbpApprox = (expressTotalNgn / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
+    const baseExpressCost = expressTotalNgn;
+    const packagingRatePerKg = 2000;
+    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
+    const expressGbpApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
+    const expressBreakdownNote = packagingCharge > 0
+      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
+      : undefined;
 
     services.push({
       id: 'express',
@@ -506,16 +517,20 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(expressTotalNgn / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(expressTotalNgn / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(baseExpressCost / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalNgn,
-      formattedTotal: `₦${expressTotalNgn.toLocaleString()}`,
+      additionalCharges: packagingCharge,
+      baseShippingCost: baseExpressCost,
+      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
+      packagingCharge,
+      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      totalEstimatedPrice: totalExpressWithPackaging,
+      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
       convertedEstimate: `Approx. £${expressGbpApprox}`,
       estimatedDeliveryTime: '3 to 5 working days',
@@ -527,8 +542,8 @@ I would like to proceed with booking this shipment.`;
         'Real-time door-to-door tracking',
         'Nationwide UK doorstep handover',
       ],
-      bookingUrl: createBookingUrl('express', expressTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${expressTotalNgn.toLocaleString()}`, '3 to 5 working days'),
+      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
     });
 
     // 3. Special Express Shipping (ONLY UK <-> NIGERIA, £22/kg + £20 handling, converted to Naira)
@@ -647,7 +662,14 @@ I would like to proceed with booking this shipment.`;
 
     const expressCollectionFee = isCollection ? 5000 : 0;
     expressTotalNgn += expressCollectionFee;
-    const expressUsdApprox = (expressTotalNgn / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
+    const baseExpressCost = expressTotalNgn;
+    const packagingRatePerKg = 2000;
+    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
+    const expressUsdApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
+    const expressBreakdownNote = packagingCharge > 0
+      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
+      : undefined;
 
     services.push({
       id: 'express',
@@ -659,16 +681,20 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(expressTotalNgn / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(expressTotalNgn / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(baseExpressCost / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalNgn,
-      formattedTotal: `₦${expressTotalNgn.toLocaleString()}`,
+      additionalCharges: packagingCharge,
+      baseShippingCost: baseExpressCost,
+      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
+      packagingCharge,
+      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      totalEstimatedPrice: totalExpressWithPackaging,
+      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
       convertedEstimate: `Approx. $${expressUsdApprox}`,
       estimatedDeliveryTime: '3 to 5 working days',
@@ -680,8 +706,8 @@ I would like to proceed with booking this shipment.`;
         'Complete doorstep delivery',
         'Live tracking and milestone SMS updates',
       ],
-      bookingUrl: createBookingUrl('express', expressTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to USA', `₦${expressTotalNgn.toLocaleString()}`, '3 to 5 working days'),
+      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to USA', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
     });
   }
 
@@ -750,6 +776,14 @@ I would like to proceed with booking this shipment.`;
 
     const expressCollectionFee = isCollection ? 5000 : 0;
     expressTotalNgn += expressCollectionFee;
+    const baseExpressCost = expressTotalNgn;
+    const isAbuja = fromCity.toLowerCase().includes('abuja') || (params.fromCity && params.fromCity.toLowerCase().includes('abuja'));
+    const packagingRatePerKg = 2000;
+    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
+    const expressBreakdownNote = packagingCharge > 0
+      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
+      : undefined;
 
     services.push({
       id: 'express',
@@ -761,16 +795,20 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(expressTotalNgn / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(expressTotalNgn / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(baseExpressCost / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalNgn,
-      formattedTotal: `₦${expressTotalNgn.toLocaleString()}`,
+      additionalCharges: packagingCharge,
+      baseShippingCost: baseExpressCost,
+      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
+      packagingCharge,
+      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      totalEstimatedPrice: totalExpressWithPackaging,
+      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
       estimatedDeliveryTime: '3 to 5 working days',
       trackingAvailability: true,
@@ -781,8 +819,8 @@ I would like to proceed with booking this shipment.`;
         'End-to-end doorstep delivery in Canada',
         'Live tracking and SMS delivery updates',
       ],
-      bookingUrl: createBookingUrl('express', expressTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to Canada', `₦${expressTotalNgn.toLocaleString()}`, '3 to 5 working days'),
+      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to Canada', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
     });
   }
 
@@ -841,7 +879,15 @@ I would like to proceed with booking this shipment.`;
       baseCost = base70 + extraKg * 25000;
     }
 
-    const expressTotalNgn = Math.round(baseCost * 1.082855) + (isCollection ? 5000 : 0);
+    const baseExpressCost = Math.round(baseCost * 1.082855) + (isCollection ? 5000 : 0);
+    const isAbuja = fromCity.toLowerCase().includes('abuja') || (params.fromCity && params.fromCity.toLowerCase().includes('abuja'));
+    const packagingRatePerKg = 2000;
+    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
+    const expressBreakdownNote = packagingCharge > 0
+      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
+      : undefined;
+
     let transitTime = '3 to 5 working days';
     if (['Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium'].includes(matchedCountry.Country)) {
       transitTime = '3 to 5 working days';
@@ -861,16 +907,20 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: matchedCountry.Country,
       destinationCity: toCity,
-      ratePerKg: Math.round(expressTotalNgn / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(expressTotalNgn / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(baseExpressCost / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: isCollection ? 5000 : 0,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalNgn,
-      formattedTotal: `₦${expressTotalNgn.toLocaleString()}`,
+      additionalCharges: packagingCharge,
+      baseShippingCost: baseExpressCost,
+      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
+      packagingCharge,
+      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      totalEstimatedPrice: totalExpressWithPackaging,
+      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
       estimatedDeliveryTime: transitTime,
       trackingAvailability: true,
@@ -881,8 +931,8 @@ I would like to proceed with booking this shipment.`;
         'End-to-end doorstep delivery',
         'Live tracking and milestone notifications',
       ],
-      bookingUrl: createBookingUrl('express', expressTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping', `₦${expressTotalNgn.toLocaleString()}`, transitTime),
+      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping', `₦${totalExpressWithPackaging.toLocaleString()}`, transitTime, expressBreakdownNote),
     });
   }
 

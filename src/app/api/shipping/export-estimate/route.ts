@@ -189,7 +189,12 @@ export async function POST(req: NextRequest) {
     // Add standard handling/VAT surcharge (8.28% administrative & handling charge)
     // Matches ₦417,334.73 * 1.082855 = ₦451,913 exactly for 16kg US from Abuja
     const expressHandlingMultiplier = 1.082855;
-    const expressFinalCost = Math.round(expressBaseCost * expressHandlingMultiplier);
+    const expressBaseFinalCost = Math.round(expressBaseCost * expressHandlingMultiplier);
+
+    const isAbuja = originLocation.toLowerCase() === 'abuja';
+    const packagingRatePerKg = 2000;
+    const packagingCharge = isAbuja ? Math.round(expressLookupWeight * packagingRatePerKg) : 0;
+    const expressFinalCost = expressBaseFinalCost + packagingCharge;
 
     // Delivery times by region
     let expressTransitTime = '3–5 working days';
@@ -211,6 +216,10 @@ export async function POST(req: NextRequest) {
       formattedPrice: `₦${expressFinalCost.toLocaleString()}`,
       currency: 'NGN',
       billableWeight: expressLookupWeight,
+      basePrice: expressBaseFinalCost,
+      formattedBasePrice: `₦${expressBaseFinalCost.toLocaleString()}`,
+      packagingCharge,
+      formattedPackagingCharge: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
       deliveryTime: `Delivery in ${expressTransitTime}`,
       deliveryMethod: 'Doorstep delivery',
       carrier: 'Shipment via DHL Express',
