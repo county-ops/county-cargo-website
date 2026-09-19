@@ -260,9 +260,9 @@ export function CentralQuotationForm({
   return (
     <div id="quote-calculator" className="w-full">
       {/* Calculator Main Card */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-100 overflow-hidden backdrop-blur-md">
+      <div className="bg-white rounded-2xl shadow-xl border border-gray-100/80 overflow-hidden">
         {/* Quick Route Tabs */}
-        <div className="bg-slate-50 border-b border-gray-200/80 px-3 pt-3 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+        <div className="bg-slate-50 border-b border-gray-200/90 px-3 pt-2 flex items-center gap-1 overflow-x-auto scrollbar-none">
           {QUICK_ROUTES.map((route) => {
             const isActive = activeRouteTab === route.id;
             return (
@@ -270,7 +270,7 @@ export function CentralQuotationForm({
                 key={route.id}
                 type="button"
                 onClick={() => handleSelectRouteTab(route)}
-                className={`px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold rounded-t-xl transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                className={`px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-all whitespace-nowrap flex items-center gap-1 ${
                   isActive
                     ? 'bg-white text-primary border-t-2 border-primary shadow-sm font-bold'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80'
@@ -282,17 +282,17 @@ export function CentralQuotationForm({
           })}
         </div>
 
-        {/* Form Body */}
-        <div className="p-5 sm:p-7 md:p-8">
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            {/* Route Row: Origin & Destination */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Form Body - Tidy, compact padding */}
+        <div className="p-3.5 sm:p-4 lg:p-4">
+          <form onSubmit={handleSubmit} className="space-y-2.5">
+            {/* Row 1: Origin & Destination (Two Columns on Desktop) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
               {/* Origin */}
-              <div className="space-y-1.5">
-                <Label htmlFor={fromCountryId} className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              <div>
+                <Label htmlFor={fromCountryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
                   From (Origin)
                 </Label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-1.5">
                   <select
                     id={fromCountryId}
                     value={fromCountry}
@@ -305,7 +305,7 @@ export function CentralQuotationForm({
                         setToCountry(newOrigin === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
                       }
                     }}
-                    className="h-11 px-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="h-9 px-2.5 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-semibold focus:ring-2 focus:ring-primary focus:border-primary truncate"
                   >
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="Nigeria">Nigeria</option>
@@ -316,7 +316,7 @@ export function CentralQuotationForm({
                     id={fromCityId}
                     value={fromCity}
                     onChange={(e) => setFromCity(e.target.value)}
-                    className="h-11 px-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
+                    className="h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
                   >
                     {currentHandoverLocations.map((loc) => (
                       <option key={loc.id} value={loc.name}>
@@ -328,11 +328,11 @@ export function CentralQuotationForm({
               </div>
 
               {/* Destination */}
-              <div className="space-y-1.5">
-                <Label htmlFor={toCountryId} className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              <div>
+                <Label htmlFor={toCountryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
                   To (Destination)
                 </Label>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-1.5">
                   <select
                     id={toCountryId}
                     value={toCountry}
@@ -345,7 +345,7 @@ export function CentralQuotationForm({
                         setFromCountry(newDest === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
                       }
                     }}
-                    className="h-11 px-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="h-9 px-2.5 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-semibold focus:ring-2 focus:ring-primary focus:border-primary truncate"
                   >
                     {allCountries.map((c) => (
                       <option key={c} value={c}>
@@ -358,7 +358,7 @@ export function CentralQuotationForm({
                     id={toCityId}
                     value={toCity}
                     onChange={(e) => setToCity(e.target.value)}
-                    className="h-11 px-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
+                    className="h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
                   >
                     {currentDestinationCities.map((city) => (
                       <option key={city} value={city}>
@@ -370,15 +370,14 @@ export function CentralQuotationForm({
               </div>
             </div>
 
-            {/* Weight, Category & Dimensions Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-end">
+            {/* Row 2: Weight, Category, Handover Method, Calculate Button (Four Columns on Desktop) */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 items-end">
               {/* Weight */}
-              <div className="sm:col-span-4 space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor={weightInputId} className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <Label htmlFor={weightInputId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700">
                     Weight (kg)
                   </Label>
-                  <span className="text-[11px] text-gray-500 font-medium">Actual weight</span>
                 </div>
                 <div className="relative flex items-center">
                   <Input
@@ -389,45 +388,45 @@ export function CentralQuotationForm({
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                     placeholder="e.g. 10"
-                    className="h-11 pr-12 text-sm sm:text-base font-bold text-gray-900 rounded-xl bg-gray-50 border-gray-300"
+                    className="h-9 pr-10 text-xs font-bold text-gray-900 rounded-lg bg-gray-50 border-gray-300"
                     required
                   />
-                  <span className="absolute right-3 text-xs font-bold text-gray-500 pointer-events-none">
+                  <span className="absolute right-2.5 text-[11px] font-bold text-gray-500 pointer-events-none">
                     KG
                   </span>
                 </div>
               </div>
 
               {/* Package Category */}
-              <div className="sm:col-span-4 space-y-1.5">
-                <Label htmlFor={categoryId} className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              <div>
+                <Label htmlFor={categoryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
                   Package Category
                 </Label>
                 <select
                   id={categoryId}
                   value={packageCategory}
                   onChange={(e) => setPackageCategory(e.target.value)}
-                  className="w-full h-11 px-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-primary"
+                  className="w-full h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary truncate"
                 >
-                  <option value="general">General Goods / Personal Luggage</option>
+                  <option value="general">General Goods / Personal</option>
                   <option value="foodstuff">African Foodstuffs & Spices</option>
-                  <option value="fashion">African Fashion & Textiles</option>
-                  <option value="documents">Urgent Business / Legal Documents</option>
-                  <option value="commercial">Commercial Samples & Trade Goods</option>
+                  <option value="fashion">Fashion & Textiles</option>
+                  <option value="documents">Urgent Documents</option>
+                  <option value="commercial">Commercial Samples</option>
                   <option value="electronics">Electronics & Gadgets</option>
                 </select>
               </div>
 
               {/* Handover Collection vs Dropoff */}
-              <div className="sm:col-span-4 space-y-1.5">
-                <Label className="text-xs font-bold uppercase tracking-wider text-gray-700">
+              <div>
+                <Label className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
                   Handover Method
                 </Label>
-                <div className="grid grid-cols-2 gap-1.5 h-11 bg-gray-100 p-1 rounded-xl">
+                <div className="grid grid-cols-2 gap-1 h-9 bg-gray-100 p-0.5 rounded-lg">
                   <button
                     type="button"
                     onClick={() => setCollectionType('dropoff')}
-                    className={`text-xs font-bold rounded-lg transition-all ${
+                    className={`text-[11px] font-bold rounded-md transition-all ${
                       collectionType === 'dropoff'
                         ? 'bg-white text-primary shadow-sm'
                         : 'text-gray-600 hover:text-gray-900'
@@ -438,7 +437,7 @@ export function CentralQuotationForm({
                   <button
                     type="button"
                     onClick={() => setCollectionType('collection')}
-                    className={`text-xs font-bold rounded-lg transition-all ${
+                    className={`text-[11px] font-bold rounded-md transition-all ${
                       collectionType === 'collection'
                         ? 'bg-white text-primary shadow-sm'
                         : 'text-gray-600 hover:text-gray-900'
@@ -448,135 +447,129 @@ export function CentralQuotationForm({
                   </button>
                 </div>
               </div>
+
+              {/* Calculate Quotes Button */}
+              <div>
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full h-9 bg-[#0A2A5E] hover:bg-blue-900 text-white font-bold text-xs rounded-lg shadow transition-all flex items-center justify-center gap-1.5"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <span>Calculating...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Calculate Quotes</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
 
-            {/* Optional Dimensions Toggle & Description */}
-            <div className="pt-1">
-              <div className="flex items-center justify-between">
+            {/* Subline: Volumetric Dimensions & Description */}
+            <div className="pt-0.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setShowDimensions(!showDimensions)}
-                  className="text-xs text-primary hover:text-blue-700 font-semibold inline-flex items-center gap-1"
+                  className="text-[11px] text-primary hover:text-blue-700 font-semibold inline-flex items-center gap-1"
                 >
-                  <Box className="w-3.5 h-3.5" />
-                  <span>{showDimensions ? 'Hide Dimensions (L×W×H)' : '+ Add Box Dimensions for Volumetric Check'}</span>
+                  <Box className="w-3 h-3" />
+                  <span>{showDimensions ? 'Hide Dimensions' : '+ Add Box Dimensions for Volumetric Check'}</span>
                 </button>
                 {volumetricWeight > 0 && (
-                  <span className="text-xs text-amber-700 font-medium">
-                    Volumetric: <strong>{volumetricWeight} kg</strong> &bull; Billable: <strong>{effectiveChargeableWeight} kg</strong>
+                  <span className="text-[11px] text-amber-700 font-semibold">
+                    Vol: {volumetricWeight} kg &bull; Billable: {effectiveChargeableWeight} kg
                   </span>
                 )}
               </div>
 
-              {showDimensions && (
-                <div className="mt-3 p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 grid grid-cols-3 gap-3 animate-in fade-in duration-200">
-                  <div>
-                    <Label className="text-[11px] font-bold text-gray-600">Length (cm)</Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      value={length}
-                      onChange={(e) => setLength(e.target.value)}
-                      placeholder="cm"
-                      className="h-9 text-xs bg-white mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-[11px] font-bold text-gray-600">Width (cm)</Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      value={width}
-                      onChange={(e) => setWidth(e.target.value)}
-                      placeholder="cm"
-                      className="h-9 text-xs bg-white mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label className="text-[11px] font-bold text-gray-600">Height (cm)</Label>
-                    <Input
-                      type="number"
-                      min="1"
-                      value={height}
-                      onChange={(e) => setHeight(e.target.value)}
-                      placeholder="cm"
-                      className="h-9 text-xs bg-white mt-1"
-                    />
-                  </div>
+              <div className="flex items-center gap-1.5 flex-1 max-w-[240px] ml-auto">
+                <span className="text-[10.5px] text-gray-400 whitespace-nowrap">Item:</span>
+                <input
+                  type="text"
+                  value={itemDescription}
+                  onChange={(e) => setItemDescription(e.target.value)}
+                  placeholder="e.g. Clothes, foods, books"
+                  className="h-6 px-2 text-[11px] bg-gray-50 border border-gray-200 rounded text-gray-800 w-full focus:outline-none focus:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Expandable Dimensions */}
+            {showDimensions && (
+              <div className="p-2 rounded-lg bg-blue-50/70 border border-blue-100 grid grid-cols-3 gap-2 animate-in fade-in duration-150">
+                <div>
+                  <Label className="text-[10px] font-bold text-gray-600">Length (cm)</Label>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={length}
+                    onChange={(e) => setLength(e.target.value)}
+                    placeholder="cm"
+                    className="h-7 text-xs bg-white mt-0.5"
+                  />
                 </div>
-              )}
-            </div>
-
-            {/* Item Description Input (Optional) */}
-            <div className="space-y-1">
-              <Label className="text-xs font-semibold text-gray-600">
-                Item Description <span className="text-gray-400 font-normal">(Optional)</span>
-              </Label>
-              <Input
-                type="text"
-                value={itemDescription}
-                onChange={(e) => setItemDescription(e.target.value)}
-                placeholder="e.g. African fabrics, dried foods, books, personal clothing, cosmetics"
-                className="h-10 text-xs sm:text-sm bg-gray-50 border-gray-300 rounded-xl"
-              />
-            </div>
-
-            {/* Submit Calculate Action Button */}
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full h-12 bg-[#0A2A5E] hover:bg-blue-900 text-white font-extrabold text-base rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 group"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Calculating Central Rates...</span>
-                </>
-              ) : (
-                <>
-                  <span>Calculate All Available Quotes</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </>
-              )}
-            </Button>
+                <div>
+                  <Label className="text-[10px] font-bold text-gray-600">Width (cm)</Label>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={width}
+                    onChange={(e) => setWidth(e.target.value)}
+                    placeholder="cm"
+                    className="h-7 text-xs bg-white mt-0.5"
+                  />
+                </div>
+                <div>
+                  <Label className="text-[10px] font-bold text-gray-600">Height (cm)</Label>
+                  <Input
+                    type="number"
+                    min="1"
+                    value={height}
+                    onChange={(e) => setHeight(e.target.value)}
+                    placeholder="cm"
+                    className="h-7 text-xs bg-white mt-0.5"
+                  />
+                </div>
+              </div>
+            )}
           </form>
 
           {/* Error Message Notice */}
           {errorMessage && (
-            <div className="mt-5 p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs sm:text-sm flex items-start gap-2.5">
-              <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-bold">Quotation Alert</p>
-                <p className="mt-0.5">{errorMessage}</p>
-              </div>
+            <div className="mt-2 p-2 rounded-lg bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+              <p className="font-semibold">{errorMessage}</p>
             </div>
           )}
 
-          {/* QUOTATION RESULTS: COMPARISON CARDS ON SAME PAGE */}
+          {/* QUOTATION RESULTS: COMPARISON CARDS IN ONE HORIZONTAL ROW */}
           {quoteResult && quoteResult.services.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-gray-200 animate-in fade-in duration-300">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-5">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-black text-gray-900">
-                    Available Shipping Services ({quoteResult.fromCountry} → {quoteResult.toCountry})
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-0.5">
-                    Entered: {quoteResult.enteredWeight} kg &bull; Chargeable Billable: {quoteResult.chargeableWeight} kg
-                  </p>
-                </div>
-                <span className="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-primary rounded-full w-fit">
-                  {quoteResult.services.length} Service{quoteResult.services.length > 1 ? 's' : ''} Configured
+            <div className="mt-3 pt-2.5 border-t border-gray-100 animate-in fade-in duration-200">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xs font-black uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
+                  <span>Available Shipping Services</span>
+                  <span className="text-gray-400 font-normal">|</span>
+                  <span className="text-primary font-bold">{quoteResult.fromCountry} → {quoteResult.toCountry}</span>
+                </h3>
+                <span className="text-[11px] text-gray-500 font-medium">
+                  Billable Weight: <strong className="text-gray-900">{quoteResult.chargeableWeight} kg</strong>
                 </span>
               </div>
 
-              {/* Service Comparison Cards Grid: Desktop side-by-side, mobile stacked */}
+              {/* Service Comparison Cards Grid: Exactly 1 horizontal row on desktop */}
               <div
-                className={`grid gap-5 ${
+                className={`grid gap-2.5 sm:gap-3 ${
                   quoteResult.services.length === 3
-                    ? 'grid-cols-1 lg:grid-cols-3'
+                    ? 'grid-cols-1 md:grid-cols-3'
                     : quoteResult.services.length === 2
-                    ? 'grid-cols-1 lg:grid-cols-2'
-                    : 'grid-cols-1 max-w-lg mx-auto'
+                    ? 'grid-cols-1 md:grid-cols-2'
+                    : 'grid-cols-1 max-w-sm mx-auto'
                 }`}
               >
                 {quoteResult.services.map((service) => {
@@ -587,18 +580,18 @@ export function CentralQuotationForm({
                   return (
                     <div
                       key={service.id}
-                      className={`rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all relative ${
+                      className={`rounded-xl p-3 sm:p-3.5 flex flex-col justify-between transition-all relative h-full ${
                         isSpecial
-                          ? 'bg-gradient-to-b from-blue-950 via-slate-900 to-blue-900 text-white shadow-xl border-2 border-amber-400'
+                          ? 'bg-gradient-to-b from-blue-950 via-slate-900 to-blue-900 text-white shadow-md border-2 border-amber-400'
                           : isExpress
-                          ? 'bg-white border-2 border-primary/60 shadow-lg text-gray-900'
-                          : 'bg-gray-50/80 border border-gray-200 shadow-sm text-gray-900 hover:border-gray-300'
+                          ? 'bg-white border-2 border-primary/50 shadow-sm text-gray-900'
+                          : 'bg-gray-50 border border-gray-200/90 text-gray-900 hover:border-gray-300'
                       }`}
                     >
                       {/* Top Badge */}
                       {service.badge && (
                         <div
-                          className={`absolute -top-3 right-5 text-[11px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full shadow-md ${
+                          className={`absolute -top-2.5 right-3 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm ${
                             service.badge === 'Fastest'
                               ? 'bg-amber-400 text-gray-950'
                               : 'bg-emerald-600 text-white'
@@ -609,90 +602,95 @@ export function CentralQuotationForm({
                       )}
 
                       <div>
-                        {/* Service Title & Tagline */}
-                        <div className="mb-3">
-                          <h4 className={`text-lg sm:text-xl font-black ${isSpecial ? 'text-white' : 'text-gray-900'}`}>
+                        {/* Title */}
+                        <div className="flex items-start justify-between gap-1 mb-1">
+                          <h4 className={`text-sm sm:text-base font-black leading-tight ${isSpecial ? 'text-white' : 'text-gray-900'}`}>
                             {service.name}
                           </h4>
-                          <p className={`text-xs mt-1 leading-snug ${isSpecial ? 'text-blue-200' : 'text-gray-600'}`}>
-                            {service.tagline}
-                          </p>
+                        </div>
+
+                        {/* Delivery Time Badge */}
+                        <div className="mb-2">
+                          <span
+                            className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md ${
+                              isSpecial
+                                ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30'
+                                : isExpress
+                                ? 'bg-blue-100 text-primary'
+                                : 'bg-emerald-100 text-emerald-800'
+                            }`}
+                          >
+                            <Clock className="w-3 h-3" />
+                            <span>{service.estimatedDeliveryTime}</span>
+                          </span>
                         </div>
 
                         {/* Price Display */}
-                        <div className="my-4 pb-4 border-b border-gray-200/20">
+                        <div className="my-1.5 pb-2 border-b border-gray-200/30">
                           <div
-                            className={`text-3xl sm:text-4xl font-black tracking-tight ${
+                            className={`text-2xl sm:text-[26px] font-black tracking-tight leading-none ${
                               isSpecial ? 'text-amber-400' : 'text-[#EA580C]'
                             }`}
                           >
                             {service.formattedTotal}
                           </div>
                           {service.convertedEstimate && (
-                            <div className={`text-xs mt-1 font-semibold ${isSpecial ? 'text-blue-200' : 'text-gray-500'}`}>
+                            <div className={`text-[11px] mt-0.5 font-semibold ${isSpecial ? 'text-blue-200' : 'text-gray-600'}`}>
                               {service.convertedEstimate}
                             </div>
                           )}
-                          <div className={`text-[11px] mt-1 ${isSpecial ? 'text-gray-300' : 'text-gray-500'}`}>
+                          <div className={`text-[10px] mt-0.5 ${isSpecial ? 'text-gray-300' : 'text-gray-500'}`}>
                             Rate: <strong>{service.ratePerKgDisplay}</strong>
-                            {service.handlingFee > 0 && ` + Handling: £${service.handlingFee}`}
-                            {service.collectionFee > 0 && ` + Collection: £${service.collectionFee}`}
+                            {service.handlingFee > 0 && ` + Fee: £${service.handlingFee}`}
                           </div>
                         </div>
 
-                        {/* Key Specifications Table */}
-                        <div className="space-y-2 mb-5 text-xs">
-                          <div className="flex items-center justify-between">
-                            <span className={isSpecial ? 'text-gray-300' : 'text-gray-500'}>Delivery Time:</span>
-                            <span className={`font-bold ${isSpecial ? 'text-white' : 'text-gray-900'}`}>
-                              {service.estimatedDeliveryTime}
+                        {/* Key Features Bullet List */}
+                        <ul className="space-y-1 mb-2.5 text-[11px]">
+                          <li className="flex items-center gap-1.5">
+                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
+                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
+                              {isSpecial ? '48-hour scheduled direct flight' : isExpress ? '3 to 5 working days delivery' : '5 to 10 working days transit'}
                             </span>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <span className={isSpecial ? 'text-gray-300' : 'text-gray-500'}>Chargeable Weight:</span>
-                            <span className={`font-bold ${isSpecial ? 'text-white' : 'text-gray-900'}`}>
-                              {service.chargeableWeight} kg (Min: {service.minimumWeight} kg)
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
+                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
+                              {isSpecial ? 'Special UK ↔ NG priority lane' : isExpress ? 'DHL priority global network' : 'Consolidated air cargo'}
                             </span>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <span className={isSpecial ? 'text-gray-300' : 'text-gray-500'}>Tracking:</span>
-                            <span className="font-bold text-emerald-500 flex items-center gap-1">
-                              <CheckCircle2 className="w-3.5 h-3.5" /> Full Online Live Tracking
+                          </li>
+                          <li className="flex items-center gap-1.5">
+                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
+                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
+                              Full tracking &amp; doorstep delivery
                             </span>
-                          </div>
+                          </li>
+                        </ul>
 
-                          <div className={`p-2.5 rounded-lg mt-3 ${isSpecial ? 'bg-white/10 text-blue-100' : 'bg-gray-100 text-gray-700'}`}>
-                            <p className="font-semibold text-[11px] mb-0.5">Customs & Delivery:</p>
-                            <p className="text-[11px] leading-tight">{service.customsInformation}</p>
+                        {/* Special Express Operational Terms */}
+                        {isSpecial && service.termsAndConditions && (
+                          <div className="p-1.5 mb-2 rounded bg-amber-500/10 border border-amber-400/20 text-amber-200 text-[10px] leading-tight">
+                            <span className="font-bold text-amber-300">Note: </span>
+                            48-hr countdown begins upon flight departure. Excludes weekends &amp; customs holds.
                           </div>
-
-                          {/* 48-Hour Special Conditions Note */}
-                          {isSpecial && service.termsAndConditions && (
-                            <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-400/30 text-amber-200 text-[10.5px] leading-tight space-y-1">
-                              <p className="font-bold text-amber-300">Operational Conditions:</p>
-                              <p>{service.termsAndConditions}</p>
-                              <p className="text-amber-100">{service.exclusions}</p>
-                            </div>
-                          )}
-                        </div>
+                        )}
                       </div>
 
                       {/* Action Booking Buttons */}
-                      <div className="space-y-2 pt-2">
+                      <div className="space-y-1.5 pt-1">
                         <Button
                           asChild
-                          className={`w-full h-11 font-bold text-sm rounded-xl shadow-md transition-all ${
+                          className={`w-full h-8 font-bold text-xs rounded-lg shadow-sm transition-all ${
                             isSpecial
                               ? 'bg-amber-400 hover:bg-amber-500 text-gray-950 font-black'
                               : isExpress
                               ? 'bg-primary hover:bg-blue-800 text-white'
-                              : 'bg-gray-900 hover:bg-black text-white'
+                              : 'bg-[#0A2A5E] hover:bg-black text-white'
                           }`}
                         >
                           <a href={service.bookingUrl} target="_blank" rel="noopener noreferrer">
-                            Book This Service &rarr;
+                            <span>Book Online</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-1" />
                           </a>
                         </Button>
 
@@ -700,12 +698,14 @@ export function CentralQuotationForm({
                           href={service.whatsAppUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex items-center justify-center w-full text-xs font-semibold py-1 gap-1 transition-colors ${
-                            isSpecial ? 'text-blue-300 hover:text-white' : 'text-emerald-700 hover:text-emerald-800'
+                          className={`inline-flex items-center justify-center w-full text-[11px] font-semibold py-1 rounded-lg transition-colors ${
+                            isSpecial
+                              ? 'bg-white/10 hover:bg-white/20 text-emerald-300'
+                              : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800'
                           }`}
                         >
-                          <MessageCircle className="w-3.5 h-3.5" />
-                          <span>Book via WhatsApp Specialist</span>
+                          <MessageCircle className="w-3 h-3 mr-1 text-emerald-600" />
+                          <span>WhatsApp Quote</span>
                         </a>
                       </div>
                     </div>
@@ -713,9 +713,9 @@ export function CentralQuotationForm({
                 })}
               </div>
 
-              {/* Central Disclaimer Footnote */}
-              <p className="text-center text-xs text-muted-foreground mt-6 italic">
-                *Notice: The final shipping charge may adjust after your consignment has been physically weighed, measured, and inspected at the origin warehouse.
+              {/* Disclaimer */}
+              <p className="text-center text-[10px] text-gray-400 mt-2 italic">
+                *Final cost calculated upon warehouse check-in &amp; physical weigh-in.
               </p>
             </div>
           )}

@@ -518,17 +518,17 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `₦${expressTotalNgn.toLocaleString()}`,
       currency: 'NGN',
       convertedEstimate: `Approx. £${expressGbpApprox}`,
-      estimatedDeliveryTime: '2 to 4 working days',
+      estimatedDeliveryTime: '3 to 5 working days',
       trackingAvailability: true,
       customsInformation: 'Shipment routed via DHL Express. Receiver is responsible for destination customs duties or VAT where applicable.',
       features: [
-        '2 to 4 working days delivery',
+        '3 to 5 working days delivery',
         'DHL Express priority network',
         'Real-time door-to-door tracking',
         'Nationwide UK doorstep handover',
       ],
       bookingUrl: createBookingUrl('express', expressTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${expressTotalNgn.toLocaleString()}`, '2 to 4 working days'),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${expressTotalNgn.toLocaleString()}`, '3 to 5 working days'),
     });
 
     // 3. Special Express Shipping (ONLY UK <-> NIGERIA, £22/kg + £20 handling, converted to Naira)
@@ -844,7 +844,7 @@ I would like to proceed with booking this shipment.`;
     const expressTotalNgn = Math.round(baseCost * 1.082855) + (isCollection ? 5000 : 0);
     let transitTime = '3 to 5 working days';
     if (['Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium'].includes(matchedCountry.Country)) {
-      transitTime = '2 to 4 working days';
+      transitTime = '3 to 5 working days';
     } else if (['China', 'United Arab Emirates', 'India'].includes(matchedCountry.Country)) {
       transitTime = '3 to 6 working days';
     } else {
