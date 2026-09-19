@@ -33,6 +33,7 @@ const navLinks = [
       { href: '/shipping-from-nigeria-to-uk', label: 'Shipping from Nigeria to UK' },
       { href: '/ship-from-nigeria-to-us', label: 'Shipping from Nigeria to US' },
       { href: '/ship-from-nigeria-to-world', label: 'Shipping from Nigeria to World' },
+      { href: '/express-export', label: 'Express Export (Worldwide)' },
     ]
   },
   { href: '/about', label: 'About Us' },
@@ -88,6 +89,7 @@ export function Header() {
         <Link href="/shipping-from-nigeria-to-uk" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to UK</Link>
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
         <Link href="/ship-from-nigeria-to-world" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to World</Link>
+        <Link href="/express-export" className="block px-3 py-2 pl-6 text-sm font-semibold text-primary hover:bg-blue-50">Express Export (Worldwide)</Link>
         <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>
         <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
         <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>

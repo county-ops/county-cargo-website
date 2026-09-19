@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pillarPages = [
     { route: '/shipping-to-nigeria', priority: 0.95, changeFrequency: 'weekly' as const },
     { route: '/export-from-nigeria', priority: 0.95, changeFrequency: 'weekly' as const },
+    { route: '/express-export', priority: 0.95, changeFrequency: 'weekly' as const },
   ];
 
   const exportCountryPages = [
