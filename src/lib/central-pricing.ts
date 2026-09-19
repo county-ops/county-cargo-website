@@ -90,6 +90,10 @@ export const ORIGIN_LOCATIONS = {
     { id: 'us-warehouse', name: 'Irving Texas Warehouse (TX 75061)', city: 'Dallas / Irving', hub: 'US Central Hub' },
     { id: 'us-nationwide-pickup', name: 'US Nationwide Courier Pickup', city: 'Nationwide USA', hub: 'US Hub', isCollection: true },
   ],
+  Canada: [
+    { id: 'ca-depot', name: 'Toronto Queensway Depot', city: 'Toronto', hub: 'Canada Central Hub' },
+    { id: 'ca-nationwide-pickup', name: 'Canada Nationwide Courier Pickup', city: 'Nationwide Canada', hub: 'Canada Hub', isCollection: true },
+  ],
 };
 
 export const DESTINATION_CITIES: Record<string, string[]> = {
@@ -245,6 +249,7 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
   const isNigeriaOrigin = fromCountry === 'Nigeria';
   const isUkOrigin = fromCountry === 'United Kingdom';
   const isUsOrigin = fromCountry === 'United States';
+  const isCanadaOrigin = fromCountry === 'Canada';
 
   const isNigeriaDest = toCountry === 'Nigeria';
   const isUkDest = toCountry === 'United Kingdom';
@@ -342,7 +347,9 @@ I would like to proceed with booking this shipment.`;
     });
 
     // 2. Express Shipping (Fast Commercial Air Freight)
-    const expressRate = 8.5;
+    const additionalGbpPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerGbp) * 100) / 100; // £1.05/kg (₦2,000/kg equiv)
+    const baseExpressRate = 8.5;
+    const expressRate = Math.round((baseExpressRate + additionalGbpPerKg) * 100) / 100; // £9.55/kg
     const expressHandling = 20;
     const expressCollection = isCollection ? 20 : 0;
     const expressTotalGbp = Math.round((expressRate * chargeableWeight + expressHandling + expressCollection) * 100) / 100;
@@ -497,7 +504,7 @@ I would like to proceed with booking this shipment.`;
     expressTotalNgn += expressCollectionFee;
     const baseExpressCost = expressTotalNgn;
     const packagingRatePerKg = 2000;
-    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
     const expressGbpApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
 
@@ -653,7 +660,7 @@ I would like to proceed with booking this shipment.`;
     expressTotalNgn += expressCollectionFee;
     const baseExpressCost = expressTotalNgn;
     const packagingRatePerKg = 2000;
-    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
     const expressUsdApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
 
@@ -759,9 +766,8 @@ I would like to proceed with booking this shipment.`;
     const expressCollectionFee = isCollection ? 5000 : 0;
     expressTotalNgn += expressCollectionFee;
     const baseExpressCost = expressTotalNgn;
-    const isAbuja = fromCity.toLowerCase().includes('abuja') || (params.fromCity && params.fromCity.toLowerCase().includes('abuja'));
     const packagingRatePerKg = 2000;
-    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
 
     services.push({
@@ -855,9 +861,8 @@ I would like to proceed with booking this shipment.`;
     }
 
     const baseExpressCost = Math.round(baseCost * 1.082855) + (isCollection ? 5000 : 0);
-    const isAbuja = fromCity.toLowerCase().includes('abuja') || (params.fromCity && params.fromCity.toLowerCase().includes('abuja'));
     const packagingRatePerKg = 2000;
-    const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
+    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
 
     let transitTime = '3 to 5 working days';
@@ -952,7 +957,11 @@ I would like to proceed with booking this shipment.`;
       whatsAppUrl: createWhatsAppUrl('USA to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '7 to 14 working days'),
     });
 
-    const expressRate = 8.5;
+    // 2. Express Air Shipping
+    // ₦2,000/kg converted to USD ($1.33/kg) included automatically in expressRate
+    const additionalUsdPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerUsd) * 100) / 100; // $1.33/kg (₦2,000/kg equiv)
+    const baseExpressRate = 8.5;
+    const expressRate = Math.round((baseExpressRate + additionalUsdPerKg) * 100) / 100; // $9.83/kg
     const expressHandling = 20;
     const expressTotalUsd = Math.round((expressRate * chargeableWeight + expressHandling) * 100) / 100;
     const expressNgnApprox = Math.round(expressTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
@@ -990,6 +999,99 @@ I would like to proceed with booking this shipment.`;
       ],
       bookingUrl: createBookingUrl('express', expressTotalUsd, 'USD'),
       whatsAppUrl: createWhatsAppUrl('USA to Nigeria Express Shipping', `$${expressTotalUsd.toFixed(2)}`, '3 to 5 working days'),
+    });
+  }
+
+  // =========================================================================
+  // ROUTE 7: CANADA -> NIGERIA
+  // (Special Express MUST NOT APPEAR)
+  // =========================================================================
+  else if (isCanadaOrigin && isNigeriaDest) {
+    const isLagos = toCity.toLowerCase().includes('lagos');
+    const valueRate = isLagos ? 7.5 : 8.0; // USD per kg
+    const valueMinWeight = 10;
+    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
+    const valueHandling = 20;
+    const valueTotalUsd = Math.round((valueRate * valueBillableWeight + valueHandling) * 100) / 100;
+    const valueNgnApprox = Math.round(valueTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
+
+    services.push({
+      id: 'value',
+      name: 'Value Air Shipping',
+      badge: 'Best Value',
+      tagline: 'Economical consolidated air shipping from Canada to Lagos, Abuja, and nationwide.',
+      route: `${fromCity}, Canada → ${toCity}, Nigeria`,
+      originCountry: fromCountry,
+      originCity: fromCity,
+      destinationCountry: toCountry,
+      destinationCity: toCity,
+      ratePerKg: valueRate,
+      ratePerKgDisplay: `$${valueRate.toFixed(2)}/kg`,
+      enteredWeight: weight,
+      chargeableWeight: valueBillableWeight,
+      minimumWeight: valueMinWeight,
+      handlingFee: valueHandling,
+      collectionFee: 0,
+      additionalCharges: 0,
+      totalEstimatedPrice: valueTotalUsd,
+      formattedTotal: `$${valueTotalUsd.toFixed(2)}`,
+      currency: 'USD',
+      convertedEstimate: `Approx. ₦${valueNgnApprox.toLocaleString()} (est.)`,
+      estimatedDeliveryTime: '7 to 14 working days',
+      trackingAvailability: true,
+      customsInformation: 'Consolidated air cargo with Nigerian customs clearance included.',
+      features: [
+        '7 to 14 working days delivery',
+        `Minimum billable weight: ${valueMinWeight} kg`,
+        'Toronto depot intake & nationwide pickup',
+        'Doorstep delivery across all 36 Nigerian states',
+      ],
+      bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD'),
+      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '7 to 14 working days'),
+    });
+
+    // 2. Express Air Shipping
+    // ₦2,000/kg converted to USD ($1.33/kg) included automatically in expressRate
+    const additionalUsdPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerUsd) * 100) / 100; // $1.33/kg (₦2,000/kg equiv)
+    const baseExpressRate = 10.5;
+    const expressRate = Math.round((baseExpressRate + additionalUsdPerKg) * 100) / 100; // $11.83/kg
+    const expressHandling = 25;
+    const expressTotalUsd = Math.round((expressRate * chargeableWeight + expressHandling) * 100) / 100;
+    const expressNgnApprox = Math.round(expressTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
+
+    services.push({
+      id: 'express',
+      name: 'Express Air Shipping',
+      badge: 'Fastest',
+      tagline: 'Fast priority air cargo from Canada to Nigeria.',
+      route: `${fromCity}, Canada → ${toCity}, Nigeria`,
+      originCountry: fromCountry,
+      originCity: fromCity,
+      destinationCountry: toCountry,
+      destinationCity: toCity,
+      ratePerKg: expressRate,
+      ratePerKgDisplay: `$${expressRate.toFixed(2)}/kg`,
+      enteredWeight: weight,
+      chargeableWeight: chargeableWeight,
+      minimumWeight: 5,
+      handlingFee: expressHandling,
+      collectionFee: 0,
+      additionalCharges: 0,
+      totalEstimatedPrice: expressTotalUsd,
+      formattedTotal: `$${expressTotalUsd.toFixed(2)}`,
+      currency: 'USD',
+      convertedEstimate: `Approx. ₦${expressNgnApprox.toLocaleString()} (est.)`,
+      estimatedDeliveryTime: '3 to 5 working days',
+      trackingAvailability: true,
+      customsInformation: 'Priority express flight dispatch and expedited customs clearance.',
+      features: [
+        '3 to 5 working days delivery',
+        'Priority airport air dispatch',
+        'End-to-end milestone tracking',
+        'Doorstep delivery to Lagos & Abuja addresses',
+      ],
+      bookingUrl: createBookingUrl('express', expressTotalUsd, 'USD'),
+      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Express Shipping', `$${expressTotalUsd.toFixed(2)}`, '3 to 5 working days'),
     });
   }
 

@@ -310,6 +310,7 @@ export function CentralQuotationForm({
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="Nigeria">Nigeria</option>
                     <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
                   </select>
 
                   <select

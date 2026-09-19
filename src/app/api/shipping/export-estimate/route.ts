@@ -191,9 +191,8 @@ export async function POST(req: NextRequest) {
     const expressHandlingMultiplier = 1.082855;
     const expressBaseFinalCost = Math.round(expressBaseCost * expressHandlingMultiplier);
 
-    const isAbuja = originLocation.toLowerCase() === 'abuja';
     const packagingRatePerKg = 2000;
-    const packagingCharge = isAbuja ? Math.round(expressLookupWeight * packagingRatePerKg) : 0;
+    const packagingCharge = Math.round(expressLookupWeight * packagingRatePerKg);
     const expressFinalCost = expressBaseFinalCost + packagingCharge;
 
     // Delivery times by region
