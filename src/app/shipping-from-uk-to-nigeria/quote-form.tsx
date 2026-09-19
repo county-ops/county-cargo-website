@@ -124,9 +124,8 @@ Calculation based on Standard Shipping:
 - Shipping Cost: £${shippingCost.toFixed(2)}
 - Handling Charge: £${handlingCharge.toFixed(2)}
         `.trim();
-      } else { // Express services
-        const is48hr = serviceType === 'express48';
-        const rate = is48hr ? 22 : 24;
+      } else { // Special Express service (£22/kg + £20 handling)
+        const rate = 22;
         const handlingCharge = 20;
         const minWeight = 1;
 
@@ -135,9 +134,9 @@ Calculation based on Standard Shipping:
         estimatedCost = shippingCost + handlingCharge;
 
         details = `
-Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
+Calculation based on Special Express 48-Hour:
 - Route: ${from} to ${to}
-- Rate: £${rate.toFixed(2)}/kg
+- Rate: £${rate.toFixed(2)}/kg + £${handlingCharge} handling
 - Actual Weight: ${weight.toFixed(2)} kg
 - Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
 - Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
@@ -145,6 +144,7 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
 - Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
 - Shipping Cost: £${shippingCost.toFixed(2)}
 - Handling Charge: £${handlingCharge.toFixed(2)}
+- Operational conditions: The 48-hour delivery period begins once the consignment has cleared export security screening and departed on the scheduled direct flight from London. Excludes weekends, bank holidays, and statutory customs inspection holds.
         `.trim();
       }
 
@@ -236,9 +236,8 @@ Calculation based on ${is48hr ? '48hrs Express' : '24hrs Express'}:
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="standard">Standard Shipping</SelectItem>
-                      <SelectItem value="express48">48hrs Express</SelectItem>
-                      <SelectItem value="express24">24hrs Express</SelectItem>
+                      <SelectItem value="standard">Value Shipping (Standard Air: 5–10 days)</SelectItem>
+                      <SelectItem value="express48">Special Express (48-Hour: £22/kg + £20)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

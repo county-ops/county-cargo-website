@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calculator, Truck, Plane, Ship, CheckCircle2, AlertCircle, ArrowRight } from 'lucide-react';
+import { Calculator, Truck, Plane, Ship, CheckCircle2, AlertCircle, ArrowRight, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -161,8 +161,8 @@ export function ShippingCalculator({
                 }`}
               >
                 <Truck className="w-5 h-5 mb-1.5 text-amber-500" />
-                <span className="text-xs sm:text-sm font-semibold">Express Air</span>
-                <span className="text-[11px] text-gray-500 mt-0.5">24–48 Hours</span>
+                <span className="text-xs sm:text-sm font-semibold">Special Express</span>
+                <span className="text-[11px] text-gray-500 mt-0.5">48-Hr (£22/kg + £20)</span>
               </button>
 
               <button
@@ -392,6 +392,15 @@ export function ShippingCalculator({
               )}
             </div>
 
+            {/* Special Express 48-Hour Conditions Banner */}
+            {service === 'express_air' && (
+              <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl space-y-1 text-xs text-amber-900">
+                <p className="font-bold text-amber-800">Special Express 48-Hour Conditions:</p>
+                <p>The 48-hour delivery countdown begins once the consignment has cleared export security scanning and departed on the scheduled direct flight from London.</p>
+                <p className="text-[11px] text-amber-700 italic">Operational exclusions: Excludes weekends, bank holidays, and statutory customs clearance holds.</p>
+              </div>
+            )}
+
             {/* Active Promotions / Highlights */}
             {promoNotes.length > 0 && (
               <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1">
@@ -408,20 +417,39 @@ export function ShippingCalculator({
           {/* Action CTAs */}
           <div className="mt-6 space-y-2.5">
             <a
+              href={`https://ship.countycargo.com/login?redirect=/book-shipment&service=${service}&from=UK&to=${destination}&weight=${chargeableWeight}&price=${totalEstimated}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-blue-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all text-sm"
+            >
+              <span>Book Online (Client Portal)</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <a
               href={`https://wa.me/2348110000421?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition-all text-sm"
+              className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white font-semibold py-2.5 px-4 rounded-xl shadow-sm transition-all text-xs"
             >
-              <span>Book Shipment on WhatsApp</span>
-              <ArrowRight className="w-4 h-4" />
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Or Book via WhatsApp Specialist</span>
             </a>
+
+            <div className="pt-2 text-center">
+              <a
+                href="/#quote-calculator"
+                className="text-xs text-primary hover:underline font-semibold"
+              >
+                Need quotes for USA, Canada, or Worldwide Export? Use Central Calculator &rarr;
+              </a>
+            </div>
 
             <a
               href="https://ship.countycargo.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white font-semibold py-3 px-4 rounded-xl transition-all text-xs"
+              className="w-full flex items-center justify-center gap-2 bg-gray-900 hover:bg-black text-white font-semibold py-2.5 px-4 rounded-xl transition-all text-xs"
             >
               <span>Track or Manage Shipment</span>
             </a>
