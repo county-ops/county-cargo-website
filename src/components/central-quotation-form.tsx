@@ -643,24 +643,6 @@ export function CentralQuotationForm({
                             Rate: <strong>{service.ratePerKgDisplay}</strong>
                             {service.handlingFee > 0 && ` + Fee: £${service.handlingFee}`}
                           </div>
-
-                          {/* Abuja Express Packaging Charge Breakdown */}
-                          {service.packagingCharge && service.packagingCharge > 0 ? (
-                            <div className="mt-2 p-1.5 rounded-lg bg-orange-50 border border-orange-200/80 text-[10.5px] leading-snug space-y-0.5 text-left">
-                              <div className="flex justify-between text-gray-600">
-                                <span>Express shipping:</span>
-                                <span className="font-semibold text-gray-800">{service.formattedBaseShippingCost}</span>
-                              </div>
-                              <div className="flex justify-between text-orange-700">
-                                <span>Abuja packaging ({service.chargeableWeight}kg × ₦2,000):</span>
-                                <span className="font-bold text-orange-800">{service.packagingChargeDisplay}</span>
-                              </div>
-                              <div className="flex justify-between pt-0.5 border-t border-orange-200 font-bold text-gray-900">
-                                <span>Total amount:</span>
-                                <span className="text-[#EA580C]">{service.formattedTotal}</span>
-                              </div>
-                            </div>
-                          ) : null}
                         </div>
 
                         {/* Key Features Bullet List */}

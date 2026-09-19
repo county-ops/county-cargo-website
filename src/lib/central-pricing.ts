@@ -25,10 +25,6 @@ export interface ServiceComparisonCard {
   handlingFee: number;
   collectionFee: number;
   additionalCharges: number;
-  baseShippingCost?: number;
-  formattedBaseShippingCost?: string;
-  packagingCharge?: number;
-  packagingChargeDisplay?: string;
   totalEstimatedPrice: number;
   formattedTotal: string;
   currency: 'GBP' | 'NGN' | 'USD';
@@ -504,9 +500,6 @@ I would like to proceed with booking this shipment.`;
     const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
     const expressGbpApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
-    const expressBreakdownNote = packagingCharge > 0
-      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
-      : undefined;
 
     services.push({
       id: 'express',
@@ -517,18 +510,14 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(baseExpressCost / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: packagingCharge,
-      baseShippingCost: baseExpressCost,
-      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
-      packagingCharge,
-      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      additionalCharges: 0,
       totalEstimatedPrice: totalExpressWithPackaging,
       formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
@@ -543,7 +532,7 @@ I would like to proceed with booking this shipment.`;
         'Nationwide UK doorstep handover',
       ],
       bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
     });
 
     // 3. Special Express Shipping (ONLY UK <-> NIGERIA, £22/kg + £20 handling, converted to Naira)
@@ -667,9 +656,6 @@ I would like to proceed with booking this shipment.`;
     const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
     const expressUsdApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
-    const expressBreakdownNote = packagingCharge > 0
-      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
-      : undefined;
 
     services.push({
       id: 'express',
@@ -681,18 +667,14 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(baseExpressCost / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: packagingCharge,
-      baseShippingCost: baseExpressCost,
-      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
-      packagingCharge,
-      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      additionalCharges: 0,
       totalEstimatedPrice: totalExpressWithPackaging,
       formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
@@ -707,7 +689,7 @@ I would like to proceed with booking this shipment.`;
         'Live tracking and milestone SMS updates',
       ],
       bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to USA', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to USA', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
     });
   }
 
@@ -781,9 +763,6 @@ I would like to proceed with booking this shipment.`;
     const packagingRatePerKg = 2000;
     const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-    const expressBreakdownNote = packagingCharge > 0
-      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
-      : undefined;
 
     services.push({
       id: 'express',
@@ -795,18 +774,14 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: Math.round(baseExpressCost / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
-      additionalCharges: packagingCharge,
-      baseShippingCost: baseExpressCost,
-      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
-      packagingCharge,
-      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      additionalCharges: 0,
       totalEstimatedPrice: totalExpressWithPackaging,
       formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
@@ -820,7 +795,7 @@ I would like to proceed with booking this shipment.`;
         'Live tracking and SMS delivery updates',
       ],
       bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to Canada', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days', expressBreakdownNote),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping to Canada', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
     });
   }
 
@@ -884,9 +859,6 @@ I would like to proceed with booking this shipment.`;
     const packagingRatePerKg = 2000;
     const packagingCharge = isAbuja ? Math.round(expressBillable * packagingRatePerKg) : 0;
     const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-    const expressBreakdownNote = packagingCharge > 0
-      ? `Express Shipping: ₦${baseExpressCost.toLocaleString()} + Abuja Packaging (${expressBillable}kg × ₦2,000): ₦${packagingCharge.toLocaleString()}`
-      : undefined;
 
     let transitTime = '3 to 5 working days';
     if (['Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium'].includes(matchedCountry.Country)) {
@@ -907,18 +879,14 @@ I would like to proceed with booking this shipment.`;
       originCity: fromCity,
       destinationCountry: matchedCountry.Country,
       destinationCity: toCity,
-      ratePerKg: Math.round(baseExpressCost / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(baseExpressCost / expressBillable).toLocaleString()}/kg`,
+      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
+      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
       minimumWeight: 0.5,
       handlingFee: 0,
       collectionFee: isCollection ? 5000 : 0,
-      additionalCharges: packagingCharge,
-      baseShippingCost: baseExpressCost,
-      formattedBaseShippingCost: `₦${baseExpressCost.toLocaleString()}`,
-      packagingCharge,
-      packagingChargeDisplay: packagingCharge > 0 ? `₦${packagingCharge.toLocaleString()}` : undefined,
+      additionalCharges: 0,
       totalEstimatedPrice: totalExpressWithPackaging,
       formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
       currency: 'NGN',
@@ -932,7 +900,7 @@ I would like to proceed with booking this shipment.`;
         'Live tracking and milestone notifications',
       ],
       bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping', `₦${totalExpressWithPackaging.toLocaleString()}`, transitTime, expressBreakdownNote),
+      whatsAppUrl: createWhatsAppUrl('Express Shipping', `₦${totalExpressWithPackaging.toLocaleString()}`, transitTime),
     });
   }
 

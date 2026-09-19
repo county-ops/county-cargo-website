@@ -27,10 +27,6 @@ interface ServiceEstimate {
   formattedPrice: string;
   currency: string;
   billableWeight: number;
-  basePrice?: number;
-  formattedBasePrice?: string;
-  packagingCharge?: number;
-  formattedPackagingCharge?: string;
   deliveryTime: string;
   deliveryMethod: string;
   carrier: string;
@@ -210,14 +206,11 @@ export function ExpressExportCalculator({
   const buildWhatsAppUrl = (service: ServiceEstimate) => {
     const numWeight = parseFloat(weight) || 1;
     const phone = '447883309489'; // County Cargo official WhatsApp line
-    const breakdownText = service.packagingCharge && service.packagingCharge > 0
-      ? `\n- Cost Breakdown: Express Shipping (${service.formattedBasePrice}) + Abuja Packaging (${service.billableWeight}kg × ₦2,000 = ${service.formattedPackagingCharge})`
-      : '';
     const text = `Hello County Cargo, I received an Express Export quote on your website:
 - Service: ${service.title} (${service.tagline})
 - Origin: Nigeria (${origin} Hub)
 - Destination: ${destination}
-- Weight: ${numWeight} kg${breakdownText}
+- Weight: ${numWeight} kg
 - Estimated Price: ${service.formattedPrice}
 - Estimated Transit: ${service.deliveryTime}
 
@@ -463,24 +456,6 @@ I would like to proceed with booking this shipment.`;
                     <p className="text-xs text-gray-500 mt-1">
                       Priority Express via DHL Global Network
                     </p>
-
-                    {/* Abuja Express Packaging Charge Breakdown */}
-                    {quoteResult.estimates.express.packagingCharge && quoteResult.estimates.express.packagingCharge > 0 ? (
-                      <div className="mt-3 p-2.5 rounded-xl bg-orange-50 border border-orange-200 text-xs space-y-1 text-left">
-                        <div className="flex justify-between text-gray-600">
-                          <span>Express shipping:</span>
-                          <span className="font-semibold text-gray-800">{quoteResult.estimates.express.formattedBasePrice}</span>
-                        </div>
-                        <div className="flex justify-between text-orange-700">
-                          <span>Abuja packaging ({quoteResult.estimates.express.billableWeight}kg × ₦2,000):</span>
-                          <span className="font-bold text-orange-800">{quoteResult.estimates.express.formattedPackagingCharge}</span>
-                        </div>
-                        <div className="flex justify-between pt-1 border-t border-orange-200 font-bold text-gray-900">
-                          <span>Total amount:</span>
-                          <span className="text-[#EA580C]">{quoteResult.estimates.express.formattedPrice}</span>
-                        </div>
-                      </div>
-                    ) : null}
                   </div>
 
                   {/* Features List */}
