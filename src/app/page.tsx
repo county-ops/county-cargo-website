@@ -238,17 +238,17 @@ export default function Home() {
             </div>
 
             {/* Quick Tracking Search Bar */}
-            <div className="mt-8 max-w-md mx-auto">
-              <form action="/track" method="GET" className="flex items-center gap-2 bg-white/95 backdrop-blur-sm p-1.5 rounded-xl shadow-2xl border border-white/40">
+            <div className="mt-8 max-w-md mx-auto w-full px-2 sm:px-0">
+              <form action="/track" method="GET" className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white/95 backdrop-blur-sm p-1.5 sm:p-2 rounded-xl shadow-2xl border border-white/40">
                 <input
                   type="text"
                   name="number"
                   placeholder="Enter Invoice or Tracking Number..."
-                  className="flex-1 px-3 py-2 text-sm text-slate-900 bg-transparent focus:outline-none placeholder:text-slate-400 font-medium"
+                  className="flex-1 min-w-0 px-3 py-2 text-sm text-slate-900 bg-transparent focus:outline-none placeholder:text-slate-400 font-medium"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-lg shadow-sm transition-all"
+                  className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-lg shadow-sm transition-all shrink-0"
                 >
                   Track Cargo
                 </button>

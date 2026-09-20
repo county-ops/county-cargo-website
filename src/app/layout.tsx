@@ -1,5 +1,5 @@
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Open_Sans, Poppins } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
@@ -22,6 +22,12 @@ const poppins = Poppins({
   display: 'swap',
   weight: ['600', '700'],
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: {

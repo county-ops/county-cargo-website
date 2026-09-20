@@ -163,13 +163,13 @@ export function RealtimeTracking() {
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             placeholder="Enter Invoice Number (e.g. UKA00000000028, UKS..., US-...)"
-            className="pl-10 h-13 bg-white text-slate-900 border-slate-300 font-medium placeholder:text-slate-400 focus-visible:ring-primary shadow-xs text-base"
+            className="pl-10 h-12 bg-white text-slate-900 border-slate-300 font-medium placeholder:text-slate-400 focus-visible:ring-primary shadow-xs text-sm sm:text-base"
           />
         </div>
         <Button
           type="submit"
           disabled={loading || !inputVal.trim()}
-          className="h-13 px-8 bg-primary hover:bg-primary/90 text-white font-bold shrink-0 shadow-md text-base"
+          className="h-12 px-6 sm:px-8 bg-primary hover:bg-primary/90 text-white font-bold shrink-0 shadow-md text-sm sm:text-base"
         >
           {loading ? (
             <span className="inline-flex items-center gap-2">
@@ -193,17 +193,17 @@ export function RealtimeTracking() {
       {!loading && shipment && (
         <Card className="border-slate-200 shadow-xl bg-white overflow-hidden text-left">
           {/* Header Banner */}
-          <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white p-6 flex flex-wrap justify-between items-center gap-4 border-b border-slate-700">
-            <div className="space-y-1">
+          <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white p-5 sm:p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-700">
+            <div className="space-y-1 w-full sm:w-auto">
               <span className="text-xs uppercase tracking-wider text-slate-400 font-bold block">
                 Tracking / Invoice Number
               </span>
-              <span className="text-2xl font-black text-emerald-400 tracking-wide font-mono">
+              <span className="text-xl sm:text-2xl font-black text-emerald-400 tracking-wide font-mono break-all block">
                 {shipment.trackingNumber || shipment.invoiceId}
               </span>
             </div>
 
-            <div className="text-right space-y-1">
+            <div className="sm:text-right space-y-1 w-full sm:w-auto flex flex-row sm:flex-col justify-between sm:justify-end items-center sm:items-end">
               <span className="px-4 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wider inline-block">
                 {shipment.currentStatus}
               </span>
@@ -278,7 +278,7 @@ export function RealtimeTracking() {
               </div>
 
               {/* Step Cards List */}
-              <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 sm:before:left-4 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
+              <div className="relative pl-7 sm:pl-9 space-y-6 before:absolute before:left-3 sm:before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
                 {shipment.timeline.map((item) => {
                   const isDone = item.state === 'completed';
                   const isCurrent = item.state === 'current';
@@ -287,7 +287,7 @@ export function RealtimeTracking() {
                     <div key={item.key} className="relative group">
                       {/* Node circle */}
                       <div
-                        className={`absolute -left-6 sm:-left-8 top-0.5 w-6 sm:w-8 h-6 sm:h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`absolute -left-7 sm:-left-9 top-0.5 w-6 sm:w-7 h-6 sm:h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isDone
                             ? 'bg-emerald-500 text-white shadow-sm ring-4 ring-emerald-50'
                             : isCurrent
