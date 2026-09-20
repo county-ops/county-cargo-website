@@ -79,8 +79,8 @@ export function UkNigeriaQuoteForm() {
     try {
       const { from, to, serviceType, weight, length, width, height } = values;
 
-      if ((serviceType === 'express48' || serviceType === 'express24') && (to !== 'Lagos' && to !== 'Abuja')) {
-        setError('Express services are only available for shipping to Lagos or Abuja.');
+      if (serviceType === 'express48' && to !== 'Lagos') {
+        setError('Special Express 48-Hour service is only available for shipping directly to Lagos.');
         setIsLoading(false);
         return;
       }
@@ -236,8 +236,8 @@ Calculation based on Special Express 48-Hour:
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="standard">Value Shipping (Standard Air: 5–10 days)</SelectItem>
-                      <SelectItem value="express48">Special Express (48-Hour: £22/kg + £20)</SelectItem>
+                      <SelectItem value="standard">Value Shipping (Standard Air: 5–10 working days)</SelectItem>
+                      <SelectItem value="express48">Special Express (48 hours: £22/kg + £20)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

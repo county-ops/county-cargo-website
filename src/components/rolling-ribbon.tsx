@@ -1,7 +1,7 @@
 'use client';
 
 const ribbonItems = [
-    '🚀 Express UK to Nigeria: 1-2 Business Days Delivery!',
+    '🚀 Express UK to Nigeria: 3–5 Working Days Delivery!',
     '📦 Ship Foodstuff Worldwide: UK, US & Canada with Ease.',
     '✈️ Weekly Air Freight to Lagos & Abuja.',
     '💰 Best Rates Guaranteed for All Shipments.',

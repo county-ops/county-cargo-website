@@ -77,7 +77,7 @@ const suitableItems = [
   {
     icon: FileText,
     title: 'Urgent Documents & Contracts',
-    desc: 'Legal agreements, university transcripts, academic credentials, corporate documents, and tenders delivered within 2–4 working days via priority courier.',
+    desc: 'Legal agreements, university transcripts, academic credentials, corporate documents, and tenders delivered within 3–5 working days via priority courier.',
   },
   {
     icon: ShoppingBag,
@@ -159,7 +159,7 @@ const exportFaqs = [
   },
   {
     q: 'What is the difference between Value Export and Express Export?',
-    a: 'Express Export is our fastest service (typically 2 to 5 working days) routed via premium global carriers like DHL Express with daily scheduled flights and end-to-end priority handling. Value Export is an economical consolidated air cargo service (typically 7 to 14 working days) suited for larger parcels (10kg minimum) to popular destinations like the United States, United Kingdom, and Canada.',
+    a: 'Express Export is our fastest service (typically 3 to 5 working days) routed via premium global carriers like DHL Express with daily scheduled flights and end-to-end priority handling. Value Export is an economical consolidated air cargo service (typically 7 to 14 working days) suited for larger parcels (10kg minimum) to popular destinations like the United States, United Kingdom, and Canada.',
   },
   {
     q: 'Can I export Nigerian foodstuffs through Express Export?',
@@ -260,7 +260,7 @@ export default function ExpressExportPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>2–5 Working Days Express</span>
+                  <span>3–5 Working Days Express</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />

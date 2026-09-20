@@ -20,4 +20,9 @@ export const SHIPPING_TIMEFRAMES = {
   EXPRESS_AIR_SHORT: '3–5 working days',
   /** Approved express air courier short days format */
   EXPRESS_AIR_DAYS: '3–5 working days',
+
+  /** Approved special express air courier timeframe: 48 hours (UK to Lagos only) */
+  SPECIAL_EXPRESS: '48 hours',
+  /** Approved special express air courier short format */
+  SPECIAL_EXPRESS_SHORT: '48 hours',
 };

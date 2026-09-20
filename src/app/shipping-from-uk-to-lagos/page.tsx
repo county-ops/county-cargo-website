@@ -69,7 +69,7 @@ const lagosFaqs = [
   {
     question: 'How long does shipping from the UK to Lagos take?',
     answer:
-      'Standard Air Cargo arrives in Lagos within 5 to 10 working days from our weekly consolidation cut-off every Wednesday at 5:00 PM. Express Air delivers in 24 to 48 hours for emergency shipments. Sea cargo shipments take 4 to 8 weeks from vessel departure to clearance at Lagos ports (Apapa / Tin Can).',
+      'Standard Air Cargo arrives in Lagos within 5 to 10 working days from our weekly consolidation cut-off every Wednesday at 5:00 PM. Express Air delivers in 3 to 5 working days, with Special Express available in 48 hours for urgent shipments. Sea cargo shipments take 4 to 8 weeks from vessel departure to clearance at Lagos ports (Apapa / Tin Can).',
   },
   {
     question: 'Where can I drop off my cargo in the UK for shipment to Lagos?',

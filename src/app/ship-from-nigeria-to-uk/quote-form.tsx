@@ -165,7 +165,7 @@ Calculation based on Standard Shipping:
         estimatedCost = shippingCost + handlingCharge;
 
         details = `
-Calculation based on 48hrs Express Shipping:
+Calculation based on Special Express 48-Hour Shipping:
 - Route: ${from} to ${to}
 - Rate: £${rate.toFixed(2)}/kg
 - Actual Weight: ${weight.toFixed(2)} kg
@@ -268,8 +268,8 @@ Calculation based on 48hrs Express Shipping:
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="standard">Standard Shipping</SelectItem>
-                      <SelectItem value="express48">48hrs Express Shipping</SelectItem>
+                      <SelectItem value="standard">Standard Shipping (5–10 working days)</SelectItem>
+                      <SelectItem value="express48">Special Express (48 hours)</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

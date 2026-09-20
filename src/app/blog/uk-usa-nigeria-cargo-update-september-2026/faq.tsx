@@ -10,7 +10,7 @@ import {
 const faqItems = [
   {
     question: 'How long does shipping from the UK to Nigeria take?',
-    answer: 'Standard air cargo is normally estimated at 5–10 working days, subject to flight availability, customs clearance and local handling. Eligible UK-to-Lagos express air cargo shipments may take approximately 2–3 working days. These timeframes are estimates and not unconditional guarantees.',
+    answer: 'Standard air cargo is normally estimated at 5–10 working days, subject to flight availability, customs clearance and local handling. Eligible UK-to-Lagos express air cargo shipments take approximately 3–5 working days (with Special Express delivered in 48 hours to Lagos). These timeframes are estimates and not unconditional guarantees.',
   },
   {
     question: 'Can County Cargo deliver outside Lagos?',

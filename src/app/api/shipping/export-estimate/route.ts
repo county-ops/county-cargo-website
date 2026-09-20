@@ -198,7 +198,7 @@ export async function POST(req: NextRequest) {
     // Delivery times by region
     let expressTransitTime = '3–5 working days';
     if (['United Kingdom', 'France', 'Germany', 'Italy', 'Netherlands', 'Belgium', 'Spain'].includes(matchedCountry.Country)) {
-      expressTransitTime = '2–4 working days';
+      expressTransitTime = '3–5 working days';
     } else if (['United States', 'Canada'].includes(matchedCountry.Country)) {
       expressTransitTime = '3–5 working days';
     } else if (['China', 'United Arab Emirates', 'India'].includes(matchedCountry.Country)) {

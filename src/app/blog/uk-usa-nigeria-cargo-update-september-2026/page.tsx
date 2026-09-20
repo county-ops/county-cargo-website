@@ -601,7 +601,7 @@ export default function UkUsaNigeriaCargoUpdatePost() {
                     </div>
                     <h3 className="text-lg font-bold text-white">Express Air Cargo</h3>
                     <div className="text-xs font-semibold px-2.5 py-1 bg-white/20 text-cyan-200 rounded-full inline-block">
-                      Est. 2–3 Working Days
+                      Est. 3–5 Working Days
                     </div>
                     <p className="text-sm text-blue-100 leading-relaxed">
                       Tailored for time-critical UK-to-Lagos consignments and urgent documents. Express transit to Abuja and regional cities is confirmed on request based on flight links.

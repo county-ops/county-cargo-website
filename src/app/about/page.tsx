@@ -36,8 +36,8 @@ export const metadata: Metadata = {
 
 const specialistServices = [
     { title: "Door-to-Door Delivery", desc: "Seamless nationwide delivery directly to your doorstep across Lagos and all states in Nigeria." },
-    { title: "DHL Express (3-5 Day) Shipping", desc: "Rapid, high-priority transit for urgent documents and small parcels from Nigeria to the US, UK, and globally." },
-    { title: "24hrs Express (UK & Nigeria)", desc: "Super-fast, next-day express cargo shipping operating to and from the United Kingdom and Nigeria for time-sensitive freight." }
+    { title: "DHL Express (3–5 Working Days) Shipping", desc: "Rapid, high-priority transit for urgent documents and small parcels from Nigeria to the US, UK, and globally." },
+    { title: "Special Express 48 Hours (UK & Lagos)", desc: "Priority express cargo shipping operating between the United Kingdom and Lagos in 48 hours for time-sensitive freight." }
 ];
 
 export default function AboutPage() {

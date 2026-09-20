@@ -15,11 +15,11 @@ const faqItems = [
     },
     {
         question: 'What is the cost of shipping from UK to Nigeria?',
-        answer: 'Our shipping costs to Nigeria vary depending on the weight, dimensions, and chosen shipping speed (Standard, 48hrs Express, or 24hrs Express). We aim for the cheapest shipping to Nigeria without compromising service. Please refer to our pricing section above for detailed rates, starting from £6.00/kg. This covers your UK to Nigeria cargo needs.'
+        answer: 'Our shipping costs to Nigeria vary depending on the weight, dimensions, and chosen shipping speed (Standard Air: 5–10 working days, Express: 3–5 working days, or Special Express: 48 hours to Lagos). We aim for affordable, transparent shipping to Nigeria without compromising service. Please refer to our pricing section above for detailed rates, starting from £6.00/kg. This covers your UK to Nigeria cargo needs.'
     },
     {
         question: 'How long does it take to ship from UK to Nigeria?',
-        answer: 'Standard shipping typically takes 5-10 working days. For fast shipping Nigeria, our 48hrs Express option delivers in 2 working days, and our 24hrs Express option delivers in 1 working day. Delivery times are from when the parcel leaves our UK warehouse. We are committed to reliable shipping UK Nigeria for all your packages.'
+        answer: 'Standard Air shipping typically takes 5–10 working days. Our Express service delivers in 3–5 working days, and our Special Express option delivers in 48 hours (direct to Lagos). Delivery times are from when the parcel departs our UK warehouse. We are committed to reliable shipping UK Nigeria for all your packages.'
     },
     {
         question: 'Is my parcel insured when shipping from UK to Nigeria?',
