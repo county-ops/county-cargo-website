@@ -8,21 +8,22 @@ import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
 import { SocialShare } from '@/components/social-share';
 import {
-  FileText,
   CheckCircle2,
   Building2,
   ShieldCheck,
   Plane,
-  Clock,
-  ArrowRight,
   AlertTriangle,
   HelpCircle,
   Briefcase,
   Layers,
-  Scale,
   DollarSign,
-  MapPin,
   MessageSquare,
+  PackageCheck,
+  Truck,
+  FileCheck,
+  XCircle,
+  Calculator,
+  ArrowRight,
 } from 'lucide-react';
 import {
   Accordion,
@@ -32,18 +33,18 @@ import {
 } from '@/components/ui/accordion';
 
 export const metadata: Metadata = {
-  title: 'How to Export Goods From Nigeria to the UK: Complete 2026 Commercial Guide | County Cargo',
+  title: 'Exporting Goods From Nigeria to the UK: The Complete 2026 Guide | County Cargo',
   description:
-    'Complete step-by-step commercial export guide from Nigeria to the UK. NEPC exporter registration, electronic Form NXP, UK DCTS zero-tariff rules, GB EORI, and air freight logistics.',
+    'Complete 2026 guide to exporting goods from Nigeria to the UK. Learn NEPC registration, Form NXP, UK DCTS zero-tariff rules, food clearance, and air cargo rates.',
   keywords:
-    'how to export goods from Nigeria to UK, export to UK from Nigeria, NEPC exporter registration, Form NXP CBN, UK DCTS tariff Nigeria, commercial invoice export Nigeria, ship commercial cargo Lagos to London, export fashion from Nigeria to UK',
+    'export from nigeria to uk, how to export goods from nigeria to the uk, shipping from nigeria to uk, nigeria to uk air freight, nepc exporter certificate, form nxp cbn, sending food items from nigeria to uk, uk dcts tariff nigeria',
   alternates: {
     canonical: 'https://countycargo.com/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide',
   },
   openGraph: {
-    title: 'How to Export Goods From Nigeria to the UK: Complete 2026 Commercial Guide | County Cargo',
+    title: 'Exporting Goods From Nigeria to the UK: The Complete 2026 Guide | County Cargo',
     description:
-      'Step-by-step regulatory roadmap for Nigerian businesses, agro-exporters, fashion brands, and SMEs exporting goods to the United Kingdom legally and profitably.',
+      'Comprehensive step-by-step regulatory handbook for exporting goods from Nigeria to the UK. NEPC exporter registration, Form NXP, UK DCTS zero tariffs, food safety guidelines, and air cargo delivery.',
     url: 'https://countycargo.com/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide',
     siteName: 'County Cargo',
     images: [
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
         url: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
         width: 1200,
         height: 675,
-        alt: 'Commercial export procedures and documentation from Nigeria to the UK',
+        alt: 'Air cargo consignments and customs documentation for Nigeria to UK commercial export shipping',
       },
     ],
   },
@@ -59,34 +60,34 @@ export const metadata: Metadata = {
 
 const guideFaqs = [
   {
-    question: 'What is the UK Developing Countries Trading Scheme (DCTS) for Nigerian exporters?',
+    question: 'What is the minimum billable weight for shipping from Nigeria to the UK?',
     answer:
-      'The DCTS is the UK trade preference framework that allows qualifying non-oil goods exported from Nigeria to enter the United Kingdom duty-free or at substantially reduced customs tariff rates. Products like cocoa, cashew nuts, shea butter, sesame seeds, textiles, and manufactured apparel benefit directly from 0% UK import tariffs when proper origin documentation is provided.',
+      'For our economical Value Shipping (Air Cargo) service, the minimum billable weight is 10 kg. For Express Shipping, the minimum chargeable weight begins at just 0.5 kg, making it ideal for small parcels, documents, and commercial samples.',
   },
   {
-    question: 'Is Form NXP required for all commercial exports from Nigeria?',
+    question: 'Do I need to pay customs duty when receiving goods in the UK?',
     answer:
-      'Yes. The Central Bank of Nigeria (CBN) and Nigeria Customs Service require an electronic Form NXP (submitted through the Trade Monitoring System TRMS portal) for all commercial export consignments exceeding $1,000 USD in commercial value, ensuring legal repatriation of export proceeds.',
+      'Under the UK Developing Countries Trading Scheme (DCTS), many raw agricultural commodities and manufactured goods from Nigeria enter the UK at 0% customs duty. However, standard UK import VAT (20%) may apply depending on the classification, value, and intended commercial use of the shipment. Personal gifts valued below £39 are typically exempt from VAT.',
   },
   {
-    question: 'How do I obtain an NEPC Exporter Certificate?',
+    question: 'How are shipping costs calculated: actual weight or volumetric weight?',
     answer:
-      'You can register online through the Nigerian Export Promotion Council (NEPC) portal. You will need your Corporate Affairs Commission (CAC) certificate of incorporation, Tax Identification Number (TIN), Memorandum & Articles of Association, and valid ID of company directors. Registration is typically issued within 48 to 72 hours.',
+      'International air freight regulations calculate billable weight based on whichever is greater: the actual gross weight (on a calibrated physical scale) or the volumetric weight (calculated as [Length (cm) × Width (cm) × Height (cm)] ÷ 5000). If you are shipping lightweight but bulky items (such as traditional hats, bulky textiles, or hollow containers), volumetric weight will apply.',
   },
   {
-    question: 'Does the UK buyer or importer need a GB EORI number?',
+    question: 'Can I ship packaged crayfish, egusi, and dried fish to the UK?',
     answer:
-      'Yes. Any UK business or registered entity importing commercial goods from outside the UK must possess a GB Economic Operators Registration and Identification (GB EORI) number to lodge customs declarations through HM Revenue & Customs (HMRC) Customs Declaration Service (CDS).',
+      'Yes. Completely dehydrated, packaged, and vacuum-sealed dry foodstuffs—including egusi, ogbono, ground crayfish, and oven-dried fish—are fully permitted. Fresh meat, wet fish, unpasteurised dairy, and garden eggs with soil are strictly prohibited.',
   },
   {
-    question: 'What is the fastest way to ship commercial product samples from Lagos to the UK?',
+    question: 'How long does shipping take from Lagos or Abuja to London?',
     answer:
-      'County Cargo Express Courier service delivers commercial product samples, fashion garments, and documents door-to-door from Lagos or Abuja to London and nationwide UK in 3 to 5 business days, with full tracking and priority customs clearance.',
+      'Our Special Express (48-Hour) service delivers within 48 hours following direct flight departure. Our Express Shipping courier delivers in 3 to 5 working days, while our economical consolidated Value Air Freight arrives within 5 to 10 working days.',
   },
   {
-    question: 'How can County Cargo help my business export smoothly?',
+    question: 'What documents do I need to include with my shipment?',
     answer:
-      'County Cargo provides end-to-end export support: air freight consolidation, industrial export packing and vacuum sealing, documentation review (commercial invoices, packing lists, HS codes), Nigerian customs export clearance, UK HMRC clearance, and nationwide UK distribution from our Liverpool depot (L1 0BG).',
+      'Every export shipment requires: (1) an itemized Commercial Invoice or Packing Declaration, (2) a detailed Packing List with weights and dimensions, (3) consignee full UK name, street address, and active telephone number, and (4) an NAQS Phytosanitary Certificate specifically for commercial agro-produce.',
   },
 ];
 
@@ -99,12 +100,13 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
       {
         '@type': 'BlogPosting',
         '@id': `${pageUrl}#article`,
-        headline: 'How to Export Goods From Nigeria to the UK: Complete Commercial Guide (2026)',
+        headline: 'Exporting Goods From Nigeria to the UK: The Complete 2026 Guide',
         description:
-          'Comprehensive handbook for Nigerian businesses and SMEs on commercial export compliance, NEPC registration, Form NXP, UK DCTS zero tariffs, and freight forwarding to the UK.',
+          'Comprehensive step-by-step regulatory handbook for exporting goods from Nigeria to the UK. NEPC exporter registration, Form NXP, UK DCTS zero tariffs, food safety guidelines, and air cargo delivery.',
         image: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
-        datePublished: '2026-09-19T08:00:00+01:00',
-        dateModified: '2026-09-19T08:00:00+01:00',
+        datePublished: '2026-09-20T08:00:00+01:00',
+        dateModified: '2026-09-20T08:00:00+01:00',
+        inLanguage: 'en-GB',
         author: {
           '@type': 'Organization',
           name: 'County Cargo International Trade Compliance Division',
@@ -113,6 +115,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
         publisher: {
           '@type': 'Organization',
           name: 'County Cargo',
+          url: 'https://countycargo.com',
           logo: {
             '@type': 'ImageObject',
             url: 'https://countycargo.com/county-logo.png',
@@ -122,50 +125,6 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
           '@type': 'WebPage',
           '@id': pageUrl,
         },
-      },
-      {
-        '@type': 'HowTo',
-        '@id': `${pageUrl}#howto`,
-        name: 'How to Legally Export Commercial Cargo from Nigeria to the United Kingdom',
-        description: 'Step-by-step roadmap to fulfill Nigerian export mandates and UK HMRC customs rules.',
-        step: [
-          {
-            '@type': 'HowToStep',
-            position: 1,
-            name: 'Register with CAC and Obtain NEPC Exporter Certificate',
-            text: 'Incorporate your enterprise with the Corporate Affairs Commission (CAC) and obtain an official exporter certificate from the Nigerian Export Promotion Council.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: 2,
-            name: 'File Electronic Form NXP on CBN Trade Monitoring System',
-            text: 'Submit e-Form NXP through your authorized commercial dealer bank on the CBN TRMS portal to record non-oil export proceeds.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: 3,
-            name: 'Obtain Necessary Quality & Health Certificates',
-            text: 'Acquire NAFDAC export certificates for cosmetics/food, or NAQS Phytosanitary certificates for agricultural produce.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: 4,
-            name: 'Issue Commercial Invoice with Accurate HS Codes',
-            text: 'Prepare a compliant commercial invoice detailing product description, Harmonized System (HS) codes, unit price, and origin declaration.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: 5,
-            name: 'Ensure UK Importer Has GB EORI Number',
-            text: 'Verify your UK consignee has an active GB EORI number registered with HM Revenue & Customs for customs clearance.',
-          },
-          {
-            '@type': 'HowToStep',
-            position: 6,
-            name: 'Book Air Cargo or Express Freight with County Cargo',
-            text: 'Deliver cargo to County Cargo Lagos or Abuja hubs for weight verification, export documentation stamping, and scheduled UK air freight.',
-          },
-        ],
       },
       {
         '@type': 'FAQPage',
@@ -181,7 +140,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
       },
       {
         '@type': 'BreadcrumbList',
-        '@id': `${pageUrl}#breadcrumbs`,
+        '@id': `${pageUrl}#breadcrumb`,
         itemListElement: [
           {
             '@type': 'ListItem',
@@ -192,19 +151,13 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Export From Nigeria',
-            item: 'https://countycargo.com/export-from-nigeria',
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
             name: 'Blog',
             item: 'https://countycargo.com/blog',
           },
           {
             '@type': 'ListItem',
-            position: 4,
-            name: 'Commercial Export from Nigeria to UK Guide',
+            position: 3,
+            name: 'Nigeria to UK Export Guide',
             item: pageUrl,
           },
         ],
@@ -221,7 +174,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
           items={[
             { label: 'Export From Nigeria', href: '/export-from-nigeria' },
             { label: 'Blog', href: '/blog' },
-            { label: 'Commercial Export Nigeria to UK' },
+            { label: 'Nigeria to UK Export Guide' },
           ]}
         />
 
@@ -229,24 +182,24 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
         <section className="py-12 md:py-16 bg-gradient-to-b from-blue-950 via-slate-900 to-blue-900 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30 mb-4">
-              <Briefcase className="w-3.5 h-3.5" /> B2B Trade &amp; Commercial Export Guide
+              <Briefcase className="w-3.5 h-3.5" /> B2B Trade &amp; Commercial Export Guide (2026)
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold hero-text-glow leading-tight">
-              How to Export Goods From Nigeria to the UK in 2026
+              Exporting Goods From Nigeria to the UK: The Complete 2026 Guide
             </h1>
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
-              A comprehensive blueprint for Nigerian SMEs, fashion designers, cosmetics makers, and agro-exporters looking to access the lucrative UK market legally, duty-free under DCTS, and without logistics friction.
+              A comprehensive regulatory handbook for Nigerian manufacturers, agricultural traders, fashion designers, and diaspora shippers navigating NEPC registration, CBN Form NXP, UK DCTS zero tariffs, and air freight logistics.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200 mt-6 pt-4 border-t border-white/10">
               <span className="flex items-center gap-1">
-                <Briefcase className="w-3.5 h-3.5 text-amber-400" /> County Cargo Trade Compliance Division
+                <Briefcase className="w-3.5 h-3.5 text-amber-400" /> County Cargo International Trade Compliance Division
               </span>
               <span>•</span>
               <span className="flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-400" /> Reviewed Against HMRC &amp; NEPC 2026 Guidelines
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-400" /> Verified Against HMRC, NEPC &amp; DEFRA Guidelines
               </span>
               <span>•</span>
-              <span>8 min read</span>
+              <span>10 min read</span>
             </div>
           </div>
         </section>
@@ -261,7 +214,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Key Takeaway: Commercial Exporting from Nigeria to the UK
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Exporting commercial merchandise from Nigeria to the UK requires five key milestones: (1) Corporate Affairs Commission (CAC) registration and an active Nigerian Export Promotion Council (NEPC) certificate; (2) electronic Form NXP registration via an authorized commercial dealer bank on the Central Bank of Nigeria's Trade Monitoring System; (3) an accurate Commercial Invoice with correct Harmonized System (HS) codes; (4) relevant product health certification (NAQS Phytosanitary or NAFDAC); and (5) a UK importer with a valid GB EORI number. Under the UK's Developing Countries Trading Scheme (DCTS), thousands of Nigerian non-oil products enjoy 0% import tariffs.
+                Exporting commercial merchandise from Nigeria to the UK requires five key milestones: (1) Corporate Affairs Commission (CAC) incorporation and an active Nigerian Export Promotion Council (NEPC) certificate; (2) electronic Form NXP registration via an authorized commercial dealer bank on the Central Bank of Nigeria Trade Monitoring System (TRMS); (3) an accurate Commercial Invoice with correct Harmonized System (HS) codes; (4) relevant product health certification (NAQS Phytosanitary or NAFDAC); and (5) a UK importer with a valid GB EORI number. Under the UK Developing Countries Trading Scheme (DCTS), thousands of Nigerian non-oil products enjoy 0% import tariffs.
               </p>
             </div>
 
@@ -279,7 +232,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
                     Shipping rules, rates, drop-off depots, and package tracking.
                   </p>
                 </div>
-                <span className="text-primary font-bold text-sm">→</span>
+                <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/export-food-from-nigeria-to-uk"
@@ -293,214 +246,278 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
                     View permitted items, vacuum sealing, and DEFRA rules.
                   </p>
                 </div>
-                <span className="text-emerald-700 font-bold text-sm">→</span>
+                <ArrowRight className="w-4 h-4 text-emerald-700 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
 
-            {/* Section 1: UK Market Opportunity & DCTS */}
+            {/* Introduction */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
-                <DollarSign className="w-6 h-6 text-emerald-600" /> 1. The UK Opportunity &amp; Zero-Tariff Access Under DCTS
-              </h2>
-              <p className="text-gray-700">
-                The United Kingdom is home to one of the largest and most vibrant Nigerian diaspora communities globally, creating immense commercial demand for authentic African products:
+              <p className="text-base text-gray-700">
+                Whether you are an established Nigerian manufacturer, an emerging fashion label, an agricultural trader, or an individual sending personal effects and approved dry foodstuffs to family in London, exporting to the United Kingdom represents one of the largest and most lucrative bilateral trade corridors between Africa and Europe.
               </p>
-              <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 pl-2">
-                <li><strong>African Fashion &amp; Textiles:</strong> Aso-oke, ankara prints, ready-to-wear bespoke tailoring, and leather accessories.</li>
-                <li><strong>Processed Agricultural Goods:</strong> Shea butter, black soap, dried spices, sesame seeds, ginger, and cashew nuts.</li>
-                <li><strong>Packaged African Food:</strong> Premium packaged flours, snacks (chin chin, plantain chips), and vacuum-sealed dry provisions.</li>
-                <li><strong>Cosmetics &amp; Beauty:</strong> Natural hair growth oils, whipped shea butter, herbal skin creams, and organic soaps.</li>
-              </ul>
-              <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
-                <h4 className="font-bold text-emerald-950 text-sm mb-1">Benefit: The UK Developing Countries Trading Scheme (DCTS)</h4>
-                <p className="text-xs text-emerald-900 leading-relaxed">
-                  Under the UK DCTS framework introduced post-Brexit, Nigeria benefits from simplified rules of origin and preferential tariff treatment. Over 85% of qualifying non-oil tariff lines enter Great Britain with <strong>0% customs duties</strong>, giving Nigerian exporters a distinct competitive advantage over exporters from developed nations.
-                </p>
-              </div>
+              <p className="text-base text-gray-700">
+                With bilateral UK-Nigeria trade exceeding £7 billion and a vibrant diaspora community of over 500,000 residents across London, Manchester, Birmingham, Leeds, and Liverpool, demand for authentic Nigerian products—from textiles and cosmetics to dried ginger and packaged foodstuffs—has never been higher.
+              </p>
+              <p className="text-base text-gray-700">
+                However, navigating the intersection of <strong>Nigerian export regulations</strong> (NEPC, Central Bank Form NXP, NAQS) and <strong>United Kingdom border controls</strong> (HMRC, DEFRA, Food Standards Agency, UK DCTS) requires strict procedural discipline. A single missing phytosanitary certificate, an incorrect Harmonised System (HS) code, or substandard packaging can lead to impounded shipments, heavy demurrage, or outright destruction at British ports of entry.
+              </p>
             </section>
 
-            {/* Section 2: Step-by-Step Commercial Export Roadmap */}
+            {/* Section 1: Regulatory Requirements */}
             <section className="space-y-6">
-              <h2 className="text-2xl sm:text-3xl font-bold text-secondary">
-                2. Step-by-Step Commercial Export Roadmap
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
+                <Building2 className="w-6 h-6 text-primary" /> 1. Regulatory Requirements: Getting Started in Nigeria
               </h2>
+              <p className="text-gray-700">
+                Before dispatching your first commercial export consignment from Nigeria, federal regulatory frameworks mandate registration with key export oversight bodies.
+              </p>
 
               <div className="space-y-4">
                 <div className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h3 className="font-bold text-secondary text-base mb-2 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">1</span>
-                    Corporate Incorporation (CAC) &amp; NEPC Exporter Registration
+                  <h3 className="font-bold text-secondary text-base mb-2">
+                    A. Nigerian Export Promotion Council (NEPC) Exporter Registration
                   </h3>
                   <p className="text-sm text-gray-700 leading-relaxed mb-2">
-                    Informal cross-border trade without corporate registration carries severe confiscation risks. You must operate as a registered Nigerian business:
+                    Under the Export (Incentives and Miscellaneous Provisions) Act, any business entity seeking to export commercial cargo out of Nigeria must register with the <strong>Nigerian Export Promotion Council (NEPC)</strong>.
                   </p>
                   <ul className="text-xs text-gray-600 list-disc list-inside space-y-1 pl-2">
-                    <li>Register a Limited Liability Company (Ltd) with the Corporate Affairs Commission.</li>
-                    <li>Apply online for an Exporter Certificate via the <strong>Nigerian Export Promotion Council (NEPC)</strong> portal.</li>
-                    <li>Certificate issuance takes 2–3 business days and is renewable annually.</li>
+                    <li><strong>Eligibility:</strong> Must be a registered Nigerian company with the Corporate Affairs Commission (CAC) — Business Names (enterprises) are not permitted to export commercial commodities; only Limited Liability Companies (Ltd) or registered Cooperative Societies are eligible.</li>
+                    <li><strong>Required Documents:</strong> Certificate of Incorporation, Memorandum and Articles of Association, Form CAC 1.1 (Status Report / Particulars of Directors), FIRS Tax Identification Number (TIN), and Board Resolution to register as an exporter.</li>
+                    <li><strong>Turnaround Time:</strong> Online registration through the official NEPC e-portal is typically processed and issued within 48 to 72 working hours.</li>
                   </ul>
                 </div>
 
                 <div className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h3 className="font-bold text-secondary text-base mb-2 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">2</span>
-                    The Electronic Form NXP (CBN Single Window TRMS)
+                  <h3 className="font-bold text-secondary text-base mb-2">
+                    B. Electronic Form NXP (Non-Oil Export) via CBN TRMS
                   </h3>
                   <p className="text-sm text-gray-700 leading-relaxed mb-2">
-                    The Central Bank of Nigeria requires every commercial exporter to declare goods electronically:
+                    The Central Bank of Nigeria (CBN) enforces mandatory documentation of all non-oil commercial shipments exceeding $1,000 in commercial value via the <strong>Trade Monitoring System (TRMS)</strong>:
                   </p>
                   <ul className="text-xs text-gray-600 list-disc list-inside space-y-1 pl-2">
-                    <li>Log onto the <strong>Trade Monitoring System (TRMS)</strong> via the Single Window portal.</li>
-                    <li>Select Form NXP and submit your CAC, NEPC certificate, commercial proforma invoice, and bank details.</li>
-                    <li>Your designated Nigerian commercial bank validates and approves the form.</li>
-                    <li>The approved e-Form NXP is transmitted directly to Nigeria Customs Service for physical verification at air cargo export terminals.</li>
+                    <li>You must open a dedicated <strong>Export Proceeds Account</strong> with a licensed Nigerian commercial bank.</li>
+                    <li>The electronic <strong>Form NXP</strong> must be initiated online through the TRMS portal before cargo is presented for Nigerian Customs Service (NCS) inspection.</li>
+                    <li>Once inspected by a government-appointed Pre-Shipment Inspection Agent (such as Cobalt, Neroli, or Arlington), a <strong>Clean Certificate of Inspection (CCI)</strong> is issued, authorizing customs dispatch.</li>
                   </ul>
                 </div>
 
                 <div className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h3 className="font-bold text-secondary text-base mb-2 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">3</span>
-                    Commercial Invoicing with Harmonized System (HS) Codes
+                  <h3 className="font-bold text-secondary text-base mb-2">
+                    C. Inspection &amp; Phytosanitary Clearances (Agro &amp; Foodstuffs)
                   </h3>
                   <p className="text-sm text-gray-700 leading-relaxed mb-2">
-                    UK HM Revenue &amp; Customs (HMRC) requires precise documentation. Your Commercial Invoice must contain:
+                    If your consignment includes agricultural produce, seeds, timber, or dried food:
                   </p>
                   <ul className="text-xs text-gray-600 list-disc list-inside space-y-1 pl-2">
-                    <li>Detailed, unambiguous product descriptions (not generic "clothing" or "provisions").</li>
-                    <li>6-digit or 8-digit international <strong>Harmonized System (HS) tariff classification codes</strong>.</li>
-                    <li>Country of origin declaration: "Goods originate in Nigeria".</li>
-                    <li>Unit quantities, net and gross weights, currency (GBP or USD), and Incoterms (e.g. DAP - Delivered at Place).</li>
-                  </ul>
-                </div>
-
-                <div className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h3 className="font-bold text-secondary text-base mb-2 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">4</span>
-                    Statutory Product Quality &amp; Phytosanitary Certifications
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed mb-2">
-                    Depending on your export commodity, Nigerian regulatory agencies require inspection certificates:
-                  </p>
-                  <ul className="text-xs text-gray-600 list-disc list-inside space-y-1 pl-2">
-                    <li><strong>Agricultural produce &amp; plants:</strong> Phytosanitary Certificate issued by the Nigeria Agricultural Quarantine Service (NAQS).</li>
-                    <li><strong>Processed foods &amp; cosmetics:</strong> Certificate of Quality / Export Clearance from NAFDAC.</li>
-                    <li><strong>Manufactured goods:</strong> Standard Organisation of Nigeria (SON) conformity certification.</li>
-                  </ul>
-                </div>
-
-                <div className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h3 className="font-bold text-secondary text-base mb-2 flex items-center gap-2">
-                    <span className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">5</span>
-                    UK Importer Clearance: GB EORI &amp; Customs Declaration Service (CDS)
-                  </h3>
-                  <p className="text-sm text-gray-700 leading-relaxed">
-                    Your UK customer or business entity must be registered with HMRC:
-                  </p>
-                  <ul className="text-xs text-gray-600 list-disc list-inside space-y-1 pl-2 mt-2">
-                    <li>A <strong>GB EORI number</strong> is mandatory to clear goods through UK border controls.</li>
-                    <li>UK customs clearance is processed electronically through the HMRC Customs Declaration Service (CDS).</li>
-                    <li>Standard UK VAT (20%) is assessed unless the item is zero-rated (such as most essential human food items and children's apparel).</li>
+                    <li><strong>Nigeria Agricultural Quarantine Service (NAQS):</strong> Inspects agricultural goods to ensure freedom from quarantine pests, issuing an official NAQS Phytosanitary Certificate.</li>
+                    <li><strong>Federal Ministry of Industry, Trade and Investment (FMITI):</strong> Issues the Federal Certificate of Origin and Export Quality Certificates where applicable.</li>
                   </ul>
                 </div>
               </div>
             </section>
 
-            {/* Section 3: Shipping Modes Comparison */}
+            {/* Section 2: UK DCTS */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-secondary">
-                3. Choosing the Right Freight Option: Air vs Sea Freight
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
+                <DollarSign className="w-6 h-6 text-emerald-600" /> 2. UK Import Tariffs: Maximising the UK DCTS Scheme
               </h2>
+              <p className="text-gray-700">
+                Following the United Kingdom departure from the European Union, the British government established the <strong>Developing Countries Trading Scheme (DCTS)</strong> in June 2023, offering one of the most generous trade preference schemes in the world.
+              </p>
+              <div className="p-5 bg-emerald-50 border border-emerald-200 rounded-xl space-y-2">
+                <h4 className="font-bold text-emerald-950 text-sm">Key Advantages of the UK DCTS for Nigerian Exporters:</h4>
+                <ul className="text-xs text-emerald-900 space-y-2 list-disc list-inside">
+                  <li><strong>0% Customs Duty (Duty-Free Access):</strong> Over 85% of tariff lines enter the UK tariff-free. This includes agricultural commodities such as cocoa beans, sesame seeds, cashew nuts, ginger, shea butter, and natural gum, as well as manufactured garments and fashion accessories.</li>
+                  <li><strong>Simplified Rules of Origin:</strong> Exporters must ensure their commercial invoice clearly declares the country of origin as Nigeria (<code>Origin: Nigeria</code>) and references DCTS qualifying criteria.</li>
+                  <li><strong>Value Added Tax (VAT):</strong> Even when customs duty is 0%, standard UK import VAT (20%) applies to most taxable commercial goods unless the product is zero-rated (such as most staple human foodstuffs, books, and children clothes).</li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Section 3: Food Products Compliance */}
+            <section className="space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
+                <FileCheck className="w-6 h-6 text-primary" /> 3. Shipping Food Products: Legal vs Strictly Prohibited Items
+              </h2>
+              <p className="text-gray-700">
+                The United Kingdom enforces rigorous biosecurity and public health standards overseen by the <strong>Department for Environment, Food &amp; Rural Affairs (DEFRA)</strong> and the <strong>Food Standards Agency (FSA)</strong>.
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
-                <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl">
-                  <h3 className="font-bold text-secondary text-base mb-1 flex items-center gap-2">
-                    <Plane className="w-5 h-5 text-primary" /> Commercial Air Freight (Recommended)
+                <div className="p-5 bg-emerald-50 border border-emerald-200 rounded-xl">
+                  <h3 className="font-bold text-emerald-950 text-base mb-2 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Permitted Food Items (Dry &amp; Vacuum-Packed)
                   </h3>
-                  <p className="text-xs text-gray-500 mb-3">Best for: Fashion, beauty, food samples, urgent orders</p>
-                  <ul className="text-xs text-gray-700 space-y-1.5 list-disc list-inside">
-                    <li><strong>Transit:</strong> 3–5 working days (Express) | 5–7 days (Standard)</li>
-                    <li><strong>Minimum:</strong> 10kg for standard cargo (no minimum for express)</li>
-                    <li><strong>Risk:</strong> Minimal risk of moisture damage or insect contamination</li>
-                    <li><strong>Arrival:</strong> London Heathrow, Liverpool Hub, or doorstep delivery</li>
+                  <p className="text-xs text-emerald-800 mb-3">Allowed when completely dehydrated, commercially sealed, and labeled:</p>
+                  <ul className="text-xs text-emerald-900 space-y-1.5 list-disc list-inside">
+                    <li><strong>Dried Vegetables:</strong> Bitter leaf, scent leaf, ukazi, utazi, and fluted pumpkin (ugwu)—thoroughly oven-dehydrated.</li>
+                    <li><strong>Ground Spices:</strong> Crayfish (finely blended and vacuum-sealed), dry pepper, uziza seeds, ehuru, locust beans (iru/dawadawa).</li>
+                    <li><strong>Tubers &amp; Flours:</strong> Yam flour (elubo), plantain flour, cassava flour, packaged garri (ijebu and white).</li>
+                    <li><strong>Seeds &amp; Melons:</strong> Egusi (peeled and dry), ogbono, sesame seeds, cashew nuts, roasted groundnuts.</li>
+                    <li><strong>Smoked &amp; Dried Fish:</strong> Mangala, stockfish, and catfish—provided zero moisture content and commercially heat-sealed.</li>
                   </ul>
                 </div>
 
-                <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl">
-                  <h3 className="font-bold text-secondary text-base mb-1 flex items-center gap-2">
-                    <Scale className="w-5 h-5 text-amber-600" /> Commercial Sea Freight (FCL / LCL)
+                <div className="p-5 bg-rose-50 border border-rose-200 rounded-xl">
+                  <h3 className="font-bold text-rose-950 text-base mb-2 flex items-center gap-2">
+                    <XCircle className="w-5 h-5 text-rose-600" /> Strictly Prohibited &amp; Restricted Items
                   </h3>
-                  <p className="text-xs text-gray-500 mb-3">Best for: Bulk raw commodities, heavy machinery, furniture</p>
-                  <ul className="text-xs text-gray-700 space-y-1.5 list-disc list-inside">
-                    <li><strong>Transit:</strong> 4 to 8 weeks port-to-port</li>
-                    <li><strong>Minimum:</strong> 1 CBM (Cubic Meter) or full container load</li>
-                    <li><strong>Risk:</strong> Extended sea voyage requires specialized silica desiccant bags</li>
-                    <li><strong>Arrival:</strong> Felixstowe, Southampton, or Tilbury Port</li>
+                  <p className="text-xs text-rose-800 mb-3">Will be seized and incinerated immediately by UK Border Force:</p>
+                  <ul className="text-xs text-rose-900 space-y-1.5 list-disc list-inside">
+                    <li><strong>Fresh or Uncooked Meat:</strong> Beef, goat meat, poultry, pork, bushmeat, suya, or kilishi without certified commercial sterilization.</li>
+                    <li><strong>Dairy Products:</strong> Unpasteurised milk, fresh cheeses, or butter made from raw animal dairy.</li>
+                    <li><strong>Fresh Perishables:</strong> Fresh oranges, mangoes, garden eggs, fresh pepper, or yams with raw soil attached.</li>
+                    <li><strong>Controlled Substances:</strong> Unlabeled traditional herbal concoctions (agbo), unsealed liquids, or unverified bark powders.</li>
                   </ul>
                 </div>
               </div>
             </section>
 
-            {/* Section 4: Common Commercial Export Pitfalls */}
-            <section className="p-6 bg-red-50 border-2 border-red-200 rounded-2xl not-prose space-y-3">
-              <h3 className="text-xl font-bold text-red-950 flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-red-600" /> 4 Costly Mistakes Made by Nigerian Exporters
-              </h3>
-              <ul className="text-sm text-red-900 space-y-2 list-disc list-inside">
-                <li><strong>Vague Invoicing:</strong> Invoicing items simply as "African wares" or "Merchandise" results in immediate Border Force holds and penalties.</li>
-                <li><strong>Attempting to Export Dried Beans:</strong> Commercial shipments of beans without official laboratory pesticide residue certificates will be seized and incinerated.</li>
-                <li><strong>Inadequate Packaging:</strong> Using single-wall cartons that collapse under stacking pressure during international handling.</li>
-                <li><strong>Ignoring UK VAT Thresholds:</strong> Failing to agree with the UK consignee whether freight is shipped DAP (buyer pays import duties/VAT) or DDP (sender pays).</li>
-              </ul>
-            </section>
-
-            {/* Section 5: Why Partner With County Cargo */}
+            {/* Section 4: Service Level Comparison Table */}
             <section className="space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-secondary">
-                Why Nigerian Commercial Exporters Choose County Cargo
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
+                <Plane className="w-6 h-6 text-primary" /> 4. County Cargo Service Levels: Nigeria to the UK
               </h2>
-              <p className="text-gray-700 text-sm sm:text-base">
-                County Cargo acts as your complete export department in Nigeria and your logistics partner in the UK:
+              <p className="text-gray-700">
+                County Cargo operates scheduled commercial air logistics, courier services, and direct air freight lanes connecting Lagos (Murtala Muhammed International Airport) and Abuja (Nnamdi Azikiwe International Airport) directly with London Heathrow and our Liverpool UK Distribution Depot.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
-                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <h4 className="font-bold text-secondary text-sm">✓ Documentation Vetting</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    We review your invoices, packing lists, and HS codes before cargo leaves Nigeria to ensure 100% compliance.
-                  </p>
+
+              <div className="overflow-x-auto border border-gray-200 rounded-xl shadow-2xs not-prose">
+                <table className="w-full text-left text-xs sm:text-sm text-gray-700">
+                  <thead className="bg-slate-900 text-white font-semibold">
+                    <tr>
+                      <th className="p-3">Feature</th>
+                      <th className="p-3">Value Shipping (Air Cargo)</th>
+                      <th className="p-3">Express Shipping (Priority)</th>
+                      <th className="p-3">Special Express (48-Hour)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Ideal For</td>
+                      <td className="p-3">Bulk commercial cargo, large boxes, personal effects, dry foodstuffs</td>
+                      <td className="p-3">Fast commercial samples, ecommerce parcels, urgent inventory</td>
+                      <td className="p-3">Critical documents, time-sensitive medical products, VIP cargo</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Transit Time</td>
+                      <td className="p-3 font-bold text-primary">5 to 10 working days</td>
+                      <td className="p-3 font-bold text-primary">3 to 5 working days</td>
+                      <td className="p-3 font-bold text-amber-600">48-Hour Flight Schedule</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Minimum Weight</td>
+                      <td className="p-3">10 kg</td>
+                      <td className="p-3">0.5 kg</td>
+                      <td className="p-3">1 kg</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Origin Depots</td>
+                      <td className="p-3">Lagos Hub (Ladipo-Oshodi) &amp; Abuja (Wuye Market)</td>
+                      <td className="p-3">Nationwide Doorstep Collection or Hubs</td>
+                      <td className="p-3">Direct Lagos / Abuja Airport Express</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">UK Destination</td>
+                      <td className="p-3">London, Manchester, Birmingham, Nationwide UK</td>
+                      <td className="p-3">Nationwide UK Doorstep Delivery</td>
+                      <td className="p-3">Direct London Heathrow Clearance</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Tracking</td>
+                      <td className="p-3">Milestone tracking updates</td>
+                      <td className="p-3">Real-time global courier tracking</td>
+                      <td className="p-3">Priority real-time dispatch alerts</td>
+                    </tr>
+                    <tr className="hover:bg-slate-50">
+                      <td className="p-3 font-semibold text-gray-900">Customs Handover</td>
+                      <td className="p-3">Consolidated clearance included</td>
+                      <td className="p-3">Express priority clearance</td>
+                      <td className="p-3">Top direct priority flight connection</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Section 5: Step-by-Step Export Checklist */}
+            <section className="space-y-6">
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary flex items-center gap-2">
+                <Layers className="w-6 h-6 text-primary" /> 5. Step-by-Step Export Checklist: From Warehouse to UK Doorstep
+              </h2>
+              <div className="space-y-4 not-prose">
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">Confirm Product Eligibility &amp; HS Code Classification</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Verify that your items are permitted under UK DEFRA/HMRC guidelines and assign the correct 6-digit to 10-digit Harmonized System (HS) code for 0% DCTS preferential tariff treatment.</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <h4 className="font-bold text-secondary text-sm">✓ Industrial Packaging &amp; Sealing</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    We provide export-grade palletising, vacuum sealing for dry foodstuffs, strapping, and heavy-duty boxing in Lagos.
-                  </p>
+
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">Industrial Packaging &amp; Vacuum Sealing</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Vacuum-pack organic food items, wrap fragile goods with high-density bubble wrap, and pack into certified heavy-duty 5-ply export cartons rated for international air transit.</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <h4 className="font-bold text-secondary text-sm">✓ UK Receiving Depot (Liverpool L1 0BG)</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Your UK commercial customers can collect directly from our warehouse or receive tracked pallet/parcel distribution.
-                  </p>
+
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">Complete Commercial Invoice &amp; Packing List</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Generate clear, unambiguous documentation detailing itemized product descriptions, declared values in GBP/USD, origin declarations, and complete consignee contact details.</p>
+                  </div>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200">
-                  <h4 className="font-bold text-secondary text-sm">✓ Competitive Commercial Cargo Rates</h4>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Discounted volumetric freight rates for recurring B2B exporters, fashion ateliers, and retail aggregators.
-                  </p>
+
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">Drop Off or Request Doorstep Collection</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Hand over your consignment at County Cargo Lagos Hub (Ladipo-Oshodi Plaza) or Abuja Hub (Wuye Ultra Modern Market). Alternatively, schedule certified doorstep collection across Nigeria.</p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">5</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">Export Inspection &amp; Scheduled Flight Dispatch</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Consignments undergo mandatory Nigerian export security screening and customs manifest verification before departing on scheduled direct air cargo flights to London.</p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex gap-3">
+                  <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">6</span>
+                  <div>
+                    <h4 className="font-bold text-gray-900 text-sm">UK Customs Clearance &amp; Doorstep Delivery</h4>
+                    <p className="text-xs text-gray-600 mt-0.5">Cleared through HMRC CDS at London Heathrow and routed through our Liverpool logistics depot (Queens Dock, L1 0BG) for final doorstep delivery nationwide across England, Scotland, Wales, and Northern Ireland.</p>
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* CTAs */}
-            <div className="p-6 bg-blue-900 text-white rounded-2xl text-center space-y-4">
-              <h3 className="text-xl sm:text-2xl font-bold">Launch Your Commercial UK Export Pipeline</h3>
+            {/* Section 6: Actionable CTAs */}
+            <div className="p-8 bg-gradient-to-r from-blue-950 via-slate-900 to-blue-900 text-white rounded-2xl text-center space-y-5 shadow-md not-prose">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                <Truck className="w-3.5 h-3.5" /> Ready to Ship to the UK?
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold hero-text-glow">Start Your Nigeria-to-UK Export Consignment</h3>
               <p className="text-sm text-blue-100 max-w-xl mx-auto">
-                Speak directly with our trade compliance managers in Lagos, Abuja, or the UK to structure your export documentation and book scheduled air freight.
+                Get an instant quote with our central rate calculator, book online in minutes, or connect directly with our international trade compliance team.
               </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-2">
-                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/shipping-from-nigeria-to-uk">Book Commercial Cargo</Link>
+              <div className="flex flex-wrap justify-center gap-4 pt-2">
+                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-2.5">
+                  <Link href="/#quote-calculator">
+                    <Calculator className="w-4 h-4 mr-2" /> Calculate Shipping Rates
+                  </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
+                <Button asChild variant="outline" className="border-white/40 text-white hover:bg-white/10 font-bold px-6 py-2.5">
+                  <a href="https://ship.countycargo.com/login" target="_blank" rel="noopener noreferrer">
+                    <PackageCheck className="w-4 h-4 mr-2" /> Book Consignment Online
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="border-emerald-400/50 text-emerald-300 hover:bg-emerald-500/10 font-bold px-6 py-2.5">
                   <a
-                    href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20need%20assistance%20with%20commercial%20export%20from%20Nigeria%20to%20the%20UK"
+                    href="https://wa.me/447883309489?text=Hello%20County%20Cargo%2C%20I%20need%20assistance%20with%20commercial%20export%20from%20Nigeria%20to%20the%20UK"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -510,7 +527,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
               </div>
             </div>
 
-            <SocialShare title="How to Export Goods From Nigeria to the UK: Complete Commercial Guide | County Cargo" />
+            <SocialShare title="Exporting Goods From Nigeria to the UK: The Complete 2026 Guide | County Cargo" />
 
             <RelatedGuides currentHref="/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide" />
           </div>
@@ -521,7 +538,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 mb-6">
               <HelpCircle className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-secondary">Frequently Asked Questions: Commercial Nigeria to UK Export</h2>
+              <h2 className="text-2xl font-bold text-secondary">Frequently Asked Questions: Nigeria to UK Export</h2>
             </div>
             <Accordion type="single" collapsible className="w-full bg-white rounded-xl border border-gray-200 p-4 shadow-2xs">
               {guideFaqs.map((faq, index) => (
