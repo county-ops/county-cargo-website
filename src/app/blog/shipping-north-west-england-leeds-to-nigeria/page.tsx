@@ -29,7 +29,7 @@ import { SHIPPING_TIMEFRAMES } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Shipping From North West England and Leeds to Nigeria | County Cargo',
   description:
-    'Send air and sea cargo from Liverpool, Manchester, Preston, Leeds and surrounding areas to Nigeria with County Cargo. Fast air cargo in 5 to 10 working days & sea freight.',
+    'Send air and sea cargo from Liverpool, Manchester, Preston, Leeds and surrounding areas to Nigeria with County Cargo. Fast air cargo in 5–10 working days & sea freight.',
   keywords:
     'Shipping from North West England to Nigeria, cargo from Preston to Nigeria, shipping from Leeds to Nigeria, Liverpool to Nigeria cargo, Manchester to Nigeria shipping, air cargo to Nigeria, sea cargo to Nigeria',
   alternates: {

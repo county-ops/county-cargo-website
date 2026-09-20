@@ -25,7 +25,7 @@ const leedsFaqs = [
   },
   {
     question: 'What is the air freight rate from Leeds to Lagos?',
-    answer: 'Standard air freight starts at £6.00/kg (1kg minimum) plus £15 handling per shipment, delivering in 5 to 10 working days.',
+    answer: 'Standard air freight starts at £6.00/kg (1kg minimum) plus £15 handling per shipment, delivering in 5–10 working days.',
   },
 ];
 

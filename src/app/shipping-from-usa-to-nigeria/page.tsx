@@ -65,7 +65,7 @@ const usaFaqs = [
   {
     question: 'How long does shipping from the USA to Nigeria take?',
     answer:
-      'Air freight takes roughly 5 to 10 working days door-to-door from flight departure. Sea freight takes roughly 6 to 8 weeks from vessel departure at US port to customs clearance in Lagos (Apapa/Tin Can) and onward delivery.',
+      'Air freight takes roughly 5–10 working days door-to-door from flight departure. Sea freight takes roughly 6 to 8 weeks from vessel departure at US port to customs clearance in Lagos (Apapa/Tin Can) and onward delivery.',
   },
   {
     question: 'Where is your US warehouse located for drop-offs?',
@@ -434,7 +434,7 @@ export default function ShippingFromUsaToNigeriaPage() {
                 Air Freight or Sea Freight?
               </h2>
               <p className="text-gray-700 text-base leading-relaxed">
-                Air freight takes roughly <strong>5 to 10 working days</strong> and suits anything
+                Air freight takes roughly <strong>5–10 working days</strong> and suits anything
                 urgent, high-value or light. Sea freight takes roughly <strong>6 to 8 weeks</strong> and
                 is the right answer for volume — furniture, building materials, anything heavy where the
                 clock matters less than the cost.

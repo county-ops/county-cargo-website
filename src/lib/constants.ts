@@ -2,8 +2,8 @@
  * County Cargo Shipping Timeframes Central Source of Truth
  */
 export const SHIPPING_TIMEFRAMES = {
-  /** Approved standard air cargo timeframe: 5 to 10 working days */
-  STANDARD_AIR: '5 to 10 working days',
+  /** Approved standard air cargo timeframe: 5–10 working days */
+  STANDARD_AIR: '5–10 working days',
   /** Approved standard air cargo short format */
   STANDARD_AIR_SHORT: '5–10 working days',
   /** Approved standard air cargo short days format */

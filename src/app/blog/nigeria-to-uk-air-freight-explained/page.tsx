@@ -106,7 +106,7 @@ export default function NigeriaToUkAirFreightExplainedPage() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Answer: How Does Nigeria to UK Air Freight Work?
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air freight from Nigeria to the UK is the fastest and most secure method for sending personal luggage, authentic foodstuffs, documents, and commercial merchandise. Standard air cargo takes 5 to 10 working days, while express air courier delivers in 3 to 5 working days. Packages are received at hubs in Lagos or Abuja, screened and weighed, flown to London Heathrow or Manchester Airport, cleared through HMRC customs, and delivered directly to the recipient’s UK doorstep or Liverpool collection depot.
+                Air freight from Nigeria to the UK is the fastest and most secure method for sending personal luggage, authentic foodstuffs, documents, and commercial merchandise. Standard air cargo takes 5–10 working days, while express air courier delivers in 3 to 5 working days. Packages are received at hubs in Lagos or Abuja, screened and weighed, flown to London Heathrow or Manchester Airport, cleared through HMRC customs, and delivered directly to the recipient’s UK doorstep or Liverpool collection depot.
               </p>
             </div>
 

@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'How long does air cargo take from Lagos to Houston or Atlanta?',
     answer:
-      'Standard air freight takes 5 to 10 working days from Lagos to major US airport hubs, while Express Air Courier (via DHL) delivers in 3 to 5 working days.',
+      'Standard air freight takes 5–10 working days from Lagos to major US airport hubs, while Express Air Courier (via DHL) delivers in 3 to 5 working days.',
   },
 ];
 

@@ -160,7 +160,7 @@ const faqs = [
   {
     question: 'How long does shipping from the UK to Nigeria take?',
     answer:
-      'Express air courier delivers in 3 to 5 working days. Standard consolidated air cargo takes 5 to 10 working days following our weekly flight consolidation cut-off. Sea freight shipping takes approximately 4 to 8 weeks from vessel sailing in the UK to port clearance and distribution in Nigeria.',
+      'Express air courier delivers in 3 to 5 working days. Standard consolidated air cargo takes 5–10 working days following our weekly flight consolidation cut-off. Sea freight shipping takes approximately 4 to 8 weeks from vessel sailing in the UK to port clearance and distribution in Nigeria.',
   },
   {
     question: 'Which Nigerian cities does County Cargo serve?',

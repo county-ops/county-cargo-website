@@ -118,7 +118,7 @@ export default function ShippingFromLondonToLagosPost() {
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Direct Answer: Shipping from London to Lagos
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Standard air cargo from London to Lagos costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 10 working days</strong>. Express Air Courier delivers urgent parcels in <strong>3 to 5 working days</strong>. Consignments clear customs at Murtala Muhammed International Airport (LOS) and can be picked up at our central Ladipo-Oshodi dispatch hub or delivered to your door in Lagos.
+                Standard air cargo from London to Lagos costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5–10 working days</strong>. Express Air Courier delivers urgent parcels in <strong>3 to 5 working days</strong>. Consignments clear customs at Murtala Muhammed International Airport (LOS) and can be picked up at our central Ladipo-Oshodi dispatch hub or delivered to your door in Lagos.
               </p>
             </div>
 

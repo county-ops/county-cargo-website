@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'How long does air shipping take from Texas/USA to Nigeria?',
     answer:
-      'Air cargo from our Texas receiving hub to Lagos (Murtala Muhammed International Airport) takes 5 to 10 working days, including consolidation, flight transit, and customs clearing.',
+      'Air cargo from our Texas receiving hub to Lagos (Murtala Muhammed International Airport) takes 5–10 working days, including consolidation, flight transit, and customs clearing.',
   },
   {
     question: 'Can I shop online from Amazon, Walmart, or eBay US and ship to Nigeria?',

@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'How long does air freight take to export from Nigeria to the UK?',
     answer:
-      'Air freight from Nigeria to the UK typically takes 3 to 5 business days with our Express Courier service, or 5 to 7 business days with our Standard Air Cargo service. This includes customs processing and scheduled departure from Lagos (LOS) or Abuja (ABV) to London Heathrow or our Liverpool distribution hub.',
+      'Air freight from Nigeria to the UK typically takes 3 to 5 business days with our Express Courier service, or 5–10 working days with our Standard Air Cargo service. This includes customs processing and scheduled departure from Lagos (LOS) or Abuja (ABV) to London Heathrow or our Liverpool distribution hub.',
   },
   {
     question: 'What is the minimum weight for shipping cargo from Nigeria to the UK?',

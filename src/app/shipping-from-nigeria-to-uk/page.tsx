@@ -69,7 +69,7 @@ const faqs = [
   {
     question: 'How long does air cargo shipping take from Nigeria to the UK?',
     answer:
-      'Standard Air Cargo from Nigeria to the UK takes 5 to 10 working days, which includes export consolidation in Lagos, direct transatlantic flight, HMRC customs clearance, and UK distribution. Express Air Courier (for urgent documents and parcels) takes 3 to 5 working days for doorstep delivery across London, Manchester, Birmingham, and Liverpool.',
+      'Standard Air Cargo from Nigeria to the UK takes 5–10 working days, which includes export consolidation in Lagos, direct transatlantic flight, HMRC customs clearance, and UK distribution. Express Air Courier (for urgent documents and parcels) takes 3 to 5 working days for doorstep delivery across London, Manchester, Birmingham, and Liverpool.',
   },
   {
     question: 'What authentic Nigerian food items can I legally ship to the UK?',

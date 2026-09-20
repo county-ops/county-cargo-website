@@ -147,7 +147,7 @@ const faqs = [
   {
     question: 'How long does air freight take from the UK to Nigeria with County Cargo?',
     answer:
-      'County Cargo operates weekly consolidations with standard air freight delivering to Lagos and Abuja within 5 to 10 working days. Express air courier options are also available with arrival in 3 to 5 working days.',
+      'County Cargo operates weekly consolidations with standard air freight delivering to Lagos and Abuja within 5–10 working days. Express air courier options are also available with arrival in 3 to 5 working days.',
   },
   {
     question: 'What happens when my cargo arrives in Nigeria?',

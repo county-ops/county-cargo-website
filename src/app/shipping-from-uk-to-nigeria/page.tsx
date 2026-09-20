@@ -72,7 +72,7 @@ const faqs = [
   {
     question: 'How long does shipping from the UK to Nigeria take?',
     answer:
-      'Delivery times depend on the service selected. Express Air Courier takes 3 to 5 working days for urgent parcels. Standard Air Cargo takes 5 to 10 working days from our weekly Wednesday shipment cut-off. Sea Freight (including shipping barrels, boxes, and commercial containers) takes 4 to 8 weeks from vessel departure to clearance at Lagos ports.',
+      'Delivery times depend on the service selected. Express Air Courier takes 3 to 5 working days for urgent parcels. Standard Air Cargo takes 5–10 working days from our weekly Wednesday shipment cut-off. Sea Freight (including shipping barrels, boxes, and commercial containers) takes 4 to 8 weeks from vessel departure to clearance at Lagos ports.',
   },
   {
     question: 'What is the cost of shipping cargo from the UK to Nigeria?',
@@ -284,7 +284,7 @@ export default function ShippingFromUkToNigeriaPage() {
                   <span>Verified Shipping Rates &amp; Service Summary:</span>
                 </div>
                 <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
-                  Shipping cargo from the UK to Nigeria with County Cargo starts at <strong>£6.00 per kg</strong> for Lagos and <strong>£6.50 per kg</strong> for Abuja (+ £15 handling fee per consignment). Air cargo transit time is <strong>5 to 10 working days</strong> from our weekly consolidation cut-off every Wednesday at 5:00 PM. Drop off free of charge at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Warehouse (L1 0BG)</strong>, or book UK doorstep collection (free across London for air freight 30kg+). Door-to-door delivery covers Lagos, Abuja, Port Harcourt, Kano, and all 36 states with complete customs clearance included.
+                  Shipping cargo from the UK to Nigeria with County Cargo starts at <strong>£6.00 per kg</strong> for Lagos and <strong>£6.50 per kg</strong> for Abuja (+ £15 handling fee per consignment). Air cargo transit time is <strong>5–10 working days</strong> from our weekly consolidation cut-off every Wednesday at 5:00 PM. Drop off free of charge at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Warehouse (L1 0BG)</strong>, or book UK doorstep collection (free across London for air freight 30kg+). Door-to-door delivery covers Lagos, Abuja, Port Harcourt, Kano, and all 36 states with complete customs clearance included.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/15 text-xs sm:text-sm">
                   <div>

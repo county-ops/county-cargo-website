@@ -69,7 +69,7 @@ const lagosFaqs = [
   {
     question: 'How long does shipping from the UK to Lagos take?',
     answer:
-      'Standard Air Cargo arrives in Lagos within 5 to 10 working days from our weekly consolidation cut-off every Wednesday at 5:00 PM. Express Air delivers in 3 to 5 working days, with Special Express available in 48 hours for urgent shipments. Sea cargo shipments take 4 to 8 weeks from vessel departure to clearance at Lagos ports (Apapa / Tin Can).',
+      'Standard Air Cargo arrives in Lagos within 5–10 working days from our weekly consolidation cut-off every Wednesday at 5:00 PM. Express Air delivers in 3 to 5 working days, with Special Express available in 48 hours for urgent shipments. Sea cargo shipments take 4 to 8 weeks from vessel departure to clearance at Lagos ports (Apapa / Tin Can).',
   },
   {
     question: 'Where can I drop off my cargo in the UK for shipment to Lagos?',
@@ -228,7 +228,7 @@ export default function ShippingFromUkToLagosPage() {
                   <span>Key Lagos Shipping Facts &amp; Direct Pricing:</span>
                 </div>
                 <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
-                  Shipping cargo from the United Kingdom to Lagos starts at <strong>£6.00 per kg</strong> plus a <strong>£15 handling fee</strong> per consignment. Transit time is <strong>5 to 10 working days</strong> for standard air cargo, departing weekly after Wednesday 5:00 PM cut-off, and <strong>4 to 8 weeks</strong> for sea freight barrels. Drop off at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Depot (L1 0BG)</strong>, or request doorstep collection across Greater London (free on 30kg+ air cargo) and nationwide. In Lagos, collect free at our <strong>Ladipo-Oshodi Hub</strong> or arrange doorstep delivery anywhere across Lagos Mainland and Island. Full customs clearance is included.
+                  Shipping cargo from the United Kingdom to Lagos starts at <strong>£6.00 per kg</strong> plus a <strong>£15 handling fee</strong> per consignment. Transit time is <strong>5–10 working days</strong> for standard air cargo, departing weekly after Wednesday 5:00 PM cut-off, and <strong>4 to 8 weeks</strong> for sea freight barrels. Drop off at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Depot (L1 0BG)</strong>, or request doorstep collection across Greater London (free on 30kg+ air cargo) and nationwide. In Lagos, collect free at our <strong>Ladipo-Oshodi Hub</strong> or arrange doorstep delivery anywhere across Lagos Mainland and Island. Full customs clearance is included.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/15 text-xs sm:text-sm">
                   <div>

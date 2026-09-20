@@ -20,7 +20,7 @@ const faqItems = [
     },
     {
         question: 'How long does it take to ship from US to Nigeria?',
-        answer: 'Standard shipping typically takes 5 to 10 working days. Delivery times are from when the parcel departs our US warehouse. We are committed to reliable shipping US Nigeria for all your packages.'
+        answer: 'Standard shipping typically takes 5–10 working days. Delivery times are from when the parcel departs our US warehouse. We are committed to reliable shipping US Nigeria for all your packages.'
     },
     {
         question: 'Is my parcel insured when shipping from US to Nigeria?',

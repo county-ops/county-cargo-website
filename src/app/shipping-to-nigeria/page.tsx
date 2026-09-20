@@ -40,7 +40,7 @@ const pillarFaqs = [
   {
     question: 'How long does shipping from the UK and USA to Nigeria take?',
     answer:
-      'Air cargo from the UK takes 5 to 10 working days (3 to 5 working days for Express Air). Air cargo from the USA takes 5 to 10 working days. Sea freight from the UK/USA to Lagos ports (Apapa/Tin Can) takes 4 to 8 weeks.',
+      'Air cargo from the UK takes 5–10 working days (3 to 5 working days for Express Air). Air cargo from the USA takes 5–10 working days. Sea freight from the UK/USA to Lagos ports (Apapa/Tin Can) takes 4 to 8 weeks.',
   },
   {
     question: 'How are cargo shipping charges calculated?',

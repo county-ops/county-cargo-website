@@ -12,7 +12,7 @@ import { SHIPPING_TIMEFRAMES } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'UK to Nigeria Shipping Rates 2026 | Air & Sea Freight Charges',
-  description: 'Official UK to Nigeria shipping rates guide. Standard air cargo from £6.00/kg (+ £15 fee), 5 to 10 working days delivery, sea freight barrels, and Lagos/Abuja door-to-door delivery.',
+  description: 'Official UK to Nigeria shipping rates guide. Standard air cargo from £6.00/kg (+ £15 fee), 5–10 working days delivery, sea freight barrels, and Lagos/Abuja door-to-door delivery.',
   keywords: 'UK to Nigeria shipping rates, air cargo rates UK to Nigeria, shipping cost London to Lagos, £6 per kg cargo Nigeria, sea freight rates Nigeria',
   alternates: {
     canonical: 'https://countycargo.com/blog/cargo-shipping-cost-to-nigeria',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const faqList = [
   {
     question: 'What is the current UK to Nigeria standard air cargo shipping rate?',
-    answer: 'Standard air cargo from the UK to Nigeria costs £6.00 per kilogram with a £15 handling charge per shipment. Delivery takes 5 to 10 working days.',
+    answer: 'Standard air cargo from the UK to Nigeria costs £6.00 per kilogram with a £15 handling charge per shipment. Delivery takes 5–10 working days.',
   },
   {
     question: 'What is the minimum weight requirement for UK to Nigeria air cargo?',

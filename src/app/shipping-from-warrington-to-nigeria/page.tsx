@@ -25,7 +25,7 @@ const warringtonFaqs = [
   },
   {
     question: 'How fast is air cargo from Warrington to Nigeria?',
-    answer: 'Air cargo takes 5 to 10 working days from Warrington collection to doorstep delivery in Lagos or Abuja.',
+    answer: 'Air cargo takes 5–10 working days from Warrington collection to doorstep delivery in Lagos or Abuja.',
   },
 ];
 

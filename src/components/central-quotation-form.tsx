@@ -662,7 +662,7 @@ export function CentralQuotationForm({
                           <li className="flex items-center gap-1.5">
                             <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
                             <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
-                              {isSpecial ? '48-hour scheduled direct flight' : isExpress ? '3 to 5 working days delivery' : '5 to 10 working days transit'}
+                              {isSpecial ? '48-hour scheduled direct flight' : isExpress ? '3 to 5 working days delivery' : '5–10 working days transit'}
                             </span>
                           </li>
                           <li className="flex items-center gap-1.5">

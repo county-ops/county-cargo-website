@@ -177,7 +177,7 @@ export default function ExpressCargoFromNigeriaPage() {
             name: 'Is express cheaper than standard air freight?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'No — express costs more per kilogram because it flies on the next available flight without consolidation queues. It is designed for time-critical consignments. For non-urgent shipments, standard air freight (5 to 10 working days) or sea cargo (4 to 8 weeks) is more economical.',
+              text: 'No — express costs more per kilogram because it flies on the next available flight without consolidation queues. It is designed for time-critical consignments. For non-urgent shipments, standard air freight (5–10 working days) or sea cargo (4 to 8 weeks) is more economical.',
             },
           },
         ],

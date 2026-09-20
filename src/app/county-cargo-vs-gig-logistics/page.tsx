@@ -180,7 +180,7 @@ const faqItems = [
   {
     question: 'How do delivery times compare between County Cargo and GIG Logistics?',
     answer:
-      'County Cargo provides standard air freight delivery to Lagos within 5 to 7 working days, with express air cargo options available in 3 to 5 working days. Outside Lagos (Abuja, Port Harcourt, Kano, etc.), delivery takes 7 to 10 working days. GIG Logistics offers similar air transit times of 5 to 8 working days, but often requires the receiver to travel to a GIG pickup centre unless premium door delivery fees are paid.',
+      'County Cargo provides standard air freight delivery nationwide within 5–10 working days, with express air cargo options available in 3 to 5 working days. GIG Logistics offers air transit times of 5 to 8 working days, but often requires the receiver to travel to a GIG pickup centre unless premium door delivery fees are paid.',
   },
 ];
 

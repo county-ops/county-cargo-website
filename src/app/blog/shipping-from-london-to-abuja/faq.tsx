@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'How long does cargo take to arrive in Abuja from London?',
     answer:
-      'Express Air Courier takes 3 to 5 working days, while Standard Air Cargo arrives in 5 to 10 working days including airport transit and customs clearance.',
+      'Express Air Courier takes 3 to 5 working days, while Standard Air Cargo arrives in 5–10 working days including airport transit and customs clearance.',
   },
   {
     question: 'How does cargo reach Abuja from London?',

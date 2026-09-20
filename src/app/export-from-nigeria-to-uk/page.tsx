@@ -78,7 +78,7 @@ export default function ExportFromNigeriaToUkPage() {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: 'Standard Air Cargo (5–7 Working Days)',
+                name: 'Standard Air Cargo (5–10 working days)',
                 description: 'Economical consolidated air freight for shipments 10kg and above.',
               },
             },
@@ -101,7 +101,7 @@ export default function ExportFromNigeriaToUkPage() {
             '@type': 'HowToStep',
             position: 2,
             name: 'Select Your Shipping Service',
-            text: 'Choose Express Air Courier (3-5 business days, any weight) or Standard Air Cargo (5-7 business days, min 10kg).',
+            text: 'Choose Express Air Courier (3-5 business days, any weight) or Standard Air Cargo (5–10 working days, min 10kg).',
           },
           {
             '@type': 'HowToStep',

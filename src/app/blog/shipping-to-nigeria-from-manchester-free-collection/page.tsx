@@ -159,7 +159,7 @@ export default function ShippingToNigeriaFromManchesterPage() {
         name: 'How long does cargo take to reach Nigeria from Manchester?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Standard air cargo takes 5 to 10 working days from the UK to Nigeria. Sea freight typically takes 4 to 8 weeks door to port, plus customs clearance at the Nigerian end. We will give you a firm estimate against the current sailing schedule when you book.',
+          text: 'Standard air cargo takes 5–10 working days from the UK to Nigeria. Sea freight typically takes 4 to 8 weeks door to port, plus customs clearance at the Nigerian end. We will give you a firm estimate against the current sailing schedule when you book.',
         },
       },
       {

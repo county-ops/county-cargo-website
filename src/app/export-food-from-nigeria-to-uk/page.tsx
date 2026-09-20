@@ -145,7 +145,7 @@ const foodFaqs = [
   {
     question: 'How long does food shipping take from Nigeria to the UK?',
     answer:
-      'With our Express Air Courier service, food cargo arrives in the UK within 3 to 5 business days. Our Standard Consolidated Air Freight service takes 5 to 7 business days from flight departure in Lagos. Both options include UK customs clearance and direct delivery to your address.',
+      'With our Express Air Courier service, food cargo arrives in the UK within 3 to 5 business days. Our Standard Consolidated Air Freight service takes 5–10 working days from flight departure in Lagos. Both options include UK customs clearance and direct delivery to your address.',
   },
   {
     question: 'Can I send food for an African restaurant or grocery shop in the UK?',

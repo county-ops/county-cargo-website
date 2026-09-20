@@ -118,7 +118,7 @@ export default function ShippingFromLondonToAbujaPost() {
                 <CheckCircle2 className="w-4 h-4 text-primary" /> Direct Answer: Shipping from London to Abuja
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Standard air cargo from London to Abuja costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5 to 10 working days</strong>. Express Air Courier delivers urgent packages in <strong>3 to 5 working days</strong>. Cargo flies into Nigeria via direct air routes (cleared at Nnamdi Azikiwe Airport ABV or transferred from airport customs) for pickup at our central Abuja depot (servicing Garki, Wuse, Utako, and Maitama) or FCT door delivery.
+                Standard air cargo from London to Abuja costs <strong>£6.00 per kg</strong> (plus a £15 handling charge per shipment) with delivery in <strong>5–10 working days</strong>. Express Air Courier delivers urgent packages in <strong>3 to 5 working days</strong>. Cargo flies into Nigeria via direct air routes (cleared at Nnamdi Azikiwe Airport ABV or transferred from airport customs) for pickup at our central Abuja depot (servicing Garki, Wuse, Utako, and Maitama) or FCT door delivery.
               </p>
             </div>
 

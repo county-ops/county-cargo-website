@@ -62,7 +62,7 @@ const abujaBlogFaqs = [
   {
     question: 'Why is air freight often better than sea freight for shipping to Abuja?',
     answer:
-      'Because Abuja is an inland capital without a seaport, sea freight must first discharge at Lagos ports (Apapa or Tin Can) and then undergo a 750 km overland road haul to the FCT. Once you factor in road freight costs and handling, small consignments (1 to 2 barrels or boxes under 2 CBM) are often cheaper or practically identical in cost when flown directly into Nnamdi Azikiwe Airport (ABV) in 5 to 10 days.',
+      'Because Abuja is an inland capital without a seaport, sea freight must first discharge at Lagos ports (Apapa or Tin Can) and then undergo a 750 km overland road haul to the FCT. Once you factor in road freight costs and handling, small consignments (1 to 2 barrels or boxes under 2 CBM) are often cheaper or practically identical in cost when flown directly into Nnamdi Azikiwe Airport (ABV) in 5–10 working days.',
   },
   {
     question: 'When does sea freight to Abuja still make financial sense?',

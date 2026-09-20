@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'How many days does standard air shipping take from UK to Nigeria?',
     answer:
-      'Standard air freight from County Cargo UK receiving depots in London or Liverpool to Lagos takes 5 to 10 working days, including customs inspection and door delivery.',
+      'Standard air freight from County Cargo UK receiving depots in London or Liverpool to Lagos takes 5–10 working days, including customs inspection and door delivery.',
   },
   {
     question: 'Is express air shipping faster?',

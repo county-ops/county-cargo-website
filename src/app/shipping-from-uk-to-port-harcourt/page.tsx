@@ -63,7 +63,7 @@ const phFaqs = [
   {
     question: 'How long does shipping from the UK to Port Harcourt take?',
     answer:
-      'Air cargo arrives in Port Harcourt within 5 to 10 working days following our weekly Wednesday consolidation cut-off. Sea freight takes approximately 6 to 8 weeks from vessel departure to clearance at port and final delivery to Port Harcourt addresses.',
+      'Air cargo arrives in Port Harcourt within 5–10 working days following our weekly Wednesday consolidation cut-off. Sea freight takes approximately 6 to 8 weeks from vessel departure to clearance at port and final delivery to Port Harcourt addresses.',
   },
   {
     question: 'Where can I drop off my cargo in the UK?',

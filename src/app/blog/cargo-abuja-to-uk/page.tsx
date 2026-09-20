@@ -122,7 +122,7 @@ export default function CargoAbujaToUkPage() {
             name: 'When should students ship to the UK?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Book collection 3 to 4 weeks before your flight date for sea freight, or 10 to 14 days prior for standard air cargo so that your consignment arrives comfortably after your official move-in date.',
+              text: 'Book collection 3 to 4 weeks before your flight date for sea freight, or 5–10 working days prior for standard air cargo so that your consignment arrives comfortably after your official move-in date.',
             },
           },
           {

@@ -68,7 +68,7 @@ const blogFaqs = [
   {
     question: 'How long does shipping take from the USA to Nigeria?',
     answer:
-      'Air cargo typically delivers within 5 to 10 working days from flight departure. Sea freight takes 6 to 8 weeks door-to-door, including ocean transit across the Atlantic, port discharge in Lagos (Apapa or Tin Can Island), customs inspection, and onward domestic delivery.',
+      'Air cargo typically delivers within 5–10 working days from flight departure. Sea freight takes 6 to 8 weeks door-to-door, including ocean transit across the Atlantic, port discharge in Lagos (Apapa or Tin Can Island), customs inspection, and onward domestic delivery.',
   },
   {
     question: 'Can I send food items and toiletries from the US to Nigeria?',
@@ -197,7 +197,7 @@ export default function HowToShipFromUsaToNigeriaPost() {
                   <tbody className="divide-y divide-gray-200 bg-white">
                     <tr>
                       <td className="px-4 py-3 font-semibold text-gray-900">Transit Duration</td>
-                      <td className="px-4 py-3 text-gray-700">5 to 10 working days</td>
+                      <td className="px-4 py-3 text-gray-700">5–10 working days</td>
                       <td className="px-4 py-3 text-gray-700">6 to 8 weeks</td>
                     </tr>
                     <tr>
@@ -220,7 +220,7 @@ export default function HowToShipFromUsaToNigeriaPost() {
               </div>
 
               <p>
-                Air cargo delivers door to door in <strong>5 to 10 working days</strong>. Sea freight takes approximately <strong>6 to 8 weeks</strong>. For a standard 100 lb box of personal belongings, air freight can easily cost three to four times as much as ocean cargo. Once you understand this dynamic, the choice between them usually makes itself.
+                Air cargo delivers door to door in <strong>5–10 working days</strong>. Sea freight takes approximately <strong>6 to 8 weeks</strong>. For a standard 100 lb box of personal belongings, air freight can easily cost three to four times as much as ocean cargo. Once you understand this dynamic, the choice between them usually makes itself.
               </p>
               <p>
                 If you are planning a route to Lagos, check our dedicated{' '}

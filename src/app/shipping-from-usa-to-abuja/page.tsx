@@ -63,12 +63,12 @@ const abujaFaqs = [
   {
     question: 'Should I choose air freight or sea freight to Abuja?',
     answer:
-      'If you are sending one or two barrels, lightweight boxes, electronics, or urgent goods, air freight is the smarter choice — it flies directly to Abuja in 5 to 10 working days without the expense of an overland transit leg. If you are shipping complete house moves, bulky furniture, industrial machinery, or commercial pallets (over 2 to 3 CBM), sea freight via Lagos still wins comfortably on overall price.',
+      'If you are sending one or two barrels, lightweight boxes, electronics, or urgent goods, air freight is the smarter choice — it flies directly to Abuja in 5–10 working days without the expense of an overland transit leg. If you are shipping complete house moves, bulky furniture, industrial machinery, or commercial pallets (over 2 to 3 CBM), sea freight via Lagos still wins comfortably on overall price.',
   },
   {
     question: 'How long does shipping to Abuja take from the USA?',
     answer:
-      'Direct air cargo reaches Abuja within 5 to 10 working days. Sea freight lands at Lagos (Apapa/Tin Can) within 6 to 8 weeks, clears customs, and then travels overland by dedicated cargo truck to Abuja, which adds roughly 3 to 5 working days.',
+      'Direct air cargo reaches Abuja within 5–10 working days. Sea freight lands at Lagos (Apapa/Tin Can) within 6 to 8 weeks, clears customs, and then travels overland by dedicated cargo truck to Abuja, which adds roughly 3 to 5 working days.',
   },
   {
     question: 'Where can I collect my cargo in Abuja, or do you deliver to my home?',

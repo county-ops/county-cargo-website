@@ -25,7 +25,7 @@ const kanoFaqs = [
   },
   {
     question: 'How long does air shipping take from UK/US to Kano?',
-    answer: 'Air cargo to Kano takes 5 to 10 working days from UK/US receipt to final delivery in Kano.',
+    answer: 'Air cargo to Kano takes 5–10 working days from UK/US receipt to final delivery in Kano.',
   },
 ];
 

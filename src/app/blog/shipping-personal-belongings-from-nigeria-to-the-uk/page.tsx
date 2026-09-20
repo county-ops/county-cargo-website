@@ -106,7 +106,7 @@ export default function ShippingPersonalBelongingsNigeriaToUkPage() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Answer: How to Ship Personal Belongings to the UK?
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Shipping personal effects and excess luggage via air freight with County Cargo is up to 70% cheaper than paying commercial airline excess baggage fees at the airport check-in counter. Items are dropped off at our Lagos (Ladipo-Oshodi) or Abuja (Wuye Market) depot, packed and weighed, flown on scheduled air freighters to London or Manchester, and delivered directly to your UK residence in 5 to 10 working days with full tracking.
+                Shipping personal effects and excess luggage via air freight with County Cargo is up to 70% cheaper than paying commercial airline excess baggage fees at the airport check-in counter. Items are dropped off at our Lagos (Ladipo-Oshodi) or Abuja (Wuye Market) depot, packed and weighed, flown on scheduled air freighters to London or Manchester, and delivered directly to your UK residence in 5–10 working days with full tracking.
               </p>
             </div>
 

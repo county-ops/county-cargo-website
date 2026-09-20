@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'How long does air cargo shipping from Nigeria to France take?',
-    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major French addresses. Standard Air Cargo takes 5 to 10 working days including customs clearance at Paris Charles de Gaulle Airport (CDG).',
+    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major French addresses. Standard Air Cargo takes 5–10 working days including customs clearance at Paris Charles de Gaulle Airport (CDG).',
   },
   {
     question: 'Which cities in France does County Cargo deliver to?',
@@ -140,7 +140,7 @@ export default function ShippingFromNigeriaToFrancePage() {
                 <CheckCircle2 className="w-4 h-4 text-green-400" /> Answer-First Summary: Nigeria to France Export Service
               </h2>
               <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-normal">
-                County Cargo provides reliable air cargo services connecting Lagos and Abuja to Paris Charles de Gaulle (CDG). Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5 to 10 working days. We manage Douane française customs clearance, TVA paperwork, and doorstep delivery across Paris, Lyon, Marseille, Toulouse, Bordeaux, and Lille.
+                County Cargo provides reliable air cargo services connecting Lagos and Abuja to Paris Charles de Gaulle (CDG). Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5–10 working days. We manage Douane française customs clearance, TVA paperwork, and doorstep delivery across Paris, Lyon, Marseille, Toulouse, Bordeaux, and Lille.
               </p>
             </div>
 

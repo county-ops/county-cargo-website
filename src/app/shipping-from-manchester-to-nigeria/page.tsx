@@ -25,7 +25,7 @@ const manchesterFaqs = [
   },
   {
     question: 'How long does air shipping take from Manchester to Lagos?',
-    answer: 'Air cargo collected in Manchester takes 5 to 10 working days to arrive at your recipient’s address in Lagos or Abuja, including customs clearing.',
+    answer: 'Air cargo collected in Manchester takes 5–10 working days to arrive at your recipient’s address in Lagos or Abuja, including customs clearing.',
   },
 ];
 

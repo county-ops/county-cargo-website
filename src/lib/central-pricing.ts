@@ -349,17 +349,17 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `£${valueTotalGbp.toFixed(2)}`,
       currency: 'GBP',
       convertedEstimate: `Approx. ₦${valueNairaApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '5 to 10 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'Full customs clearance included. Doorstep delivery available across all 36 states.',
       features: [
-        '5 to 10 working days transit',
+        '5–10 working days transit',
         `Minimum billable weight: ${valueMinWeight} kg`,
         'Includes export handling & customs clearance',
         'Doorstep delivery or hub collection',
       ],
       bookingUrl: createBookingUrl('value', valueTotalGbp, 'GBP'),
-      whatsAppUrl: createWhatsAppUrl('Value Shipping', `£${valueTotalGbp.toFixed(2)}`, '5 to 10 working days'),
+      whatsAppUrl: createWhatsAppUrl('Value Shipping', `£${valueTotalGbp.toFixed(2)}`, '5–10 working days'),
     });
 
     // 2. Express Shipping (Fast Commercial Air Freight)
@@ -487,17 +487,17 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
       currency: 'NGN',
       convertedEstimate: `Approx. £${valueGbpApprox}`,
-      estimatedDeliveryTime: '5 to 10 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'Consolidated customs processing. Liverpool depot distribution and UK-wide doorstep delivery.',
       features: [
-        '5 to 10 working days transit',
+        '5–10 working days transit',
         `Minimum billable weight: ${valueMinWeight} kg`,
         'Liverpool depot L1 0BG handling',
         'Doorstep delivery to all UK postal codes',
       ],
       bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to UK', `₦${valueTotalNgn.toLocaleString()}`, '5 to 10 working days'),
+      whatsAppUrl: createWhatsAppUrl('Value Export to UK', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
     });
 
     // 2. Express Shipping (DHL Partner Zone Export)
@@ -642,17 +642,17 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
       currency: 'NGN',
       convertedEstimate: `Approx. $${valueUsdApprox}`,
-      estimatedDeliveryTime: '10 to 15 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'Consolidated air freight. 15% additional tariff on declared value applies for certain commercial goods.',
       features: [
-        '10 to 15 working days transit',
+        '5–10 working days transit',
         `Minimum billable weight: ${valueMinWeight} kg`,
         'Doorstep delivery across all 50 US states',
         '15% additional tariff advisory applies',
       ],
       bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to US', `₦${valueTotalNgn.toLocaleString()}`, '10 to 15 working days'),
+      whatsAppUrl: createWhatsAppUrl('Value Export to US', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
     });
 
     // 2. Express Shipping (DHL Partner Zone 3 Export)
@@ -749,17 +749,17 @@ I would like to proceed with booking this shipment.`;
       totalEstimatedPrice: valueTotalNgn,
       formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
       currency: 'NGN',
-      estimatedDeliveryTime: '10 to 14 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'CBSA customs clearance and CFIA dry foodstuffs compliance support included.',
       features: [
-        '10 to 14 working days transit',
+        '5–10 working days transit',
         `Minimum billable weight: ${valueMinWeight} kg`,
         'Service to Toronto, Calgary, Vancouver, Montreal',
         'Doorstep handover across Canadian provinces',
       ],
       bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to Canada', `₦${valueTotalNgn.toLocaleString()}`, '10 to 14 working days'),
+      whatsAppUrl: createWhatsAppUrl('Value Export to Canada', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
     });
 
     // 2. Express Shipping to Canada (DHL Zone 4/8)
@@ -960,11 +960,11 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `$${valueTotalUsd.toFixed(2)}`,
       currency: 'USD',
       convertedEstimate: `Approx. ₦${valueNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '7 to 14 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'Consolidated air cargo with full Nigerian customs clearance included.',
       features: [
-        '7 to 14 working days delivery',
+        '5–10 working days delivery',
         'Minimum billable weight: 1 lb',
         `$${valueRate.toFixed(2)}/lb to ${isLagos ? 'Lagos' : 'Abuja & nationwide'}`,
         'Irving, Texas warehouse intake',
@@ -974,7 +974,7 @@ I would like to proceed with booking this shipment.`;
       whatsAppUrl: createWhatsAppUrl(
         'USA to Nigeria Value Shipping',
         `$${valueTotalUsd.toFixed(2)}`,
-        '7 to 14 working days',
+        '5–10 working days',
         undefined,
         'lb'
       ),
@@ -1016,17 +1016,17 @@ I would like to proceed with booking this shipment.`;
       formattedTotal: `$${valueTotalUsd.toFixed(2)}`,
       currency: 'USD',
       convertedEstimate: `Approx. ₦${valueNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '7 to 14 working days',
+      estimatedDeliveryTime: '5–10 working days',
       trackingAvailability: true,
       customsInformation: 'Consolidated air cargo with Nigerian customs clearance included.',
       features: [
-        '7 to 14 working days delivery',
+        '5–10 working days delivery',
         `Minimum billable weight: ${valueMinWeight} kg`,
         'Toronto depot intake & nationwide pickup',
         'Doorstep delivery across all 36 Nigerian states',
       ],
       bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD'),
-      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '7 to 14 working days'),
+      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '5–10 working days'),
     });
 
     // 2. Express Air Shipping

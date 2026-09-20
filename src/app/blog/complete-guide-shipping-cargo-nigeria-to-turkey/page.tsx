@@ -88,7 +88,7 @@ export default function CompleteGuideShippingTurkeyPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Shipping from Nigeria to Turkey
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo provides fast air freight dispatches from Nigeria to Turkey, connecting Lagos and Abuja to Istanbul Airport (IST). Express air courier delivers in <strong>3 to 5 working days</strong> while standard air cargo takes <strong>5 to 10 working days</strong> to Istanbul, Ankara, Izmir, Bursa, Antalya, and Adana.
+                County Cargo provides fast air freight dispatches from Nigeria to Turkey, connecting Lagos and Abuja to Istanbul Airport (IST). Express air courier delivers in <strong>3 to 5 working days</strong> while standard air cargo takes <strong>5–10 working days</strong> to Istanbul, Ankara, Izmir, Bursa, Antalya, and Adana.
               </p>
             </div>
 

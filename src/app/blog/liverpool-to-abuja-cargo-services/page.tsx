@@ -106,7 +106,7 @@ export default function LiverpoolToAbujaCargoServicesPage() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Answer: How to Send Cargo from Liverpool to Abuja?
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo provides weekly air freight shipping from our Liverpool depot (Unit G6, Queens Dock, L1 0BG) to Abuja. Shipments are flown to Nigeria, cleared through customs, and delivered directly to the recipient’s doorstep across Abuja (Maitama, Wuse 2, Garki, Asokoro, Jabi, Gwarinpa, Kubwa) or made available for pickup at our Abuja office (Shop HF426, Turai Yar'adua Block, Wuye Ultra Modern Market). Delivery transit time is 5 to 10 working days.
+                County Cargo provides weekly air freight shipping from our Liverpool depot (Unit G6, Queens Dock, L1 0BG) to Abuja. Shipments are flown to Nigeria, cleared through customs, and delivered directly to the recipient’s doorstep across Abuja (Maitama, Wuse 2, Garki, Asokoro, Jabi, Gwarinpa, Kubwa) or made available for pickup at our Abuja office (Shop HF426, Turai Yar'adua Block, Wuye Ultra Modern Market). Delivery transit time is 5–10 working days.
               </p>
             </div>
 

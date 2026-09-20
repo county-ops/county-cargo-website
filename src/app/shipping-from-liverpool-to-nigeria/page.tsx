@@ -30,7 +30,7 @@ const liverpoolFaqs = [
   },
   {
     question: 'How fast is air cargo from Liverpool to Lagos or Abuja?',
-    answer: 'Air cargo dispatched from our Liverpool depot arrives in Lagos within 5 to 10 working days, including airport handling and customs clearance.',
+    answer: 'Air cargo dispatched from our Liverpool depot arrives in Lagos within 5–10 working days, including airport handling and customs clearance.',
   },
 ];
 

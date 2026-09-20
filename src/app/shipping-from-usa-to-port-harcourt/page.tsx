@@ -63,7 +63,7 @@ const phUsaFaqs = [
   {
     question: 'How long does shipping from the USA to Port Harcourt take?',
     answer:
-      'Air freight delivers within 5 to 10 working days from flight departure. Sea freight takes approximately 7 to 9 weeks (6 to 8 weeks ocean sailing plus port discharge and line-haul forwarding to Port Harcourt).',
+      'Air freight delivers within 5–10 working days from flight departure. Sea freight takes approximately 7 to 9 weeks (6 to 8 weeks ocean sailing plus port discharge and line-haul forwarding to Port Harcourt).',
   },
   {
     question: 'Where can I drop off goods in the US or ship online orders?',

@@ -104,7 +104,7 @@ export default function ShippingSouthEastNorthWestLondonToNigeriaPost() {
         name: 'How long does shipping from London to Nigeria take?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Standard air cargo from London to Nigeria takes 5 to 10 working days. Express Air Courier takes 3 to 5 working days. Sea cargo takes 4 to 8 weeks.',
+          text: 'Standard air cargo from London to Nigeria takes 5–10 working days. Express Air Courier takes 3 to 5 working days. Sea cargo takes 4 to 8 weeks.',
         },
       },
       {
@@ -430,7 +430,7 @@ export default function ShippingSouthEastNorthWestLondonToNigeriaPost() {
                   step: '4',
                   title: 'Air or Sea Dispatch',
                   description:
-                    'Your cargo is dispatched by your chosen service. Air cargo reaches Nigeria in 5 to 10 working days. Sea cargo takes 4 to 8 weeks.',
+                    'Your cargo is dispatched by your chosen service. Air cargo reaches Nigeria in 5–10 working days. Sea cargo takes 4 to 8 weeks.',
                 },
                 {
                   step: '5',

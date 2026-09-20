@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'How long does air cargo shipping from Nigeria to Canada take?',
-    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major Canadian addresses. Standard Air Freight takes 5 to 10 working days including airport handling and CBSA customs processing in Toronto (YYZ) or Calgary (YYC).',
+    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major Canadian addresses. Standard Air Freight takes 5–10 working days including airport handling and CBSA customs processing in Toronto (YYZ) or Calgary (YYC).',
   },
   {
     question: 'Which cities in Canada does County Cargo deliver to?',
@@ -142,7 +142,7 @@ export default function ShippingFromNigeriaToCanadaPage() {
                 <CheckCircle2 className="w-4 h-4 text-green-400" /> Answer-First Summary: Nigeria to Canada Export Service
               </h2>
               <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-normal">
-                County Cargo provides reliable air shipping services connecting Lagos and Abuja to major Canadian hubs. Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5 to 10 working days. We handle customs declarations, CBSA entry processing, and doorstep distribution across Toronto, Calgary, Vancouver, Ottawa, and Montreal.
+                County Cargo provides reliable air shipping services connecting Lagos and Abuja to major Canadian hubs. Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5–10 working days. We handle customs declarations, CBSA entry processing, and doorstep distribution across Toronto, Calgary, Vancouver, Ottawa, and Montreal.
               </p>
             </div>
 

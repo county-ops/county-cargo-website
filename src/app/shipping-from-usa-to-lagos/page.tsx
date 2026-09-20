@@ -63,7 +63,7 @@ const lagosFaqs = [
   {
     question: 'How long does air and sea cargo take to reach Lagos from the US?',
     answer:
-      'Air freight takes approximately 5 to 10 working days from flight departure at our US consolidation hub to final delivery in Lagos. Sea freight takes approximately 6 to 8 weeks from vessel departure to container discharge and clearing at Apapa or Tin Can Island ports.',
+      'Air freight takes approximately 5–10 working days from flight departure at our US consolidation hub to final delivery in Lagos. Sea freight takes approximately 6 to 8 weeks from vessel departure to container discharge and clearing at Apapa or Tin Can Island ports.',
   },
   {
     question: 'Which areas in Lagos do you deliver to?',
@@ -334,7 +334,7 @@ export default function ShippingFromUsaToLagosPage() {
                       <h3 className="font-bold text-gray-900 text-lg">Air Freight to Lagos</h3>
                     </div>
                     <p className="text-sm text-gray-700">
-                      Approximately <strong>5 to 10 working days</strong> from drop-off at our Irving, TX
+                      Approximately <strong>5–10 working days</strong> from drop-off at our Irving, TX
                       facility to door delivery in Lagos. Flies directly into Murtala Muhammed
                       International Airport (LOS).
                     </p>

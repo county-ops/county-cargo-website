@@ -88,7 +88,7 @@ export default function UsaAirCargoCostDeliveryPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: USA Delivery Options
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Delivery from Nigeria to the US takes <strong>3 to 5 working days</strong> for Express Air Courier (via DHL) and <strong>5 to 10 working days</strong> for Standard Air Cargo. Rates are charged based on volumetric weight or actual weight, whichever is greater.
+                Delivery from Nigeria to the US takes <strong>3 to 5 working days</strong> for Express Air Courier (via DHL) and <strong>5–10 working days</strong> for Standard Air Cargo. Rates are charged based on volumetric weight or actual weight, whichever is greater.
               </p>
             </div>
 

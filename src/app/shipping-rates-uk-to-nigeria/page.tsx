@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const faqList = [
   {
     question: 'How much does standard air freight cost from the UK to Nigeria?',
-    answer: 'Standard air cargo from the UK to Nigeria costs £6.00 per kg plus a £15 handling fee per shipment. Delivery takes 5 to 10 working days.',
+    answer: 'Standard air cargo from the UK to Nigeria costs £6.00 per kg plus a £15 handling fee per shipment. Delivery takes 5–10 working days.',
   },
   {
     question: 'What is the minimum shipping weight for UK to Nigeria air cargo?',

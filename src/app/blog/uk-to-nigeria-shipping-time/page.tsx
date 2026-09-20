@@ -100,7 +100,7 @@ export default function UkToNigeriaShippingTimePost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: UK to Nigeria Timelines
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Shipping from the UK to Nigeria takes <strong>3 to 5 working days</strong> for Express Air Courier, <strong>5 to 10 working days</strong> for Standard Air Freight, and <strong>4 to 8 weeks</strong> for Sea Freight. Timelines include flight/vessel transit, customs clearance, and door delivery in Lagos or Abuja.
+                Shipping from the UK to Nigeria takes <strong>3 to 5 working days</strong> for Express Air Courier, <strong>5–10 working days</strong> for Standard Air Freight, and <strong>4 to 8 weeks</strong> for Sea Freight. Timelines include flight/vessel transit, customs clearance, and door delivery in Lagos or Abuja.
               </p>
             </div>
 

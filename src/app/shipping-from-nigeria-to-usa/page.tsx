@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'How long does air cargo take from Nigeria to the United States?',
-    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major US addresses. Standard Air Cargo takes 5 to 10 working days including US CBP customs clearance in Houston, Atlanta, or New York (JFK).',
+    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major US addresses. Standard Air Cargo takes 5–10 working days including US CBP customs clearance in Houston, Atlanta, or New York (JFK).',
   },
   {
     question: 'Which US cities and states are covered for door delivery?',
@@ -140,7 +140,7 @@ export default function ShippingFromNigeriaToUsaPage() {
                 <CheckCircle2 className="w-4 h-4 text-green-400" /> Answer-First Summary: Nigeria to USA Export Service
               </h2>
               <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-normal">
-                County Cargo operates fast air freight dispatches connecting Lagos and Abuja to major airport gateways in America. Express Air Courier delivers in 3 to 5 working days, while Standard Air Cargo delivers in 5 to 10 working days. We manage US CBP customs clearance, FDA prior notice filing for food, and door delivery across Houston, Dallas, Atlanta, New York, Chicago, Maryland, Washington DC, and New Jersey.
+                County Cargo operates fast air freight dispatches connecting Lagos and Abuja to major airport gateways in America. Express Air Courier delivers in 3 to 5 working days, while Standard Air Cargo delivers in 5–10 working days. We manage US CBP customs clearance, FDA prior notice filing for food, and door delivery across Houston, Dallas, Atlanta, New York, Chicago, Maryland, Washington DC, and New Jersey.
               </p>
             </div>
 

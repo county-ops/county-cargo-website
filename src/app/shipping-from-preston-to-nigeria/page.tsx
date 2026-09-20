@@ -25,7 +25,7 @@ const prestonFaqs = [
   },
   {
     question: 'How long does air cargo take from Preston to Lagos?',
-    answer: 'Air cargo takes 5 to 10 working days from Preston pickup to doorstep delivery in Lagos or Abuja.',
+    answer: 'Air cargo takes 5–10 working days from Preston pickup to doorstep delivery in Lagos or Abuja.',
   },
 ];
 

@@ -82,7 +82,7 @@ const guideFaqs = [
   {
     question: 'How long does shipping take from Lagos or Abuja to London?',
     answer:
-      'Our Special Express (48-Hour) service delivers within 48 hours following direct flight departure. Our Express Shipping courier delivers in 3 to 5 working days, while our economical consolidated Value Air Freight arrives within 5 to 10 working days.',
+      'Our Special Express (48-Hour) service delivers within 48 hours following direct flight departure. Our Express Shipping courier delivers in 3 to 5 working days, while our economical consolidated Value Air Freight arrives within 5–10 working days.',
   },
   {
     question: 'What documents do I need to include with my shipment?',
@@ -400,7 +400,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
                     </tr>
                     <tr className="hover:bg-slate-50">
                       <td className="p-3 font-semibold text-gray-900">Transit Time</td>
-                      <td className="p-3 font-bold text-primary">5 to 10 working days</td>
+                      <td className="p-3 font-bold text-primary">5–10 working days</td>
                       <td className="p-3 font-bold text-primary">3 to 5 working days</td>
                       <td className="p-3 font-bold text-amber-600">48-Hour Flight Schedule</td>
                     </tr>

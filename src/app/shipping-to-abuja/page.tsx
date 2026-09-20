@@ -25,7 +25,7 @@ const abujaFaqs = [
   },
   {
     question: 'How long does air cargo take from London/US to Abuja?',
-    answer: 'Air cargo takes 5 to 10 working days from UK/US receipt to final doorstep delivery in Abuja.',
+    answer: 'Air cargo takes 5–10 working days from UK/US receipt to final doorstep delivery in Abuja.',
   },
 ];
 

@@ -70,7 +70,7 @@ const abujaFaqs = [
   {
     question: 'How long does air freight take from the UK to Abuja?',
     answer:
-      'Standard Air Cargo arrives in Abuja within 5 to 10 working days from flight departure. Our weekly UK consolidation cut-off is every Wednesday at 5:00 PM, with cargo flights departing on Friday.',
+      'Standard Air Cargo arrives in Abuja within 5–10 working days from flight departure. Our weekly UK consolidation cut-off is every Wednesday at 5:00 PM, with cargo flights departing on Friday.',
   },
   {
     question: 'Where is County Cargo’s receiving office and pickup depot in Abuja?',
@@ -223,7 +223,7 @@ export default function ShippingFromUkToAbujaPage() {
                   <span>Key Abuja Shipping Facts &amp; Direct Rates:</span>
                 </div>
                 <p className="text-slate-100 text-sm sm:text-base leading-relaxed">
-                  Shipping air cargo from the United Kingdom to Abuja starts at <strong>£6.50 per kg</strong> plus a <strong>£15 handling fee</strong> per consignment. Transit time is <strong>5 to 10 working days</strong> from flight departure following our weekly consolidation deadline every Wednesday at 5:00 PM. Drop off free of charge at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Warehouse (L1 0BG)</strong>, or book UK doorstep pickup (free across London for air consignments of 30kg+). Qualifying consignments weighing 10kg or more currently receive <strong>100% Free Doorstep Delivery</strong> across Abuja FCT (Wuse, Garki, Maitama, Asokoro, Gwarinpa, Kubwa), or free pickup at our <strong>Wuye Ultra Modern Market Depot</strong>. Full customs clearance is included.
+                  Shipping air cargo from the United Kingdom to Abuja starts at <strong>£6.50 per kg</strong> plus a <strong>£15 handling fee</strong> per consignment. Transit time is <strong>5–10 working days</strong> from flight departure following our weekly consolidation deadline every Wednesday at 5:00 PM. Drop off free of charge at our <strong>London Charlton Depot (SE7 8NF)</strong> or <strong>Liverpool Warehouse (L1 0BG)</strong>, or book UK doorstep pickup (free across London for air consignments of 30kg+). Qualifying consignments weighing 10kg or more currently receive <strong>100% Free Doorstep Delivery</strong> across Abuja FCT (Wuse, Garki, Maitama, Asokoro, Gwarinpa, Kubwa), or free pickup at our <strong>Wuye Ultra Modern Market Depot</strong>. Full customs clearance is included.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-white/15 text-xs sm:text-sm">
                   <div>

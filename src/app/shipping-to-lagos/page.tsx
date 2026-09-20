@@ -25,7 +25,7 @@ const lagosFaqs = [
   },
   {
     question: 'How fast is air cargo delivery to Lagos from the UK/USA?',
-    answer: 'Air cargo arrives at Murtala Muhammed Airport (LOS) and clears customs in 24–48 hours, with doorstep delivery in 5 to 10 working days.',
+    answer: 'Air cargo arrives at Murtala Muhammed Airport (LOS) and clears customs in 24–48 hours, with doorstep delivery in 5–10 working days.',
   },
 ];
 

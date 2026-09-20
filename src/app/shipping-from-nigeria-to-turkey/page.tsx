@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const faqs = [
   {
     question: 'How long does air cargo shipping from Nigeria to Turkey take?',
-    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major Turkish addresses. Standard Air Cargo takes 5 to 10 working days including customs clearance at Istanbul Airport (IST).',
+    answer: 'Express Air Courier (via DHL) takes 3 to 5 working days from Lagos or Abuja to major Turkish addresses. Standard Air Cargo takes 5–10 working days including customs clearance at Istanbul Airport (IST).',
   },
   {
     question: 'Which cities in Turkey does County Cargo deliver to?',
@@ -140,7 +140,7 @@ export default function ShippingFromNigeriaToTurkeyPage() {
                 <CheckCircle2 className="w-4 h-4 text-green-400" /> Answer-First Summary: Nigeria to Turkey Export Service
               </h2>
               <p className="text-sm sm:text-base text-gray-100 leading-relaxed font-normal">
-                County Cargo connects Lagos and Abuja to major trade centers across Turkey. Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5 to 10 working days. We manage Turkish Ministry of Trade customs clearance, commercial sample declarations, and doorstep delivery across Istanbul, Ankara, Izmir, Bursa, Antalya, and Adana.
+                County Cargo connects Lagos and Abuja to major trade centers across Turkey. Express Air Courier delivers within 3 to 5 working days, while Standard Air Cargo delivers within 5–10 working days. We manage Turkish Ministry of Trade customs clearance, commercial sample declarations, and doorstep delivery across Istanbul, Ankara, Izmir, Bursa, Antalya, and Adana.
               </p>
             </div>
 

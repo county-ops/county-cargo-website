@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'How long does air freight take from Lagos to Frankfurt Airport (FRA)?',
     answer:
-      'Air cargo from Lagos or Abuja to Frankfurt Airport (FRA) takes 3 to 5 working days for Express Courier and 5 to 10 working days for Standard Air Freight.',
+      'Air cargo from Lagos or Abuja to Frankfurt Airport (FRA) takes 3 to 5 working days for Express Courier and 5–10 working days for Standard Air Freight.',
   },
 ];
 

@@ -88,7 +88,7 @@ export default function ShippingCostFromNigeriaToCanadaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Answer-First Summary: Nigeria to Canada Shipping Costs
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air shipping costs from Nigeria to Canada are determined by chargeable weight (whichever is greater between actual scale weight and volumetric weight $(L \times W \times H) / 5000$) plus handling and customs processing. Shipments to Toronto, Calgary, and Edmonton carry standard per-kg air freight rates with delivery in 5 to 10 working days.
+                Air shipping costs from Nigeria to Canada are determined by chargeable weight (whichever is greater between actual scale weight and volumetric weight $(L \times W \times H) / 5000$) plus handling and customs processing. Shipments to Toronto, Calgary, and Edmonton carry standard per-kg air freight rates with delivery in 5–10 working days.
               </p>
             </div>
 

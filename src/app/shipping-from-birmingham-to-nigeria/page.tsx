@@ -25,7 +25,7 @@ const birminghamFaqs = [
   },
   {
     question: 'How long does shipping from Birmingham to Lagos take?',
-    answer: 'Standard air cargo takes 5 to 10 working days from Birmingham pickup to doorstep delivery in Lagos or Abuja.',
+    answer: 'Standard air cargo takes 5–10 working days from Birmingham pickup to doorstep delivery in Lagos or Abuja.',
   },
 ];
 

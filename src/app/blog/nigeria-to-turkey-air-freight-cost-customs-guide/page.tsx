@@ -88,7 +88,7 @@ export default function TurkeyAirFreightCostCustomsPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: Turkey Freight Rates &amp; Customs
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                Air freight to Turkey is billed based on chargeable weight (actual vs volumetric weight). Express Air Courier delivers in <strong>3 to 5 working days</strong> while Standard Air Cargo takes <strong>5 to 10 working days</strong>. Commercial goods require clear invoice itemization for Turkish customs clearance.
+                Air freight to Turkey is billed based on chargeable weight (actual vs volumetric weight). Express Air Courier delivers in <strong>3 to 5 working days</strong> while Standard Air Cargo takes <strong>5–10 working days</strong>. Commercial goods require clear invoice itemization for Turkish customs clearance.
               </p>
             </div>
 
