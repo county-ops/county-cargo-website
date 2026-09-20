@@ -233,8 +233,26 @@ export default function Home() {
                 <Link href="https://ship.countycargo.com/login">Create a Free Account</Link>
               </Button>
               <Button asChild size="lg" className="w-full sm:w-auto bg-black/20 text-white font-bold border-2 border-white hover:bg-white hover:text-[#0a2a5e] hover:border-white transition-all duration-300 shadow-xl rounded-md px-8 py-4">
-                <Link href="https://ship.countycargo.com/">Track Shipment</Link>
+                <Link href="/track">Track Shipment</Link>
               </Button>
+            </div>
+
+            {/* Quick Tracking Search Bar */}
+            <div className="mt-8 max-w-md mx-auto">
+              <form action="/track" method="GET" className="flex items-center gap-2 bg-white/95 backdrop-blur-sm p-1.5 rounded-xl shadow-2xl border border-white/40">
+                <input
+                  type="text"
+                  name="number"
+                  placeholder="Enter Invoice or Tracking Number..."
+                  className="flex-1 px-3 py-2 text-sm text-slate-900 bg-transparent focus:outline-none placeholder:text-slate-400 font-medium"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-lg shadow-sm transition-all"
+                >
+                  Track Cargo
+                </button>
+              </form>
             </div>
           </div>
         </section>

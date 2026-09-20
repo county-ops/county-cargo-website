@@ -81,7 +81,7 @@ export function Footer() {
                             <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Hubs</Link></li>
                             <li><Link href="/blog" className="text-primary font-bold hover:underline transition-colors">All Shipping Guides &amp; Blog Index</Link></li>
-                            <li><a href="https://ship.countycargo.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Track Shipment</a></li>
+                            <li><Link href="/track" className="text-gray-400 hover:text-white transition-colors">Track Shipment</Link></li>
                             <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">Route FAQ</Link></li>
                             <li><Link href="/info" className="text-gray-400 hover:text-white transition-colors">Rates &amp; Terms</Link></li>
                         </ul>

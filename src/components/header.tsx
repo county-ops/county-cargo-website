@@ -38,7 +38,7 @@ const navLinks = [
   },
   { href: '/about', label: 'About Us' },
   { href: '/contact', label: 'Contact' },
-  { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
+  { href: '/track', label: 'Track Shipment' },
 ];
 
 export function Header() {
@@ -92,7 +92,7 @@ export function Header() {
         <Link href="/express-export" className="block px-3 py-2 pl-6 text-sm font-semibold text-primary hover:bg-blue-50">Express Export (Worldwide)</Link>
         <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>
         <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
-        <Link href="https://ship.countycargo.com/" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
+        <Link href="/track" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
         
         <div className="border-t border-gray-200 pt-4 pb-2">
             <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
