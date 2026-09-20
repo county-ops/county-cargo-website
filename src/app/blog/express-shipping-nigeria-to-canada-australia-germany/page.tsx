@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg',
+        url: 'https://countycargo.com/images/blog/express-shipping-nigeria-canada-australia-germany.jpg',
         width: 1200,
         height: 675,
         alt: 'Express international delivery from Nigeria to Canada, Australia, and Germany with County Cargo',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     description:
       'Fast international express shipping from Nigeria to Canada, Australia, and Germany. 3–5 days delivery, 1 kg minimum chargeable weight, API rate calculation.',
     images: [
-      'https://countycargo.com/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg',
+      'https://countycargo.com/images/blog/express-shipping-nigeria-canada-australia-germany.jpg',
     ],
   },
 };
@@ -173,7 +173,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
         headline: 'Express Shipping from Nigeria to Canada, Australia & Germany: 2026 Logistics Guide',
         description:
           'County Cargo confirms express shipping to Canada, Australia, and Germany with 3–5 day delivery, 1 kg minimum chargeable weight, API rate calculation, and official customs guidance.',
-        image: 'https://countycargo.com/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg',
+        image: 'https://countycargo.com/images/blog/express-shipping-nigeria-canada-australia-germany.jpg',
         datePublished: '2026-09-20T08:00:00+01:00',
         dateModified: '2026-09-20T08:00:00+01:00',
         author: {
@@ -249,7 +249,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
           {/* Hero Image */}
           <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-10 shadow-lg border border-gray-100">
             <Image
-              src="/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg"
+              src="/images/blog/express-shipping-nigeria-canada-australia-germany.jpg"
               alt="Express shipping parcels from Nigeria delivered to Canada, Australia, and Germany"
               fill
               priority

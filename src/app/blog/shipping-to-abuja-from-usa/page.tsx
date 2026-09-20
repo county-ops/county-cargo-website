@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -49,10 +50,10 @@ export const metadata: Metadata = {
     authors: ['County Cargo Abuja Operations Team'],
     images: [
       {
-        url: 'https://countycargo.com/og-image.jpg',
+        url: 'https://countycargo.com/images/blog/shipping-from-usa-to-abuja-air-freight.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Shipping to Abuja from the USA Guide',
+        height: 675,
+        alt: 'Air cargo terminal and delivery vans at Nnamdi Azikiwe International Airport Abuja',
       },
     ],
   },
@@ -101,6 +102,7 @@ export default function ShippingToAbujaFromUsaPost() {
     headline: 'Shipping to Abuja from the USA: Why Air Freight Often Wins',
     description:
       'Shipping cargo to Abuja from the USA — direct air freight vs sea via Lagos, the overland leg, FCT delivery areas, and how to choose between them.',
+    image: 'https://countycargo.com/images/blog/shipping-from-usa-to-abuja-air-freight.jpg',
     datePublished: '2026-02-10T08:00:00.000Z',
     dateModified: '2026-09-12T05:00:00.000Z',
     author: {
@@ -154,6 +156,18 @@ export default function ShippingToAbujaFromUsaPost() {
               <span>FCT Distribution</span>
             </div>
           </header>
+
+          {/* Featured Hero Image */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-10 shadow-lg border border-gray-100">
+            <Image
+              src="/images/blog/shipping-from-usa-to-abuja-air-freight.jpg"
+              alt="Air cargo terminal and delivery vans at Nnamdi Azikiwe International Airport Abuja"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </div>
 
           <div className="prose prose-blue max-w-none text-gray-800 leading-relaxed space-y-8 text-base sm:text-lg">
             <p>

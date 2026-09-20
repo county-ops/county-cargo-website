@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -49,10 +50,10 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
+        url: 'https://countycargo.com/images/blog/how-to-export-goods-nigeria-to-uk-commercial-guide.jpg',
         width: 1200,
         height: 675,
-        alt: 'Air cargo consignments and customs documentation for Nigeria to UK commercial export shipping',
+        alt: 'Nigeria customs export cargo inspection and commercial cargo consignment for the UK',
       },
     ],
   },
@@ -103,7 +104,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
         headline: 'Exporting Goods From Nigeria to the UK: The Complete 2026 Guide',
         description:
           'Comprehensive step-by-step regulatory handbook for exporting goods from Nigeria to the UK. NEPC exporter registration, Form NXP, UK DCTS zero tariffs, food safety guidelines, and air cargo delivery.',
-        image: 'https://countycargo.com/images/blog/nigeria-export-documents-certification.jpg',
+        image: 'https://countycargo.com/images/blog/how-to-export-goods-nigeria-to-uk-commercial-guide.jpg',
         datePublished: '2026-09-20T08:00:00+01:00',
         dateModified: '2026-09-20T08:00:00+01:00',
         inLanguage: 'en-GB',
@@ -207,6 +208,18 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
         {/* Article Body */}
         <article className="py-12 sm:py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-800 leading-relaxed space-y-10">
+
+            {/* Featured Hero Image */}
+            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+              <Image
+                src="/images/blog/how-to-export-goods-nigeria-to-uk-commercial-guide.jpg"
+                alt="Nigeria customs export cargo inspection and commercial cargo consignment for the UK"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 896px) 100vw, 896px"
+              />
+            </div>
 
             {/* Answer-First Executive Summary */}
             <div className="p-6 bg-blue-50 border-l-4 border-primary rounded-r-2xl not-prose shadow-2xs">

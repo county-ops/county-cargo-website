@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -50,10 +51,10 @@ export const metadata: Metadata = {
     authors: ['County Cargo Logistics Team'],
     images: [
       {
-        url: 'https://countycargo.com/og-image.jpg',
+        url: 'https://countycargo.com/images/blog/how-to-ship-from-usa-to-nigeria-guide.jpg',
         width: 1200,
-        height: 630,
-        alt: 'How to Ship from the USA to Nigeria Guide',
+        height: 675,
+        alt: 'USA to Nigeria air cargo warehouse loading freight cartons for Lagos',
       },
     ],
   },
@@ -102,6 +103,7 @@ export default function HowToShipFromUsaToNigeriaPost() {
     headline: 'How to Ship from the USA to Nigeria in 2026: Costs, Timelines and What Nobody Tells You',
     description:
       'A plain guide to shipping from the USA to Nigeria — air vs sea, real costs, customs duty, what you cannot send, and how to avoid the delays that catch people out.',
+    image: 'https://countycargo.com/images/blog/how-to-ship-from-usa-to-nigeria-guide.jpg',
     datePublished: '2026-01-15T08:00:00.000Z',
     dateModified: '2026-09-12T05:00:00.000Z',
     author: {
@@ -156,6 +158,18 @@ export default function HowToShipFromUsaToNigeriaPost() {
               <span>Verified with Nigeria Customs Service Guidelines</span>
             </div>
           </header>
+
+          {/* Featured Hero Image */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-10 shadow-lg border border-gray-100">
+            <Image
+              src="/images/blog/how-to-ship-from-usa-to-nigeria-guide.jpg"
+              alt="USA to Nigeria air cargo warehouse loading freight cartons for Lagos"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </div>
 
           {/* Body Content */}
           <div className="prose prose-blue max-w-none text-gray-800 leading-relaxed space-y-8 text-base sm:text-lg">

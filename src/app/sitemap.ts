@@ -74,6 +74,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/shipping-from-nigeria-to-the-uk-with-county-cargo',
+    '/blog/shipping-from-nigeria-to-the-usa-with-county-cargo',
+    '/blog/shipping-from-nigeria-to-canada-with-county-cargo',
     '/blog/how-to-ship-from-usa-to-nigeria',
     '/blog/shipping-to-lagos-from-usa',
     '/blog/shipping-to-abuja-from-usa',

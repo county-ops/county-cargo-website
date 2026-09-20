@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -49,10 +50,10 @@ export const metadata: Metadata = {
     authors: ['County Cargo Lagos Operations Team'],
     images: [
       {
-        url: 'https://countycargo.com/og-image.jpg',
+        url: 'https://countycargo.com/images/blog/shipping-from-usa-to-lagos-port-air-cargo.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Shipping to Lagos from the USA Guide',
+        height: 675,
+        alt: 'Air cargo freighter unloading containers at Murtala Muhammed Airport Lagos',
       },
     ],
   },
@@ -101,6 +102,7 @@ export default function ShippingToLagosFromUsaPost() {
     headline: 'Shipping to Lagos from the USA: Ports, Timelines and How to Get Your Cargo Cleared Fast',
     description:
       'Everything you need to know about shipping cargo from the USA to Lagos — Apapa vs Tin Can, realistic transit times, clearance, and delivery across Lagos.',
+    image: 'https://countycargo.com/images/blog/shipping-from-usa-to-lagos-port-air-cargo.jpg',
     datePublished: '2026-02-01T08:00:00.000Z',
     dateModified: '2026-09-12T05:00:00.000Z',
     author: {
@@ -154,6 +156,18 @@ export default function ShippingToLagosFromUsaPost() {
               <span>Lagos Port Operations</span>
             </div>
           </header>
+
+          {/* Featured Hero Image */}
+          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-10 shadow-lg border border-gray-100">
+            <Image
+              src="/images/blog/shipping-from-usa-to-lagos-port-air-cargo.jpg"
+              alt="Air cargo freighter unloading containers at Murtala Muhammed Airport Lagos"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 896px) 100vw, 896px"
+            />
+          </div>
 
           <div className="prose prose-blue max-w-none text-gray-800 leading-relaxed space-y-8 text-base sm:text-lg">
             <p>
