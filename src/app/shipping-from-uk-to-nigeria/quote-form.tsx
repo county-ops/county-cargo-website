@@ -89,8 +89,8 @@ export function UkNigeriaQuoteForm() {
       let details = '';
       const currency = 'GBP';
 
-      const volumetricWeight = (length * width * height) / 5000;
-      const chargeableWeight = Math.max(weight, volumetricWeight);
+      const volumetricWeight = (length > 0 && width > 0 && height > 0) ? (length * width * height) / 5000 : 0;
+      const chargeableWeight = Math.max(weight, volumetricWeight, 1);
 
       if (serviceType === 'standard') {
         const state = nigerianCitiesToStates[to];
@@ -107,7 +107,7 @@ export function UkNigeriaQuoteForm() {
           return;
         }
 
-        const finalChargeableWeight = Math.max(chargeableWeight, statePriceInfo.minWeight);
+        const finalChargeableWeight = Math.max(chargeableWeight, 1);
         const shippingCost = finalChargeableWeight * statePriceInfo.doorToDoor;
         const handlingCharge = 15;
         estimatedCost = shippingCost + handlingCharge;
@@ -118,9 +118,7 @@ Calculation based on Standard Shipping:
 - Rate: £${statePriceInfo.doorToDoor.toFixed(2)}/kg
 - Actual Weight: ${weight.toFixed(2)} kg
 - Volumetric Weight: ${volumetricWeight.toFixed(2)} kg
-- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg
-- Minimum Weight for destination: ${statePriceInfo.minWeight} kg
-- Final Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
+- Chargeable Weight: ${finalChargeableWeight.toFixed(2)} kg
 - Shipping Cost: £${shippingCost.toFixed(2)}
 - Handling Charge: £${handlingCharge.toFixed(2)}
         `.trim();

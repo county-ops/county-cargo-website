@@ -134,7 +134,7 @@ export function UsNigeriaQuoteForm({
 
       const currency = 'USD';
 
-      const volumetricWeightInLbs = (length * width * height) / 5000 * 2.20462;
+      const volumetricWeightInLbs = (length > 0 && width > 0 && height > 0) ? (length * width * height) / 5000 * 2.20462 : 0;
 
       const chargeableWeightInLbs = Math.max(weight, volumetricWeightInLbs);
       

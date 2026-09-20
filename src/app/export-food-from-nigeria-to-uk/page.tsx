@@ -501,7 +501,7 @@ export default function ExportFoodFromNigeriaToUkPage() {
                       <Clock className="w-4 h-4" /> 3 – 5 Working Days
                     </p>
                     <ul className="text-xs text-gray-700 mt-4 space-y-2 list-disc list-inside">
-                      <li>No minimum weight requirement (ideal for 2kg – 10kg parcels)</li>
+                      <li>1 kg minimum chargeable weight (ideal for urgent parcels)</li>
                       <li>Priority handling and fast-track customs clearance</li>
                       <li>Direct door-to-door courier delivery anywhere in the UK</li>
                       <li>Daily dispatch from Lagos (LOS) hub</li>

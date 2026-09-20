@@ -60,7 +60,7 @@ const usaFaqs = [
   {
     question: 'How much does it cost to ship from the USA to Nigeria?',
     answer:
-      'Standard air freight from our Irving, Texas warehouse starts at $5.00 per lb for Lagos and $5.50 per lb for other states including Abuja and Port Harcourt (minimum 5 lbs), with customs clearance included. Sea freight shipping barrels start at $220 to $250 for a standard 55-gallon jumbo drum, and palletised cargo starts from $450 depending on cubic measurement.',
+      'Standard air freight from our Irving, Texas warehouse starts at $5.00 per lb for Lagos and $5.50 per lb for other states including Abuja and Port Harcourt (minimum 1 lb), with customs clearance included. Sea freight shipping barrels start at $220 to $250 for a standard 55-gallon jumbo drum, and palletised cargo starts from $450 depending on cubic measurement.',
   },
   {
     question: 'How long does shipping from the USA to Nigeria take?',
@@ -468,7 +468,7 @@ export default function ShippingFromUsaToNigeriaPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />
-                    <strong>Minimum weight:</strong> 5 lbs (2.3 kg)
+                    <strong>Minimum weight:</strong> 1 lb (0.45 kg)
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-blue-600 shrink-0" />

@@ -26,7 +26,7 @@ const faqList = [
   },
   {
     question: 'What is the minimum weight requirement for UK to Nigeria air cargo?',
-    answer: 'Standard air cargo has a minimum weight requirement of 10 kg. Shipments weighing 10 kg or more qualify for free doorstep delivery in Abuja.',
+    answer: 'Standard air cargo has a minimum chargeable weight of 1 kg. Shipments weighing 10 kg or more qualify for free doorstep delivery in Abuja.',
   },
   {
     question: 'How are volumetric weights calculated for UK to Nigeria shipments?',
@@ -179,7 +179,8 @@ export default function UkToNigeriaShippingRatesPage() {
               Cost Examples for UK Air Cargo
             </h2>
             <ul className="list-disc pl-6 space-y-2 text-gray-700">
-              <li><strong>5 kg parcel:</strong> Minimum 10 kg billing threshold applies (£60 freight + £15 handling = £75 total).</li>
+              <li><strong>1 kg parcel:</strong> £6 freight + £15 handling = <strong>£21 total</strong>.</li>
+              <li><strong>5 kg parcel:</strong> £30 freight + £15 handling = <strong>£45 total</strong>.</li>
               <li><strong>10 kg shipment:</strong> £60 freight + £15 handling = <strong>£75 total</strong> (Includes free delivery to Abuja).</li>
               <li><strong>20 kg shipment:</strong> £120 freight + £15 handling = <strong>£135 total</strong>.</li>
               <li><strong>30 kg shipment:</strong> £180 freight + £15 handling = <strong>£195 total</strong>.</li>

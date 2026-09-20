@@ -29,8 +29,9 @@ export type ShippingCostOutput = z.infer<typeof ShippingCostOutputSchema>;
 
 export async function estimateShippingCost(input: ShippingCostInput): Promise<ShippingCostOutput> {
   // Volumetric weight formula: (Length x Width x Height) / 5000
-  const volumetricWeight = (input.length * input.width * input.height) / 5000;
-  const chargeableWeight = Math.max(input.weight, volumetricWeight);
+  const volumetricWeight = (input.length > 0 && input.width > 0 && input.height > 0) ? (input.length * input.width * input.height) / 5000 : 0;
+  const minWeight = 1; // UK to Nigeria: minimum chargeable weight is 1 kg
+  const chargeableWeight = Math.max(input.weight, volumetricWeight, minWeight);
   
   const baseRatePerKg = 6.50; // GBP per kg
   const freightCost = chargeableWeight * baseRatePerKg;
@@ -44,7 +45,7 @@ export async function estimateShippingCost(input: ShippingCostInput): Promise<Sh
   const details = `Cost Breakdown:
 - Volumetric Weight: ${volumetricWeight.toFixed(2)} kg (${input.length} x ${input.width} x ${input.height} cm / 5000)
 - Actual Weight: ${input.weight.toFixed(2)} kg
-- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg (using the higher of volumetric vs actual weight)
+- Chargeable Weight: ${chargeableWeight.toFixed(2)} kg (higher of actual, volumetric, or 1 kg minimum)
 - Base Air Freight (UK to Nigeria): £${freightCost.toFixed(2)} (£${baseRatePerKg.toFixed(2)}/kg)
 - Handling & Admin Fee: £${handlingFee.toFixed(2)}
 - Local Delivery (${input.to}): £${localDeliveryFee.toFixed(2)}

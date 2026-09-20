@@ -37,16 +37,16 @@ import { SHIPPING_TIMEFRAMES } from '@/lib/constants';
 export const metadata: Metadata = {
   title: 'Express Shipping from Nigeria to Canada, Australia & Germany | County Cargo',
   description:
-    'County Cargo confirms express shipping from Nigeria to Canada, Australia, and Germany. Door-to-door delivery in 3–5 working days, no minimum weight, real-time API quote calculation, and official customs guidance (CBSA, Australian Border Force, German Customs).',
+    'County Cargo confirms express shipping from Nigeria to Canada, Australia, and Germany. Door-to-door delivery in 3–5 working days, 1 kg minimum chargeable weight, real-time API quote calculation, and official customs guidance (CBSA, Australian Border Force, German Customs).',
   keywords:
-    'express shipping Nigeria to Canada, express shipping Nigeria to Australia, express shipping Nigeria to Germany, fast shipping from Nigeria, DHL express Nigeria to Canada, Australia biosecurity shipping from Nigeria, German customs shipping Nigeria, Lagos to Sydney cargo, Abuja to Toronto express delivery, no minimum weight express shipping Nigeria',
+    'express shipping Nigeria to Canada, express shipping Nigeria to Australia, express shipping Nigeria to Germany, fast shipping from Nigeria, DHL express Nigeria to Canada, Australia biosecurity shipping from Nigeria, German customs shipping Nigeria, Lagos to Sydney cargo, Abuja to Toronto express delivery, 1 kg minimum weight express shipping Nigeria',
   alternates: {
     canonical: 'https://countycargo.com/blog/express-shipping-nigeria-to-canada-australia-germany',
   },
   openGraph: {
     title: 'Express Shipping from Nigeria to Canada, Australia & Germany | County Cargo',
     description:
-      'Door-to-door express shipping from Nigeria to Canada, Australia, and Germany in 3–5 working days. Zero minimum weight, live API rate calculation, and official customs compliance.',
+      'Door-to-door express shipping from Nigeria to Canada, Australia, and Germany in 3–5 working days. 1 kg minimum chargeable weight, live API rate calculation, and official customs compliance.',
     url: 'https://countycargo.com/blog/express-shipping-nigeria-to-canada-australia-germany',
     siteName: 'County Cargo',
     images: [
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Express Shipping from Nigeria to Canada, Australia & Germany | County Cargo',
     description:
-      'Fast international express shipping from Nigeria to Canada, Australia, and Germany. 3–5 days delivery, no minimum weight, API rate calculation.',
+      'Fast international express shipping from Nigeria to Canada, Australia, and Germany. 3–5 days delivery, 1 kg minimum chargeable weight, API rate calculation.',
     images: [
       'https://countycargo.com/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg',
     ],
@@ -80,7 +80,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
         serviceType: 'International Express Air Freight & Courier',
         name: 'Express Shipping from Nigeria to Canada, Australia & Germany',
         description:
-          'Door-to-door priority express shipping from Nigeria to Canada, Australia, and Germany in 3–5 working days via DHL Express network. No minimum weight restriction.',
+          'Door-to-door priority express shipping from Nigeria to Canada, Australia, and Germany in 3–5 working days via DHL Express network. 1 kg minimum chargeable weight.',
         provider: {
           '@type': 'MovingCompany',
           name: 'County Cargo',
@@ -120,10 +120,10 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'Does Express shipping from Nigeria to Canada, Australia, and Germany have a minimum weight?',
+            name: 'What is the minimum weight for Express shipping from Nigeria to Canada, Australia, and Germany?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'No. Unlike traditional consolidated sea or air freight, which usually imposes a 10kg to 20kg minimum threshold, County Cargo Express shipping has no minimum weight requirement. You can send lightweight items from 0.5kg upwards, including urgent documents, university transcripts, business contracts, electronics, and small family parcels.',
+              text: 'Unlike traditional consolidated sea or air freight, which imposes a 10kg minimum threshold, County Cargo Express shipping has a low 1 kg minimum chargeable weight. You can send lightweight items starting from 1 kg, including urgent documents, university transcripts, business contracts, electronics, and small family parcels.',
             },
           },
           {
@@ -172,7 +172,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
         '@type': 'BlogPosting',
         headline: 'Express Shipping from Nigeria to Canada, Australia & Germany: 2026 Logistics Guide',
         description:
-          'County Cargo confirms express shipping to Canada, Australia, and Germany with 3–5 day delivery, no minimum weight, API rate calculation, and official customs guidance.',
+          'County Cargo confirms express shipping to Canada, Australia, and Germany with 3–5 day delivery, 1 kg minimum chargeable weight, API rate calculation, and official customs guidance.',
         image: 'https://countycargo.com/images/blog/county-cargo-express-from-nigeria-family-delivery.jpg',
         datePublished: '2026-09-20T08:00:00+01:00',
         dateModified: '2026-09-20T08:00:00+01:00',
@@ -235,7 +235,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
             </h1>
 
             <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed">
-              County Cargo officially confirms door-to-door express shipping from Nigeria to <strong>Canada</strong>, <strong>Australia</strong>, and <strong>Germany</strong>. Enjoy guaranteed <strong>3–5 working day</strong> transit, <strong>no minimum weight restrictions</strong>, real-time API rate calculation, and full compliance with CBSA, Australian Border Force (ABF), and German Customs (Zoll).
+              County Cargo officially confirms door-to-door express shipping from Nigeria to <strong>Canada</strong>, <strong>Australia</strong>, and <strong>Germany</strong>. Enjoy guaranteed <strong>3–5 working day</strong> transit, a <strong>1 kg minimum chargeable weight</strong>, real-time API rate calculation, and full compliance with CBSA, Australian Border Force (ABF), and German Customs (Zoll).
             </p>
 
             <div className="mt-6">
@@ -275,7 +275,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
               </div>
               <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-xs">
                 <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">Minimum Weight</p>
-                <p className="text-xl font-extrabold text-emerald-700 mt-1">None (0.5kg+)</p>
+                <p className="text-xl font-extrabold text-emerald-700 mt-1">1 kg</p>
                 <p className="text-xs text-gray-500 mt-0.5">Documents &amp; parcels</p>
               </div>
               <div className="bg-white p-4 rounded-xl border border-gray-200/80 shadow-xs">
@@ -313,7 +313,7 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong>No Minimum Weight Barrier:</strong> Because these are express priority consignments, <strong>they do not have a minimum weight requirement</strong>. Unlike consolidated cargo requiring 10kg or 20kg, you can send an envelope weighing 0.5kg, a 2kg box of personal effects, or a 50kg commercial shipment. Billing starts from 0.5kg.
+                    <strong>Low 1 kg Minimum Chargeable Weight:</strong> Because these are express priority consignments, the minimum billable weight is just <strong>1 kg</strong> (compared to 10 kg for consolidated cargo). You can send small envelopes, a 2kg box of personal effects, or a 50kg commercial shipment.
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -717,11 +717,11 @@ export default function ExpressNigeriaToCanadaAustraliaGermanyPage() {
             <div className="space-y-4">
               <details className="group border border-gray-200 rounded-xl p-5 bg-white open:bg-gray-50/50 transition">
                 <summary className="font-bold text-gray-900 cursor-pointer flex justify-between items-center list-none">
-                  <span>Is there really no minimum weight for Express shipments?</span>
+                  <span>What is the minimum weight for Express shipments?</span>
                   <span className="text-primary group-open:rotate-180 transition-transform">▼</span>
                 </summary>
                 <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-                  Yes! Standard consolidated freight requires 10kg or 20kg minimum billable weight, but County Cargo Express shipping has <strong>no minimum weight restriction</strong>. You can send lightweight packages starting from 0.5kg (such as documents, certificates, small gifts, electronics, or clothing) without paying for unused weight.
+                  Standard consolidated freight requires a 10kg minimum billable weight, but County Cargo Express shipping features a low <strong>1 kg minimum chargeable weight</strong>. You can send lightweight packages starting from 1 kg (such as documents, certificates, small gifts, electronics, or clothing) without paying for high bulk cargo minimums.
                 </p>
               </details>
 

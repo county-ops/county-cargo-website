@@ -58,7 +58,7 @@ const abujaFaqs = [
   {
     question: 'How much does it cost to ship from the USA to Abuja?',
     answer:
-      'Direct air cargo to Abuja is priced at $5.50 per lb (minimum 5 lbs), including customs clearance at Nnamdi Azikiwe International Airport. Sea freight barrels to Abuja start at $250 per 55-gallon jumbo drum, covering sea freight to Lagos, customs clearance, and secure bonded overland line-haul to the FCT.',
+      'Direct air cargo to Abuja is priced at $5.50 per lb (minimum 1 lb), including customs clearance at Nnamdi Azikiwe International Airport. Sea freight barrels to Abuja start at $250 per 55-gallon jumbo drum, covering sea freight to Lagos, customs clearance, and secure bonded overland line-haul to the FCT.',
   },
   {
     question: 'Should I choose air freight or sea freight to Abuja?',

@@ -17,7 +17,7 @@ const faqs = [
   {
     question: 'What is the minimum weight for shipping cargo from Nigeria to the UK?',
     answer:
-      'Our Standard Nigeria to UK air cargo service has a minimum weight of 10kg. If you have a smaller urgent parcel or documents below 10kg, you can send it using our Express Courier service, which has no minimum weight requirement.',
+      'Our Standard Nigeria to UK air cargo service has a minimum weight of 10kg. If you have a smaller urgent parcel or documents below 10kg, you can send it using our Express Courier service, which has a 1 kg minimum chargeable weight.',
   },
   {
     question: 'How much does it cost to send cargo from Nigeria to the UK?',

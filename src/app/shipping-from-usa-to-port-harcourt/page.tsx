@@ -58,7 +58,7 @@ const phUsaFaqs = [
   {
     question: 'How much does it cost to ship cargo from the USA to Port Harcourt?',
     answer:
-      'Air freight from our Irving, Texas warehouse to Port Harcourt is priced at $5.80 per lb (minimum 5 lbs), including complete Nigerian customs clearance and bonded delivery to Rivers State. Sea freight shipping barrels start at $260 for a 55-gallon jumbo drum, covering ocean transit, port documentation, and delivery to Port Harcourt.',
+      'Air freight from our Irving, Texas warehouse to Port Harcourt is priced at $5.80 per lb (minimum 1 lb), including complete Nigerian customs clearance and bonded delivery to Rivers State. Sea freight shipping barrels start at $260 for a 55-gallon jumbo drum, covering ocean transit, port documentation, and delivery to Port Harcourt.',
   },
   {
     question: 'How long does shipping from the USA to Port Harcourt take?',
@@ -300,7 +300,7 @@ export default function ShippingFromUsaToPortHarcourtPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">US to Port Harcourt Air Freight</h3>
                 <div className="mb-4">
                   <span className="text-3xl font-extrabold text-gray-900">$5.80</span>
-                  <span className="text-gray-600 text-sm"> / lb (min 5 lbs, customs included)</span>
+                  <span className="text-gray-600 text-sm"> / lb (min 1 lb, customs included)</span>
                 </div>
                 <ul className="space-y-2 text-sm text-gray-700 mb-6">
                   <li className="flex items-center gap-2">

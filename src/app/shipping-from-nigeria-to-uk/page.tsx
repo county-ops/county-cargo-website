@@ -114,7 +114,7 @@ const faqs = [
   {
     question: 'What is the minimum weight requirement for shipping from Nigeria to the UK?',
     answer:
-      'For standard air freight and foodstuff shipments, our minimum chargeable weight is 5 kg. For urgent documents and small packages via Express Courier, single document envelopes and parcels starting from 1 kg are accepted.',
+      'For standard air freight, the minimum chargeable weight is 10 kg. For Express Courier, the minimum chargeable weight is 1 kg.',
   },
 ];
 

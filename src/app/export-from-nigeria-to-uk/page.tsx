@@ -71,7 +71,7 @@ export default function ExportFromNigeriaToUkPage() {
               itemOffered: {
                 '@type': 'Service',
                 name: 'Express Air Courier (3–5 Working Days)',
-                description: 'Fastest door-to-door delivery from Nigeria to UK with no minimum weight limit.',
+                description: 'Fastest door-to-door delivery from Nigeria to UK with a 1 kg minimum chargeable weight.',
               },
             },
             {
@@ -365,7 +365,7 @@ export default function ExportFromNigeriaToUkPage() {
                   <strong>Standard shipping</strong> is suitable for customers sending larger or less urgent cargo. The standard service has a minimum shipment weight of 10kg.
                 </p>
                 <p className="text-sm text-gray-700 leading-relaxed mt-1">
-                  <strong>Express shipping</strong> is suitable for smaller or urgent packages and has no minimum weight. Availability and delivery estimates depend on the contents, destination and current flight schedule.
+                  <strong>Express shipping</strong> is suitable for smaller or urgent packages and has a 1 kg minimum chargeable weight. Availability and delivery estimates depend on the contents, destination and current flight schedule.
                 </p>
               </div>
 

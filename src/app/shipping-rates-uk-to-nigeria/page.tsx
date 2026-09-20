@@ -26,7 +26,7 @@ const faqList = [
   },
   {
     question: 'What is the minimum shipping weight for UK to Nigeria air cargo?',
-    answer: 'Standard air cargo has a minimum billing weight of 10 kg. Qualifying shipments weighing 10 kg or more receive free doorstep delivery in Abuja.',
+    answer: 'Standard air cargo has a minimum chargeable weight of 1 kg. Qualifying shipments weighing 10 kg or more receive free doorstep delivery in Abuja.',
   },
   {
     question: 'How much does sea freight barrel shipping cost to Nigeria?',

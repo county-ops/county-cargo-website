@@ -63,7 +63,7 @@ const blogFaqs = [
   {
     question: 'How much does it really cost to ship from the USA to Nigeria in 2026?',
     answer:
-      'Air freight currently costs $5.00 per lb for delivery to Lagos, and $5.50 per lb for delivery to Abuja, Port Harcourt, and other Nigerian states (minimum 5 lbs). This includes customs clearance and airport documentation. For large personal effects or heavy items, sea freight barrels (55-gallon drums) start from $220 to $250, while palletised commercial freight starts from $450 depending on total volume in cubic metres.',
+      'Air freight currently costs $5.00 per lb for delivery to Lagos, and $5.50 per lb for delivery to Abuja, Port Harcourt, and other Nigerian states (minimum 1 lb). This includes customs clearance and airport documentation. For large personal effects or heavy items, sea freight barrels (55-gallon drums) start from $220 to $250, while palletised commercial freight starts from $450 depending on total volume in cubic metres.',
   },
   {
     question: 'How long does shipping take from the USA to Nigeria?',

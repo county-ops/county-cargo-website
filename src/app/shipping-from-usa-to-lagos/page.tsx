@@ -58,7 +58,7 @@ const lagosFaqs = [
   {
     question: 'How much does it cost to ship from the USA to Lagos?',
     answer:
-      'Air freight to Lagos starts at $5.00 per lb (minimum 5 lbs), which includes Nigerian customs clearance and airport release. Standard 55-gallon sea freight shipping barrels start at $220 to $250 each. Commercial palletised freight starts from $450 depending on total cubic meters (CBM).',
+      'Air freight to Lagos starts at $5.00 per lb (minimum 1 lb), which includes Nigerian customs clearance and airport release. Standard 55-gallon sea freight shipping barrels start at $220 to $250 each. Commercial palletised freight starts from $450 depending on total cubic meters (CBM).',
   },
   {
     question: 'How long does air and sea cargo take to reach Lagos from the US?',
@@ -374,7 +374,7 @@ export default function ShippingFromUsaToLagosPage() {
                       <tr>
                         <td className="px-4 py-3.5 font-medium text-gray-900">Air Cargo (Standard)</td>
                         <td className="px-4 py-3.5 text-primary font-bold">$5.00 / lb</td>
-                        <td className="px-4 py-3.5 text-gray-600">5 lbs min; customs clearing included</td>
+                        <td className="px-4 py-3.5 text-gray-600">1 lb min; customs clearing included</td>
                       </tr>
                       <tr>
                         <td className="px-4 py-3.5 font-medium text-gray-900">55-Gal Jumbo Drum</td>

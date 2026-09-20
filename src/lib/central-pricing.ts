@@ -246,7 +246,7 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
       ? Math.round(((length * width * height) / 5000) * 2.20462 * 100) / 100
       : Math.round(((length * width * height) / 5000) * 100) / 100
     : 0;
-  const minRouteWeight = isUsToNigeriaRoute ? 1 : 0.5;
+  const minRouteWeight = 1; // Minimum chargeable weight is 1 kg (or 1 lb for US->Nigeria)
   const chargeableWeight = Math.round(Math.max(weight, volumetricWeight, minRouteWeight) * 100) / 100;
 
   const isCollection = params.collectionType === 'collection' || fromCity.toLowerCase().includes('collection') || fromCity.toLowerCase().includes('pickup');
@@ -313,7 +313,7 @@ I would like to proceed with booking this shipment.`;
 
     // 1. Value Shipping (Air Cargo)
     const valueRate = isLagos ? 6.0 : isAbuja ? 6.5 : 7.0;
-    const valueMinWeight = 10;
+    const valueMinWeight = 1; // UK to Nigeria: minimum chargeable weight is 1 kg
     const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
     const valueHandlingFee = 15;
     let valueCollectionFee = 0;
@@ -384,7 +384,7 @@ I would like to proceed with booking this shipment.`;
       ratePerKgDisplay: `£${expressRate.toFixed(2)}/kg`,
       enteredWeight: weight,
       chargeableWeight: chargeableWeight,
-      minimumWeight: 5,
+      minimumWeight: 1,
       handlingFee: expressHandling,
       collectionFee: expressCollection,
       additionalCharges: 0,
@@ -504,7 +504,7 @@ I would like to proceed with booking this shipment.`;
     const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
     let expressTotalNgn = 0;
     let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 0.5) expressBillable = 0.5;
+    if (expressBillable < 1) expressBillable = 1;
 
     const ukDhl = dhlCountries.find((c) => c.Country === 'United Kingdom') || { Country: 'United Kingdom', Zone: 4 };
     const zonePricing = dhlPricing.find((z) => z.Zone === ukDhl.Zone);
@@ -537,7 +537,7 @@ I would like to proceed with booking this shipment.`;
       ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
-      minimumWeight: 0.5,
+      minimumWeight: 1,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
       additionalCharges: 0,
@@ -658,7 +658,7 @@ I would like to proceed with booking this shipment.`;
     // 2. Express Shipping (DHL Partner Zone 3 Export)
     const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
     let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 0.5) expressBillable = 0.5;
+    if (expressBillable < 1) expressBillable = 1;
 
     const usDhl = dhlCountries.find((c) => c.Country === 'United States') || { Country: 'United States', Zone: 3 };
     const zonePricing = dhlPricing.find((z) => z.Zone === usDhl.Zone);
@@ -694,7 +694,7 @@ I would like to proceed with booking this shipment.`;
       ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
-      minimumWeight: 0.5,
+      minimumWeight: 1,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
       additionalCharges: 0,
@@ -765,7 +765,7 @@ I would like to proceed with booking this shipment.`;
     // 2. Express Shipping to Canada (DHL Zone 4/8)
     const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
     let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 0.5) expressBillable = 0.5;
+    if (expressBillable < 1) expressBillable = 1;
 
     const caDhl = dhlCountries.find((c) => c.Country === 'Canada') || { Country: 'Canada', Zone: 4 };
     const zonePricing = dhlPricing.find((z) => z.Zone === caDhl.Zone);
@@ -800,7 +800,7 @@ I would like to proceed with booking this shipment.`;
       ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
-      minimumWeight: 0.5,
+      minimumWeight: 1,
       handlingFee: 0,
       collectionFee: expressCollectionFee,
       additionalCharges: 0,
@@ -864,7 +864,7 @@ I would like to proceed with booking this shipment.`;
     }
 
     let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 0.5) expressBillable = 0.5;
+    if (expressBillable < 1) expressBillable = 1;
 
     let baseCost = 0;
     if (expressBillable <= 70) {
@@ -904,7 +904,7 @@ I would like to proceed with booking this shipment.`;
       ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
       enteredWeight: weight,
       chargeableWeight: expressBillable,
-      minimumWeight: 0.5,
+      minimumWeight: 1,
       handlingFee: 0,
       collectionFee: isCollection ? 5000 : 0,
       additionalCharges: 0,

@@ -35,8 +35,10 @@ export function ShippingCalculator({
   const [barrelCount, setBarrelCount] = useState<number>(1);
 
   // Volumetric calculation: (L x W x H in cm) / 5000
-  const volumetricWeight = Math.round(((length * width * height) / 5000) * 100) / 100;
-  const chargeableWeight = Math.max(weight || 0, volumetricWeight);
+  const volumetricWeight = (length > 0 && width > 0 && height > 0)
+    ? Math.round(((length * width * height) / 5000) * 100) / 100
+    : 0;
+  const chargeableWeight = Math.max(weight || 0, volumetricWeight, 1);
 
   // Calculation Logic
   let ratePerKg = 6.0;
@@ -262,8 +264,8 @@ export function ShippingCalculator({
                   <span className="text-xs text-gray-500 block mb-1 font-medium">Actual Weight (kg)</span>
                   <Input
                     type="number"
-                    min="1"
-                    step="0.5"
+                    min="0.1"
+                    step="0.1"
                     value={weight || ''}
                     onChange={(e) => setWeight(parseFloat(e.target.value) || 0)}
                     className="font-semibold text-gray-800"
