@@ -138,7 +138,7 @@ export function UsNigeriaQuoteForm({
 
       const chargeableWeightInLbs = Math.max(weight, volumetricWeightInLbs);
       
-      const minWeightInLbs = 5;
+      const minWeightInLbs = 1;
 
       const finalChargeableWeightInLbs = Math.max(chargeableWeightInLbs, minWeightInLbs);
 

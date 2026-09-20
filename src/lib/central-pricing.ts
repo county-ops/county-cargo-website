@@ -236,12 +236,18 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
     };
   }
 
-  // Calculate volumetric weight
+  // Calculate volumetric weight (lbs for US to Nigeria, kg for other routes)
+  const isUsToNigeriaRoute = fromCountry === 'United States' && toCountry === 'Nigeria';
   const length = Number(params.length) || 0;
   const width = Number(params.width) || 0;
   const height = Number(params.height) || 0;
-  const volumetricWeight = length > 0 && width > 0 && height > 0 ? (length * width * height) / 5000 : 0;
-  const chargeableWeight = Math.round(Math.max(weight, volumetricWeight) * 100) / 100;
+  const volumetricWeight = length > 0 && width > 0 && height > 0
+    ? isUsToNigeriaRoute
+      ? Math.round(((length * width * height) / 5000) * 2.20462 * 100) / 100
+      : Math.round(((length * width * height) / 5000) * 100) / 100
+    : 0;
+  const minRouteWeight = isUsToNigeriaRoute ? 1 : 0.5;
+  const chargeableWeight = Math.round(Math.max(weight, volumetricWeight, minRouteWeight) * 100) / 100;
 
   const isCollection = params.collectionType === 'collection' || fromCity.toLowerCase().includes('collection') || fromCity.toLowerCase().includes('pickup');
   const services: ServiceComparisonCard[] = [];
@@ -256,8 +262,11 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
   const isUsDest = toCountry === 'United States';
   const isCanadaDest = toCountry === 'Canada';
 
+  const isUsToNigeria = isUsOrigin && isNigeriaDest;
+  const defaultWeightUnit = isUsToNigeria ? 'lb' : 'kg';
+
   // Helper for generating parameterized booking links
-  const createBookingUrl = (serviceId: string, quotedPrice: number, currency: string) => {
+  const createBookingUrl = (serviceId: string, quotedPrice: number, currency: string, weightUnit = defaultWeightUnit) => {
     const query = new URLSearchParams({
       redirect: '/book-shipment',
       service: serviceId,
@@ -267,6 +276,7 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
       toCity,
       enteredWeight: String(weight),
       chargeableWeight: String(chargeableWeight),
+      weightUnit,
       quotedPrice: String(quotedPrice),
       currency,
       category: params.packageCategory || 'general',
@@ -275,11 +285,17 @@ export async function calculateCentralQuote(params: QuoteCalculationParams): Pro
     return `https://ship.countycargo.com/login?${query.toString()}`;
   };
 
-  const createWhatsAppUrl = (serviceName: string, totalDisplay: string, transit: string, breakdownNote?: string) => {
+  const createWhatsAppUrl = (
+    serviceName: string,
+    totalDisplay: string,
+    transit: string,
+    breakdownNote?: string,
+    weightUnit = defaultWeightUnit
+  ) => {
     const text = `Hello County Cargo, I received a quote on your central calculator:
 - Service: ${serviceName}
 - Route: ${fromCountry} (${fromCity}) to ${toCountry} (${toCity})
-- Weight: ${weight} kg (Chargeable: ${chargeableWeight} kg)
+- Weight: ${weight} ${weightUnit} (Chargeable: ${chargeableWeight} ${weightUnit})
 ${breakdownNote ? `- Cost Breakdown: ${breakdownNote}\n` : ''}- Total Estimate: ${totalDisplay}
 - Estimated Transit: ${transit}
 ${params.itemDescription ? `- Description: ${params.itemDescription}` : ''}
@@ -911,14 +927,14 @@ I would like to proceed with booking this shipment.`;
 
   // =========================================================================
   // ROUTE 6: UNITED STATES -> NIGERIA
-  // (Special Express MUST NOT APPEAR)
+  // (Value Air Shipping ONLY - Express Shipping is strictly NOT available)
   // =========================================================================
   else if (isUsOrigin && isNigeriaDest) {
     const isLagos = toCity.toLowerCase().includes('lagos');
-    const valueRate = isLagos ? 5.0 : 5.5; // USD per kg
-    const valueMinWeight = 10;
+    const valueRate = isLagos ? 5.0 : 5.5; // USD per lb ($5.00/lb to Lagos, $5.50/lb to Abuja & nationwide)
+    const valueMinWeight = 1; // Minimum billable weight: 1 lb
     const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueHandling = 15;
+    const valueHandling = 0; // No handling charges
     const valueTotalUsd = Math.round((valueRate * valueBillableWeight + valueHandling) * 100) / 100;
     const valueNgnApprox = Math.round(valueTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
 
@@ -926,14 +942,14 @@ I would like to proceed with booking this shipment.`;
       id: 'value',
       name: 'Value Air Shipping',
       badge: 'Best Value',
-      tagline: 'Economical consolidated air shipping from the USA to Lagos, Abuja, and nationwide.',
+      tagline: 'Economical consolidated air cargo from the USA to Lagos, Abuja, and nationwide.',
       route: `${fromCity}, USA → ${toCity}, Nigeria`,
       originCountry: fromCountry,
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
       ratePerKg: valueRate,
-      ratePerKgDisplay: `$${valueRate.toFixed(2)}/kg`,
+      ratePerKgDisplay: `$${valueRate.toFixed(2)}/lb`,
       enteredWeight: weight,
       chargeableWeight: valueBillableWeight,
       minimumWeight: valueMinWeight,
@@ -949,56 +965,19 @@ I would like to proceed with booking this shipment.`;
       customsInformation: 'Consolidated air cargo with full Nigerian customs clearance included.',
       features: [
         '7 to 14 working days delivery',
-        `Minimum billable weight: ${valueMinWeight} kg`,
+        'Minimum billable weight: 1 lb',
+        `$${valueRate.toFixed(2)}/lb to ${isLagos ? 'Lagos' : 'Abuja & nationwide'}`,
         'Irving, Texas warehouse intake',
         'Doorstep delivery across all 36 Nigerian states',
       ],
-      bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD'),
-      whatsAppUrl: createWhatsAppUrl('USA to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '7 to 14 working days'),
-    });
-
-    // 2. Express Air Shipping
-    // ₦2,000/kg converted to USD ($1.33/kg) included automatically in expressRate
-    const additionalUsdPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerUsd) * 100) / 100; // $1.33/kg (₦2,000/kg equiv)
-    const baseExpressRate = 8.5;
-    const expressRate = Math.round((baseExpressRate + additionalUsdPerKg) * 100) / 100; // $9.83/kg
-    const expressHandling = 20;
-    const expressTotalUsd = Math.round((expressRate * chargeableWeight + expressHandling) * 100) / 100;
-    const expressNgnApprox = Math.round(expressTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
-
-    services.push({
-      id: 'express',
-      name: 'Express Air Shipping',
-      badge: 'Fastest',
-      tagline: 'Fast priority air cargo from USA to Nigeria.',
-      route: `${fromCity}, USA → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: expressRate,
-      ratePerKgDisplay: `$${expressRate.toFixed(2)}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: chargeableWeight,
-      minimumWeight: 5,
-      handlingFee: expressHandling,
-      collectionFee: 0,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalUsd,
-      formattedTotal: `$${expressTotalUsd.toFixed(2)}`,
-      currency: 'USD',
-      convertedEstimate: `Approx. ₦${expressNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Priority express flight dispatch and expedited clearance.',
-      features: [
-        '3 to 5 working days delivery',
-        'Direct airport dispatch',
-        'Full online live tracking',
-        'Doorstep delivery to Lagos & Abuja addresses',
-      ],
-      bookingUrl: createBookingUrl('express', expressTotalUsd, 'USD'),
-      whatsAppUrl: createWhatsAppUrl('USA to Nigeria Express Shipping', `$${expressTotalUsd.toFixed(2)}`, '3 to 5 working days'),
+      bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD', 'lb'),
+      whatsAppUrl: createWhatsAppUrl(
+        'USA to Nigeria Value Shipping',
+        `$${valueTotalUsd.toFixed(2)}`,
+        '7 to 14 working days',
+        undefined,
+        'lb'
+      ),
     });
   }
 

@@ -52,7 +52,7 @@ const pricingTiers = [
     price: '$5.00',
     per: '/lbs',
     features: [
-      'Minimum chargeable weight: 5 lbs',
+      'Minimum chargeable weight: 1 lb',
       'Delivery in 5-10 working days',
       'No handling charges',
       'Full tracking included',
@@ -63,7 +63,7 @@ const pricingTiers = [
     price: '$5.50',
     per: '/lbs',
     features: [
-      'Minimum chargeable weight: 5 lbs',
+      'Minimum chargeable weight: 1 lb',
       'Delivery in 5-10 working days',
       'No handling charges',
       'Full tracking included',

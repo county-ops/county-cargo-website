@@ -28,6 +28,7 @@ import {
   ServiceComparisonCard,
   CentralQuoteResponse,
 } from '@/lib/central-pricing';
+import { SearchableCountrySelect } from '@/components/searchable-country-select';
 
 interface QuickRoute {
   id: string;
@@ -174,6 +175,8 @@ export function CentralQuotationForm({
   const enteredNumWeight = parseFloat(weight) || 0;
   const effectiveChargeableWeight = Math.max(enteredNumWeight, volumetricWeight);
 
+  const isUsToNigeria = fromCountry === 'United States' && toCountry === 'Nigeria';
+
   // Quick route switcher handler
   const handleSelectRouteTab = (route: QuickRoute) => {
     setActiveRouteTab(route.id);
@@ -181,7 +184,13 @@ export function CentralQuotationForm({
     setFromCity(route.fromCity);
     setToCountry(route.toCountry);
     setToCity(route.toCity);
-    triggerCalculation(route.fromCountry, route.fromCity, route.toCountry, route.toCity, enteredNumWeight);
+    const isUsRoute = route.fromCountry === 'United States' && route.toCountry === 'Nigeria';
+    let w = enteredNumWeight;
+    if (isUsRoute && (!w || w < 1)) {
+      w = 1;
+      setWeight('1');
+    }
+    triggerCalculation(route.fromCountry, route.fromCity, route.toCountry, route.toCity, w);
   };
 
   const triggerCalculation = async (
@@ -192,7 +201,12 @@ export function CentralQuotationForm({
     w = enteredNumWeight
   ) => {
     setErrorMessage(null);
-    if (!w || w <= 0) {
+    const isUsRoute = fCountry === 'United States' && tCountry === 'Nigeria';
+    if (isUsRoute && (!w || w < 1)) {
+      setErrorMessage('Please enter a valid shipment weight in pounds (minimum 1 lb).');
+      return;
+    }
+    if (!isUsRoute && (!w || w <= 0)) {
       setErrorMessage('Please enter a valid weight in kg greater than 0.');
       return;
     }
@@ -293,25 +307,24 @@ export function CentralQuotationForm({
                   From (Origin)
                 </Label>
                 <div className="grid grid-cols-2 gap-1.5">
-                  <select
+                  <SearchableCountrySelect
                     id={fromCountryId}
                     value={fromCountry}
-                    onChange={(e) => {
-                      const newOrigin = e.target.value;
+                    onChange={(newOrigin) => {
                       setFromCountry(newOrigin);
                       const locs = ORIGIN_LOCATIONS[newOrigin as keyof typeof ORIGIN_LOCATIONS];
                       if (locs && locs.length > 0) setFromCity(locs[0].name);
                       if (newOrigin === toCountry) {
                         setToCountry(newOrigin === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
                       }
+                      if (newOrigin === 'United States' && toCountry === 'Nigeria') {
+                        const w = parseFloat(weight) || 0;
+                        if (w < 1) setWeight('1');
+                      }
                     }}
-                    className="h-9 px-2.5 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-semibold focus:ring-2 focus:ring-primary focus:border-primary truncate"
-                  >
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                  </select>
+                    countries={['United Kingdom', 'Nigeria', 'United States', 'Canada']}
+                    size="sm"
+                  />
 
                   <select
                     id={fromCityId}
@@ -334,26 +347,24 @@ export function CentralQuotationForm({
                   To (Destination)
                 </Label>
                 <div className="grid grid-cols-2 gap-1.5">
-                  <select
+                  <SearchableCountrySelect
                     id={toCountryId}
                     value={toCountry}
-                    onChange={(e) => {
-                      const newDest = e.target.value;
+                    onChange={(newDest) => {
                       setToCountry(newDest);
                       const cities = DESTINATION_CITIES[newDest] || ['Main City'];
                       setToCity(cities[0]);
                       if (newDest === fromCountry) {
                         setFromCountry(newDest === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
                       }
+                      if (fromCountry === 'United States' && newDest === 'Nigeria') {
+                        const w = parseFloat(weight) || 0;
+                        if (w < 1) setWeight('1');
+                      }
                     }}
-                    className="h-9 px-2.5 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-semibold focus:ring-2 focus:ring-primary focus:border-primary truncate"
-                  >
-                    {allCountries.map((c) => (
-                      <option key={c} value={c}>
-                        {c}
-                      </option>
-                    ))}
-                  </select>
+                    countries={allCountries}
+                    size="sm"
+                  />
 
                   <select
                     id={toCityId}
@@ -377,23 +388,23 @@ export function CentralQuotationForm({
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <Label htmlFor={weightInputId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700">
-                    Weight (kg)
+                    Weight ({isUsToNigeria ? 'lb' : 'kg'})
                   </Label>
                 </div>
                 <div className="relative flex items-center">
                   <Input
                     id={weightInputId}
                     type="number"
-                    min="0.5"
-                    step="0.5"
+                    min={isUsToNigeria ? '1' : '0.5'}
+                    step={isUsToNigeria ? '1' : '0.5'}
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
-                    placeholder="e.g. 10"
+                    placeholder={isUsToNigeria ? 'e.g. 1' : 'e.g. 10'}
                     className="h-9 pr-10 text-xs font-bold text-gray-900 rounded-lg bg-gray-50 border-gray-300"
                     required
                   />
-                  <span className="absolute right-2.5 text-[11px] font-bold text-gray-500 pointer-events-none">
-                    KG
+                  <span className="absolute right-2.5 text-[11px] font-bold text-gray-500 pointer-events-none uppercase">
+                    {isUsToNigeria ? 'LB' : 'KG'}
                   </span>
                 </div>
               </div>
@@ -559,7 +570,7 @@ export function CentralQuotationForm({
                   <span className="text-primary font-bold">{quoteResult.fromCountry} → {quoteResult.toCountry}</span>
                 </h3>
                 <span className="text-[11px] text-gray-500 font-medium">
-                  Billable Weight: <strong className="text-gray-900">{quoteResult.chargeableWeight} kg</strong>
+                  Billable Weight: <strong className="text-gray-900">{quoteResult.chargeableWeight} {isUsToNigeria ? 'lb' : 'kg'}</strong>
                 </span>
               </div>
 

@@ -18,6 +18,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { SearchableCountrySelect } from '@/components/searchable-country-select';
 
 interface ServiceEstimate {
   serviceType: string;
@@ -263,25 +264,14 @@ I would like to proceed with booking this shipment.`;
                   <span className="text-xs text-muted-foreground animate-pulse">Loading destinations...</span>
                 )}
               </Label>
-              <div className="relative">
-                <select
-                  id={destinationSelectId}
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  className="w-full h-12 px-3.5 bg-gray-50/80 border border-gray-300 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all appearance-none cursor-pointer"
-                >
-                  {countries.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
+              <SearchableCountrySelect
+                id={destinationSelectId}
+                value={destination}
+                onChange={(c) => setDestination(c)}
+                countries={countries}
+                size="lg"
+                disabled={countriesLoading}
+              />
             </div>
 
             {/* "Weight" in Kilograms */}
