@@ -146,6 +146,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/cargo-abuja-to-canada',
     '/blog/cargo-port-harcourt-to-canada',
     '/blog/express-cargo-from-nigeria',
+    '/blog/express-shipping-nigeria-to-canada-australia-germany',
     '/blog/documents-required-for-exporting-goods-from-nigeria',
     '/blog/how-to-export-goods-from-nigeria-to-the-uk-complete-guide',
     '/blog/how-to-ship-from-the-uk-to-nigeria',
