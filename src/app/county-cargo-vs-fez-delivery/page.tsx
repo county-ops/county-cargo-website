@@ -179,7 +179,7 @@ export default function CountyCargoVsFezPage() {
       name: 'County Cargo',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://countycargo.com/logo.png',
+        url: 'https://countycargo.com/county-logo.png',
       },
     },
     datePublished: '2026-09-12',
@@ -241,7 +241,7 @@ export default function CountyCargoVsFezPage() {
               County Cargo vs Fez Delivery: UK to Nigeria Shipping Comparison
             </h1>
             <p className="mt-4 text-base sm:text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              Comparing <strong>County Cargo</strong> and <strong>Fez Delivery</strong> for shipping parcels, commercial goods, or barrels from the UK to Nigeria? Discover the difference in freight pricing, pickup options, and shipping capacities.
+              Comparing <strong>County Cargo</strong> and <strong>Fez Delivery</strong> for shipping parcels, commercial goods, or barrels from the UK to Nigeria? Discover the difference in freight pricing, pickup options, and shipping capacities (also referenced as <Link href="/fez-delivery-vs-county-cargo" className="underline hover:text-primary">FEZ Delivery vs County Cargo</Link>).
             </p>
           </div>
         </section>

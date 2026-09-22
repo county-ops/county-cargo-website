@@ -206,7 +206,7 @@ export function ExpressExportCalculator({
 
   const buildWhatsAppUrl = (service: ServiceEstimate) => {
     const numWeight = parseFloat(weight) || 1;
-    const phone = '447883309489'; // County Cargo official WhatsApp line
+    const phone = '2348110000421'; // County Cargo official WhatsApp line
     const text = `Hello County Cargo, I received an Express Export quote on your website:
 - Service: ${service.title} (${service.tagline})
 - Origin: Nigeria (${origin} Hub)

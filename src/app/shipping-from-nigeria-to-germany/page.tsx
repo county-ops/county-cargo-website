@@ -253,7 +253,7 @@ export default function ShippingFromNigeriaToGermanyPage() {
                   <Link href="/contact">Request Germany Freight Quote</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> Chat on WhatsApp
                   </a>
                 </Button>

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'International Shipping and Export Services from Nigeria',
     description: 'Export cargo, African foodstuffs, commercial merchandise, and personal luggage from Nigeria to Canada, USA, UK, Germany, France, and Turkey.',
-    images: [{ url: 'https://countycargo.com/the world.png', alt: 'International air cargo shipping from Nigeria worldwide' }],
+    images: [{ url: 'https://countycargo.com/service-nigeria-world.png', alt: 'International air cargo shipping from Nigeria worldwide' }],
   },
 };
 
@@ -405,7 +405,7 @@ export default function ExportFromNigeriaPillarPage() {
                   <Link href="/contact">Request Export Quote</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> Chat on WhatsApp
                   </a>
                 </Button>

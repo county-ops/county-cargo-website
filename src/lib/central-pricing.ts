@@ -301,7 +301,7 @@ ${breakdownNote ? `- Cost Breakdown: ${breakdownNote}\n` : ''}- Total Estimate: 
 ${params.itemDescription ? `- Description: ${params.itemDescription}` : ''}
 
 I would like to proceed with booking this shipment.`;
-    return `https://wa.me/447883309489?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/2348110000421?text=${encodeURIComponent(text)}`;
   };
 
   // =========================================================================

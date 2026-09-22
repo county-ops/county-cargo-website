@@ -247,6 +247,70 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Why Choose County Cargo: Competitor Comparisons */}
+        <section className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+              Why Customers Choose County Cargo
+            </h2>
+            <p className="text-sm text-slate-600 mb-6 max-w-3xl">
+              Explore how County Cargo delivers greater value, transparent per-kg pricing, free collections, and dedicated customer depots compared to other Nigerian freight services.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link
+                href="/county-cargo-vs-cargonaija"
+                className="p-5 bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-md transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <h3 className="font-bold text-slate-900 group-hover:text-primary transition-colors text-base">
+                    County Cargo vs Cargo Naija
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Compare air cargo rates, collection thresholds, sea freight barrel capabilities, and depot locations between the UK and Nigeria.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-primary mt-4 inline-flex items-center gap-1">
+                  Read Comparison &rarr;
+                </span>
+              </Link>
+
+              <Link
+                href="/county-cargo-vs-fez-delivery"
+                className="p-5 bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-md transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <h3 className="font-bold text-slate-900 group-hover:text-primary transition-colors text-base">
+                    County Cargo vs Fez Delivery
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Compare flat £6/kg rates, heavy barrel shipping, free 30kg+ collection, and all-inclusive customs clearance.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-primary mt-4 inline-flex items-center gap-1">
+                  Read Comparison &rarr;
+                </span>
+              </Link>
+
+              <Link
+                href="/county-cargo-vs-gig-logistics"
+                className="p-5 bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-md transition-all group flex flex-col justify-between"
+              >
+                <div>
+                  <h3 className="font-bold text-slate-900 group-hover:text-primary transition-colors text-base">
+                    County Cargo vs GIG Logistics
+                  </h3>
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
+                    Detailed comparison of UK/US to Nigeria air cargo pricing, weight tiers, transit times, and door-to-door coverage.
+                  </p>
+                </div>
+                <span className="text-xs font-semibold text-primary mt-4 inline-flex items-center gap-1">
+                  Read Comparison &rarr;
+                </span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Global CTA Section */}
         <section className="py-14 sm:py-20 bg-gradient-to-r from-blue-700 via-blue-800 to-slate-900 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.3),transparent_45%)]"></div>

@@ -159,7 +159,7 @@ export default function ShippingNigeriaToUsaPost() {
           name: 'County Cargo',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://countycargo.com/logo.png',
+            url: 'https://countycargo.com/county-logo.png',
           },
         },
         datePublished: '2026-09-20T09:00:00.000Z',
@@ -285,7 +285,7 @@ export default function ShippingNigeriaToUsaPost() {
                 * Optional door pickup in Lagos or Abuja available for ₦5,000. 15% tariff advisory applies on commercial declared value.
               </div>
               <Button asChild size="sm" className="bg-blue-500 hover:bg-blue-600 text-white font-semibold">
-                <Link href="/book">Book USA Shipment <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                <Link href="https://ship.countycargo.com">Book USA Shipment <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function ShippingNigeriaToUsaPost() {
                     </div>
                   </div>
                   <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                    <Link href="/book">Select Value Shipping</Link>
+                    <Link href="/#quote">Calculate Value Quote</Link>
                   </Button>
                 </div>
 
@@ -396,7 +396,7 @@ export default function ShippingNigeriaToUsaPost() {
                     </div>
                   </div>
                   <Button asChild variant="outline" className="w-full border-slate-300 hover:bg-slate-50">
-                    <Link href="/book">Select Express Courier</Link>
+                    <Link href="/express-export">Calculate Express Quote</Link>
                   </Button>
                 </div>
               </div>
@@ -616,7 +616,7 @@ export default function ShippingNigeriaToUsaPost() {
                   </div>
                 </div>
                 <Button asChild size="sm" variant="outline" className="shrink-0 bg-white border-blue-300 text-blue-800 hover:bg-blue-100">
-                  <Link href="/book">Request Pickup</Link>
+                  <Link href="/contact">Request Pickup</Link>
                 </Button>
               </div>
             </section>
@@ -663,12 +663,12 @@ export default function ShippingNigeriaToUsaPost() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <Button asChild size="lg" className="bg-white hover:bg-slate-100 text-blue-900 font-bold shadow-md">
-                  <Link href="/book">Book USA Shipment</Link>
+                  <Link href="https://ship.countycargo.com">Book USA Shipment</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10">
-                  <Link href="https://wa.me/2348000000000?text=Hello%20County%20Cargo,%20I%20want%20to%20ship%20to%20the%20USA">
+                  <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo,%20I%20want%20to%20ship%20to%20the%20USA" target="_blank" rel="noopener noreferrer">
                     Chat on WhatsApp
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </section>

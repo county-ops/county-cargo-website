@@ -178,13 +178,13 @@ export function AiOverview({ currentPath = '/shipping-from-uk-to-nigeria' }: AiO
               Drop Off in Charlton SE7 8NF
             </Link>
             <a
-              href="https://wa.me/447405556668?text=Hello%20County%20Cargo,%20I%20want%20to%20quote%20air%20or%20sea%20cargo%20to%20Nigeria"
+              href="https://wa.me/2348110000421?text=Hello%20County%20Cargo,%20I%20want%20to%20quote%20air%20or%20sea%20cargo%20to%20Nigeria"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-emerald-700 font-semibold hover:underline"
             >
               <Phone className="w-3.5 h-3.5" />
-              WhatsApp: 07405 556668
+              WhatsApp: +234 811 000 0421
             </a>
           </div>
         </div>

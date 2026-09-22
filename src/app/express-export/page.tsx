@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: 'County Cargo',
     images: [
       {
-        url: 'https://countycargo.com/the world.png',
+        url: 'https://countycargo.com/service-nigeria-world.png',
         width: 1200,
         height: 630,
         alt: 'Express Export air cargo from Nigeria worldwide - County Cargo',
@@ -189,7 +189,7 @@ export default function ExpressExportPage() {
       '@type': 'Organization',
       name: 'County Cargo',
       url: 'https://countycargo.com',
-      logo: 'https://countycargo.com/the world.png',
+      logo: 'https://countycargo.com/county-logo.png',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+44-7883-309489',
@@ -518,7 +518,7 @@ export default function ExpressExportPage() {
                 className="w-full sm:w-auto h-12 px-8 bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold text-base rounded-xl backdrop-blur-sm"
               >
                 <a
-                  href="https://wa.me/447883309489?text=Hello%20County%20Cargo%2C%20I%20would%20like%20to%20inquire%20about%20Express%20Export%20shipping%20from%20Nigeria."
+                  href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20would%20like%20to%20inquire%20about%20Express%20Export%20shipping%20from%20Nigeria."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"

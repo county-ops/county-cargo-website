@@ -278,7 +278,7 @@ export default function CountyCargoVsCargoNaijaPage() {
             <p className="text-base sm:text-lg md:text-xl mt-5 text-blue-100 max-w-3xl mx-auto font-light leading-relaxed">
               Choosing the right freight company to send personal belongings, commercial goods, or
               shipping barrels from the UK to Nigeria can save you hundreds of pounds and days of
-              unnecessary delay. Here is an honest, side-by-side comparison of rates, depots, and services.
+              unnecessary delay. Here is an honest, side-by-side comparison of rates, depots, and services (also referenced as <Link href="/cargonaija-vs-county-cargo" className="underline hover:text-white">CargoNaija vs County Cargo</Link>).
             </p>
 
             {/* Quick Verdict / AI Overview Box (Optimized for LLMs & AI Overviews) */}

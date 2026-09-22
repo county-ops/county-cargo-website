@@ -129,7 +129,7 @@ export default function FreeDeliveryToAbujaPost() {
               Shipping cargo from the UK to Abuja has just become more convenient. County Cargo now offers free delivery to Abuja for qualifying shipments weighing 10 kg or more.
             </p>
             <p className="text-gray-700">
-              Whether you are sending personal belongings, clothing, household items, business goods or gifts to family members, you can arrange your <Link href="/shipping-from-london-to-abuja" className="text-primary font-semibold hover:underline">UK-to-Abuja cargo</Link> with County Cargo and avoid an additional delivery charge when your shipment arrives.
+              Whether you are sending personal belongings, clothing, household items, business goods or gifts to family members, you can arrange your <Link href="/shipping-from-uk-to-abuja" className="text-primary font-semibold hover:underline">UK-to-Abuja cargo</Link> with County Cargo and avoid an additional delivery charge when your shipment arrives.
             </p>
             <p className="text-gray-700">
               The free-delivery offer applies to the final local delivery of eligible cargo in Abuja. Normal international shipping, handling and any applicable customs charges still apply.

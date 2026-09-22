@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Shipping from Nigeria to Canada | Air Cargo & Express',
     description: 'Reliable air cargo and express shipping from Nigeria to Canada. Doorstep delivery across Toronto, Calgary, Vancouver, Ottawa, and Montreal.',
-    images: [{ url: 'https://countycargo.com/the world.png', alt: 'Air cargo plane shipping from Nigeria to Canada' }],
+    images: [{ url: 'https://countycargo.com/service-nigeria-world.png', alt: 'Air cargo plane shipping from Nigeria to Canada' }],
   },
 };
 
@@ -255,7 +255,7 @@ export default function ShippingFromNigeriaToCanadaPage() {
                   <Link href="/contact">Request Canada Freight Quote</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 font-bold">
-                  <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">
                     <MessageSquare className="w-4 h-4 mr-2" /> Chat on WhatsApp
                   </a>
                 </Button>

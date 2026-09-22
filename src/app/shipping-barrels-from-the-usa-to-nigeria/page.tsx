@@ -189,7 +189,7 @@ export default function ShippingBarrelsFromTheUsaToNigeriaPage() {
                 Reliable Chicago-to-Nigeria Cargo Shipping
               </h2>
               <p className="text-gray-700">
-                County Cargo coordinates end-to-end freight forwarding for customers situated across the Greater Chicago metropolitan area. While County Cargo does not operate a walk-in physical branch or local store in Chicago, we provide a seamless receiving and consolidation process that enables Illinois shippers to move cargo reliably to Nigeria.
+                County Cargo coordinates end-to-end freight forwarding for customers situated across the Greater Chicago metropolitan area. While County Cargo does not operate a walk-in physical branch or local store in Chicago, we provide a seamless receiving and consolidation process that enables Illinois shippers to move cargo reliably to Nigeria (for dedicated regional details, see our <Link href="/shipping-barrels-from-chicago-to-nigeria" className="text-primary underline font-medium hover:text-primary/80">Chicago to Nigeria Barrels Guide</Link> and general <Link href="/shipping-barrels-from-us-to-nigeria" className="text-primary underline font-medium hover:text-primary/80">US to Nigeria Barrels</Link> overview).
               </p>
               <p className="text-gray-700">
                 When you initiate your shipment with our team, you will receive clear, detailed instructions for sending or transporting your prepared barrel or boxes to our designated US central processing warehouse. From our specialized processing facility, shipments are weighed, measured, manifested and staged for departure.

@@ -214,7 +214,7 @@ export default function CountyCargoVsGigPage() {
       name: 'County Cargo',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://countycargo.com/logo.png',
+        url: 'https://countycargo.com/county-logo.png',
       },
     },
     datePublished: '2026-09-12',
@@ -309,7 +309,7 @@ export default function CountyCargoVsGigPage() {
               County Cargo vs GIG Logistics (GIGL): Which is Best for UK to Nigeria Cargo?
             </h1>
             <p className="mt-4 text-base sm:text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-              Looking for the best way to send cargo, parcels, or heavy barrels from London and the UK to Nigeria? Compare pricing, pickup options, sea freight capabilities, and depot locations between <strong>County Cargo</strong>, <strong>GIG Logistics</strong>, and <strong>Fez Delivery</strong>.
+              Looking for the best way to send cargo, parcels, or heavy barrels from London and the UK to Nigeria? Compare pricing, pickup options, sea freight capabilities, and depot locations between <strong>County Cargo</strong>, <strong>GIG Logistics</strong>, and <strong>Fez Delivery</strong> (also referenced as <Link href="/gig-logistics-vs-county-cargo" className="underline hover:text-primary">GIG Logistics vs County Cargo</Link>).
             </p>
           </div>
         </section>

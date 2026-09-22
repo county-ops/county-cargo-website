@@ -159,7 +159,7 @@ export default function ShippingNigeriaToCanadaPost() {
           name: 'County Cargo',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://countycargo.com/logo.png',
+            url: 'https://countycargo.com/county-logo.png',
           },
         },
         datePublished: '2026-09-20T10:00:00.000Z',
@@ -286,7 +286,7 @@ export default function ShippingNigeriaToCanadaPost() {
                 * Optional door pickup in Lagos or Abuja available for ₦5,000. Full CBSA clearance support included.
               </div>
               <Button asChild size="sm" className="bg-red-600 hover:bg-red-700 text-white font-semibold">
-                <Link href="/book">Book Canada Shipment <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                <Link href="https://ship.countycargo.com">Book Canada Shipment <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function ShippingNigeriaToCanadaPost() {
                     </div>
                   </div>
                   <Button asChild className="w-full bg-red-600 hover:bg-red-700 text-white font-medium">
-                    <Link href="/book">Select Value Shipping</Link>
+                    <Link href="/#quote">Calculate Value Quote</Link>
                   </Button>
                 </div>
 
@@ -396,7 +396,7 @@ export default function ShippingNigeriaToCanadaPost() {
                     </div>
                   </div>
                   <Button asChild variant="outline" className="w-full border-slate-300 hover:bg-slate-50">
-                    <Link href="/book">Select Express Courier</Link>
+                    <Link href="/express-export">Calculate Express Quote</Link>
                   </Button>
                 </div>
               </div>
@@ -603,7 +603,7 @@ export default function ShippingNigeriaToCanadaPost() {
                   </div>
                 </div>
                 <Button asChild size="sm" variant="outline" className="shrink-0 bg-white border-red-300 text-red-800 hover:bg-red-100">
-                  <Link href="/book">Request Pickup</Link>
+                  <Link href="/contact">Request Pickup</Link>
                 </Button>
               </div>
             </section>
@@ -650,12 +650,12 @@ export default function ShippingNigeriaToCanadaPost() {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 shrink-0">
                 <Button asChild size="lg" className="bg-white hover:bg-slate-100 text-red-900 font-bold shadow-md">
-                  <Link href="/book">Book Canada Shipment</Link>
+                  <Link href="https://ship.countycargo.com">Book Canada Shipment</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10">
-                  <Link href="https://wa.me/2348000000000?text=Hello%20County%20Cargo,%20I%20want%20to%20ship%20to%20Canada">
+                  <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo,%20I%20want%20to%20ship%20to%20Canada" target="_blank" rel="noopener noreferrer">
                     Chat on WhatsApp
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </section>

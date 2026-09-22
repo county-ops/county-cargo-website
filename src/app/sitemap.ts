@@ -40,9 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ship-from-nigeria-to-world',
     '/shipping-barrels-from-the-usa-to-nigeria',
     '/shipping-barrels-from-uk-to-nigeria',
+    '/shipping-barrels-from-chicago-to-nigeria',
+    '/shipping-barrels-from-us-to-nigeria',
+    '/ship-from-nigeria-to-uk',
+    '/ship-from-uk-to-nigeria',
+    '/london-drop-off',
     '/county-cargo-vs-cargonaija',
+    '/cargonaija-vs-county-cargo',
     '/county-cargo-vs-gig-logistics',
+    '/gig-logistics-vs-county-cargo',
     '/county-cargo-vs-fez-delivery',
+    '/fez-delivery-vs-county-cargo',
     '/uk-stores',
     '/us-stores',
   ].map((route) => ({ route, priority: 0.9, changeFrequency: 'monthly' as const }));
@@ -67,6 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/faq',
     '/info',
+    '/track',
   ].map((route) => ({ route, priority: 0.8, changeFrequency: 'monthly' as const }));
 
   const blogIndex = [
@@ -159,6 +168,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog/sending-food-products-from-nigeria-to-the-uk',
     '/blog/shipping-personal-belongings-from-nigeria-to-the-uk',
     '/blog/uk-usa-nigeria-cargo-update-september-2026',
+    '/blog/uk-to-nigeria-shipping-rates',
+    '/blog/shipping-barrels-from-the-usa-to-nigeria',
+    '/blog/shipping-barrels-from-uk-to-nigeria',
+    '/blog/shipping-barrels-from-chicago-to-nigeria',
+    '/blog/shipping-barrels-from-us-to-nigeria',
   ].map((route) => ({ route, priority: 0.8, changeFrequency: 'monthly' as const }));
 
   const allPages = [

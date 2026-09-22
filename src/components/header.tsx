@@ -34,6 +34,8 @@ const navLinks = [
       { href: '/ship-from-nigeria-to-us', label: 'Shipping from Nigeria to US' },
       { href: '/ship-from-nigeria-to-world', label: 'Shipping from Nigeria to World' },
       { href: '/express-export', label: 'Express Export (Worldwide)' },
+      { href: '/uk-stores', label: 'Shop UK Online Stores' },
+      { href: '/us-stores', label: 'Shop USA Online Stores' },
     ]
   },
   { href: '/about', label: 'About Us' },
@@ -90,6 +92,8 @@ export function Header() {
         <Link href="/ship-from-nigeria-to-us" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to US</Link>
         <Link href="/ship-from-nigeria-to-world" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shipping from Nigeria to World</Link>
         <Link href="/express-export" className="block px-3 py-2 pl-6 text-sm font-semibold text-primary hover:bg-blue-50">Express Export (Worldwide)</Link>
+        <Link href="/uk-stores" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shop UK Online Stores</Link>
+        <Link href="/us-stores" className="block px-3 py-2 pl-6 text-sm text-gray-600 hover:text-primary hover:bg-gray-50">Shop USA Online Stores</Link>
         <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">About Us</Link>
         <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
         <Link href="/track" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>

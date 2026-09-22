@@ -692,6 +692,9 @@ export default function ShippingFromUkToNigeriaPage() {
                 </Button>
               </Link>
             </div>
+            <div className="pt-2 text-xs text-blue-200">
+              Direct booking portal: <Link href="/ship-from-uk-to-nigeria" className="underline hover:text-white">Ship from UK to Nigeria</Link> | Return route: <Link href="/ship-from-nigeria-to-uk" className="underline hover:text-white">Ship from Nigeria to UK</Link>
+            </div>
           </div>
         </section>
         {/* Review Metadata & Editorial Timestamp */}

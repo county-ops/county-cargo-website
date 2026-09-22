@@ -72,6 +72,8 @@ export function Footer() {
                             <li><Link href="/shipping-from-usa-to-port-harcourt" className="text-gray-400 hover:text-white transition-colors">USA to Port Harcourt Cargo</Link></li>
                             <li><Link href="/shipping-from-nigeria-to-uk" className="text-gray-400 hover:text-white transition-colors">Nigeria to UK Cargo</Link></li>
                             <li><Link href="/shipping-from-nigeria-to-usa" className="text-gray-400 hover:text-white transition-colors">Nigeria to USA Cargo</Link></li>
+                            <li><Link href="/shipping-barrels-from-the-usa-to-nigeria" className="text-gray-400 hover:text-white transition-colors">USA Shipping Barrels</Link></li>
+                            <li><Link href="/shipping-barrels-from-uk-to-nigeria" className="text-gray-400 hover:text-white transition-colors">UK Shipping Barrels</Link></li>
                         </ul>
                     </div>
 
@@ -84,6 +86,11 @@ export function Footer() {
                             <li><Link href="/track" className="text-gray-400 hover:text-white transition-colors">Track Shipment</Link></li>
                             <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors">Route FAQ</Link></li>
                             <li><Link href="/info" className="text-gray-400 hover:text-white transition-colors">Rates &amp; Terms</Link></li>
+                            <li><Link href="/uk-stores" className="text-gray-400 hover:text-white transition-colors">Shop UK Online Stores</Link></li>
+                            <li><Link href="/us-stores" className="text-gray-400 hover:text-white transition-colors">Shop USA Online Stores</Link></li>
+                            <li><Link href="/county-cargo-vs-cargonaija" className="text-gray-400 hover:text-white transition-colors">County Cargo vs Cargo Naija</Link></li>
+                            <li><Link href="/county-cargo-vs-fez-delivery" className="text-gray-400 hover:text-white transition-colors">County Cargo vs Fez Delivery</Link></li>
+                            <li><Link href="/county-cargo-vs-gig-logistics" className="text-gray-400 hover:text-white transition-colors">County Cargo vs GIG Logistics</Link></li>
                         </ul>
                     </div>
 
