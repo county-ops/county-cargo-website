@@ -117,7 +117,7 @@ export default function ShippingFromUsaToNigeriaPage() {
       '@type': 'LocalBusiness',
       name: 'County Cargo USA',
       image: 'https://countycargo.com/county-cargo-logo-transparent.png',
-      telephone: '+1-469-902-6900',
+      telephone: '+1-214-447-0334',
       address: {
         '@type': 'PostalAddress',
         streetAddress: '1234 N Belt Line Rd',
@@ -167,7 +167,7 @@ export default function ShippingFromUsaToNigeriaPage() {
     name: 'County Cargo',
     alternateName: 'County Cargo Irving Texas Warehouse',
     url: 'https://countycargo.com/shipping-from-usa-to-nigeria',
-    telephone: '+1-469-902-6900',
+    telephone: '+1-214-447-0334',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '1234 N Belt Line Rd',
@@ -662,8 +662,8 @@ export default function ShippingFromUsaToNigeriaPage() {
 
                   <div className="p-4 bg-white rounded-xl border border-gray-200">
                     <strong className="block text-gray-900 mb-1">US Operations Phone:</strong>
-                    <a href="tel:+14699026900" className="text-primary hover:underline font-medium">
-                      +1 (469) 902-6900
+                    <a href="tel:+12144470334" className="text-primary hover:underline font-medium">
+                      +1 (214) 447-0334
                     </a>
                   </div>
 
@@ -741,14 +741,14 @@ export default function ShippingFromUsaToNigeriaPage() {
             </h2>
             <p className="text-blue-100 max-w-2xl mx-auto mb-8 text-base">
               Get a free quote today. Call our Texas team at{' '}
-              <a href="tel:+14699026900" className="underline font-bold">
-                +1 (469) 902-6900
+              <a href="tel:+12144470334" className="underline font-bold">
+                +1 (214) 447-0334
               </a>{' '}
               or message us on WhatsApp for rapid, professional booking.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold">
-                <a href="tel:+14699026900">
+                <a href="tel:+12144470334">
                   <Phone className="mr-2 h-4 w-4" /> Call US Warehouse
                 </a>
               </Button>

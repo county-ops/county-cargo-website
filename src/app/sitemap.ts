@@ -45,12 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/ship-from-nigeria-to-uk',
     '/ship-from-uk-to-nigeria',
     '/london-drop-off',
-    '/county-cargo-vs-cargonaija',
-    '/cargonaija-vs-county-cargo',
-    '/county-cargo-vs-gig-logistics',
-    '/gig-logistics-vs-county-cargo',
-    '/county-cargo-vs-fez-delivery',
-    '/fez-delivery-vs-county-cargo',
     '/uk-stores',
     '/us-stores',
   ].map((route) => ({ route, priority: 0.9, changeFrequency: 'monthly' as const }));

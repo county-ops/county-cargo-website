@@ -88,9 +88,6 @@ export function Footer() {
                             <li><Link href="/info" className="text-gray-400 hover:text-white transition-colors">Rates &amp; Terms</Link></li>
                             <li><Link href="/uk-stores" className="text-gray-400 hover:text-white transition-colors">Shop UK Online Stores</Link></li>
                             <li><Link href="/us-stores" className="text-gray-400 hover:text-white transition-colors">Shop USA Online Stores</Link></li>
-                            <li><Link href="/county-cargo-vs-cargonaija" className="text-gray-400 hover:text-white transition-colors">County Cargo vs Cargo Naija</Link></li>
-                            <li><Link href="/county-cargo-vs-fez-delivery" className="text-gray-400 hover:text-white transition-colors">County Cargo vs Fez Delivery</Link></li>
-                            <li><Link href="/county-cargo-vs-gig-logistics" className="text-gray-400 hover:text-white transition-colors">County Cargo vs GIG Logistics</Link></li>
                         </ul>
                     </div>
 
@@ -103,7 +100,7 @@ export function Footer() {
                             </li>
                             <li className="flex flex-col sm:flex-row items-center text-center sm:text-left">
                                 <Phone className="h-4 w-4 mb-1 sm:mb-0 sm:mr-2 shrink-0 text-primary" />
-                                <span>US: <a href="tel:+14699026900" className="hover:text-white transition-colors">+1 (469) 902-6900</a></span>
+                                <span>US: <a href="tel:+12144470334" className="hover:text-white transition-colors">+1 (214) 447-0334</a></span>
                             </li>
                             <li className="flex flex-col sm:flex-row items-center text-center sm:text-left">
                                 <Phone className="h-4 w-4 mb-1 sm:mb-0 sm:mr-2 shrink-0 text-primary" />
