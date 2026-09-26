@@ -77,6 +77,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/export-from-nigeria-to-uk-usa-canada-worldwide',
+    '/blog/international-cargo-services-nigeria-uk-usa',
+    '/blog/international-shipping-to-nigeria-uk-usa',
+    '/blog/how-much-does-county-cargo-charge-abuja-to-uk',
+    '/blog/shipping-from-abuja-to-canada-price',
+    '/blog/lagos-to-uk-shipping-price',
+    '/blog/abuja-to-uk-doorstep-delivery',
+    '/blog/lagos-to-uk-doorstep-delivery',
+    '/blog/nigeria-to-usa-doorstep-delivery',
+    '/blog/nigeria-to-canada-doorstep-delivery',
     '/blog/shipping-from-uk-to-nigeria-reliable-uk-to-lagos-abuja-cargo-services',
     '/blog/shipping-from-nigeria-to-the-uk-with-county-cargo',
     '/blog/shipping-from-nigeria-to-the-usa-with-county-cargo',
