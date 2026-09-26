@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/shipping-from-uk-to-nigeria-reliable-cargo-services',
+        destination: '/blog/shipping-from-uk-to-nigeria-reliable-uk-to-lagos-abuja-cargo-services',
+        permanent: true,
+      },
+      {
         source: '/blog/uk-to-nigeria-shipping-rates',
         destination: '/blog/cargo-shipping-cost-to-nigeria',
         permanent: true,

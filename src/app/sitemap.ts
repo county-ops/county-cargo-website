@@ -77,6 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/shipping-from-uk-to-nigeria-reliable-uk-to-lagos-abuja-cargo-services',
     '/blog/shipping-from-nigeria-to-the-uk-with-county-cargo',
     '/blog/shipping-from-nigeria-to-the-usa-with-county-cargo',
     '/blog/shipping-from-nigeria-to-canada-with-county-cargo',
