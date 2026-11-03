@@ -26,27 +26,33 @@ export interface SessionPayload {
 }
 
 const COOKIE_NAME = 'cc_admin_session';
-const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'countycargo-admin-secret-2026-secure-key';
-export const ADMIN_API_KEY = process.env.ADMIN_API_KEY || 'cc_live_api_key_2026_shipping_blog';
+const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'cc-session-secret-salt-2026';
+
+// Cryptographic SHA-256 hashes for initial verification (zero plaintext passwords in repository)
+const ROOT_ADMIN_HASH = 'c2c9a6601d33beaf40f90c759d304dda5d27f476098842e01cc90e7f3a33408c';
+const ROOT_AGENT_HASH = '1fde9c7c3742b9ce929220bd254eda81cc6986e5a159638c33fd971ef247aa0a';
+const ROOT_API_KEY_HASH = 'ee25496ea25d37647f1339bb68868b74a2658cacd4e4bc36ce27cb5c51fd48a6';
 
 const USERS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'admin-users.json');
 let inMemoryUsers: StoredUser[] | null = null;
 
-// Default built-in credentials - can be customized via environment variables
+// Built-in system identities
 export const ADMIN_CREDENTIALS = {
   admin: {
     username: 'admin',
-    password: process.env.ADMIN_PASSWORD || 'CountyCargo2026!Admin',
     name: 'County Cargo Administrator',
     role: 'admin' as const,
   },
   agent: {
     username: 'agent',
-    password: process.env.AGENT_PASSWORD || 'CountyCargo2026!Agent',
     name: 'County Cargo Agent',
     role: 'agent' as const,
   },
 };
+
+function sha256(val: string): string {
+  return crypto.createHash('sha256').update(val).digest('hex');
+}
 
 function hashPassword(password: string): string {
   return crypto.createHmac('sha256', SESSION_SECRET).update(password).digest('hex');
@@ -189,28 +195,32 @@ export function validateCredentials(usernameInput: string, passwordInput: string
     }
   }
 
-  // 2. Check built-in / environment variable admin
-  if (
-    (normalizedUser === 'admin' || normalizedUser === 'admin@countycargo.com') &&
-    password === ADMIN_CREDENTIALS.admin.password
-  ) {
-    return {
-      username: 'admin',
-      name: ADMIN_CREDENTIALS.admin.name,
-      role: 'admin',
-    };
+  // 2. Check admin (via ADMIN_PASSWORD env or sha256 hash match)
+  if (normalizedUser === 'admin' || normalizedUser === 'admin@countycargo.com') {
+    const isValid = process.env.ADMIN_PASSWORD
+      ? password === process.env.ADMIN_PASSWORD
+      : sha256(password) === ROOT_ADMIN_HASH;
+    if (isValid) {
+      return {
+        username: 'admin',
+        name: ADMIN_CREDENTIALS.admin.name,
+        role: 'admin',
+      };
+    }
   }
 
-  // 3. Check built-in / environment variable agent
-  if (
-    (normalizedUser === 'agent' || normalizedUser === 'agent@countycargo.com') &&
-    password === ADMIN_CREDENTIALS.agent.password
-  ) {
-    return {
-      username: 'agent',
-      name: ADMIN_CREDENTIALS.agent.name,
-      role: 'agent',
-    };
+  // 3. Check agent (via AGENT_PASSWORD env or sha256 hash match)
+  if (normalizedUser === 'agent' || normalizedUser === 'agent@countycargo.com') {
+    const isValid = process.env.AGENT_PASSWORD
+      ? password === process.env.AGENT_PASSWORD
+      : sha256(password) === ROOT_AGENT_HASH;
+    if (isValid) {
+      return {
+        username: 'agent',
+        name: ADMIN_CREDENTIALS.agent.name,
+        role: 'agent',
+      };
+    }
   }
 
   return null;
@@ -279,7 +289,11 @@ export async function getCurrentAdminSession(): Promise<SessionPayload | null> {
 export function verifyApiKey(keyInput: string | null | undefined): AdminUser | null {
   if (!keyInput) return null;
   const cleanKey = keyInput.replace(/^Bearer\s+/i, '').trim();
-  if (cleanKey === ADMIN_API_KEY) {
+  const isValid = process.env.ADMIN_API_KEY
+    ? cleanKey === process.env.ADMIN_API_KEY
+    : sha256(cleanKey) === ROOT_API_KEY_HASH;
+
+  if (isValid) {
     return {
       username: 'automated-agent',
       name: 'County Cargo Publishing Agent',
