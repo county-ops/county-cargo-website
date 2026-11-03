@@ -347,22 +347,20 @@ async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
   // 1. Read local static core posts
   const jsonPath = path.resolve(__dirname, '../src/lib/blog-posts.json');
   try {
-    if (!fs.existsSync(jsonPath)) {
-      throw new Error(`Local blog catalogue not found at: ${jsonPath}`);
+    if (fs.existsSync(jsonPath)) {
+      const raw = fs.readFileSync(jsonPath, 'utf8');
+      const corePosts = JSON.parse(raw);
+      corePosts.forEach((p) => {
+        const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
+        if (slug) existing.slugs.add(slug);
+        if (p.title) existing.titles.add(p.title.trim().toLowerCase());
+        if (p.slotId) existing.slotIds.add(p.slotId.trim());
+        existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
+      });
     }
-    const raw = fs.readFileSync(jsonPath, 'utf8');
-    const corePosts = JSON.parse(raw);
-    corePosts.forEach((p) => {
-      const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
-      if (slug) existing.slugs.add(slug);
-      if (p.title) existing.titles.add(p.title.trim().toLowerCase());
-      if (p.slotId) existing.slotIds.add(p.slotId.trim());
-      existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
-    });
   } catch (err) {
-    throw new Error(`Existing article retrieval failed: Could not read local catalogue (${err.message})`);
+    throw new Error('Existing article retrieval failed: Could not read local catalogue (' + err.message + ')');
   }
-
   // 2. Fetch live custom Firestore posts from /api/admin/posts
   if (baseUrl && apiKey) {
     try {
