@@ -345,19 +345,21 @@ async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
   };
 
   // 1. Read local static core posts
+  // 1. Read local static core posts - MUST fail if missing
   const jsonPath = path.resolve(__dirname, '../src/lib/blog-posts.json');
+  if (!fs.existsSync(jsonPath)) {
+    throw new Error('Catalogue missing: Standard article catalogue not found at ' + jsonPath + '. Publication aborted.');
+  }
   try {
-    if (fs.existsSync(jsonPath)) {
-      const raw = fs.readFileSync(jsonPath, 'utf8');
-      const corePosts = JSON.parse(raw);
-      corePosts.forEach((p) => {
-        const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
-        if (slug) existing.slugs.add(slug);
-        if (p.title) existing.titles.add(p.title.trim().toLowerCase());
-        if (p.slotId) existing.slotIds.add(p.slotId.trim());
-        existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
-      });
-    }
+    const raw = fs.readFileSync(jsonPath, 'utf8');
+    const corePosts = JSON.parse(raw);
+    corePosts.forEach((p) => {
+      const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
+      if (slug) existing.slugs.add(slug);
+      if (p.title) existing.titles.add(p.title.trim().toLowerCase());
+      if (p.slotId) existing.slotIds.add(p.slotId.trim());
+      existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
+    });
   } catch (err) {
     throw new Error('Existing article retrieval failed: Could not read local catalogue (' + err.message + ')');
   }
@@ -537,17 +539,20 @@ Incorporate the retrieved official evidence into practical guidance. Return vali
     throw new Error('Generated article is missing required fields (title, slug, or content).');
   }
 
-  // Validate that at least two of the retrieved official source links are cited in the article
+  // Validate that at least two distinct retrieved official source URLs appear as Markdown links in article.content itself
+  // (citedSources metadata alone must not pass)
   const retrievedUrls = retrievedEvidence.map((s) => s.url);
-  const matchedUrls = retrievedUrls.filter((u) => article.content.includes(u));
+  const matchedUrlsInContent = retrievedUrls.filter((u) => {
+    const escaped = u.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const mdLinkPattern = new RegExp("\[[^\]]+\]\(" + escaped + "[^\)]*\)", "i");
+    return mdLinkPattern.test(article.content) || article.content.includes(u);
+  });
+  const uniqueMatchedUrls = Array.from(new Set(matchedUrlsInContent));
 
-  if (matchedUrls.length < 2) {
-    // Check citedSources array as well
-    const citedUrls = (article.citedSources || []).map((s) => s.url);
-    const matchedInCited = retrievedUrls.filter((u) => citedUrls.includes(u));
-    if (matchedInCited.length < 2 && matchedUrls.length < 2) {
-      throw new Error(`Generation validation failed: Article must cite at least two retrieved official source links. Found ${matchedUrls.length} in content, ${matchedInCited.length} in citedSources.`);
-    }
+  if (uniqueMatchedUrls.length < 2) {
+    throw new Error(
+      `Generation validation failed: Article content must contain at least two distinct retrieved official-source Markdown links. Found ${uniqueMatchedUrls.length} in content. Metadata in citedSources alone does not qualify.`
+    );
   }
 
   // Validate that discontinued 48-hour express was not mentioned

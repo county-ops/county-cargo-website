@@ -16,20 +16,31 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const customPosts = await getCustomBlogPosts();
-  const allPosts = await getAllBlogPosts();
+  try {
+    const customPosts = await getCustomBlogPosts();
+    const allPosts = await getAllBlogPosts();
 
-  return NextResponse.json({
-    success: true,
-    user: {
-      username: user.username,
-      name: user.name,
-      role: user.role,
-    },
-    customPosts,
-    totalPostsCount: allPosts.length,
-    customPostsCount: customPosts.length,
-  });
+    return NextResponse.json({
+      success: true,
+      user: {
+        username: user.username,
+        name: user.name,
+        role: user.role,
+      },
+      customPosts,
+      totalPostsCount: allPosts.length,
+      customPostsCount: customPosts.length,
+    });
+  } catch (err: any) {
+    console.error('Failed to read blog catalogue from Firestore:', err);
+    return NextResponse.json(
+      {
+        success: false,
+        error: `Firestore catalogue read failure: ${err.message || 'Database connection error'}`,
+      },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -49,7 +60,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (!result.success) {
-      return NextResponse.json({ success: false, error: result.error }, { status: result.statusCode || 400 });
+      return NextResponse.json(
+        { success: false, error: result.error },
+        { status: result.statusCode || 400 }
+      );
     }
 
     return NextResponse.json({
@@ -84,7 +98,10 @@ export async function DELETE(request: NextRequest) {
 
     const result = await deleteCustomBlogPost(slug);
     if (!result.success) {
-      return NextResponse.json({ success: false, error: result.error }, { status: result.statusCode || 400 });
+      return NextResponse.json(
+        { success: false, error: result.error },
+        { status: 400 }
+      );
     }
 
     return NextResponse.json({

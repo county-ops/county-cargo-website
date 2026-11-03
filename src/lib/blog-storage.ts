@@ -6,30 +6,32 @@ export type { BlogPost };
 export { slugify };
 
 const COLLECTION_NAME = 'blog_posts';
+const SLOTS_COLLECTION_NAME = 'blog_slots';
 
 /**
  * Retrieve all custom blog posts stored persistently in Firestore.
+ * Throws an error on Firestore failure so admin routes return HTTP 500 instead of disguising failure as an empty list.
  */
 export async function getCustomBlogPosts(): Promise<BlogPost[]> {
-  try {
-    const db = getFirestoreDb();
-    const snapshot = await db.collection(COLLECTION_NAME).orderBy('createdAt', 'desc').get();
-    if (snapshot.empty) {
-      return [];
-    }
-    return snapshot.docs.map((doc) => doc.data() as BlogPost);
-  } catch (err: any) {
-    console.error('Error fetching blog posts from Firestore:', err);
-    // Return empty list on connection fallback so page loads standard guides
+  const db = getFirestoreDb();
+  const snapshot = await db.collection(COLLECTION_NAME).orderBy('createdAt', 'desc').get();
+  if (snapshot.empty) {
     return [];
   }
+  return snapshot.docs.map((doc) => doc.data() as BlogPost);
 }
 
 /**
  * Retrieve all blog posts: persistent Firestore articles prepended before static core guides.
+ * Gracefully preserves core guides for public readers if Firestore experiences an outage.
  */
 export async function getAllBlogPosts(): Promise<BlogPost[]> {
-  const custom = await getCustomBlogPosts();
+  let custom: BlogPost[] = [];
+  try {
+    custom = await getCustomBlogPosts();
+  } catch (err) {
+    console.error('Failed to fetch custom posts for blog index, falling back to core guides:', err);
+  }
 
   const standard = (standardPosts as BlogPost[]).map((p) => ({
     ...p,
@@ -88,8 +90,8 @@ export interface CreatePostInput {
 }
 
 /**
- * Enforce unique slug, validate fields, check slotId collision, and persist new blog post to Firestore.
- * Returns an error if saving fails.
+ * Enforce unique slug, validate fields, reserve slotId, and atomically create the article
+ * in a Firestore transaction. Prevents concurrent duplicate slots and overwrites.
  */
 export async function createNewBlogPost(
   input: CreatePostInput,
@@ -120,7 +122,7 @@ export async function createNewBlogPost(
     };
   }
 
-  // Enforce unique slug against Firestore documents
+  // Initialize Firestore
   let db;
   try {
     db = getFirestoreDb();
@@ -132,64 +134,88 @@ export async function createNewBlogPost(
     };
   }
 
+  // Parse and sanitize tags
+  let tagList: string[] = [];
+  if (Array.isArray(input.tags)) {
+    tagList = input.tags.map((t) => t.trim()).filter(Boolean);
+  } else if (typeof input.tags === 'string') {
+    tagList = input.tags
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean);
+  }
+  if (tagList.length === 0) {
+    tagList = ['County Cargo', 'Air Freight', 'Shipping Guide'];
+  }
+
+  const now = new Date();
+  const dateStr = input.publicationDate || now.toISOString().split('T')[0];
+  const defaultImage = '/cargo-plane-hero.png';
+  const trimmedSlotId = (input.slotId || '').trim();
+
+  const post: BlogPost = {
+    title,
+    url,
+    category: input.category || 'Shipping Guides',
+    author: input.author || authorInfo.name || 'County Cargo Logistics Team',
+    publicationDate: dateStr,
+    tags: tagList,
+    description: (input.description || '').trim() || title,
+    image: input.image?.trim() || defaultImage,
+    imageHint: input.imageHint || `${title} - County Cargo logistics & freight guide`,
+    content: (input.content || '').trim(),
+    isCustom: true,
+    createdAt: now.toISOString(),
+    slotId: trimmedSlotId || undefined,
+  };
+
+  const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
+  const slotRef = trimmedSlotId ? db.collection(SLOTS_COLLECTION_NAME).doc(trimmedSlotId) : null;
+
   try {
-    // Persistent date-and-slot check: Ensure rerunning a successful slot cannot publish another article
-    const trimmedSlotId = (input.slotId || '').trim();
-    if (trimmedSlotId) {
-      const slotQuery = await db.collection(COLLECTION_NAME).where('slotId', '==', trimmedSlotId).limit(1).get();
-      if (!slotQuery.empty) {
-        return {
-          success: false,
-          statusCode: 409,
-          error: `Slot collision: An article for slot "${trimmedSlotId}" has already been published.`,
-        };
+    // Execute atomic transaction: reserves slotId and creates article together
+    await db.runTransaction(async (transaction) => {
+      // 1. If slotId is provided, atomically check that it has not already been reserved
+      if (slotRef) {
+        const slotSnap = await transaction.get(slotRef);
+        if (slotSnap.exists) {
+          const collisionErr: any = new Error(`Slot collision: Slot "${trimmedSlotId}" has already been reserved.`);
+          collisionErr.code = 'SLOT_COLLISION';
+          throw collisionErr;
+        }
       }
-    }
 
-    const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
+      // 2. Atomically check that document slug does not already exist
+      const articleSnap = await transaction.get(docRef);
+      if (articleSnap.exists) {
+        const slugErr: any = new Error(`Slug collision: An article with slug "${cleanSlug}" already exists in Firestore.`);
+        slugErr.code = 'SLUG_COLLISION';
+        throw slugErr;
+      }
 
-    // Parse and sanitize tags
-    let tagList: string[] = [];
-    if (Array.isArray(input.tags)) {
-      tagList = input.tags.map((t) => t.trim()).filter(Boolean);
-    } else if (typeof input.tags === 'string') {
-      tagList = input.tags
-        .split(',')
-        .map((t) => t.trim())
-        .filter(Boolean);
-    }
-    if (tagList.length === 0) {
-      tagList = ['County Cargo', 'Air Freight', 'Shipping Guide'];
-    }
-
-    const now = new Date();
-    const dateStr = input.publicationDate || now.toISOString().split('T')[0];
-    const defaultImage = '/cargo-plane-hero.png';
-
-    const post: BlogPost = {
-      title,
-      url,
-      category: input.category || 'Shipping Guides',
-      author: input.author || authorInfo.name || 'County Cargo Logistics Team',
-      publicationDate: dateStr,
-      tags: tagList,
-      description: (input.description || '').trim() || title,
-      image: input.image?.trim() || defaultImage,
-      imageHint: input.imageHint || `${title} - County Cargo logistics & freight guide`,
-      content: (input.content || '').trim(),
-      isCustom: true,
-      createdAt: now.toISOString(),
-      slotId: trimmedSlotId || undefined,
-    };
-
-    // Use atomic document creation (docRef.create) to prevent overwriting existing articles.
-    // If a document with cleanSlug already exists, create() throws ALREADY_EXISTS (code 6).
-    await docRef.create(post);
+      // 3. Atomically reserve slot and create article
+      if (slotRef) {
+        transaction.set(slotRef, {
+          slotId: trimmedSlotId,
+          slug: cleanSlug,
+          title,
+          reservedAt: now.toISOString(),
+        });
+      }
+      transaction.set(docRef, post);
+    });
 
     return { success: true, post };
   } catch (err: any) {
-    console.error('Failed to save blog post to Firestore:', err);
-    if (err.code === 6 || err.code === 'ALREADY_EXISTS' || err.message?.includes('ALREADY_EXISTS')) {
+    console.error('Failed to atomically save blog post to Firestore:', err);
+    if (err.code === 'SLOT_COLLISION') {
+      return {
+        success: false,
+        statusCode: 409,
+        error: err.message,
+      };
+    }
+    if (err.code === 'SLUG_COLLISION' || err.code === 6 || err.code === 'ALREADY_EXISTS') {
       return {
         success: false,
         statusCode: 409,
@@ -219,7 +245,17 @@ export async function deleteCustomBlogPost(slug: string): Promise<{ success: boo
       return { success: false, error: 'Custom post not found in Firestore.' };
     }
 
-    await docRef.delete();
+    const postData = docSnap.data() as BlogPost;
+    const slotId = postData.slotId;
+
+    await db.runTransaction(async (transaction) => {
+      if (slotId) {
+        const slotRef = db.collection(SLOTS_COLLECTION_NAME).doc(slotId);
+        transaction.delete(slotRef);
+      }
+      transaction.delete(docRef);
+    });
+
     return { success: true };
   } catch (err: any) {
     return {
