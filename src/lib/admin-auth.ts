@@ -17,6 +17,7 @@ export interface SessionPayload {
 
 const COOKIE_NAME = 'cc_admin_session';
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'countycargo-admin-secret-2026-secure-key';
+export const ADMIN_API_KEY = process.env.ADMIN_API_KEY || 'cc_live_api_key_2026_shipping_blog';
 
 // Default credentials - can also be customized via environment variables
 export const ADMIN_CREDENTIALS = {
@@ -125,6 +126,30 @@ export async function getCurrentAdminSession(): Promise<SessionPayload | null> {
   } catch {
     return null;
   }
+}
+
+export function verifyApiKey(keyInput: string | null | undefined): AdminUser | null {
+  if (!keyInput) return null;
+  const cleanKey = keyInput.replace(/^Bearer\s+/i, '').trim();
+  if (cleanKey === ADMIN_API_KEY) {
+    return {
+      username: 'automated-agent',
+      name: 'County Cargo Publishing Agent',
+      role: 'admin',
+    };
+  }
+  return null;
+}
+
+export async function authenticateRequest(request: Request): Promise<AdminUser | SessionPayload | null> {
+  const apiKeyHeader =
+    request.headers.get('x-admin-api-key') || request.headers.get('authorization');
+  if (apiKeyHeader) {
+    const apiUser = verifyApiKey(apiKeyHeader);
+    if (apiUser) return apiUser;
+  }
+
+  return await getCurrentAdminSession();
 }
 
 export const ADMIN_COOKIE_CONFIG = {

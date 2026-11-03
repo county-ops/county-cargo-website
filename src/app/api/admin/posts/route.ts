@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getCurrentAdminSession } from '@/lib/admin-auth';
+import { authenticateRequest } from '@/lib/admin-auth';
 import {
   getCustomBlogPosts,
   getAllBlogPosts,
@@ -7,10 +7,13 @@ import {
   deleteCustomBlogPost,
 } from '@/lib/blog-storage';
 
-export async function GET() {
-  const session = await getCurrentAdminSession();
-  if (!session) {
-    return NextResponse.json({ success: false, error: 'Unauthorized. Please log in.' }, { status: 401 });
+export async function GET(request: NextRequest) {
+  const user = await authenticateRequest(request);
+  if (!user) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized. Provide a valid session or x-admin-api-key header.' },
+      { status: 401 }
+    );
   }
 
   const customPosts = getCustomBlogPosts();
@@ -19,9 +22,9 @@ export async function GET() {
   return NextResponse.json({
     success: true,
     user: {
-      username: session.username,
-      name: session.name,
-      role: session.role,
+      username: user.username,
+      name: user.name,
+      role: user.role,
     },
     customPosts,
     totalPostsCount: allPosts.length,
@@ -30,16 +33,19 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getCurrentAdminSession();
-  if (!session) {
-    return NextResponse.json({ success: false, error: 'Unauthorized. Please log in.' }, { status: 401 });
+  const user = await authenticateRequest(request);
+  if (!user) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized. Provide a valid session or x-admin-api-key header.' },
+      { status: 401 }
+    );
   }
 
   try {
     const body = await request.json();
     const result = createNewBlogPost(body, {
-      name: session.name,
-      username: session.username,
+      name: user.name,
+      username: user.username,
     });
 
     if (!result.success) {
@@ -60,9 +66,12 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const session = await getCurrentAdminSession();
-  if (!session) {
-    return NextResponse.json({ success: false, error: 'Unauthorized. Please log in.' }, { status: 401 });
+  const user = await authenticateRequest(request);
+  if (!user) {
+    return NextResponse.json(
+      { success: false, error: 'Unauthorized. Provide a valid session or x-admin-api-key header.' },
+      { status: 401 }
+    );
   }
 
   try {
