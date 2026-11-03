@@ -13,12 +13,16 @@
  *   Slot 2: Afternoon Operational Logistics, Packaging & Forwarding Guide (15:00 Europe/London)
  *
  * Key Capabilities:
- * 1. Researches and cites current official regulatory sources (NEPC, CBN/Trade Portal, NAQS, UK DEFRA, UK HMRC, US CBP, FAA).
- * 2. Stops publication immediately when generation or research fails (NO template fallbacks allowed).
- * 3. Chooses fresh, original topics indefinitely while strictly preserving the weekly rotation.
- * 4. Verifies rendered article body content on the live site (not just the title).
- * 5. Disputed and unconfirmed rates are removed in favor of live calculator quotes.
- * 6. Discontinued 48-hour express and unsupported services are strictly prohibited.
+ * 1. Live official-source retrieval: Fetches actual government & regulatory guidance pages,
+ *    extracts evidence, and requires at least two successfully retrieved official sources.
+ * 2. Stops publication immediately if research or existing-article catalogue retrieval fails.
+ * 3. Indefinite fresh topic synthesis: Compares generated titles & slugs against complete catalogue
+ *    and regenerates duplicates (never appends a date suffix).
+ * 4. Persistent date-and-slot identifier (slotId, e.g. "2026-11-03-slot1") to guarantee idempotency;
+ *    rerunning a successful slot cannot publish another article.
+ * 5. Verifies rendered article body content on the live site (not just the title).
+ * 6. Disputed and unconfirmed flat rates are removed in favor of live dynamic calculator quotes.
+ * 7. Discontinued 48-hour express and unsupported services are strictly prohibited.
  */
 
 const https = require('https');
@@ -32,8 +36,6 @@ const ANCHOR_DATE_STR = '2026-11-02';
 const ANCHOR_MONDAY = new Date('2026-11-02T00:00:00Z');
 
 // 2. Official Hubs, Verified Service Timeframes & Policy
-// Disputed flat rates are removed until confirmed in favor of live dynamic calculator estimates.
-// Discontinued 48-hour express is completely removed.
 const OFFICIAL_DATA = {
   TIMEFRAMES: {
     STANDARD_AIR: '5–10 working days',
@@ -58,16 +60,16 @@ const OFFICIAL_DATA = {
       { name: 'Nigerian Export Promotion Council (NEPC)', url: 'https://nepc.gov.ng', scope: 'Exporter registration, export guidelines, non-oil incentives' },
       { name: 'Nigeria Single Window Trade Portal / CBN', url: 'https://trade.gov.ng', scope: 'Electronic Form NXP, authorized dealer bank processing, Clean Certificate of Inspection' },
       { name: 'Nigeria Agricultural Quarantine Service (NAQS)', url: 'https://naqs.gov.ng', scope: 'Phytosanitary inspection, agricultural produce export clearance' },
-      { name: 'UK Department for Environment, Food & Rural Affairs (DEFRA)', url: 'https://www.gov.uk/defra', scope: 'Plant health import standards, permissible dried foods, vacuum packaging' },
-      { name: 'US Food and Drug Administration (FDA)', url: 'https://www.fda.gov', scope: 'Prior Notice for food shipments, commercial agro-food compliance' },
+      { name: 'UK Department for Environment, Food & Rural Affairs (DEFRA)', url: 'https://www.gov.uk/guidance/import-plants-and-plant-products-from-non-eu-countries-to-great-britain-and-northern-ireland', scope: 'Plant health import standards, permissible dried foods, vacuum packaging' },
+      { name: 'US Food and Drug Administration (FDA)', url: 'https://www.fda.gov/food/importing-food-products-united-states', scope: 'Prior Notice for food shipments, commercial agro-food compliance' },
     ],
     UK_CITIES: [
-      { name: 'HM Revenue & Customs (HMRC)', url: 'https://www.gov.uk/hmrc', scope: 'Export declarations, commercial invoices, commodity code classification' },
+      { name: 'HM Revenue & Customs (HMRC)', url: 'https://www.gov.uk/export-goods', scope: 'Export declarations, commercial invoices, commodity code classification' },
       { name: 'UK Border Force', url: 'https://www.gov.uk/government/organisations/border-force', scope: 'Customs transit controls, international parcel despatch standards' },
       { name: 'Nigeria Customs Service (NCS)', url: 'https://customs.gov.ng', scope: 'Destination import tariffs, airport clearance protocols at MMIA Lagos' },
     ],
     US_CITIES: [
-      { name: 'US Customs and Border Protection (CBP)', url: 'https://www.cbp.gov', scope: 'Automated Export System (AES Direct) EEI filing for cargo > $2,500' },
+      { name: 'US Customs and Border Protection (CBP)', url: 'https://www.cbp.gov/trade/aes', scope: 'Automated Export System (AES Direct) EEI filing for cargo > $2,500' },
       { name: 'US Federal Aviation Administration (FAA)', url: 'https://www.faa.gov/hazmat', scope: 'Lithium battery air transport guidelines (UN3480/UN3481 Section II compliance)' },
       { name: 'Nigeria Customs Service (NCS)', url: 'https://customs.gov.ng', scope: 'Destination commercial clearing and valuation at Lagos MMIA cargo terminal' },
     ],
@@ -160,7 +162,6 @@ function getLondonTime(date = new Date()) {
   const dateStr = `${map.year}-${map.month}-${map.day}`;
 
   // Find Monday of the current week (Monday-start)
-  // In UTC: 0=Sun, 1=Mon, ..., 6=Sat
   const utcDate = new Date(Date.UTC(year, month - 1, day));
   const dayOfWeek = (utcDate.getUTCDay() + 6) % 7; // 0=Mon, 1=Tue, ..., 6=Sun
   const mondayUtc = new Date(utcDate.getTime() - dayOfWeek * 86400000);
@@ -183,11 +184,6 @@ function getLondonTime(date = new Date()) {
 
 /**
  * Deterministically compute the Monday-start weekly rotation pillar
- *
- * Anchor: Monday, 2 November 2026 (Week 0: Nigeria Exports)
- * Week 1: UK Cities
- * Week 2: US Cities
- * Repeating indefinitely every 3 weeks.
  */
 function getScheduledPillar(targetDate = new Date()) {
   const london = getLondonTime(targetDate);
@@ -219,10 +215,14 @@ function getScheduledPillar(targetDate = new Date()) {
 }
 
 /**
- * HTTP/HTTPS Request Helper
+ * HTTP/HTTPS Request Helper supporting redirects and timeouts
  */
-function makeRequest(targetUrl, options = {}, postData = null) {
+function makeRequest(targetUrl, options = {}, postData = null, redirectCount = 0) {
   return new Promise((resolve, reject) => {
+    if (redirectCount > 3) {
+      return reject(new Error(`Too many redirects encountered while requesting ${targetUrl}`));
+    }
+
     const parsed = url.parse(targetUrl);
     const isHttps = parsed.protocol === 'https:';
     const client = isHttps ? https : http;
@@ -232,19 +232,29 @@ function makeRequest(targetUrl, options = {}, postData = null) {
       port: parsed.port || (isHttps ? 443 : 80),
       path: parsed.path,
       method: options.method || 'GET',
-      headers: options.headers || {},
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) CountyCargoLogisticsResearch/1.0',
+        ...(options.headers || {}),
+      },
     };
 
     const req = client.request(reqOptions, (res) => {
+      // Handle HTTP redirects (301, 302, 307, 308)
+      if ([301, 302, 307, 308].includes(res.statusCode) && res.headers.location) {
+        const nextUrl = url.resolve(targetUrl, res.headers.location);
+        res.resume();
+        return resolve(makeRequest(nextUrl, options, postData, redirectCount + 1));
+      }
+
       let data = '';
       res.on('data', (chunk) => (data += chunk));
       res.on('end', () => resolve({ statusCode: res.statusCode, headers: res.headers, body: data }));
     });
 
     req.on('error', reject);
-    req.setTimeout(35000, () => {
+    req.setTimeout(25000, () => {
       req.destroy();
-      reject(new Error(`Request timed out after 35s to ${targetUrl}`));
+      reject(new Error(`Request timed out after 25s to ${targetUrl}`));
     });
 
     if (postData) {
@@ -255,52 +265,136 @@ function makeRequest(targetUrl, options = {}, postData = null) {
 }
 
 /**
- * Load all existing articles from local JSON and live Firestore
+ * Extract clean, informative text excerpt from fetched HTML page
  */
-async function loadAllExistingArticles(baseUrl, apiKey) {
+function extractTextFromHtml(html) {
+  if (!html) return '';
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ')
+    .replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Perform actual official-source retrieval using direct page fetching.
+ * Retrieves official pages, extracts evidence, and ensures at least TWO official sources
+ * succeed. Stops and throws an error if research fails.
+ */
+async function retrieveOfficialEvidence(pillarInfo, fetchFn = makeRequest) {
+  console.log(`[Publisher] Retrieving live official evidence for pillar: "${pillarInfo.pillar}"...`);
+  const sources = pillarInfo.officialSources;
+  const retrieved = [];
+  const errors = [];
+
+  for (const source of sources) {
+    try {
+      console.log(`[Publisher] Fetching official guidance from: ${source.name} (${source.url})...`);
+      const res = await fetchFn(source.url, { method: 'GET' });
+      if (res && res.statusCode >= 200 && res.statusCode < 400 && res.body) {
+        const text = extractTextFromHtml(res.body);
+        if (text && text.length > 80) {
+          // Take informative evidence snippet (up to 750 chars)
+          const evidence = text.substring(0, 750).trim();
+          retrieved.push({
+            name: source.name,
+            url: source.url,
+            scope: source.scope,
+            evidence,
+            retrievedAt: new Date().toISOString(),
+          });
+          console.log(`[Publisher] ✅ Successfully retrieved official source: ${source.name}`);
+        }
+      } else {
+        errors.push(`${source.name} returned HTTP ${res ? res.statusCode : 'empty'}`);
+      }
+    } catch (err) {
+      errors.push(`${source.name} retrieval failed: ${err.message}`);
+    }
+
+    // If we have collected at least 3 high-quality sources, we have sufficient evidence
+    if (retrieved.length >= 3) break;
+  }
+
+  // Enforce at least TWO successfully retrieved official sources
+  if (retrieved.length < 2) {
+    const errorDetails = errors.join('; ');
+    throw new Error(`Research retrieval failed: Retrieved ${retrieved.length} official source(s), but at least 2 are required to proceed. Failure details: [${errorDetails}]`);
+  }
+
+  console.log(`[Publisher] ✅ Successfully retrieved ${retrieved.length} official sources for evidence synthesis.`);
+  return retrieved;
+}
+
+/**
+ * Load complete existing article catalogue from local JSON and live Firestore.
+ * STOP PUBLICATION if catalogue retrieval fails.
+ */
+async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
   const existing = {
     slugs: new Set(),
     titles: new Set(),
+    slotIds: new Set(),
     items: [],
   };
 
   // 1. Read local static core posts
+  const jsonPath = path.resolve(__dirname, '../src/lib/blog-posts.json');
   try {
-    const jsonPath = path.resolve(__dirname, '../src/lib/blog-posts.json');
-    if (fs.existsSync(jsonPath)) {
-      const raw = fs.readFileSync(jsonPath, 'utf8');
-      const corePosts = JSON.parse(raw);
-      corePosts.forEach((p) => {
-        const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
-        if (slug) existing.slugs.add(slug);
-        if (p.title) existing.titles.add(p.title.trim().toLowerCase());
-        existing.items.push({ title: p.title, slug, isCustom: false });
-      });
+    if (!fs.existsSync(jsonPath)) {
+      throw new Error(`Local blog catalogue not found at: ${jsonPath}`);
     }
+    const raw = fs.readFileSync(jsonPath, 'utf8');
+    const corePosts = JSON.parse(raw);
+    corePosts.forEach((p) => {
+      const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
+      if (slug) existing.slugs.add(slug);
+      if (p.title) existing.titles.add(p.title.trim().toLowerCase());
+      if (p.slotId) existing.slotIds.add(p.slotId.trim());
+      existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
+    });
   } catch (err) {
-    console.warn('[Publisher] Could not read local blog-posts.json:', err.message);
+    throw new Error(`Existing article retrieval failed: Could not read local catalogue (${err.message})`);
   }
 
-  // 2. Fetch custom Firestore posts from live API
+  // 2. Fetch live custom Firestore posts from /api/admin/posts
   if (baseUrl && apiKey) {
     try {
-      const res = await makeRequest(`${baseUrl}/api/admin/posts`, {
+      const res = await fetchFn(`${baseUrl}/api/admin/posts`, {
         method: 'GET',
         headers: { 'x-admin-api-key': apiKey },
       });
-      if (res.statusCode === 200) {
-        const data = JSON.parse(res.body);
-        if (data.customPosts && Array.isArray(data.customPosts)) {
-          data.customPosts.forEach((p) => {
-            const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
-            if (slug) existing.slugs.add(slug);
-            if (p.title) existing.titles.add(p.title.trim().toLowerCase());
-            existing.items.push({ title: p.title, slug, isCustom: true });
-          });
-        }
+
+      if (!res || res.statusCode !== 200) {
+        throw new Error(`HTTP ${res ? res.statusCode : 'no response'}: ${res ? res.body : ''}`);
       }
+
+      let data;
+      try {
+        data = JSON.parse(res.body);
+      } catch (e) {
+        throw new Error(`Failed to parse response JSON: ${res.body}`);
+      }
+
+      if (!data.success || !Array.isArray(data.customPosts)) {
+        throw new Error(`Invalid custom posts response structure from ${baseUrl}/api/admin/posts`);
+      }
+
+      data.customPosts.forEach((p) => {
+        const slug = (p.url || '').replace(/^\/blog\//, '').replace(/\/$/, '').toLowerCase();
+        if (slug) existing.slugs.add(slug);
+        if (p.title) existing.titles.add(p.title.trim().toLowerCase());
+        if (p.slotId) existing.slotIds.add(p.slotId.trim());
+        existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: true });
+      });
     } catch (err) {
-      console.warn('[Publisher] Could not fetch live custom posts:', err.message);
+      throw new Error(`Existing article retrieval failed: Could not fetch custom articles from live API (${err.message})`);
     }
   }
 
@@ -308,17 +402,39 @@ async function loadAllExistingArticles(baseUrl, apiKey) {
 }
 
 /**
- * Research and generate a fresh, original article using OpenAI with official citations.
- * Fails fast and throws if research or generation fails (NO template fallbacks).
+ * Generate an original article using OpenAI with supplied retrieved official evidence.
+ * Requires at least two verified links/citations to retrieved sources supporting the claims.
  */
-async function researchAndGenerateArticle({ pillarInfo, slot, existingArticles, openaiApiKey }) {
+async function researchAndGenerateArticle({
+  pillarInfo,
+  slot,
+  existingArticles,
+  retrievedEvidence,
+  openaiApiKey,
+  rejectedTitles = [],
+  fetchFn = makeRequest,
+}) {
   if (!openaiApiKey) {
     throw new Error('Publication aborted: OPENAI_API_KEY is required for live source research and original article generation. Fallback templates are strictly disabled.');
   }
 
-  const existingTitlesList = existingArticles.items.map((i) => i.title).slice(0, 40).join('\n - ');
-  const sourcesText = pillarInfo.officialSources.map((s) => `- ${s.name} (${s.url}): ${s.scope}`).join('\n');
-  const themesText = pillarInfo.themes.map((t) => `- ${t}`).join('\n');
+  if (!Array.isArray(retrievedEvidence) || retrievedEvidence.length < 2) {
+    throw new Error('Publication aborted: At least two retrieved official sources are required to provide evidence for generation.');
+  }
+
+  const existingTitlesList = existingArticles.items.map((i) => i.title).slice(0, 45).join('\n - ');
+  const rejectedText = rejectedTitles.length > 0 ? `\nDO NOT USE ANY OF THESE REJECTED TITLES:\n - ${rejectedTitles.join('\n - ')}` : '';
+
+  const evidencePromptBlock = retrievedEvidence
+    .map(
+      (e, idx) =>
+        `### Source ${idx + 1}: ${e.name}
+URL: ${e.url}
+Mandate/Scope: ${e.scope}
+Retrieved Official Evidence Excerpt:
+"${e.evidence}"`
+    )
+    .join('\n\n');
 
   const slotDescription =
     slot === 1
@@ -326,16 +442,13 @@ async function researchAndGenerateArticle({ pillarInfo, slot, existingArticles, 
       : 'Slot 2 (15:00 London): Operational logistics, packaging checklist, warehouse drop-off, and parcel forwarding guide';
 
   const systemPrompt = `You are the Principal Logistics Research Director for County Cargo (countycargo.com).
-Your duty is to produce an authoritative, original, deeply-researched article for the County Cargo logistics publication.
+Your duty is to produce an authoritative, 100% original, deeply-researched shipping guide.
 
 ROTATION PILLAR: ${pillarInfo.pillar} (Week #${pillarInfo.weekIndex}, ${pillarInfo.dayName})
 PUBLISHING SLOT: ${slotDescription}
 
-CURRENT OFFICIAL SOURCES TO RESEARCH & CITE:
-${sourcesText}
-
-THEMATIC COVERAGE DOMAINS FOR THIS PILLAR:
-${themesText}
+LIVE RETRIEVED OFFICIAL EVIDENCE (YOU MUST CITE AT LEAST TWO OF THESE SOURCES DIRECTLY):
+${evidencePromptBlock}
 
 OFFICIAL COMPANY HUB NETWORK (GROUND TRUTH):
 - Lagos Hub: ${OFFICIAL_DATA.HUBS.LAGOS}
@@ -346,13 +459,13 @@ OFFICIAL COMPANY HUB NETWORK (GROUND TRUTH):
 - Official Shipping Calculator: ${OFFICIAL_DATA.URLS.CALCULATOR}
 
 MANDATORY RULES & PROHIBITIONS:
-1. FRESH TOPIC GENERATION: Choose a completely FRESH, novel topic angle that has NEVER been covered before.
-   DO NOT duplicate or overlap with any of the following existing titles:
+1. FRESH NOVEL TOPIC: Invent a completely FRESH, novel topic angle that has NEVER been covered before.
+   DO NOT duplicate or overlap with any of the following existing titles:${rejectedText}
    - ${existingTitlesList}
-2. CITE OFFICIAL SOURCES: You MUST explicitly reference and cite at least TWO of the official regulatory bodies listed above in the article body (e.g., NEPC, CBN, NAQS, UK DEFRA, UK HMRC, US CBP, FAA). Include a dedicated "Official Regulatory Citations & References" section near the end with direct links or citations.
-3. REMOVE DISPUTED RATES: DO NOT assert or promise fixed per-kg freight prices (e.g. do NOT cite flat ₦10,500/kg or ₦16,000/kg or ₦55,000/kg as static guarantees). Explain that freight rates are dynamic, based on volumetric vs actual weight, destination zone, and real-time carrier costs. Direct shippers to the official County Cargo Shipping Calculator (${OFFICIAL_DATA.URLS.CALCULATOR}) for confirmed live quotes.
+2. EVIDENCE CITATION REQUIREMENT: You MUST directly cite and hyper-reference at least TWO of the retrieved official sources above using their exact URLs as markdown links (e.g. [Nigerian Export Promotion Council](https://nepc.gov.ng) or [UK DEFRA Plant Health Guidance](https://www.gov.uk/...)). The article MUST contain a dedicated section "Official Regulatory Citations & References" citing the retrieved sources and explaining how they govern this cargo route.
+3. REMOVE DISPUTED RATES: DO NOT assert or promise fixed per-kg freight prices (such as ₦10,500/kg or ₦16,000/kg or ₦55,000/kg as static guarantees). Explain that freight rates are dynamic, based on volumetric vs actual weight, destination zone, and real-time carrier costs. Direct shippers to the official County Cargo Shipping Calculator (${OFFICIAL_DATA.URLS.CALCULATOR}) for confirmed live quotes.
 4. ABSOLUTELY NO DISCONTINUED SERVICES: Never reference the discontinued 48-Hour Special Express or 48-hour flight options.
-5. RICH MARKDOWN: Produce substantial, high-quality, professional markdown content (minimum 1,200 words) with clear subheadings, structured tables, packaging checklists, and actionable regulatory advice.
+5. RICH MARKDOWN: Produce substantial, high-quality markdown content (minimum 1,200 words) with clear subheadings, structured tables, packaging checklists, and actionable regulatory advice.
 
 You must respond with pure, valid JSON in the following format:
 {
@@ -360,7 +473,10 @@ You must respond with pure, valid JSON in the following format:
   "slug": "unique-url-slug",
   "description": "150-160 character meta description containing focus keywords",
   "tags": ["tag1", "tag2", "tag3", "tag4"],
-  "citedSources": ["Source 1", "Source 2"],
+  "citedSources": [
+    { "name": "Exact Name of Retrieved Source 1", "url": "Exact Retrieved URL 1", "claim": "Regulatory claim supported" },
+    { "name": "Exact Name of Retrieved Source 2", "url": "Exact Retrieved URL 2", "claim": "Regulatory claim supported" }
+  ],
   "content": "Full markdown content of the article..."
 }`;
 
@@ -370,7 +486,7 @@ You must respond with pure, valid JSON in the following format:
 - Slot: Slot ${slot}
 - Target Audience: Commercial exporters, UK/US diaspora senders, and cross-border businesses.
 
-Invent a new, highly specific scenario or product focus. Ensure official sources are cited in the body. Return valid JSON only.`;
+Incorporate the retrieved official evidence into practical guidance. Return valid JSON only.`;
 
   const payload = JSON.stringify({
     model: 'gpt-4o-mini',
@@ -382,7 +498,7 @@ Invent a new, highly specific scenario or product focus. Ensure official sources
     response_format: { type: 'json_object' },
   });
 
-  const res = await makeRequest(
+  const res = await fetchFn(
     'https://api.openai.com/v1/chat/completions',
     {
       method: 'POST',
@@ -395,8 +511,8 @@ Invent a new, highly specific scenario or product focus. Ensure official sources
     payload
   );
 
-  if (res.statusCode !== 200) {
-    throw new Error(`OpenAI research/generation request failed (HTTP ${res.statusCode}): ${res.body}`);
+  if (!res || res.statusCode !== 200) {
+    throw new Error(`OpenAI research/generation request failed (HTTP ${res ? res.statusCode : 'no response'}): ${res ? res.body : ''}`);
   }
 
   let completion;
@@ -423,13 +539,17 @@ Invent a new, highly specific scenario or product focus. Ensure official sources
     throw new Error('Generated article is missing required fields (title, slug, or content).');
   }
 
-  // Validate that official sources were actually cited
-  const hasCitations =
-    (Array.isArray(article.citedSources) && article.citedSources.length >= 2) ||
-    pillarInfo.officialSources.some((s) => article.content.includes(s.name) || article.content.includes(s.url));
+  // Validate that at least two of the retrieved official source links are cited in the article
+  const retrievedUrls = retrievedEvidence.map((s) => s.url);
+  const matchedUrls = retrievedUrls.filter((u) => article.content.includes(u));
 
-  if (!hasCitations) {
-    throw new Error('Generation validation failed: Article does not cite required official regulatory sources.');
+  if (matchedUrls.length < 2) {
+    // Check citedSources array as well
+    const citedUrls = (article.citedSources || []).map((s) => s.url);
+    const matchedInCited = retrievedUrls.filter((u) => citedUrls.includes(u));
+    if (matchedInCited.length < 2 && matchedUrls.length < 2) {
+      throw new Error(`Generation validation failed: Article must cite at least two retrieved official source links. Found ${matchedUrls.length} in content, ${matchedInCited.length} in citedSources.`);
+    }
   }
 
   // Validate that discontinued 48-hour express was not mentioned
@@ -446,14 +566,14 @@ Invent a new, highly specific scenario or product focus. Ensure official sources
 }
 
 /**
- * Verify rendered article body content on live page (fails if body content is missing)
+ * Verify rendered article body content on live page
  */
-async function verifyLiveArticleContent(postUrl, expectedTitle, expectedBodyExcerpts) {
+async function verifyLiveArticleContent(postUrl, expectedTitle, expectedBodyExcerpts, fetchFn = makeRequest) {
   console.log(`[Publisher] Verifying rendered article content at ${postUrl}...`);
 
-  const res = await makeRequest(postUrl, { method: 'GET' });
-  if (res.statusCode !== 200) {
-    throw new Error(`Live verification failed: Expected HTTP 200 at ${postUrl}, got status ${res.statusCode}`);
+  const res = await fetchFn(postUrl, { method: 'GET' });
+  if (!res || res.statusCode !== 200) {
+    throw new Error(`Live verification failed: Expected HTTP 200 at ${postUrl}, got status ${res ? res.statusCode : 'no response'}`);
   }
 
   const html = res.body;
@@ -482,9 +602,25 @@ async function verifyLiveArticleContent(postUrl, expectedTitle, expectedBodyExce
 }
 
 /**
+ * Clean and normalize a slug
+ */
+function cleanSlug(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+}
+
+/**
  * Main Publishing Routine
  */
 async function publishDailyArticle(options = {}) {
+  const fetchFn = options.fetchFn || makeRequest;
   const targetDate = options.date ? new Date(options.date) : new Date();
   const baseUrl = options.baseUrl || process.env.SITE_URL || 'https://countycargo.com';
   const apiKey = options.apiKey || process.env.ADMIN_API_KEY;
@@ -508,35 +644,82 @@ async function publishDailyArticle(options = {}) {
 
   const slot = requestedSlot || 1;
   const pillarInfo = getScheduledPillar(targetDate);
+  const slotId = `${london.dateStr}-slot${slot}`;
+
+  console.log(`[Publisher] Persistent Slot ID: "${slotId}"`);
   console.log(`[Publisher] Active Rotation: "${pillarInfo.pillar}" (Week #${pillarInfo.weekIndex}, ${pillarInfo.dayName}) | Slot ${slot}`);
 
-  // 1. Load existing articles to check duplicates
-  console.log(`[Publisher] Checking existing articles in library...`);
-  const existing = await loadAllExistingArticles(baseUrl, apiKey);
+  // 1. Load complete existing catalogue (STOP publication if this fails)
+  console.log(`[Publisher] Loading complete article catalogue to prevent duplicates...`);
+  const existing = await loadAllExistingArticles(baseUrl, apiKey, fetchFn);
 
-  // 2. Perform live research and generate fresh article (No fallback templates!)
-  console.log(`[Publisher] Initiating live research and generating fresh topic via OpenAI...`);
-  const articleData = await researchAndGenerateArticle({
-    pillarInfo,
-    slot,
-    existingArticles: existing,
-    openaiApiKey,
-  });
-
-  // Ensure slug is clean and unique
-  let cleanSlug = articleData.slug.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-  if (existing.slugs.has(cleanSlug)) {
-    cleanSlug = `${cleanSlug}-${london.dateStr}`;
+  // 2. Persistent Date-and-Slot Check: Ensure rerunning a successful slot cannot publish another article
+  if (existing.slotIds.has(slotId)) {
+    const existingPost = existing.items.find((i) => i.slotId === slotId);
+    const existingUrl = existingPost ? `${baseUrl}${existingPost.url}` : `${baseUrl}/blog`;
+    console.log(`[Publisher] ℹ️ Persistent Slot ID "${slotId}" has already been published. Rerunning this slot is prevented. Skipping.`);
+    return {
+      success: true,
+      skipped: true,
+      slotId,
+      reason: 'Slot already published',
+      postUrl: existingUrl,
+    };
   }
 
-  // 3. Publish to Firestore via POST /api/admin/posts
+  // 3. Live Official-Source Retrieval (STOP publication if this fails)
+  console.log(`[Publisher] Performing live official-source retrieval...`);
+  const retrievedEvidence = await retrieveOfficialEvidence(pillarInfo, fetchFn);
+
+  // 4. Generate fresh, original article with duplicate comparison & regeneration
+  console.log(`[Publisher] Generating fresh article with OpenAI and comparing against complete catalogue...`);
+  let articleData = null;
+  const rejectedTitles = [];
+  const maxAttempts = 3;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    console.log(`[Publisher] Generation Attempt ${attempt}/${maxAttempts}...`);
+    const candidate = await researchAndGenerateArticle({
+      pillarInfo,
+      slot,
+      existingArticles: existing,
+      retrievedEvidence,
+      openaiApiKey,
+      rejectedTitles,
+      fetchFn,
+    });
+
+    const slug = cleanSlug(candidate.slug);
+    const titleNorm = candidate.title.trim().toLowerCase();
+
+    // Check complete catalogue for duplicate slug or title
+    const isDuplicateSlug = existing.slugs.has(slug);
+    const isDuplicateTitle = existing.titles.has(titleNorm);
+
+    if (isDuplicateSlug || isDuplicateTitle) {
+      console.warn(`[Publisher] ⚠️ Attempt ${attempt}: Topic duplicate detected in catalogue for "${candidate.title}" (Slug: ${slug}). Regenerating fresh topic...`);
+      rejectedTitles.push(candidate.title);
+      continue;
+    }
+
+    // Unique topic found!
+    candidate.slug = slug;
+    articleData = candidate;
+    break;
+  }
+
+  if (!articleData) {
+    throw new Error(`Publication aborted: Could not generate a unique topic after ${maxAttempts} attempts against the complete article catalogue.`);
+  }
+
+  // 5. Authenticate and Publish via POST /api/admin/posts
   if (!apiKey) {
     throw new Error('Publication aborted: ADMIN_API_KEY is required to publish articles to Firestore.');
   }
 
   const payload = JSON.stringify({
     title: articleData.title,
-    slug: cleanSlug,
+    slug: articleData.slug,
     category: pillarInfo.category,
     author: 'County Cargo Logistics Research Desk',
     publicationDate: london.dateStr,
@@ -544,10 +727,11 @@ async function publishDailyArticle(options = {}) {
     description: articleData.description,
     image: '/cargo-plane-hero.png',
     content: articleData.content,
+    slotId: slotId,
   });
 
-  console.log(`[Publisher] Publishing article "${articleData.title}" to ${baseUrl}/api/admin/posts...`);
-  const publishRes = await makeRequest(
+  console.log(`[Publisher] Publishing unique article "${articleData.title}" (Slot: ${slotId}) to ${baseUrl}/api/admin/posts...`);
+  const publishRes = await fetchFn(
     `${baseUrl}/api/admin/posts`,
     {
       method: 'POST',
@@ -564,20 +748,19 @@ async function publishDailyArticle(options = {}) {
   try {
     publishResult = JSON.parse(publishRes.body);
   } catch (err) {
-    throw new Error(`Failed to parse publishing response (HTTP ${publishRes.statusCode}): ${publishRes.body}`);
+    throw new Error(`Failed to parse publishing response (HTTP ${publishRes ? publishRes.statusCode : 'no response'}): ${publishRes ? publishRes.body : ''}`);
   }
 
   if (!publishResult.success) {
     throw new Error(`Firestore publication failed (HTTP ${publishRes.statusCode}): ${publishResult.error || 'Unknown error'}`);
   }
 
-  const postUrl = `${baseUrl}/blog/${cleanSlug}`;
+  const postUrl = `${baseUrl}/blog/${articleData.slug}`;
   console.log(`[Publisher] ✅ Article published successfully! Target URL: ${postUrl}`);
 
-  // 4. Strict Live Verification: Verify rendered article title AND rendered body content
+  // 6. Strict Live Verification: Verify rendered article title AND rendered body content
   await new Promise((r) => setTimeout(r, 2000));
 
-  // Extract a couple of distinct excerpts from the article body to verify rendering
   const paragraphs = articleData.content
     .split('\n\n')
     .map((p) => p.replace(/[#*`>-]/g, '').trim())
@@ -585,15 +768,16 @@ async function publishDailyArticle(options = {}) {
 
   const excerptsToVerify = paragraphs.slice(0, 2).map((p) => p.substring(0, 50));
 
-  await verifyLiveArticleContent(postUrl, articleData.title, excerptsToVerify);
+  await verifyLiveArticleContent(postUrl, articleData.title, excerptsToVerify, fetchFn);
 
   return {
     success: true,
     postUrl,
     title: articleData.title,
-    slug: cleanSlug,
+    slug: articleData.slug,
     pillar: pillarInfo.pillar,
     slot,
+    slotId,
   };
 }
 
@@ -622,10 +806,13 @@ if (require.main === module) {
 module.exports = {
   getLondonTime,
   getScheduledPillar,
+  retrieveOfficialEvidence,
+  loadAllExistingArticles,
   researchAndGenerateArticle,
   verifyLiveArticleContent,
   publishDailyArticle,
-  loadAllExistingArticles,
+  cleanSlug,
+  extractTextFromHtml,
   OFFICIAL_DATA,
   PILLAR_DOMAINS,
 };

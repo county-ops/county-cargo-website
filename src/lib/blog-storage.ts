@@ -84,10 +84,11 @@ export interface CreatePostInput {
   description: string;
   content: string;
   publicationDate?: string;
+  slotId?: string;
 }
 
 /**
- * Enforce unique slug, validate fields, and persist new blog post to Firestore.
+ * Enforce unique slug, validate fields, check slotId collision, and persist new blog post to Firestore.
  * Returns an error if saving fails.
  */
 export async function createNewBlogPost(
@@ -132,6 +133,19 @@ export async function createNewBlogPost(
   }
 
   try {
+    // Persistent date-and-slot check: Ensure rerunning a successful slot cannot publish another article
+    const trimmedSlotId = (input.slotId || '').trim();
+    if (trimmedSlotId) {
+      const slotQuery = await db.collection(COLLECTION_NAME).where('slotId', '==', trimmedSlotId).limit(1).get();
+      if (!slotQuery.empty) {
+        return {
+          success: false,
+          statusCode: 409,
+          error: `Slot collision: An article for slot "${trimmedSlotId}" has already been published.`,
+        };
+      }
+    }
+
     const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
 
     // Parse and sanitize tags
@@ -165,6 +179,7 @@ export async function createNewBlogPost(
       content: (input.content || '').trim(),
       isCustom: true,
       createdAt: now.toISOString(),
+      slotId: trimmedSlotId || undefined,
     };
 
     // Use atomic document creation (docRef.create) to prevent overwriting existing articles.

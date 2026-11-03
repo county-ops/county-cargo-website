@@ -11,6 +11,7 @@ export interface BlogPost {
   content?: string;
   isCustom?: boolean;
   createdAt?: string;
+  slotId?: string;
 }
 
 export function slugify(text: string): string {
