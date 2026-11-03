@@ -112,7 +112,7 @@ export default function ShippingPersonalBelongingsToNigeriaPost() {
                 <p className="text-sm text-gray-600">Get your free UK shipping address or schedule a doorstep collection today.</p>
               </div>
               <Button asChild className="bg-primary text-white font-bold shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria">
+                <Link href="https://ship.countycargo.com/shipping-calculator">
                   Get Personal Shipping Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

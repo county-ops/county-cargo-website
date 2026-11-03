@@ -681,7 +681,7 @@ export default function UkUsaNigeriaCargoUpdatePost() {
                     size="lg"
                     className="bg-primary text-white hover:bg-primary/90 font-semibold px-6 py-3 rounded-xl shadow-md border-none"
                   >
-                    <Link href="/contact">
+                    <Link href="https://ship.countycargo.com/shipping-calculator">
                       Request Your Quote <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>

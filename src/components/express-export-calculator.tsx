@@ -2,37 +2,48 @@
 
 import React, { useState, useEffect, useId } from 'react';
 import {
-  Plane,
-  Truck,
   CheckCircle2,
   AlertCircle,
   ArrowRight,
-  ShieldCheck,
   Clock,
   Loader2,
   Info,
-  HelpCircle,
   MessageCircle,
-  ExternalLink,
+  Ruler,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SearchableCountrySelect } from '@/components/searchable-country-select';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 interface ServiceEstimate {
   serviceType: string;
   title: string;
   tagline: string;
   price: number;
+  baseCost?: number;
+  handlingFee?: number;
   formattedPrice: string;
   currency: string;
+  rate?: number;
   billableWeight: number;
+  actualWeight?: number;
+  volumetricWeight?: number;
+  weightUnit?: string;
+  minimumWeight?: number;
+  minimumWeightApplied?: boolean;
+  approxNgnEstimate?: number;
   deliveryTime: string;
+  estimatedDelivery?: string;
   deliveryMethod: string;
   carrier: string;
   customsNote: string;
   features: string[];
+  bookingUrl?: string;
+  whatsAppUrl?: string;
   recommended?: boolean;
 }
 
@@ -40,11 +51,14 @@ interface QuoteResponse {
   success?: boolean;
   origin: string;
   destination: string;
-  zone: number;
   weight: number;
+  actualWeight?: number;
+  volumetricWeight?: number;
+  chargeableWeight?: number;
   estimates: {
     value: ServiceEstimate | null;
-    express: ServiceEstimate;
+    express: ServiceEstimate | null;
+    specialExpress?: ServiceEstimate | null;
   };
   error?: string;
 }
@@ -79,13 +93,21 @@ interface ExpressExportCalculatorProps {
 }
 
 export function ExpressExportCalculator({
-  initialOrigin = 'Abuja',
+  initialOrigin = 'Lagos',
   initialDestination = 'United States',
-  initialWeight = 16,
+  initialWeight = 25,
 }: ExpressExportCalculatorProps) {
   const [origin, setOrigin] = useState<'Lagos' | 'Abuja'>(initialOrigin);
   const [destination, setDestination] = useState<string>(initialDestination);
+  const [selectedService, setSelectedService] = useState<string>('all');
   const [weight, setWeight] = useState<string>(String(initialWeight));
+
+  // Volumetric Dimensions
+  const [showDimensions, setShowDimensions] = useState<boolean>(false);
+  const [length, setLength] = useState<string>('');
+  const [width, setWidth] = useState<string>('');
+  const [height, setHeight] = useState<string>('');
+
   const [countries, setCountries] = useState<string[]>(DEFAULT_POPULAR_COUNTRIES);
   const [loading, setLoading] = useState(false);
   const [countriesLoading, setCountriesLoading] = useState(false);
@@ -94,9 +116,10 @@ export function ExpressExportCalculator({
 
   const originSelectId = useId();
   const destinationSelectId = useId();
+  const serviceSelectId = useId();
   const weightInputId = useId();
 
-  // Fetch full countries list from the API on mount
+  // Fetch full countries list from the Ship County Cargo API on mount
   useEffect(() => {
     let mounted = true;
     async function loadCountries() {
@@ -107,7 +130,7 @@ export function ExpressExportCalculator({
           const json = await res.json();
           if (mounted && json.countries && Array.isArray(json.countries)) {
             const names = json.countries.map((c: any) => c.name);
-            setCountries(names);
+            if (names.length > 0) setCountries(names);
           }
         }
       } catch (err) {
@@ -140,7 +163,7 @@ export function ExpressExportCalculator({
     };
   }, []);
 
-  // Perform calculation
+  // Perform calculation via Ship County Cargo API proxy
   const handleCalculate = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     setErrorMessage(null);
@@ -156,6 +179,10 @@ export function ExpressExportCalculator({
       return;
     }
 
+    const l = showDimensions ? parseFloat(length) || 0 : 0;
+    const w = showDimensions ? parseFloat(width) || 0 : 0;
+    const h = showDimensions ? parseFloat(height) || 0 : 0;
+
     try {
       setLoading(true);
       const res = await fetch('/api/shipping/export-estimate', {
@@ -165,6 +192,9 @@ export function ExpressExportCalculator({
           origin,
           destinationCountry: destination,
           weight: numWeight,
+          length: l > 0 ? l : undefined,
+          width: w > 0 ? w : undefined,
+          height: h > 0 ? h : undefined,
         }),
       });
 
@@ -184,84 +214,73 @@ export function ExpressExportCalculator({
     }
   };
 
-  // Run initial calculation once on mount so users immediately see live numbers (like reference)
+  // Run calculation automatically when inputs change
   useEffect(() => {
-    handleCalculate();
+    const numWeight = parseFloat(weight);
+    if (isNaN(numWeight) || numWeight <= 0 || !destination) return;
+    const timer = setTimeout(() => {
+      handleCalculate();
+    }, 250);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [origin, destination, weight, showDimensions, length, width, height]);
 
-  const buildPortalUrl = (service: ServiceEstimate) => {
-    const numWeight = parseFloat(weight) || 1;
-    const basePortal = 'https://ship.countycargo.com/login';
-    const params = new URLSearchParams({
-      redirect: '/book-shipment',
-      serviceType: service.serviceType,
-      originHub: origin,
-      destinationCountry: destination,
-      weight: String(numWeight),
-      quotedPrice: String(service.price),
-    });
-    return `${basePortal}?${params.toString()}`;
+  const formatMoney = (amount: number, currency: string) => {
+    const sym = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '₦';
+    return `${sym}${amount.toLocaleString(undefined, {
+      minimumFractionDigits: currency === 'NGN' ? 0 : 2,
+      maximumFractionDigits: currency === 'NGN' ? 0 : 2,
+    })}`;
   };
 
-  const buildWhatsAppUrl = (service: ServiceEstimate) => {
-    const numWeight = parseFloat(weight) || 1;
-    const phone = '2348110000421'; // County Cargo official WhatsApp line
-    const text = `Hello County Cargo, I received an Express Export quote on your website:
-- Service: ${service.title} (${service.tagline})
-- Origin: Nigeria (${origin} Hub)
-- Destination: ${destination}
-- Weight: ${numWeight} kg
-- Estimated Price: ${service.formattedPrice}
-- Estimated Transit: ${service.deliveryTime}
+  const cardsToShow: ServiceEstimate[] = React.useMemo(() => {
+    if (!quoteResult?.estimates) return [];
+    const all: ServiceEstimate[] = [];
+    if (quoteResult.estimates.value) all.push(quoteResult.estimates.value);
+    if (quoteResult.estimates.express) all.push(quoteResult.estimates.express);
+    if (quoteResult.estimates.specialExpress) all.push(quoteResult.estimates.specialExpress);
 
-I would like to proceed with booking this shipment.`;
-    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-  };
+    if (selectedService === 'all') return all;
+    const filtered = all.filter((c) => c.serviceType === selectedService);
+    return filtered.length > 0 ? filtered : all;
+  }, [quoteResult, selectedService]);
 
   return (
     <div id="express-calculator-widget" className="w-full max-w-4xl mx-auto">
-      {/* Calculator Container Card */}
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8 backdrop-blur-sm">
-        {/* Form Inputs Grid */}
-        <form onSubmit={handleCalculate}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 items-end">
-            {/* "From" Origin Location */}
-            <div className="md:col-span-4 space-y-1.5">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/90 p-6 sm:p-8">
+        {/* Form Inputs Grid (Haulam sequence: From, To, Weight + full-width Calculate Quote button) */}
+        <form onSubmit={handleCalculate} className="space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end text-left">
+            {/* 1. "From" Origin Location */}
+            <div className="space-y-2">
               <Label
                 htmlFor={originSelectId}
-                className="text-sm font-semibold text-gray-700 flex items-center gap-1.5"
+                className="text-sm font-semibold text-slate-900"
               >
-                <span>From</span>
-                <span className="text-xs text-primary font-medium">(Nigeria Hub)</span>
+                From
               </Label>
-              <div className="relative">
-                <select
-                  id={originSelectId}
-                  value={origin}
-                  onChange={(e) => setOrigin(e.target.value as 'Lagos' | 'Abuja')}
-                  className="w-full h-12 px-3.5 bg-gray-50/80 border border-gray-300 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all appearance-none cursor-pointer"
-                >
-                  <option value="Lagos">Nigeria (Lagos)</option>
-                  <option value="Abuja">Nigeria (Abuja)</option>
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
+              <select
+                id={originSelectId}
+                value={origin}
+                onChange={(e) => setOrigin(e.target.value as 'Lagos' | 'Abuja')}
+                className="w-full h-11 px-3.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-medium text-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all cursor-pointer"
+              >
+                <option value="Lagos">Nigeria (Lagos)</option>
+                <option value="Abuja">Nigeria (Abuja)</option>
+              </select>
             </div>
 
-            {/* "To" Destination Country */}
-            <div className="md:col-span-5 space-y-1.5">
+            {/* 2. "To" Destination Country */}
+            <div className="space-y-2">
               <Label
                 htmlFor={destinationSelectId}
-                className="text-sm font-semibold text-gray-700 flex items-center justify-between"
+                className="text-sm font-semibold text-slate-900 flex items-center justify-between"
               >
                 <span>To</span>
                 {countriesLoading && (
-                  <span className="text-xs text-muted-foreground animate-pulse">Loading destinations...</span>
+                  <span className="text-xs text-muted-foreground animate-pulse">
+                    Loading...
+                  </span>
                 )}
               </Label>
               <SearchableCountrySelect
@@ -269,60 +288,119 @@ I would like to proceed with booking this shipment.`;
                 value={destination}
                 onChange={(c) => setDestination(c)}
                 countries={countries}
-                size="lg"
+                size="md"
                 disabled={countriesLoading}
               />
             </div>
 
-            {/* "Weight" in Kilograms */}
-            <div className="md:col-span-3 space-y-1.5">
-              <Label htmlFor={weightInputId} className="text-sm font-semibold text-gray-700">
+            {/* 3. Weight in Kilograms */}
+            <div className="space-y-2">
+              <Label htmlFor={weightInputId} className="text-sm font-semibold text-slate-900">
                 Weight
               </Label>
-              <div className="relative flex items-center">
+              <div className="flex gap-2">
                 <Input
                   id={weightInputId}
                   type="number"
                   min="0.5"
-                  step="0.5"
+                  step="0.01"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  placeholder="e.g. 16"
-                  className="h-12 pr-12 text-base font-semibold text-gray-900 rounded-xl bg-gray-50/80 border-gray-300 focus-visible:ring-primary"
+                  placeholder="25"
+                  className="h-11 flex-1 text-sm font-semibold text-slate-900 rounded-lg bg-white border-slate-300 focus-visible:ring-primary"
                   required
                 />
-                <div className="absolute right-1.5 top-1.5 bottom-1.5 flex items-center justify-center px-3 bg-gray-200/80 text-gray-700 rounded-lg text-xs font-bold tracking-wider pointer-events-none">
+                <div className="flex items-center justify-center px-4 h-11 bg-slate-100 border border-slate-200 text-slate-700 rounded-lg text-sm font-semibold shrink-0">
                   kg
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Calculate Quote Action Button */}
-          <div className="mt-5">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full h-12 text-base font-bold bg-[#EA580C] hover:bg-[#C2410C] text-white rounded-xl shadow-md transition-all flex items-center justify-center gap-2 group"
+          {/* Volumetric Weight Dimensions Toggle */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowDimensions((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-primary transition-colors"
             >
-              {loading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Connecting to Rate Engine...</span>
-                </>
+              <Ruler className="w-3.5 h-3.5" />
+              <span>
+                {showDimensions
+                  ? 'Hide package dimensions (volumetric weight)'
+                  : 'Have a bulky box? Enter dimensions (L × W × H in cm) for volumetric weight'}
+              </span>
+              {showDimensions ? (
+                <ChevronUp className="w-3.5 h-3.5" />
               ) : (
-                <>
-                  <span>Calculate Quote</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </>
+                <ChevronDown className="w-3.5 h-3.5" />
               )}
-            </Button>
+            </button>
+
+            {showDimensions && (
+              <div className="mt-3 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <Label className="text-xs font-semibold text-slate-600">Length (cm)</Label>
+                    <Input
+                      type="number"
+                      min="0"
+                      placeholder="e.g. 50"
+                      value={length}
+                      onChange={(e) => setLength(e.target.value)}
+                      className="mt-1 bg-white"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs font-semibold text-slate-600">Width (cm)</Label>
+                    <Input
+                      type="number"
+                      min="0"
+                      placeholder="e.g. 40"
+                      value={width}
+                      onChange={(e) => setWidth(e.target.value)}
+                      className="mt-1 bg-white"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-xs font-semibold text-slate-600">Height (cm)</Label>
+                    <Input
+                      type="number"
+                      min="0"
+                      placeholder="e.g. 40"
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value)}
+                      className="mt-1 bg-white"
+                    />
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Volumetric weight formula: <code>(Length × Width × Height in cm) ÷ 5000</code>.
+                  Shipments are billed on whichever is greater between actual and volumetric weight.
+                </p>
+              </div>
+            )}
           </div>
+
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full h-12 rounded-full text-base sm:text-lg font-semibold bg-[#dc2626] hover:bg-[#b91c1c] text-white shadow-md transition-all flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Calculating...</span>
+              </>
+            ) : (
+              <span>Calculate Quote</span>
+            )}
+          </Button>
         </form>
 
         {/* Error Alert Display */}
         {errorMessage && (
-          <div className="mt-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3 text-red-800 text-sm">
+          <div className="mt-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-start gap-3 text-red-800 text-sm text-left">
             <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold">Calculation Notice</p>
@@ -331,175 +409,106 @@ I would like to proceed with booking this shipment.`;
           </div>
         )}
 
-        {/* Results Quotation Cards */}
-        {quoteResult && (
-          <div className="mt-8 pt-6 border-t border-gray-100 animate-in fade-in duration-300">
-            <div className="flex flex-col sm:flex-row items-baseline justify-between mb-4 gap-1">
-              <h3 className="text-lg font-bold text-gray-900">
-                Available Shipping Services to {quoteResult.destination}:
-              </h3>
-              <span className="text-xs text-muted-foreground">
-                Origin: Hub {quoteResult.origin} &bull; Billable: {quoteResult.weight} kg
-              </span>
-            </div>
+        {/* Results Quotation Cards (Haulam 2-Card Diagonal Sequence) */}
+        {quoteResult && cardsToShow.length > 0 && (
+          <div className="mt-8 animate-in fade-in duration-300">
+            <div
+              className={`grid gap-6 text-left ${
+                cardsToShow.length === 1
+                  ? 'grid-cols-1 max-w-xl mx-auto'
+                  : cardsToShow.length === 2
+                    ? 'grid-cols-1 md:grid-cols-2'
+                    : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
+              {cardsToShow.map((card) => {
+                return (
+                  <div
+                    key={card.serviceType}
+                    className="rounded-xl p-6 flex flex-col justify-between bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow"
+                  >
+                    <div>
+                      <div className="pb-2">
+                        <h4 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                          {card.title}
+                        </h4>
+                        <p className="text-sm text-slate-500 mt-1">{card.tagline}</p>
+                      </div>
 
-            {/* Two Side-by-Side Cards on Desktop, Stacked on Mobile */}
-            <div className={`grid gap-6 ${quoteResult.estimates.value ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 max-w-xl mx-auto'}`}>
-              {/* Card 1: Value Export (if available) */}
-              {quoteResult.estimates.value && (
-                <div className="bg-gray-50/70 border border-gray-200 rounded-2xl p-6 flex flex-col justify-between hover:border-gray-300 transition-all shadow-sm">
-                  <div>
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-900">
-                        {quoteResult.estimates.value.title}
-                      </h4>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gray-200 text-gray-700">
-                        Economical
-                      </span>
+                      {/* Price Display */}
+                      <div className="my-4">
+                        <div className="text-3xl sm:text-4xl font-extrabold text-[#dc2626] tracking-tight">
+                          {card.formattedPrice}
+                        </div>
+                        {card.approxNgnEstimate && card.currency !== 'NGN' && (
+                          <div className="text-xs font-medium text-slate-500 mt-1">
+                            Approx. ₦{card.approxNgnEstimate.toLocaleString()} NGN
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Features Checklist (Green checkmarks & Amber alert icons matching Haulam) */}
+                      <ul className="space-y-2.5 text-sm text-slate-600 mb-5">
+                        {card.features.map((feat, idx) => {
+                          const isWarningItem =
+                            feat.toLowerCase().includes('customs fees') ||
+                            feat.toLowerCase().includes('tarrif') ||
+                            feat.toLowerCase().includes('tariff');
+                          return (
+                            <li key={idx} className="flex items-start gap-2.5">
+                              {isWarningItem ? (
+                                <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                              ) : (
+                                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                              )}
+                              <span>{feat}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+
+                      {/* Compact Breakdown */}
+                      <div className="text-xs text-slate-500 py-2.5 px-3 mb-5 rounded-lg bg-slate-50 border border-slate-100 space-y-1">
+                        <div className="flex justify-between">
+                          <span>Chargeable Weight:</span>
+                          <span className="font-semibold text-slate-700">
+                            {card.billableWeight} {card.weightUnit || 'kg'}
+                          </span>
+                        </div>
+                        {card.baseCost !== undefined && (
+                          <div className="flex justify-between">
+                            <span>Base Cost:</span>
+                            <span className="font-semibold text-slate-700">
+                              {formatMoney(card.baseCost, card.currency)}
+                            </span>
+                          </div>
+                        )}
+                        {card.handlingFee !== undefined && card.handlingFee > 0 && (
+                          <div className="flex justify-between">
+                            <span>Handling Fee:</span>
+                            <span className="font-semibold text-slate-700">
+                              {formatMoney(card.handlingFee, card.currency)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <p className="text-xs text-gray-600 mb-4">
-                      {quoteResult.estimates.value.tagline}
-                    </p>
 
-                    {/* Price */}
-                    <div className="mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-[#EA580C] tracking-tight">
-                        {quoteResult.estimates.value.formattedPrice}
-                      </div>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Consolidated Air Freight from Nigeria
-                      </p>
-                    </div>
-
-                    {/* Features List */}
-                    <div className="space-y-3 mb-6 text-sm text-gray-700">
-                      <div className="flex items-center gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>{quoteResult.estimates.value.deliveryTime}</span>
-                      </div>
-                      <div className="flex items-center gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>{quoteResult.estimates.value.deliveryMethod}</span>
-                      </div>
-                      <div className="flex items-start gap-2.5 text-xs text-amber-800 bg-amber-50/80 p-2.5 rounded-lg border border-amber-200/60">
-                        <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                        <span>{quoteResult.estimates.value.customsNote}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="space-y-2 pt-2">
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="w-full h-11 border-gray-300 hover:border-primary hover:text-primary font-semibold text-sm rounded-xl transition-all"
-                    >
+                    {/* Outlined Pill Action Button (Haulam style) */}
+                    <div className="mt-auto pt-1">
                       <a
-                        href={buildPortalUrl(quoteResult.estimates.value)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={card.bookingUrl || SHIP_COUNTY_CARGO_QUOTE_URL}
+                        className="w-full h-11 rounded-full font-semibold text-sm border border-[#dc2626]/80 text-[#dc2626] hover:bg-[#dc2626] hover:text-white bg-transparent transition-colors flex items-center justify-center"
                       >
                         Start Shipment
                       </a>
-                    </Button>
-                    <a
-                      href={buildWhatsAppUrl(quoteResult.estimates.value)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-full text-xs text-emerald-700 hover:text-emerald-800 font-medium py-1 gap-1"
-                    >
-                      <MessageCircle className="w-3.5 h-3.5" />
-                      <span>Or Book via WhatsApp Specialist</span>
-                    </a>
-                  </div>
-                </div>
-              )}
-
-              {/* Card 2: Express Export (Always available for all 230+ DHL destinations) */}
-              <div className="bg-white border-2 border-primary/40 hover:border-primary rounded-2xl p-6 flex flex-col justify-between shadow-md relative transition-all">
-                {/* Recommended Badge */}
-                <div className="absolute -top-3 right-6 bg-primary text-white text-xs font-bold px-3 py-0.5 rounded-full shadow-sm tracking-wide">
-                  FASTEST DELIVERY
-                </div>
-
-                <div>
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-xl font-bold text-gray-900">
-                      {quoteResult.estimates.express.title}
-                    </h4>
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-50 text-primary">
-                      DHL Global Partner
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-600 mb-4">
-                    {quoteResult.estimates.express.tagline}
-                  </p>
-
-                  {/* Price */}
-                  <div className="mb-6">
-                    <div className="text-3xl sm:text-4xl font-extrabold text-[#EA580C] tracking-tight">
-                      {quoteResult.estimates.express.formattedPrice}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Priority Express via DHL Global Network
-                    </p>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-3 mb-6 text-sm text-gray-700">
-                    <div className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span className="font-semibold text-gray-900">
-                        {quoteResult.estimates.express.deliveryTime}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>{quoteResult.estimates.express.deliveryMethod}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                      <span>{quoteResult.estimates.express.carrier}</span>
-                    </div>
-                    <div className="flex items-start gap-2.5 text-xs text-gray-600 bg-gray-50 p-2.5 rounded-lg border border-gray-200">
-                      <Info className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                      <span>{quoteResult.estimates.express.customsNote}</span>
                     </div>
                   </div>
-                </div>
-
-                {/* Actions */}
-                <div className="space-y-2 pt-2">
-                  <Button
-                    asChild
-                    className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-bold text-sm rounded-xl shadow-md transition-all"
-                  >
-                    <a
-                      href={buildPortalUrl(quoteResult.estimates.express)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Start Shipment
-                    </a>
-                  </Button>
-                  <a
-                    href={buildWhatsAppUrl(quoteResult.estimates.express)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full text-xs text-emerald-700 hover:text-emerald-800 font-medium py-1 gap-1"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    <span>Or Book via WhatsApp Specialist</span>
-                  </a>
-                </div>
-              </div>
+                );
+              })}
             </div>
 
-            {/* Disclaimer Footnote */}
-            <p className="text-center text-xs text-muted-foreground mt-6 italic">
+            <p className="text-center text-xs text-slate-500 mt-6 italic">
               *Final shipping costs are subject to change and will be confirmed after your items are received and officially weighed at our facility.
             </p>
           </div>

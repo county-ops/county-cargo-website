@@ -27,6 +27,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import { UsBarrelsFaq } from './faq';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'The US Barrels Guide | Ship Barrels from USA to Nigeria | County Cargo',
@@ -142,6 +143,14 @@ export default function ShippingBarrelsFromTheUsaToNigeriaPage() {
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
               The authoritative transatlantic shipping guide for sending 55-gallon drums, boxes, household effects and personal belongings from anywhere in the USA to Lagos, Abuja, and across Nigeria.
             </p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200 mt-6 pt-4 border-t border-white/10">
               <span className="flex items-center gap-1">
@@ -538,8 +547,8 @@ export default function ShippingBarrelsFromTheUsaToNigeriaPage() {
                   size="lg"
                   className="bg-primary text-white hover:bg-primary/90 font-semibold px-6 py-3 rounded-xl shadow-md border-none text-sm sm:text-base"
                 >
-                  <Link href="/contact">
-                    Get a Shipping Quote <ArrowRight className="ml-2 w-4 h-4" />
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                    Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
 

@@ -26,3 +26,10 @@ export const SHIPPING_TIMEFRAMES = {
   /** Approved special express air courier short format */
   SPECIAL_EXPRESS_SHORT: '48 hours',
 };
+
+/**
+ * Ship County Cargo Official Base & Quotation Page URLs
+ */
+export const SHIP_COUNTY_CARGO_URL = 'https://ship.countycargo.com';
+export const SHIP_COUNTY_CARGO_QUOTE_URL = 'https://ship.countycargo.com/shipping-calculator';
+

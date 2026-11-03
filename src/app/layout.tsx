@@ -123,10 +123,10 @@ const organizationSchema = {
         },
         {
           '@type': 'PostalAddress',
-          streetAddress: '1234 N Belt Line Rd',
+          streetAddress: '500 S Belt Line Road, Suite 508',
           addressLocality: 'Irving',
           addressRegion: 'TX',
-          postalCode: '75061',
+          postalCode: '75060',
           addressCountry: 'US',
         },
       ],

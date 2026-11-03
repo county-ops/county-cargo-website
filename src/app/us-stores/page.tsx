@@ -3,8 +3,10 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
-import { ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shop from US Stores | County Cargo',
@@ -72,6 +74,13 @@ export default function UsStoresPage() {
             <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-4">Shop from US Stores</h1>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">Browse a list of popular US online stores and ship your purchases to Nigeria with County Cargo.</p>
+                <div className="mt-6">
+                  <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 font-bold px-8 rounded-full shadow-md">
+                    <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      Get a Quote <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">

@@ -6,6 +6,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/json-ld';
 import { ShippingCalculator } from '@/components/shipping-calculator';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Ship,
@@ -26,6 +27,7 @@ import {
   ChevronRight,
   Info,
   Warehouse,
+  Calculator,
 } from 'lucide-react';
 import {
   Accordion,
@@ -251,6 +253,12 @@ export default function ShippingFromUkToLagosPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
+                <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-6 shadow-lg">
+                    <Calculator className="w-4 h-4 mr-2" />
+                    Get a Quote
+                  </Button>
+                </a>
                 <a href="#quote-calculator">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
                     Calculate UK to Lagos Shipping Cost
@@ -767,6 +775,12 @@ export default function ShippingFromUkToLagosPage() {
               Drop off your shipment at our Charlton or Liverpool depot, or book a free London doorstep collection right now.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-8 shadow-xl">
+                  <Calculator className="w-4 h-4 mr-2" />
+                  Get a Quote
+                </Button>
+              </a>
               <a
                 href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20book%20a%20shipment%20from%20the%20UK%20to%20Lagos"
                 target="_blank"

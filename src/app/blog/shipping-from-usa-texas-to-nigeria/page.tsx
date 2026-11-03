@@ -100,7 +100,7 @@ export default function ShippingFromUsaTexasToNigeriaPost() {
                 <CheckCircle2 className="w-4 h-4" /> Quick Summary: USA to Nigeria Shipping
               </h2>
               <p className="text-base sm:text-lg text-secondary font-medium leading-relaxed">
-                County Cargo provides seamless air freight (5–10 working days) and ocean container shipping from the USA to Nigeria via our central Texas hub in Irving, TX (75061). US residents and Nigerian online shoppers get a free US address to consolidate purchases from Amazon, eBay, Walmart, and Apple for doorstep delivery in Lagos, Abuja, and nationwide.
+                County Cargo provides seamless air freight (5–10 working days) and ocean container shipping from the USA to Nigeria via our central Texas hub in Irving, TX (75060). US residents and Nigerian online shoppers get a free US address to consolidate purchases from Amazon, eBay, Walmart, and Apple for doorstep delivery in Lagos, Abuja, and nationwide.
               </p>
             </div>
 

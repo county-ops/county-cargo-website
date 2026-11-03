@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   MapPin,
   Phone,
@@ -21,6 +22,7 @@ import {
   ExternalLink,
   Building2,
   ArrowRight,
+  Calculator,
 } from 'lucide-react';
 import {
   Accordion,
@@ -310,8 +312,16 @@ export default function LondonCharltonDropOffPage() {
               Greenwich, Woolwich, and South East London (free for air cargo 30kg and above, sea cargo for a small fee).
             </p>
 
-            {/* Prominent Action Buttons Bar (Call, WhatsApp, Get Directions, Book Pickup) */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+            {/* Prominent Action Buttons Bar (Get a Quote, Call, WhatsApp, Get Directions, Book Pickup) */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
+              <a
+                href={SHIP_COUNTY_CARGO_QUOTE_URL}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-sm sm:text-base shadow-lg transition-all transform hover:-translate-y-0.5"
+              >
+                <Calculator className="w-4 h-4" />
+                Get a Quote
+              </a>
+
               <a
                 href={`tel:${addressDetails.phone}`}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-blue-500/25 transition-all transform hover:-translate-y-0.5"
@@ -349,7 +359,7 @@ export default function LondonCharltonDropOffPage() {
               </a>
 
               <Link
-                href="/shipping-from-uk-to-nigeria#quote"
+                href={SHIP_COUNTY_CARGO_QUOTE_URL}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-sm sm:text-base shadow-lg transition-all transform hover:-translate-y-0.5"
               >
                 <CalendarCheck className="w-4 h-4" />
@@ -540,6 +550,13 @@ export default function LondonCharltonDropOffPage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3 shrink-0">
+              <a
+                href={SHIP_COUNTY_CARGO_QUOTE_URL}
+                className="px-6 py-3.5 rounded-xl bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold text-sm shadow-md transition-colors inline-flex items-center gap-2"
+              >
+                <Calculator className="w-4 h-4" />
+                Get a Quote
+              </a>
               <a
                 href={whatsappUrl}
                 target="_blank"

@@ -168,7 +168,7 @@ export default function HowToShipFromUkToNigeriaPage() {
                 <p className="text-sm text-gray-600">Get an instant quote, check weekly departure schedules, and book today.</p>
               </div>
               <Button asChild className="bg-primary text-white font-bold shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria">
+                <Link href="https://ship.countycargo.com/shipping-calculator">
                   Get UK Shipping Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

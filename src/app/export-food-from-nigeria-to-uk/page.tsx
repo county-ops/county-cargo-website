@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs';
 import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
 import { SocialShare } from '@/components/social-share';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Utensils,
   CheckCircle2,
@@ -315,6 +316,14 @@ export default function ExportFoodFromNigeriaToUkPage() {
               How to legally ship dried fish, egusi, ogbono, garri, yam flour, snails, and spices to family, restaurants, and retail stores across the United Kingdom without customs delays or confiscation.
             </p>
 
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote
+                </Link>
+              </Button>
+            </div>
+
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200 mt-6 pt-4 border-t border-white/10">
               <span className="flex items-center gap-1">
                 <UserCheck className="w-3.5 h-3.5 text-green-400" /> Inspected by Food Cargo Specialists
@@ -567,7 +576,7 @@ export default function ExportFoodFromNigeriaToUkPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/shipping-from-nigeria-to-uk">Get a Shipping Quote</Link>
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>Get a Quote</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
                   <a

@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/json-ld';
 import { UsNigeriaQuoteForm } from '@/app/ship-from-us-to-nigeria/quote-form';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Ship,
@@ -20,6 +21,7 @@ import {
   Package,
   Boxes,
   HelpCircle,
+  Calculator,
 } from 'lucide-react';
 import {
   Accordion,
@@ -133,10 +135,10 @@ export default function ShippingFromUsaToAbujaPage() {
       telephone: '+1-214-447-0334',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '1234 N Belt Line Rd',
+        streetAddress: '500 S Belt Line Road, Suite 508',
         addressLocality: 'Irving',
         addressRegion: 'TX',
-        postalCode: '75061',
+        postalCode: '75060',
         addressCountry: 'US',
       },
     },
@@ -209,6 +211,11 @@ export default function ShippingFromUsaToAbujaPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold shadow-lg">
+                    <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      <Calculator className="mr-2 h-4 w-4" /> Get a Quote
+                    </a>
+                  </Button>
                   <Button asChild size="lg" className="bg-primary hover:bg-blue-700 text-white font-semibold">
                     <a href="#quote-calculator">
                       Get Abuja Shipping Quote <ArrowRight className="ml-2 h-4 w-4" />
@@ -263,7 +270,7 @@ export default function ShippingFromUsaToAbujaPage() {
                   <div className="p-3 bg-gray-900/90 rounded-xl border border-gray-700/40">
                     <span className="font-semibold text-white block mb-1">Texas Dispatch Facility:</span>
                     <p className="text-xs text-gray-400">
-                      1234 N Belt Line Rd, Irving, TX 75061, United States.
+                      500 S Belt Line Road, Suite 508, Irving, TX 75060, United States.
                     </p>
                     <p className="text-xs text-blue-300 mt-1">Direct Line: <a href="tel:+12144470334" className="hover:underline">+1 (214) 447-0334</a></p>
                   </div>

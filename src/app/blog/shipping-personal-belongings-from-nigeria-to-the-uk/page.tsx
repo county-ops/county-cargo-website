@@ -147,7 +147,7 @@ export default function ShippingPersonalBelongingsNigeriaToUkPage() {
                 <p className="text-sm text-gray-600">Get a transparent per-kg quote and save on airline excess baggage charges.</p>
               </div>
               <Button asChild className="bg-primary text-white font-bold shrink-0">
-                <Link href="/shipping-from-nigeria-to-uk">
+                <Link href="https://ship.countycargo.com/shipping-calculator">
                   Get Shipping Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

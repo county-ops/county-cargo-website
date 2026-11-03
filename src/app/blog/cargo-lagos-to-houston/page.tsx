@@ -52,7 +52,7 @@ export default function CargoLagosToHoustonPage() {
           address: [
             { '@type': 'PostalAddress', streetAddress: 'Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi', addressLocality: 'Lagos', postalCode: '102214', addressCountry: 'NG' },
             { '@type': 'PostalAddress', streetAddress: 'Unit G6, Queens Dock Commercial Centre, 67-83 Norfolk Street', addressLocality: 'Liverpool', postalCode: 'L1 0BG', addressCountry: 'GB' },
-            { '@type': 'PostalAddress', streetAddress: '1234 N Belt Line Rd', addressLocality: 'Irving', addressRegion: 'TX', postalCode: '75061', addressCountry: 'US' },
+            { '@type': 'PostalAddress', streetAddress: '500 S Belt Line Road, Suite 508', addressLocality: 'Irving', addressRegion: 'TX', postalCode: '75060', addressCountry: 'US' },
           ],
         },
         areaServed: [{ '@type': 'City', name: 'Lagos' }, { '@type': 'City', name: 'Houston' }, { '@type': 'State', name: 'Texas' }],
@@ -231,7 +231,7 @@ export default function CargoLagosToHoustonPage() {
                   <MessageSquare className="w-5 h-5" /> Chat on WhatsApp
                 </Button>
               </a>
-              <Link href="/shipping-from-nigeria-to-usa">
+              <Link href="https://ship.countycargo.com/shipping-calculator">
                 <Button size="lg" variant="outline" className="w-full border-white text-white hover:bg-white/10 font-bold">Get a Quote</Button>
               </Link>
             </div>

@@ -96,10 +96,10 @@ export default function CargoLagosToLondonPage() {
             },
             {
               '@type': 'PostalAddress',
-              streetAddress: '1234 N Belt Line Rd',
+              streetAddress: '500 S Belt Line Road, Suite 508',
               addressLocality: 'Irving',
               addressRegion: 'TX',
-              postalCode: '75061',
+              postalCode: '75060',
               addressCountry: 'US',
             },
           ],
@@ -485,7 +485,7 @@ export default function CargoLagosToLondonPage() {
                   <MessageSquare className="w-5 h-5" /> Chat on WhatsApp
                 </Button>
               </a>
-              <Link href="/shipping-from-nigeria-to-uk">
+              <Link href="https://ship.countycargo.com/shipping-calculator">
                 <Button size="lg" variant="outline" className="w-full border-white text-white hover:bg-white/10 font-bold">
                   Get a Quote
                 </Button>

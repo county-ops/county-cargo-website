@@ -12,7 +12,7 @@ const faqs = [
   {
     question: 'Where is County Cargo’s receiving warehouse located in Texas?',
     answer:
-      'County Cargo’s US receiving facility is located at 1234 N Belt Line Rd, Irving, TX 75061 (Dallas-Fort Worth / Houston metro logistics hub). Shippers can send online purchases or drop off cargo directly at our warehouse.',
+      'County Cargo’s US receiving facility is located at 500 S Belt Line Road, Suite 508, Irving, TX 75060 (Dallas-Fort Worth / Houston metro logistics hub). Shippers can send online purchases or drop off cargo directly at our warehouse.',
   },
   {
     question: 'How long does air shipping take from Texas/USA to Nigeria?',

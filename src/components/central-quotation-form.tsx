@@ -1,737 +1,805 @@
 'use client';
 
-import React, { useState, useEffect, useId } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
+  Calculator,
   Plane,
-  Truck,
+  Clock,
   ShieldCheck,
   CheckCircle2,
-  Clock,
-  ArrowRight,
-  Info,
   AlertCircle,
-  Loader2,
-  MessageCircle,
-  HelpCircle,
+  ArrowRight,
+  MessageSquare,
+  Package,
+  Scale,
   Sparkles,
-  ExternalLink,
+  RefreshCw,
+  Info,
+  Minus,
+  Plus,
+  Ruler,
   ChevronDown,
-  Layers,
-  Box,
+  ChevronUp,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import {
-  ORIGIN_LOCATIONS,
-  DESTINATION_CITIES,
-  ServiceComparisonCard,
-  CentralQuoteResponse,
+  DEFAULT_EXPORT_DESTINATIONS,
+  ShipQuoteApiResponse,
+  ShipQuoteEstimate,
 } from '@/lib/central-pricing';
-import { SearchableCountrySelect } from '@/components/searchable-country-select';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
-interface QuickRoute {
+export type RoutePreset = 'uk-to-ng' | 'us-to-ng' | 'ng-to-uk' | 'ng-to-us' | 'ng-to-world';
+
+export interface CentralQuotationFormProps {
+  initialRoute?: RoutePreset;
+  defaultFromCountry?: string;
+  defaultFromCity?: string;
+  defaultToCountry?: string;
+  defaultToCity?: string;
+  defaultWeight?: number;
+  defaultService?: string;
+  showDimensionsByDefault?: boolean;
+  compact?: boolean;
+  title?: string;
+  description?: string;
+  onEstimateChange?: (estimate: number | null, currency?: string) => void;
+}
+
+interface OriginOption {
   id: string;
   label: string;
-  fromCountry: string;
-  fromCity: string;
-  toCountry: string;
-  toCity: string;
+  country: string;
+  city: string;
+  unit: 'kg' | 'lb';
 }
 
-const QUICK_ROUTES: QuickRoute[] = [
+const ORIGIN_OPTIONS: OriginOption[] = [
   {
-    id: 'uk-ng',
-    label: 'UK to Nigeria',
-    fromCountry: 'United Kingdom',
-    fromCity: 'London Charlton Depot (SE7 7RU)',
-    toCountry: 'Nigeria',
-    toCity: 'Lagos',
+    id: 'NG-LOS',
+    label: 'Nigeria (Lagos)',
+    country: 'Nigeria',
+    city: 'Lagos Drop-off (Ladipo-Oshodi)',
+    unit: 'kg',
   },
   {
-    id: 'ng-uk',
-    label: 'Nigeria to UK',
-    fromCountry: 'Nigeria',
-    fromCity: 'Lagos Drop-Off (Ladipo-Oshodi Plaza)',
-    toCountry: 'United Kingdom',
-    toCity: 'London',
+    id: 'NG-ABV',
+    label: 'Nigeria (Abuja)',
+    country: 'Nigeria',
+    city: 'Abuja Drop-off (Wuye Market)',
+    unit: 'kg',
   },
   {
-    id: 'us-ng',
-    label: 'USA to Nigeria',
-    fromCountry: 'United States',
-    fromCity: 'Irving Texas Warehouse (TX 75061)',
-    toCountry: 'Nigeria',
-    toCity: 'Lagos',
+    id: 'UK-LON',
+    label: 'United Kingdom (London)',
+    country: 'United Kingdom',
+    city: 'London Heathrow Depot',
+    unit: 'kg',
   },
   {
-    id: 'ng-us',
-    label: 'Nigeria to USA',
-    fromCountry: 'Nigeria',
-    fromCity: 'Lagos Drop-Off (Ladipo-Oshodi Plaza)',
-    toCountry: 'United States',
-    toCity: 'Houston',
+    id: 'UK-LIV',
+    label: 'United Kingdom (Liverpool)',
+    country: 'United Kingdom',
+    city: 'Liverpool Queens Dock Depot (L1 0BG)',
+    unit: 'kg',
   },
   {
-    id: 'ng-world',
-    label: 'Nigeria to World',
-    fromCountry: 'Nigeria',
-    fromCity: 'Lagos Drop-Off (Ladipo-Oshodi Plaza)',
-    toCountry: 'Canada',
-    toCity: 'Toronto',
+    id: 'US-TX',
+    label: 'United States (Irving, TX)',
+    country: 'United States',
+    city: 'US Warehouse (Irving, TX)',
+    unit: 'lb',
   },
 ];
 
-const POPULAR_DESTINATIONS = [
-  'Nigeria',
-  'United Kingdom',
-  'United States',
-  'Canada',
-  'Germany',
-  'France',
-  'China',
-  'United Arab Emirates',
-  'Australia',
-  'India',
-  'South Africa',
-  'Italy',
-  'Ghana',
-  'Kenya',
-  'Turkey',
-  'Spain',
-  'Netherlands',
+const NIGERIA_DESTINATIONS = [
+  { id: 'Lagos', label: '🇳🇬 Nigeria — Lagos (Mainland & Island)', city: 'Lagos' },
+  { id: 'Abuja', label: '🇳🇬 Nigeria — Abuja (FCT)', city: 'Abuja' },
+  { id: 'Port Harcourt', label: '🇳🇬 Nigeria — Port Harcourt (Rivers)', city: 'Port Harcourt' },
+  { id: 'Ibadan', label: '🇳🇬 Nigeria — Ibadan (Oyo)', city: 'Ibadan' },
+  { id: 'Kano', label: '🇳🇬 Nigeria — Kano', city: 'Kano' },
+  { id: 'Enugu', label: '🇳🇬 Nigeria — Enugu', city: 'Enugu' },
+  { id: 'Benin City', label: '🇳🇬 Nigeria — Benin City (Edo)', city: 'Benin City' },
+  { id: 'Warri', label: '🇳🇬 Nigeria — Warri / Asaba (Delta)', city: 'Warri' },
+  { id: 'Owerri', label: '🇳🇬 Nigeria — Owerri (Imo)', city: 'Owerri' },
+  { id: 'Uyo', label: '🇳🇬 Nigeria — Uyo / Calabar', city: 'Uyo' },
+  { id: 'Other States', label: '🇳🇬 Nigeria — Other States Nationwide', city: 'Abuja' },
 ];
 
-interface CentralQuotationFormProps {
-  defaultRouteId?: string;
-  compact?: boolean;
+const PRIORITY_EXPORT_COUNTRIES = [
+  { country: 'United Kingdom', flag: '🇬🇧' },
+  { country: 'United States', flag: '🇺🇸' },
+  { country: 'Canada', flag: '🇨🇦' },
+  { country: 'Australia', flag: '🇦🇺' },
+  { country: 'Germany', flag: '🇩🇪' },
+  { country: 'France', flag: '🇫🇷' },
+  { country: 'United Arab Emirates', flag: '🇦🇪' },
+  { country: 'South Africa', flag: '🇿🇦' },
+  { country: 'Ireland', flag: '🇮🇪' },
+  { country: 'Italy', flag: '🇮🇹' },
+  { country: 'Spain', flag: '🇪🇸' },
+  { country: 'Netherlands', flag: '🇳🇱' },
+  { country: 'Ghana', flag: '🇬🇭' },
+  { country: 'Kenya', flag: '🇰🇪' },
+  { country: 'China', flag: '🇨🇳' },
+  { country: 'India', flag: '🇮🇳' },
+];
+
+function resolveInitialState(props: CentralQuotationFormProps) {
+  const fromCountry = (props.defaultFromCountry || '').toLowerCase();
+  const fromCity = (props.defaultFromCity || '').toLowerCase();
+  const toCountry = (props.defaultToCountry || '').toLowerCase();
+  const toCity = props.defaultToCity || '';
+
+  if (props.initialRoute === 'us-to-ng' || fromCountry.includes('united states') || fromCountry === 'us' || fromCountry === 'usa') {
+    return {
+      originId: 'US-TX',
+      destination: toCity && NIGERIA_DESTINATIONS.some((d) => d.id.toLowerCase() === toCity.toLowerCase()) ? toCity : 'Lagos',
+      serviceFilter: props.defaultService || 'all',
+    };
+  }
+
+  if (props.initialRoute === 'ng-to-uk' || (fromCountry.includes('nigeria') && (toCountry.includes('united kingdom') || toCountry === 'uk'))) {
+    return {
+      originId: fromCity.includes('abuja') ? 'NG-ABV' : 'NG-LOS',
+      destination: 'United Kingdom',
+      serviceFilter: props.defaultService || 'all',
+    };
+  }
+
+  if (props.initialRoute === 'ng-to-us' || (fromCountry.includes('nigeria') && (toCountry.includes('united states') || toCountry === 'us' || toCountry === 'usa'))) {
+    return {
+      originId: fromCity.includes('abuja') ? 'NG-ABV' : 'NG-LOS',
+      destination: 'United States',
+      serviceFilter: props.defaultService || 'all',
+    };
+  }
+
+  if (props.initialRoute === 'ng-to-world' || fromCountry.includes('nigeria')) {
+    return {
+      originId: fromCity.includes('abuja') ? 'NG-ABV' : 'NG-LOS',
+      destination: props.defaultToCountry && props.defaultToCountry !== 'Nigeria' ? props.defaultToCountry : 'United Kingdom',
+      serviceFilter: props.defaultService || 'all',
+    };
+  }
+
+  if (props.initialRoute === 'uk-to-ng' || fromCountry.includes('united kingdom') || fromCountry === 'uk') {
+    return {
+      originId: fromCity.includes('liverpool') ? 'UK-LIV' : 'UK-LON',
+      destination: toCity && NIGERIA_DESTINATIONS.some((d) => d.id.toLowerCase() === toCity.toLowerCase()) ? toCity : 'Lagos',
+      serviceFilter: props.defaultService || 'all',
+    };
+  }
+
+  // Default: Nigeria (Lagos) to United States (matching Haulam sample)
+  return {
+    originId: fromCity.includes('abuja') ? 'NG-ABV' : 'NG-LOS',
+    destination: props.defaultToCountry || 'United States',
+    serviceFilter: props.defaultService || 'all',
+  };
 }
 
-export function CentralQuotationForm({
-  defaultRouteId = 'uk-ng',
-  compact = false,
-}: CentralQuotationFormProps) {
-  const [activeRouteTab, setActiveRouteTab] = useState<string>(defaultRouteId);
-  const [fromCountry, setFromCountry] = useState<string>('United Kingdom');
-  const [fromCity, setFromCity] = useState<string>('London Charlton Depot (SE7 7RU)');
-  const [toCountry, setToCountry] = useState<string>('Nigeria');
-  const [toCity, setToCity] = useState<string>('Lagos');
+export function CentralQuotationForm(props: CentralQuotationFormProps) {
+  const {
+    defaultWeight = 25,
+    showDimensionsByDefault = false,
+    compact = false,
+    title = 'Instant Shipping Cost Calculator',
+    description = 'Calculate live shipping rates powered by the Ship County Cargo quotation engine. Select your origin, destination, service, and package weight below.',
+    onEstimateChange,
+  } = props;
 
-  const [weight, setWeight] = useState<string>('10');
-  const [length, setLength] = useState<string>('');
-  const [width, setWidth] = useState<string>('');
-  const [height, setHeight] = useState<string>('');
-  const [itemDescription, setItemDescription] = useState<string>('');
-  const [packageCategory, setPackageCategory] = useState<string>('general');
-  const [collectionType, setCollectionType] = useState<'dropoff' | 'collection'>('dropoff');
+  const initial = resolveInitialState(props);
 
-  const [showDimensions, setShowDimensions] = useState<boolean>(false);
-  const [allCountries, setAllCountries] = useState<string[]>(POPULAR_DESTINATIONS);
+  const [originId, setOriginId] = useState<string>(initial.originId);
+  const [destination, setDestination] = useState<string>(initial.destination);
+  const [serviceFilter, setServiceFilter] = useState<string>(initial.serviceFilter);
+  const [weightInput, setWeightInput] = useState<string>(String(defaultWeight));
+
+  // Volumetric Dimensions
+  const [showDimensions, setShowDimensions] = useState<boolean>(showDimensionsByDefault);
+  const [lengthInput, setLengthInput] = useState<string>('');
+  const [widthInput, setWidthInput] = useState<string>('');
+  const [heightInput, setHeightInput] = useState<string>('');
+  const [dimensionUnit, setDimensionUnit] = useState<'cm' | 'in'>(
+    initial.originId.startsWith('US') ? 'in' : 'cm'
+  );
+
+  // Live destinations from Ship County Cargo API
+  const [exportCountries, setExportCountries] = useState<string[]>(DEFAULT_EXPORT_DESTINATIONS);
+
+  // API Response & Loading state
   const [loading, setLoading] = useState<boolean>(false);
-  const [quoteResult, setQuoteResult] = useState<CentralQuoteResponse | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [quoteData, setQuoteData] = useState<ShipQuoteApiResponse | null>(null);
 
-  const fromCountryId = useId();
-  const fromCityId = useId();
-  const toCountryId = useId();
-  const toCityId = useId();
-  const weightInputId = useId();
-  const categoryId = useId();
+  const selectedOrigin = ORIGIN_OPTIONS.find((o) => o.id === originId) || ORIGIN_OPTIONS[0];
+  const isUsOrigin = selectedOrigin.country === 'United Kingdom' ? false : selectedOrigin.country === 'United States';
+  const isUkOrigin = selectedOrigin.country === 'United Kingdom';
+  const isNigeriaOrigin = selectedOrigin.country === 'Nigeria';
+  const weightUnit = selectedOrigin.unit;
 
-  // Load destination countries list on mount
+  // Fetch live export destinations on mount
   useEffect(() => {
-    let isMounted = true;
-    async function loadCountryList() {
-      try {
-        const res = await fetch('/api/shipping/quote');
-        if (res.ok) {
-          const data = await res.json();
-          if (isMounted && data.dhlCountries && Array.isArray(data.dhlCountries)) {
-            // Merge with Nigeria & popular countries
-            const fullList = Array.from(
-              new Set(['Nigeria', 'United Kingdom', 'United States', 'Canada', ...data.dhlCountries])
-            ).sort();
-            setAllCountries(fullList);
+    let active = true;
+    fetch('/api/shipping/quote')
+      .then((res) => res.json())
+      .then((data) => {
+        if (active && Array.isArray(data?.countries) && data.countries.length > 0) {
+          const filtered = Array.from(
+            new Set(
+              data.countries
+                .map((c: string) => (typeof c === 'string' ? c.trim() : ''))
+                .filter((c: string) => c.length > 0 && c !== 'Nigeria')
+            )
+          ) as string[];
+          if (filtered.length > 0) {
+            setExportCountries(filtered);
           }
         }
-      } catch (err) {
-        console.warn('Failed to load full country list:', err);
-      }
-    }
-    loadCountryList();
+      })
+      .catch(() => {});
     return () => {
-      isMounted = false;
+      active = false;
     };
   }, []);
 
-  // Volumetric weight live calculation
-  const numLength = parseFloat(length) || 0;
-  const numWidth = parseFloat(width) || 0;
-  const numHeight = parseFloat(height) || 0;
-  const volumetricWeight =
-    numLength > 0 && numWidth > 0 && numHeight > 0
-      ? Math.round(((numLength * numWidth * numHeight) / 5000) * 10) / 10
-      : 0;
-  const enteredNumWeight = parseFloat(weight) || 0;
-  const effectiveChargeableWeight = Math.max(enteredNumWeight, volumetricWeight);
-
-  const isUsToNigeria = fromCountry === 'United States' && toCountry === 'Nigeria';
-
-  // Quick route switcher handler
-  const handleSelectRouteTab = (route: QuickRoute) => {
-    setActiveRouteTab(route.id);
-    setFromCountry(route.fromCountry);
-    setFromCity(route.fromCity);
-    setToCountry(route.toCountry);
-    setToCity(route.toCity);
-    const isUsRoute = route.fromCountry === 'United States' && route.toCountry === 'Nigeria';
-    let w = enteredNumWeight;
-    if (isUsRoute && (!w || w < 1)) {
-      w = 1;
-      setWeight('1');
-    }
-    triggerCalculation(route.fromCountry, route.fromCity, route.toCountry, route.toCity, w);
-  };
-
-  const triggerCalculation = async (
-    fCountry = fromCountry,
-    fCity = fromCity,
-    tCountry = toCountry,
-    tCity = toCity,
-    w = enteredNumWeight
-  ) => {
-    setErrorMessage(null);
-    const isUsRoute = fCountry === 'United States' && tCountry === 'Nigeria';
-    if (isUsRoute && (!w || w < 1)) {
-      setErrorMessage('Please enter a valid shipment weight in pounds (minimum 1 lb).');
-      return;
-    }
-    if (!isUsRoute && (!w || w <= 0)) {
-      setErrorMessage('Please enter a valid weight in kg greater than 0.');
-      return;
-    }
-    if (fCountry === tCountry) {
-      setErrorMessage('Origin and destination countries cannot be identical.');
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const res = await fetch('/api/shipping/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fromCountry: fCountry,
-          fromCity: fCity,
-          toCountry: tCountry,
-          toCity: tCity,
-          weight: w,
-          length: numLength,
-          width: numWidth,
-          height: numHeight,
-          itemDescription,
-          packageCategory,
-          collectionType,
-        }),
+  // Available service options for the selected route
+  const serviceOptions = React.useMemo(() => {
+    const opts = [{ id: 'all', label: 'Compare All Available Services' }];
+    if (isUsOrigin) {
+      opts.push({
+        id: 'valueImport',
+        label: 'Value Shipping (Consolidated Air Cargo • 5–10 working days)',
       });
-
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setErrorMessage(data.error || 'Failed to calculate quote. Please check your inputs.');
-        setQuoteResult(null);
-      } else {
-        setQuoteResult(data);
+    } else if (isUkOrigin) {
+      opts.push(
+        {
+          id: 'valueImport',
+          label: 'Value Shipping (Standard Air Cargo • 5–10 working days)',
+        },
+        {
+          id: 'expressImport',
+          label: 'Express Shipping (Priority Air Courier • 3 to 5 working days)',
+        }
+      );
+      if (destination === 'Lagos') {
+        opts.push({
+          id: 'specialExpressImport',
+          label: 'Special Express (48 Hours • £22/kg + £20 handling)',
+        });
       }
-    } catch (err: any) {
-      setErrorMessage('Network connection error while calculating quote. Please try again.');
-      setQuoteResult(null);
-    } finally {
-      setLoading(false);
+    } else if (isNigeriaOrigin) {
+      opts.push(
+        {
+          id: 'valueExport',
+          label: 'Value Shipping (10 kg min chargeable • 5–10 working days)',
+        },
+        {
+          id: 'expressExport',
+          label: 'Express Shipping (Priority DHL Courier • 3–5 working days)',
+        }
+      );
+      if (originId === 'NG-LOS' && destination === 'United Kingdom') {
+        opts.push({
+          id: 'specialExpressExport',
+          label: 'Special Express (48 Hours • £22/kg + £20 handling)',
+        });
+      }
+    }
+    return opts;
+  }, [isUsOrigin, isUkOrigin, isNigeriaOrigin, destination, originId]);
+
+  // Keep serviceFilter valid when route changes
+  useEffect(() => {
+    if (!serviceOptions.some((o) => o.id === serviceFilter)) {
+      setServiceFilter('all');
+    }
+  }, [serviceOptions, serviceFilter]);
+
+  const handleOriginChange = (newOriginId: string) => {
+    setOriginId(newOriginId);
+    setError(null);
+    const nextOrigin = ORIGIN_OPTIONS.find((o) => o.id === newOriginId) || ORIGIN_OPTIONS[0];
+    setDimensionUnit(nextOrigin.country === 'United States' ? 'in' : 'cm');
+
+    if (nextOrigin.country === 'United Kingdom' || nextOrigin.country === 'United States') {
+      if (!NIGERIA_DESTINATIONS.some((d) => d.id === destination)) {
+        setDestination('Lagos');
+      }
+    } else {
+      if (NIGERIA_DESTINATIONS.some((d) => d.id === destination) || destination === 'Nigeria') {
+        setDestination('United Kingdom');
+      }
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    triggerCalculation();
+  const calculateQuote = useCallback(
+    async (e?: React.FormEvent) => {
+      if (e) e.preventDefault();
+      setError(null);
+
+      const parsedWeight = parseFloat(weightInput);
+      if (isNaN(parsedWeight) || parsedWeight <= 0) {
+        setError(
+          weightUnit === 'lb'
+            ? 'Please enter a valid package weight greater than 0 lb.'
+            : 'Please enter a valid package weight greater than 0 kg.'
+        );
+        return;
+      }
+
+      const l = showDimensions ? parseFloat(lengthInput) || 0 : 0;
+      const w = showDimensions ? parseFloat(widthInput) || 0 : 0;
+      const h = showDimensions ? parseFloat(heightInput) || 0 : 0;
+
+      const destCountry = isUkOrigin || isUsOrigin ? 'Nigeria' : destination;
+      const destCity =
+        isUkOrigin || isUsOrigin
+          ? NIGERIA_DESTINATIONS.find((d) => d.id === destination)?.city || 'Lagos'
+          : '';
+
+      setLoading(true);
+      try {
+        const res = await fetch('/api/shipping/quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            originCountry: selectedOrigin.country,
+            originCity: selectedOrigin.city,
+            destinationCountry: destCountry,
+            destinationCity: destCity,
+            weight: parsedWeight,
+            length: l > 0 ? l : undefined,
+            width: w > 0 ? w : undefined,
+            height: h > 0 ? h : undefined,
+            dimensionUnit,
+            handoverMethod: 'depot',
+            category: 'General Goods',
+          }),
+        });
+
+        const data: ShipQuoteApiResponse = await res.json();
+
+        if (!res.ok || !data.success || !data.estimates || data.estimates.length === 0) {
+          setError(data.error || 'We could not retrieve the current rate. Please try again.');
+          setQuoteData(null);
+          if (onEstimateChange) onEstimateChange(null);
+        } else {
+          setQuoteData(data);
+          if (onEstimateChange && data.estimates[0]) {
+            onEstimateChange(data.estimates[0].estimate, data.estimates[0].currency);
+          }
+        }
+      } catch (err) {
+        console.error('Error calculating quote:', err);
+        setError('Unable to connect to the quotation service. Please try again.');
+        setQuoteData(null);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [
+      weightInput,
+      weightUnit,
+      showDimensions,
+      lengthInput,
+      widthInput,
+      heightInput,
+      dimensionUnit,
+      isUkOrigin,
+      isUsOrigin,
+      destination,
+      selectedOrigin,
+      onEstimateChange,
+    ]
+  );
+
+  // Automatically calculate initial quote and recalculate when inputs change
+  useEffect(() => {
+    const parsedWeight = parseFloat(weightInput);
+    if (isNaN(parsedWeight) || parsedWeight <= 0) return;
+    const timer = setTimeout(() => {
+      calculateQuote();
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [originId, destination, weightInput, showDimensions, lengthInput, widthInput, heightInput, dimensionUnit, calculateQuote]);
+
+  const displayedEstimates: ShipQuoteEstimate[] = React.useMemo(() => {
+    if (!quoteData?.estimates) return [];
+    if (serviceFilter === 'all') return quoteData.estimates;
+    const filtered = quoteData.estimates.filter((est) => est.serviceType === serviceFilter);
+    return filtered.length > 0 ? filtered : quoteData.estimates;
+  }, [quoteData, serviceFilter]);
+
+  const formatCurrency = (amount: number, currency: 'GBP' | 'USD' | 'NGN') => {
+    const symbol = currency === 'GBP' ? '£' : currency === 'USD' ? '$' : '₦';
+    return `${symbol}${amount.toLocaleString(undefined, {
+      minimumFractionDigits: currency === 'NGN' ? 0 : 2,
+      maximumFractionDigits: currency === 'NGN' ? 0 : 2,
+    })}`;
   };
 
-  // Perform initial calculation on mount
-  useEffect(() => {
-    triggerCalculation();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Handover locations based on selected origin country
-  const currentHandoverLocations =
-    ORIGIN_LOCATIONS[fromCountry as keyof typeof ORIGIN_LOCATIONS] || [
-      { id: 'hub', name: `${fromCountry} Hub Drop-off`, city: fromCountry },
-    ];
-
-  // Destination cities based on selected destination country
-  const currentDestinationCities =
-    DESTINATION_CITIES[toCountry] || ['Major International Hub', 'Capital City', 'Doorstep Address'];
+  const getMinWeightNote = (est: ShipQuoteEstimate, enteredWeight: number, volWeight: number) => {
+    if (volWeight > enteredWeight && est.billableWeight === Math.max(volWeight, est.minimumWeight)) {
+      return `Volumetric weight (${volWeight} ${est.weightUnit}) exceeds actual weight (${enteredWeight} ${est.weightUnit}). Airlines bill by chargeable weight (${est.billableWeight} ${est.weightUnit}).`;
+    }
+    if (est.serviceType === 'valueExport' && enteredWeight < 10) {
+      return 'Minimum chargeable weight for Value Export is 10 kg.';
+    }
+    if (enteredWeight < est.minimumWeight) {
+      return `Minimum chargeable weight for ${est.serviceName} is ${est.minimumWeight} ${est.weightUnit}.`;
+    }
+    if (Math.ceil(enteredWeight) > enteredWeight) {
+      return `Shipments are billed at the next whole ${est.weightUnit} (${est.billableWeight} ${est.weightUnit}).`;
+    }
+    return null;
+  };
 
   return (
-    <div id="quote-calculator" className="w-full">
-      {/* Calculator Main Card */}
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-100/80 overflow-hidden">
-        {/* Quick Route Tabs */}
-        <div className="bg-slate-50 border-b border-gray-200/90 px-3 pt-2 flex items-center gap-1 overflow-x-auto scrollbar-none">
-          {QUICK_ROUTES.map((route) => {
-            const isActive = activeRouteTab === route.id;
-            return (
-              <button
-                key={route.id}
-                type="button"
-                onClick={() => handleSelectRouteTab(route)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-t-lg transition-all whitespace-nowrap flex items-center gap-1 ${
-                  isActive
-                    ? 'bg-white text-primary border-t-2 border-primary shadow-sm font-bold'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80'
-                }`}
+    <div id="quote-calculator" className="w-full max-w-4xl mx-auto">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-200/90 p-6 sm:p-8">
+        {/* Form Controls (Haulam layout & sequence: From, To, Weight + full-width Calculate Quote button) */}
+        <form onSubmit={calculateQuote} className="space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end text-left">
+            {/* 1. From */}
+            <div className="space-y-2">
+              <Label htmlFor="calc-origin" className="text-sm font-semibold text-slate-900">
+                From
+              </Label>
+              <select
+                id="calc-origin"
+                value={originId}
+                onChange={(e) => handleOriginChange(e.target.value)}
+                className="w-full h-11 px-3.5 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm font-medium shadow-xs focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all"
               >
-                <span>{route.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Form Body - Tidy, compact padding */}
-        <div className="p-3.5 sm:p-4 lg:p-4">
-          <form onSubmit={handleSubmit} className="space-y-2.5">
-            {/* Row 1: Origin & Destination (Two Columns on Desktop) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
-              {/* Origin */}
-              <div>
-                <Label htmlFor={fromCountryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
-                  From (Origin)
-                </Label>
-                <div className="grid grid-cols-2 gap-1.5">
-                  <SearchableCountrySelect
-                    id={fromCountryId}
-                    value={fromCountry}
-                    onChange={(newOrigin) => {
-                      setFromCountry(newOrigin);
-                      const locs = ORIGIN_LOCATIONS[newOrigin as keyof typeof ORIGIN_LOCATIONS];
-                      if (locs && locs.length > 0) setFromCity(locs[0].name);
-                      if (newOrigin === toCountry) {
-                        setToCountry(newOrigin === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
-                      }
-                      if (newOrigin === 'United States' && toCountry === 'Nigeria') {
-                        const w = parseFloat(weight) || 0;
-                        if (w < 1) setWeight('1');
-                      }
-                    }}
-                    countries={['United Kingdom', 'Nigeria', 'United States', 'Canada']}
-                    size="sm"
-                  />
-
-                  <select
-                    id={fromCityId}
-                    value={fromCity}
-                    onChange={(e) => setFromCity(e.target.value)}
-                    className="h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
-                  >
-                    {currentHandoverLocations.map((loc) => (
-                      <option key={loc.id} value={loc.name}>
-                        {loc.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Destination */}
-              <div>
-                <Label htmlFor={toCountryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
-                  To (Destination)
-                </Label>
-                <div className="grid grid-cols-2 gap-1.5">
-                  <SearchableCountrySelect
-                    id={toCountryId}
-                    value={toCountry}
-                    onChange={(newDest) => {
-                      setToCountry(newDest);
-                      const cities = DESTINATION_CITIES[newDest] || ['Main City'];
-                      setToCity(cities[0]);
-                      if (newDest === fromCountry) {
-                        setFromCountry(newDest === 'Nigeria' ? 'United Kingdom' : 'Nigeria');
-                      }
-                      if (fromCountry === 'United States' && newDest === 'Nigeria') {
-                        const w = parseFloat(weight) || 0;
-                        if (w < 1) setWeight('1');
-                      }
-                    }}
-                    countries={allCountries}
-                    size="sm"
-                  />
-
-                  <select
-                    id={toCityId}
-                    value={toCity}
-                    onChange={(e) => setToCity(e.target.value)}
-                    className="h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary focus:border-primary truncate"
-                  >
-                    {currentDestinationCities.map((city) => (
-                      <option key={city} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+                {ORIGIN_OPTIONS.map((opt) => (
+                  <option key={opt.id} value={opt.id}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
             </div>
 
-            {/* Row 2: Weight, Category, Handover Method, Calculate Button (Four Columns on Desktop) */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 items-end">
-              {/* Weight */}
-              <div>
-                <div className="flex items-center justify-between mb-1">
-                  <Label htmlFor={weightInputId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700">
-                    Weight ({isUsToNigeria ? 'lb' : 'kg'})
-                  </Label>
-                </div>
-                <div className="relative flex items-center">
-                  <Input
-                    id={weightInputId}
-                    type="number"
-                    min={isUsToNigeria ? '1' : '0.5'}
-                    step={isUsToNigeria ? '1' : '0.5'}
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    placeholder={isUsToNigeria ? 'e.g. 1' : 'e.g. 10'}
-                    className="h-9 pr-10 text-xs font-bold text-gray-900 rounded-lg bg-gray-50 border-gray-300"
-                    required
-                  />
-                  <span className="absolute right-2.5 text-[11px] font-bold text-gray-500 pointer-events-none uppercase">
-                    {isUsToNigeria ? 'LB' : 'KG'}
-                  </span>
-                </div>
-              </div>
-
-              {/* Package Category */}
-              <div>
-                <Label htmlFor={categoryId} className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
-                  Package Category
-                </Label>
-                <select
-                  id={categoryId}
-                  value={packageCategory}
-                  onChange={(e) => setPackageCategory(e.target.value)}
-                  className="w-full h-9 px-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 text-xs font-medium focus:ring-2 focus:ring-primary truncate"
-                >
-                  <option value="general">General Goods / Personal</option>
-                  <option value="foodstuff">African Foodstuffs & Spices</option>
-                  <option value="fashion">Fashion & Textiles</option>
-                  <option value="documents">Urgent Documents</option>
-                  <option value="commercial">Commercial Samples</option>
-                  <option value="electronics">Electronics & Gadgets</option>
-                </select>
-              </div>
-
-              {/* Handover Collection vs Dropoff */}
-              <div>
-                <Label className="text-[11px] font-bold uppercase tracking-wider text-gray-700 block mb-1">
-                  Handover Method
-                </Label>
-                <div className="grid grid-cols-2 gap-1 h-9 bg-gray-100 p-0.5 rounded-lg">
-                  <button
-                    type="button"
-                    onClick={() => setCollectionType('dropoff')}
-                    className={`text-[11px] font-bold rounded-md transition-all ${
-                      collectionType === 'dropoff'
-                        ? 'bg-white text-primary shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
-                  >
-                    Depot Drop-Off
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCollectionType('collection')}
-                    className={`text-[11px] font-bold rounded-md transition-all ${
-                      collectionType === 'collection'
-                        ? 'bg-white text-primary shadow-sm'
-                        : 'text-gray-600 hover:text-gray-900'
-                    }`}
-                  >
-                    Doorstep Pickup
-                  </button>
-                </div>
-              </div>
-
-              {/* Calculate Quotes Button */}
-              <div>
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full h-9 bg-[#0A2A5E] hover:bg-blue-900 text-white font-bold text-xs rounded-lg shadow transition-all flex items-center justify-center gap-1.5"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Calculating...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Calculate Quotes</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </>
-                  )}
-                </Button>
-              </div>
-            </div>
-
-            {/* Subline: Volumetric Dimensions & Description */}
-            <div className="pt-0.5 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowDimensions(!showDimensions)}
-                  className="text-[11px] text-primary hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                >
-                  <Box className="w-3 h-3" />
-                  <span>{showDimensions ? 'Hide Dimensions' : '+ Add Box Dimensions for Volumetric Check'}</span>
-                </button>
-                {volumetricWeight > 0 && (
-                  <span className="text-[11px] text-amber-700 font-semibold">
-                    Vol: {volumetricWeight} kg &bull; Billable: {effectiveChargeableWeight} kg
-                  </span>
+            {/* 2. To */}
+            <div className="space-y-2">
+              <Label htmlFor="calc-destination" className="text-sm font-semibold text-slate-900">
+                To
+              </Label>
+              <select
+                id="calc-destination"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                className="w-full h-11 px-3.5 rounded-lg border border-slate-300 bg-white text-slate-900 text-sm font-medium shadow-xs focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all"
+              >
+                {isUkOrigin || isUsOrigin ? (
+                  NIGERIA_DESTINATIONS.map((dest) => (
+                    <option key={dest.id} value={dest.id}>
+                      {dest.id}, Nigeria
+                    </option>
+                  ))
+                ) : (
+                  <>
+                    <optgroup label="Popular Destinations">
+                      {PRIORITY_EXPORT_COUNTRIES.map((c) => (
+                        <option key={`priority-${c.country}`} value={c.country}>
+                          {c.country}
+                        </option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="All Countries (A–Z)">
+                      {exportCountries
+                        .filter((c) => !PRIORITY_EXPORT_COUNTRIES.some((p) => p.country === c))
+                        .map((country) => (
+                          <option key={country} value={country}>
+                            {country}
+                          </option>
+                        ))}
+                    </optgroup>
+                  </>
                 )}
-              </div>
-
-              <div className="flex items-center gap-1.5 flex-1 max-w-[240px] ml-auto">
-                <span className="text-[10.5px] text-gray-400 whitespace-nowrap">Item:</span>
-                <input
-                  type="text"
-                  value={itemDescription}
-                  onChange={(e) => setItemDescription(e.target.value)}
-                  placeholder="e.g. Clothes, foods, books"
-                  className="h-6 px-2 text-[11px] bg-gray-50 border border-gray-200 rounded text-gray-800 w-full focus:outline-none focus:border-primary"
-                />
-              </div>
+              </select>
             </div>
 
-            {/* Expandable Dimensions */}
+            {/* 3. Weight */}
+            <div className="space-y-2">
+              <Label htmlFor="calc-weight" className="text-sm font-semibold text-slate-900">
+                Weight
+              </Label>
+              <div className="flex gap-2">
+                <input
+                  id="calc-weight"
+                  type="number"
+                  min="0.5"
+                  step="0.01"
+                  value={weightInput}
+                  onChange={(e) => setWeightInput(e.target.value)}
+                  onBlur={() => {
+                    const val = parseFloat(weightInput);
+                    if (isNaN(val) || val <= 0) {
+                      setWeightInput('1');
+                    }
+                  }}
+                  className="h-11 flex-1 min-w-0 px-3.5 rounded-lg border border-slate-300 bg-white text-sm font-semibold text-slate-900 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  placeholder="e.g., 25"
+                  required
+                />
+                <div className="flex items-center justify-center px-4 h-11 border border-slate-200 rounded-lg bg-slate-100 text-slate-700 font-semibold text-sm shrink-0">
+                  {weightUnit}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Optional Volumetric Weight Dimensions Toggle */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowDimensions((prev) => !prev)}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-primary transition-colors"
+            >
+              <Ruler className="w-3.5 h-3.5" />
+              <span>
+                {showDimensions
+                  ? 'Hide package dimensions (volumetric weight)'
+                  : 'Have a bulky box? Enter dimensions (L × W × H) for volumetric weight'}
+              </span>
+              {showDimensions ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
+
             {showDimensions && (
-              <div className="p-2 rounded-lg bg-blue-50/70 border border-blue-100 grid grid-cols-3 gap-2 animate-in fade-in duration-150">
-                <div>
-                  <Label className="text-[10px] font-bold text-gray-600">Length (cm)</Label>
-                  <Input
-                    type="number"
-                    min="1"
-                    value={length}
-                    onChange={(e) => setLength(e.target.value)}
-                    placeholder="cm"
-                    className="h-7 text-xs bg-white mt-0.5"
-                  />
+              <div className="mt-3 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3 text-left">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                    <Package className="w-4 h-4 text-primary" />
+                    <span>Package Dimensions (Volumetric Weight Check)</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <span className="text-slate-500 font-medium">Unit:</span>
+                    <button
+                      type="button"
+                      onClick={() => setDimensionUnit('cm')}
+                      className={`px-2.5 py-1 rounded-md font-bold transition-colors ${
+                        dimensionUnit === 'cm'
+                          ? 'bg-primary text-white'
+                          : 'bg-white border border-slate-200 text-slate-700'
+                      }`}
+                    >
+                      cm
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDimensionUnit('in')}
+                      className={`px-2.5 py-1 rounded-md font-bold transition-colors ${
+                        dimensionUnit === 'in'
+                          ? 'bg-primary text-white'
+                          : 'bg-white border border-slate-200 text-slate-700'
+                      }`}
+                    >
+                      in
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <Label className="text-[10px] font-bold text-gray-600">Width (cm)</Label>
-                  <Input
-                    type="number"
-                    min="1"
-                    value={width}
-                    onChange={(e) => setWidth(e.target.value)}
-                    placeholder="cm"
-                    className="h-7 text-xs bg-white mt-0.5"
-                  />
-                </div>
-                <div>
-                  <Label className="text-[10px] font-bold text-gray-600">Height (cm)</Label>
-                  <Input
-                    type="number"
-                    min="1"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    placeholder="cm"
-                    className="h-7 text-xs bg-white mt-0.5"
-                  />
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <Label htmlFor="calc-length" className="text-xs font-semibold text-slate-600">
+                      Length ({dimensionUnit})
+                    </Label>
+                    <Input
+                      id="calc-length"
+                      type="number"
+                      min="0"
+                      step="1"
+                      placeholder={dimensionUnit === 'cm' ? 'e.g. 50' : 'e.g. 20'}
+                      value={lengthInput}
+                      onChange={(e) => setLengthInput(e.target.value)}
+                      className="mt-1 h-10 bg-white font-semibold"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="calc-width" className="text-xs font-semibold text-slate-600">
+                      Width ({dimensionUnit})
+                    </Label>
+                    <Input
+                      id="calc-width"
+                      type="number"
+                      min="0"
+                      step="1"
+                      placeholder={dimensionUnit === 'cm' ? 'e.g. 40' : 'e.g. 16'}
+                      value={widthInput}
+                      onChange={(e) => setWidthInput(e.target.value)}
+                      className="mt-1 h-10 bg-white font-semibold"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="calc-height" className="text-xs font-semibold text-slate-600">
+                      Height ({dimensionUnit})
+                    </Label>
+                    <Input
+                      id="calc-height"
+                      type="number"
+                      min="0"
+                      step="1"
+                      placeholder={dimensionUnit === 'cm' ? 'e.g. 40' : 'e.g. 16'}
+                      value={heightInput}
+                      onChange={(e) => setHeightInput(e.target.value)}
+                      className="mt-1 h-10 bg-white font-semibold"
+                    />
+                  </div>
                 </div>
               </div>
             )}
-          </form>
+          </div>
 
-          {/* Error Message Notice */}
-          {errorMessage && (
-            <div className="mt-2 p-2 rounded-lg bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
-              <p className="font-semibold">{errorMessage}</p>
-            </div>
-          )}
+          {/* Full-width Pill Calculate Quote Button (Haulam style) */}
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full h-12 rounded-full bg-[#dc2626] hover:bg-[#b91c1c] text-white font-semibold text-base sm:text-lg shadow-md transition-all"
+          >
+            {loading ? (
+              <>
+                <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
+                Calculating...
+              </>
+            ) : (
+              'Calculate Quote'
+            )}
+          </Button>
+        </form>
 
-          {/* QUOTATION RESULTS: COMPARISON CARDS IN ONE HORIZONTAL ROW */}
-          {quoteResult && quoteResult.services.length > 0 && (
-            <div className="mt-3 pt-2.5 border-t border-gray-100 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-xs font-black uppercase tracking-wider text-gray-900 flex items-center gap-1.5">
-                  <span>Available Shipping Services</span>
-                  <span className="text-gray-400 font-normal">|</span>
-                  <span className="text-primary font-bold">{quoteResult.fromCountry} → {quoteResult.toCountry}</span>
-                </h3>
-                <span className="text-[11px] text-gray-500 font-medium">
-                  Billable Weight: <strong className="text-gray-900">{quoteResult.chargeableWeight} {isUsToNigeria ? 'lb' : 'kg'}</strong>
-                </span>
-              </div>
+        {/* Error Banner */}
+        {error && (
+          <div className="mt-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm flex items-center gap-2.5 text-left">
+            <AlertCircle className="w-5 h-5 shrink-0 text-red-600" />
+            <span className="font-medium">{error}</span>
+          </div>
+        )}
 
-              {/* Service Comparison Cards Grid: Exactly 1 horizontal row on desktop */}
-              <div
-                className={`grid gap-2.5 sm:gap-3 ${
-                  quoteResult.services.length === 3
-                    ? 'grid-cols-1 md:grid-cols-3'
-                    : quoteResult.services.length === 2
-                    ? 'grid-cols-1 md:grid-cols-2'
-                    : 'grid-cols-1 max-w-sm mx-auto'
-                }`}
-              >
-                {quoteResult.services.map((service) => {
-                  const isSpecial = service.id === 'special_express';
-                  const isExpress = service.id === 'express';
-                  const isValue = service.id === 'value';
+        {/* Quote Results Section (Haulam 2-Card Diagonal Sequence) */}
+        {loading && !quoteData ? (
+          <div className="py-10 text-center space-y-2">
+            <RefreshCw className="w-7 h-7 text-[#dc2626] animate-spin mx-auto" />
+            <p className="text-sm font-medium text-slate-500">Calculating shipping quote...</p>
+          </div>
+        ) : displayedEstimates.length > 0 && quoteData ? (
+          <div className="mt-8">
+            <div
+              className={`grid grid-cols-1 gap-6 text-left ${
+                displayedEstimates.length === 1
+                  ? 'max-w-xl mx-auto'
+                  : displayedEstimates.length === 2
+                    ? 'md:grid-cols-2'
+                    : 'md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
+              {displayedEstimates.map((est) => {
+                const minWeightNote = getMinWeightNote(
+                  est,
+                  quoteData.actualWeight,
+                  quoteData.volumetricWeight
+                );
+                const approxNgn =
+                  est.approxNgnEstimate ||
+                  (est.currency !== 'NGN' && est.exchangeRate
+                    ? Math.round(est.estimate * est.exchangeRate)
+                    : undefined);
 
-                  return (
-                    <div
-                      key={service.id}
-                      className={`rounded-xl p-3 sm:p-3.5 flex flex-col justify-between transition-all relative h-full ${
-                        isSpecial
-                          ? 'bg-gradient-to-b from-blue-950 via-slate-900 to-blue-900 text-white shadow-md border-2 border-amber-400'
-                          : isExpress
-                          ? 'bg-white border-2 border-primary/50 shadow-sm text-gray-900'
-                          : 'bg-gray-50 border border-gray-200/90 text-gray-900 hover:border-gray-300'
-                      }`}
-                    >
-                      {/* Top Badge */}
-                      {service.badge && (
-                        <div
-                          className={`absolute -top-2.5 right-3 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm ${
-                            service.badge === 'Fastest'
-                              ? 'bg-amber-400 text-gray-950'
-                              : 'bg-emerald-600 text-white'
-                          }`}
-                        >
-                          {service.badge}
+                const featureList =
+                  est.features && est.features.length > 0
+                    ? est.features
+                    : [
+                        `Delivery in ${est.estimatedDelivery}`,
+                        est.deliveryMethod || 'Doorstep delivery',
+                        ...(est.serviceType.toLowerCase().includes('express') &&
+                        !est.serviceType.toLowerCase().includes('special')
+                          ? ['Shipment via DHL']
+                          : []),
+                        est.customsInfo || '15% additional tarrif on declared value applies',
+                      ];
+
+                return (
+                  <div
+                    key={est.serviceType}
+                    className="rounded-xl border border-slate-200/90 bg-white p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow"
+                  >
+                    <div>
+                      {/* 1. Service Name & Description */}
+                      <div className="pb-2">
+                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                          {est.serviceName}
+                        </h3>
+                        <p className="text-sm text-slate-500 mt-1">{est.description}</p>
+                      </div>
+
+                      {/* 2. Total Price */}
+                      <div className="my-4">
+                        <div className="text-3xl sm:text-4xl font-extrabold text-[#dc2626] tracking-tight">
+                          {formatCurrency(est.estimate, est.currency)}
                         </div>
-                      )}
-
-                      <div>
-                        {/* Title */}
-                        <div className="flex items-start justify-between gap-1 mb-1">
-                          <h4 className={`text-sm sm:text-base font-black leading-tight ${isSpecial ? 'text-white' : 'text-gray-900'}`}>
-                            {service.name}
-                          </h4>
-                        </div>
-
-                        {/* Delivery Time Badge */}
-                        <div className="mb-2">
-                          <span
-                            className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-md ${
-                              isSpecial
-                                ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30'
-                                : isExpress
-                                ? 'bg-blue-100 text-primary'
-                                : 'bg-emerald-100 text-emerald-800'
-                            }`}
-                          >
-                            <Clock className="w-3 h-3" />
-                            <span>{service.estimatedDeliveryTime}</span>
-                          </span>
-                        </div>
-
-                        {/* Price Display */}
-                        <div className="my-1.5 pb-2 border-b border-gray-200/30">
-                          <div
-                            className={`text-2xl sm:text-[26px] font-black tracking-tight leading-none ${
-                              isSpecial ? 'text-amber-400' : 'text-[#EA580C]'
-                            }`}
-                          >
-                            {service.formattedTotal}
-                          </div>
-                          {service.convertedEstimate && (
-                            <div className={`text-[11px] mt-0.5 font-semibold ${isSpecial ? 'text-blue-200' : 'text-gray-600'}`}>
-                              {service.convertedEstimate}
-                            </div>
-                          )}
-                          <div className={`text-[10px] mt-0.5 ${isSpecial ? 'text-gray-300' : 'text-gray-500'}`}>
-                            Rate: <strong>{service.ratePerKgDisplay}</strong>
-                            {service.handlingFee > 0 && ` + Fee: £${service.handlingFee}`}
-                          </div>
-                        </div>
-
-                        {/* Key Features Bullet List */}
-                        <ul className="space-y-1 mb-2.5 text-[11px]">
-                          <li className="flex items-center gap-1.5">
-                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
-                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
-                              {isSpecial ? '48-hour scheduled direct flight' : isExpress ? '3 to 5 working days delivery' : '5–10 working days transit'}
-                            </span>
-                          </li>
-                          <li className="flex items-center gap-1.5">
-                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
-                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
-                              {isSpecial ? 'Special UK ↔ NG priority lane' : isExpress ? 'DHL priority global network' : 'Consolidated air cargo'}
-                            </span>
-                          </li>
-                          <li className="flex items-center gap-1.5">
-                            <CheckCircle2 className={`w-3 h-3 shrink-0 ${isSpecial ? 'text-amber-400' : 'text-emerald-600'}`} />
-                            <span className={isSpecial ? 'text-gray-200' : 'text-gray-700'}>
-                              Full tracking &amp; doorstep delivery
-                            </span>
-                          </li>
-                        </ul>
-
-                        {/* Special Express Operational Terms */}
-                        {isSpecial && service.termsAndConditions && (
-                          <div className="p-1.5 mb-2 rounded bg-amber-500/10 border border-amber-400/20 text-amber-200 text-[10px] leading-tight">
-                            <span className="font-bold text-amber-300">Note: </span>
-                            48-hr countdown begins upon flight departure. Excludes weekends &amp; customs holds.
+                        {approxNgn && est.currency !== 'NGN' && (
+                          <div className="text-xs font-medium text-slate-500 mt-1">
+                            Approx. ₦{approxNgn.toLocaleString()} NGN
                           </div>
                         )}
                       </div>
 
-                      {/* Action Booking Buttons */}
-                      <div className="space-y-1.5 pt-1">
-                        <Button
-                          asChild
-                          className={`w-full h-8 font-bold text-xs rounded-lg shadow-sm transition-all ${
-                            isSpecial
-                              ? 'bg-amber-400 hover:bg-amber-500 text-gray-950 font-black'
-                              : isExpress
-                              ? 'bg-primary hover:bg-blue-800 text-white'
-                              : 'bg-[#0A2A5E] hover:bg-black text-white'
-                          }`}
-                        >
-                          <a href={service.bookingUrl} target="_blank" rel="noopener noreferrer">
-                            <span>Book Online</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                          </a>
-                        </Button>
+                      {/* 3. Feature List (Green checkmarks & Amber alert icons matching Haulam) */}
+                      <ul className="space-y-2.5 text-sm text-slate-600 mb-5">
+                        {featureList.map((feature, idx) => {
+                          const isWarningItem =
+                            feature.toLowerCase().includes('customs fees') ||
+                            feature.toLowerCase().includes('tarrif') ||
+                            feature.toLowerCase().includes('tariff');
+                          return (
+                            <li key={idx} className="flex items-start gap-2.5">
+                              {isWarningItem ? (
+                                <AlertCircle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                              ) : (
+                                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                              )}
+                              <span>{feature}</span>
+                            </li>
+                          );
+                        })}
+                      </ul>
 
-                        <a
-                          href={service.whatsAppUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center justify-center w-full text-[11px] font-semibold py-1 rounded-lg transition-colors ${
-                            isSpecial
-                              ? 'bg-white/10 hover:bg-white/20 text-emerald-300'
-                              : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-800'
-                          }`}
-                        >
-                          <MessageCircle className="w-3 h-3 mr-1 text-emerald-600" />
-                          <span>WhatsApp Quote</span>
-                        </a>
+                      {/* 4. Compact Price & Weight Breakdown */}
+                      <div className="text-xs text-slate-500 py-2.5 px-3 mb-5 rounded-lg bg-slate-50 border border-slate-100 space-y-1">
+                        <div className="flex justify-between">
+                          <span>Chargeable Weight:</span>
+                          <span className="font-semibold text-slate-700">
+                            {est.billableWeight} {est.weightUnit}
+                            {quoteData.volumetricWeight > 0
+                              ? ` (Vol: ${quoteData.volumetricWeight} ${est.weightUnit})`
+                              : ''}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Rate / Base Cost:</span>
+                          <span className="font-semibold text-slate-700">
+                            {formatCurrency(est.baseCost, est.currency)} ({formatCurrency(est.rate, est.currency)}/{est.weightUnit})
+                          </span>
+                        </div>
+                        {est.handlingFee !== undefined && est.handlingFee > 0 && (
+                          <div className="flex justify-between">
+                            <span>Handling Fee:</span>
+                            <span className="font-semibold text-slate-700">
+                              {formatCurrency(est.handlingFee, est.currency)}
+                            </span>
+                          </div>
+                        )}
+                        {minWeightNote && (
+                          <div className="text-[11px] text-amber-700 pt-1 border-t border-slate-200/70">
+                            {minWeightNote}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Disclaimer */}
-              <p className="text-center text-[10px] text-gray-400 mt-2 italic">
-                *Final cost calculated upon warehouse check-in &amp; physical weigh-in.
-              </p>
+                    {/* 5. Outlined Pill Action Button (Haulam style) */}
+                    <div className="mt-auto pt-1">
+                      <a
+                        href={est.bookingUrl || SHIP_COUNTY_CARGO_QUOTE_URL}
+                        className="w-full h-11 rounded-full font-semibold text-sm border border-[#dc2626]/80 text-[#dc2626] hover:bg-[#dc2626] hover:text-white bg-transparent transition-colors flex items-center justify-center"
+                      >
+                        Start Shipment
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          )}
-        </div>
+
+            {/* Footnote matching Haulam sample */}
+            <p className="text-xs text-slate-500 mt-6 text-center italic">
+              *Final shipping costs are subject to change and will be confirmed after your items are received and officially weighed at our facility.
+            </p>
+          </div>
+        ) : null}
       </div>
     </div>
   );

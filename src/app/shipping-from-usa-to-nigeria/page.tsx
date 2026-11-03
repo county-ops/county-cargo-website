@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/json-ld';
 import { UsNigeriaQuoteForm } from '@/app/ship-from-us-to-nigeria/quote-form';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Ship,
@@ -22,6 +23,7 @@ import {
   Boxes,
   Layers,
   HelpCircle,
+  Calculator,
 } from 'lucide-react';
 import {
   Accordion,
@@ -70,7 +72,7 @@ const usaFaqs = [
   {
     question: 'Where is your US warehouse located for drop-offs?',
     answer:
-      'Our US consolidation warehouse is located at 1234 N Belt Line Rd, Irving, TX 75061, United States. We accept commercial drop-offs, parcels from US online retailers (Amazon, Walmart, eBay, etc.), and arrange pick-ups across Texas and the greater US.',
+      'Our US consolidation warehouse is located at 500 S Belt Line Road, Suite 508, Irving, TX 75060, United States. We accept commercial drop-offs, parcels from US online retailers (Amazon, Walmart, eBay, etc.), and arrange pick-ups across Texas and the greater US.',
   },
   {
     question: 'Do you handle Nigerian customs clearance for US cargo?',
@@ -120,10 +122,10 @@ export default function ShippingFromUsaToNigeriaPage() {
       telephone: '+1-214-447-0334',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '1234 N Belt Line Rd',
+        streetAddress: '500 S Belt Line Road, Suite 508',
         addressLocality: 'Irving',
         addressRegion: 'TX',
-        postalCode: '75061',
+        postalCode: '75060',
         addressCountry: 'US',
       },
     },
@@ -170,10 +172,10 @@ export default function ShippingFromUsaToNigeriaPage() {
     telephone: '+1-214-447-0334',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '1234 N Belt Line Rd',
+      streetAddress: '500 S Belt Line Road, Suite 508',
       addressLocality: 'Irving',
       addressRegion: 'TX',
-      postalCode: '75061',
+      postalCode: '75060',
       addressCountry: 'US',
     },
     geo: {
@@ -231,6 +233,11 @@ export default function ShippingFromUsaToNigeriaPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold shadow-lg">
+                    <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      <Calculator className="mr-2 h-4 w-4" /> Get a Quote
+                    </a>
+                  </Button>
                   <Button asChild size="lg" className="bg-primary hover:bg-blue-700 text-white font-semibold">
                     <a href="#quote-calculator">
                       Calculate Shipping Cost <ArrowRight className="ml-2 h-4 w-4" />
@@ -656,7 +663,7 @@ export default function ShippingFromUsaToNigeriaPage() {
                 <div className="space-y-4 text-sm text-gray-700">
                   <div className="p-4 bg-white rounded-xl border border-gray-200">
                     <strong className="block text-gray-900 mb-1">Warehouse Address:</strong>
-                    <p className="text-gray-600">1234 N Belt Line Rd, Irving, TX 75061, United States</p>
+                    <p className="text-gray-600">500 S Belt Line Road, Suite 508, Irving, TX 75060, United States</p>
                     <p className="text-xs text-gray-500 mt-1">Open Monday–Friday: 9:00 AM – 5:00 PM</p>
                   </div>
 
@@ -747,6 +754,11 @@ export default function ShippingFromUsaToNigeriaPage() {
               or message us on WhatsApp for rapid, professional booking.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold shadow-md">
+                <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  <Calculator className="mr-2 h-4 w-4" /> Get a Quote
+                </a>
+              </Button>
               <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold">
                 <a href="tel:+12144470334">
                   <Phone className="mr-2 h-4 w-4" /> Call US Warehouse

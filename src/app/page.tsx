@@ -14,11 +14,14 @@ import {
   DollarSign,
   Anchor,
   UserCheck,
+  Calculator,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { CentralQuotationForm } from '@/components/central-quotation-form';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import blogPosts from '@/lib/blog-posts.json';
 
 export const metadata: Metadata = {
@@ -219,16 +222,22 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero */}
-        <section className="min-h-screen flex items-center justify-center pt-40 sm:pt-52 hero-bg">
+        <section className="min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center pt-32 pb-16 sm:pt-40 sm:pb-24 hero-bg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white hero-text-glow drop-shadow-md leading-tight">
               Send and Receive Goods Worldwide<br className="hidden sm:block" />
               <span className="block sm:inline"> Nigeria, UK, USA &amp; Beyond</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-3xl mx-auto text-gray-100 hero-subtitle-glow font-medium drop-shadow-sm">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 max-w-3xl mx-auto text-gray-100 hero-subtitle-glow font-medium drop-shadow-sm">
               Seamless Global Shipping, Done Right.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
+              <Button asChild size="lg" className="w-full sm:w-auto bg-[#dc2626] text-white font-bold border-2 border-[#dc2626] hover:bg-[#b91c1c] hover:border-[#b91c1c] transition-all duration-300 shadow-xl rounded-md px-8 py-4">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  <Calculator className="w-5 h-5 mr-2" />
+                  Get a Quote
+                </Link>
+              </Button>
               <Button asChild size="lg" className="w-full sm:w-auto bg-white text-[#dc2626] font-bold border-2 border-white hover:bg-red-50 hover:text-[#b91c1c] hover:border-red-50 transition-all duration-300 shadow-xl rounded-md px-8 py-4">
                 <Link href="https://ship.countycargo.com/login">Create a Free Account</Link>
               </Button>
@@ -236,24 +245,16 @@ export default function Home() {
                 <Link href="/track">Track Shipment</Link>
               </Button>
             </div>
+          </div>
+        </section>
 
-            {/* Quick Tracking Search Bar */}
-            <div className="mt-8 max-w-md mx-auto w-full px-2 sm:px-0">
-              <form action="/track" method="GET" className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white/95 backdrop-blur-sm p-1.5 sm:p-2 rounded-xl shadow-2xl border border-white/40">
-                <input
-                  type="text"
-                  name="number"
-                  placeholder="Enter Invoice or Tracking Number..."
-                  className="flex-1 min-w-0 px-3 py-2 text-sm text-slate-900 bg-transparent focus:outline-none placeholder:text-slate-400 font-medium"
-                />
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-lg shadow-sm transition-all shrink-0"
-                >
-                  Track Cargo
-                </button>
-              </form>
-            </div>
+        {/* Embedded Shipping Quote Calculator */}
+        <section id="shipping-calculator" className="py-12 sm:py-16 bg-slate-100 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CentralQuotationForm
+              title="Calculate Your Shipping Cost Instantly"
+              description="Select your origin, destination, shipping service, and package weight to view live quotes, fees, and delivery times from Ship County Cargo."
+            />
           </div>
         </section>
 
@@ -373,6 +374,15 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="text-center mt-10 sm:mt-12" data-aos="fade-up">
+              <Link 
+                href="/blog" 
+                className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white font-bold px-8 py-3.5 rounded-xl shadow-md transition-all hover:scale-105 text-base"
+              >
+                <span>View All Shipping Guides &amp; Blog Posts ({blogPosts.length})</span>
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
             </div>
           </div>
         </section>

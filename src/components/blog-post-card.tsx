@@ -2,12 +2,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-type BlogPost = {
+export type BlogPost = {
     title: string;
     image: string;
-    imageHint: string;
+    imageHint?: string;
     description: string;
     url: string;
+    category?: string;
+    tags?: string[];
+    publicationDate?: string;
+    author?: string;
 };
 
 export function BlogPostCard({ post, index }: { post: BlogPost; index: number }) {

@@ -41,6 +41,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { ShippingCalculator } from '@/components/shipping-calculator';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping from UK to Nigeria | Air & Sea Cargo | County Cargo',
@@ -307,6 +308,12 @@ export default function ShippingFromUkToNigeriaPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
+                <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-6 shadow-lg">
+                    <Calculator className="w-4 h-4 mr-2" />
+                    Get a Quote
+                  </Button>
+                </a>
                 <a href="#quote-calculator">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
                     Calculate UK to Nigeria Shipping Cost
@@ -675,6 +682,12 @@ export default function ShippingFromUkToNigeriaPage() {
               Drop off your cargo at our London Charlton location or Liverpool warehouse, or book a free UK collection today.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                <Button size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold px-8 shadow-xl">
+                  <Calculator className="w-4 h-4 mr-2" />
+                  Get a Quote
+                </Button>
+              </a>
               <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20request%20a%20UK%20to%20Nigeria%20quote" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 shadow-xl">
                   Request UK-to-Nigeria Cargo Quote

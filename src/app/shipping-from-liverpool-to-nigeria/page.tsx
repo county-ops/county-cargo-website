@@ -9,6 +9,7 @@ import { JsonLd } from '@/components/json-ld';
 import { MapPin, Truck, Plane, Ship, CheckCircle2, ArrowRight, ShieldCheck, HelpCircle } from 'lucide-react';
 import { UkStoreBanner } from '@/components/promo-banner';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping from Liverpool to Nigeria | Depot Drop-off & Air Cargo',
@@ -75,6 +76,13 @@ export default function ShippingFromLiverpoolToNigeriaPage() {
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
               Drop off your cargo at Queens Dock Commercial Centre (L1 0BG) or schedule doorstep collection across Liverpool and Merseyside.
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -101,8 +109,8 @@ export default function ShippingFromLiverpoolToNigeriaPage() {
                 <p className="text-sm text-gray-600">Get your free UK shipping address or schedule a collection today.</p>
               </div>
               <Button asChild className="bg-primary text-white font-bold shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria">
-                  Get UK Quote <ArrowRight className="ml-2 w-4 h-4" />
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
             </div>

@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { JsonLd } from '@/components/json-ld';
 import { ShippingCalculator } from '@/components/shipping-calculator';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Ship,
@@ -20,6 +21,7 @@ import {
   Package,
   Boxes,
   HelpCircle,
+  Calculator,
 } from 'lucide-react';
 import {
   Accordion,
@@ -208,6 +210,11 @@ export default function ShippingFromUkToPortHarcourtPage() {
                 </p>
 
                 <div className="flex flex-wrap gap-4">
+                  <Button asChild size="lg" className="bg-[#dc2626] hover:bg-[#b91c1c] text-white font-bold shadow-lg">
+                    <a href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      <Calculator className="mr-2 h-4 w-4" /> Get a Quote
+                    </a>
+                  </Button>
                   <Button asChild size="lg" className="bg-primary hover:bg-blue-700 text-white font-semibold">
                     <a href="#calculator">
                       Calculate UK to PH Cost <ArrowRight className="ml-2 h-4 w-4" />

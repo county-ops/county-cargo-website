@@ -519,7 +519,7 @@ export default function HowToExportGoodsNigeriaToUkGuidePage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-2.5">
-                  <Link href="/#quote-calculator">
+                  <Link href="https://ship.countycargo.com/shipping-calculator">
                     <Calculator className="w-4 h-4 mr-2" /> Calculate Shipping Rates
                   </Link>
                 </Button>

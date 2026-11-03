@@ -77,6 +77,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/cargo-price-from-nigeria-to-usa',
+    '/blog/nigeria-to-uk-cargo-shipping-guide',
     '/blog/export-from-nigeria-to-uk-usa-canada-worldwide',
     '/blog/international-cargo-services-nigeria-uk-usa',
     '/blog/international-shipping-to-nigeria-uk-usa',

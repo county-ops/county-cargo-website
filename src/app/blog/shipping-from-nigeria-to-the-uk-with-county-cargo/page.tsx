@@ -538,7 +538,7 @@ export default function ShippingNigeriaToUkPost() {
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
                   <Button asChild size="lg" className="bg-white text-primary hover:bg-blue-50 font-bold w-full sm:w-auto shadow-md">
-                    <Link href="/#quote">
+                    <Link href="https://ship.countycargo.com/shipping-calculator">
                       Calculate Quote <ArrowRight className="w-4 h-4 ml-1.5" />
                     </Link>
                   </Button>

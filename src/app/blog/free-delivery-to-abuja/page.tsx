@@ -257,7 +257,7 @@ export default function FreeDeliveryToAbujaPost() {
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/shipping-from-uk-to-nigeria">Request Freight Quote</Link>
+                  <Link href="https://ship.countycargo.com/shipping-calculator">Request Freight Quote</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
                   <a href="https://wa.me/447438827464" target="_blank" rel="noopener noreferrer">

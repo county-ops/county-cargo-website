@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs';
 import { JsonLd } from '@/components/json-ld';
 import { ExpressExportCalculator } from '@/components/express-export-calculator';
 import { GlobalDestinationsGrid } from '@/components/global-destinations-grid';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Truck,
@@ -267,6 +268,15 @@ export default function ExpressExportPage() {
                   <span>Lagos & Abuja Hub Drop-Off</span>
                 </div>
               </div>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                    Get a Quote
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
             {/* INSTANT SHIPPING QUOTATION CALCULATOR WIDGET */}
@@ -507,8 +517,18 @@ export default function ExpressExportPage() {
                 asChild
                 className="w-full sm:w-auto h-12 px-8 bg-[#EA580C] hover:bg-[#C2410C] text-white font-bold text-base rounded-xl shadow-lg"
               >
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                className="w-full sm:w-auto h-12 px-8 bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold text-base rounded-xl backdrop-blur-sm"
+              >
                 <a href="#express-calculator-widget">
-                  Calculate Instant Quote
+                  Calculate Instant Quote Above
                 </a>
               </Button>
 

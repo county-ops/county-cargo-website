@@ -1,96 +1,118 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
   calculateCentralQuote,
-  ORIGIN_LOCATIONS,
-  DESTINATION_CITIES,
-  QuoteCalculationParams,
+  fetchShipCountyCargoDestinations,
+  fetchShipCountyCargoQuote,
 } from '@/lib/central-pricing';
 
-const DHL_COUNTRIES_URL =
-  'https://script.google.com/macros/s/AKfycbwswey5v1XMO3FDLfxptcplZJRn6O8nYvM2Wjf5jh0_qOfsdOSmQEoqBZ6hMkG_q18/exec?action=getDHLCountries';
-
+/**
+ * GET /api/shipping/quote
+ * Proxies Ship County Cargo's export destinations list (https://ship.countycargo.com/api/export-destinations)
+ * while keeping server-side API credentials secure.
+ */
 export async function GET() {
   try {
-    let dhlCountries: string[] = [];
-    try {
-      const res = await fetch(DHL_COUNTRIES_URL, { next: { revalidate: 3600 } });
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data)) {
-          dhlCountries = data.map((c: any) => c.Country).sort();
-        }
-      }
-    } catch (e) {
-      console.warn('Fallback: Unable to fetch live DHL country list in quote API');
-    }
-
-    // Default top countries if fetch fails
-    if (dhlCountries.length === 0) {
-      dhlCountries = [
-        'United Kingdom',
-        'United States',
-        'Canada',
-        'Germany',
-        'France',
-        'China',
-        'United Arab Emirates',
-        'Australia',
-        'India',
-        'South Africa',
-        'Italy',
-        'Ghana',
-        'Kenya',
-        'Turkey',
-      ];
-    }
-
+    const destinations = await fetchShipCountyCargoDestinations();
+    const sorted = [...destinations].sort((a, b) => a.Country.localeCompare(b.Country));
     return NextResponse.json({
-      origins: ORIGIN_LOCATIONS,
-      destinationCities: DESTINATION_CITIES,
-      dhlCountries,
-      supportedOriginCountries: ['United Kingdom', 'Nigeria', 'United States'],
+      success: true,
+      destinations: sorted,
+      countries: sorted.map((d) => d.Country),
     });
-  } catch (error: any) {
+  } catch (err: any) {
+    console.error('Error in GET /api/shipping/quote:', err);
     return NextResponse.json(
-      { error: 'Failed to retrieve quotation system configuration.' },
+      { success: false, error: 'Failed to retrieve shipping destinations.' },
       { status: 500 }
     );
   }
 }
 
+/**
+ * POST /api/shipping/quote
+ * Connects directly to Ship County Cargo's live quotation API (https://ship.countycargo.com/api/quote)
+ * so both websites use the exact same rates, volumetric weight formulas, minimum weights, and fees.
+ */
 export async function POST(req: NextRequest) {
   try {
-    const body = (await req.json()) as QuoteCalculationParams;
+    const body = await req.json();
 
-    if (!body.fromCountry || !body.toCountry) {
-      return NextResponse.json(
-        { error: 'Both origin and destination countries are required.' },
-        { status: 400 }
-      );
-    }
-
+    const originCountry = body.originCountry || body.fromCountry || '';
+    const originCity = body.originCity || body.fromCity || '';
+    const destinationCountry = body.destinationCountry || body.toCountry || '';
+    const destinationCity = body.destinationCity ?? body.toCity ?? '';
     const weight = Number(body.weight);
-    if (isNaN(weight) || weight <= 0) {
+    const length = body.length ? Number(body.length) : undefined;
+    const width = body.width ? Number(body.width) : undefined;
+    const height = body.height ? Number(body.height) : undefined;
+    const dimensionUnit = body.dimensionUnit === 'in' ? 'in' : body.dimensionUnit === 'cm' ? 'cm' : undefined;
+    const handoverMethod =
+      body.handoverMethod === 'collection' || body.collectionType === 'collection'
+        ? 'collection'
+        : 'depot';
+
+    const [shipApiResult, centralResult] = await Promise.all([
+      fetchShipCountyCargoQuote({
+        originCountry,
+        originCity,
+        destinationCountry,
+        destinationCity,
+        weight,
+        length,
+        width,
+        height,
+        dimensionUnit,
+        handoverMethod,
+        category: body.category || body.packageCategory || 'General Goods',
+      }),
+      calculateCentralQuote({
+        fromCountry: originCountry,
+        fromCity: originCity,
+        toCountry: destinationCountry,
+        toCity: destinationCity,
+        weight,
+        length,
+        width,
+        height,
+        dimensionUnit,
+        itemDescription: body.itemDescription,
+        packageCategory: body.packageCategory || body.category,
+        collectionType: handoverMethod === 'collection' ? 'collection' : 'dropoff',
+      }),
+    ]);
+
+    if (!shipApiResult.success) {
       return NextResponse.json(
-        { error: 'Weight must be a positive number greater than 0 kg.' },
+        {
+          ...centralResult,
+          ...shipApiResult,
+        },
         { status: 400 }
       );
     }
 
-    const quote = await calculateCentralQuote(body);
-
-    if (!quote.success || quote.error) {
-      return NextResponse.json(
-        { error: quote.error || 'Could not calculate quote for this route.' },
-        { status: 400 }
-      );
-    }
-
-    return NextResponse.json(quote, { status: 200 });
+    return NextResponse.json({
+      ...centralResult,
+      origin: shipApiResult.origin,
+      destination: shipApiResult.destination,
+      weight: shipApiResult.weight,
+      actualWeight: shipApiResult.actualWeight,
+      volumetricWeight: shipApiResult.volumetricWeight,
+      chargeableWeight: shipApiResult.chargeableWeight,
+      units: shipApiResult.units,
+      weightUnit: shipApiResult.weightUnit,
+      dimensionUnit: shipApiResult.dimensionUnit,
+      handoverMethod: shipApiResult.handoverMethod,
+      estimates: shipApiResult.estimates,
+      source: shipApiResult.source,
+    });
   } catch (err: any) {
-    console.error('Error in central quote route:', err);
+    console.error('Error in POST /api/shipping/quote:', err);
     return NextResponse.json(
-      { error: err.message || 'Internal server error while processing quotation.' },
+      {
+        success: false,
+        error: err.message || 'Internal server error calculating shipping quote.',
+      },
       { status: 500 }
     );
   }

@@ -396,7 +396,7 @@ export default function DoorToDoorShippingNigeriaWorldBlogPage() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-5 text-base rounded-full shadow-lg">
-                  <Link href="https://ship.countycargo.com">
+                  <Link href="https://ship.countycargo.com/shipping-calculator">
                     Get a Free Quote Now <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>

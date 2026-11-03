@@ -240,12 +240,12 @@ export default function ContactPage() {
                       <MapPin className="w-4 h-4" />
                     </div>
                     <a 
-                      href="https://www.google.com/maps/search/?api=1&query=1234+N+Belt+Line+Rd+Irving+TX+75061" 
+                      href="https://www.google.com/maps/search/?api=1&query=500+S+Belt+Line+Rd+Suite+508+Irving+TX+75060" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1 text-sm leading-relaxed group/link font-medium"
                     >
-                      1234 N Belt Line Rd, Irving, TX 75061, United States
+                      500 S Belt Line Road, Suite 508, Irving, TX 75060, United States
                       <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover/link:opacity-100 transition-opacity shrink-0" />
                     </a>
                   </div>

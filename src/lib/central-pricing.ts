@@ -1,14 +1,106 @@
 /**
  * Central Pricing System & Single Source of Truth for County Cargo
  *
- * Consolidates all shipping routes, service levels, fees, rules,
- * and rate calculations across the entire application and website.
+ * Connects to the live Ship County Cargo quotation API (https://ship.countycargo.com/api/quote
+ * and https://ship.countycargo.com/api/export-destinations) and provides an identical
+ * fallback calculation engine so both websites always apply the exact same pricing rules,
+ * minimum weights, volumetric weight formulas, handling fees, and VAT.
  */
+
+import { SHIP_COUNTY_CARGO_QUOTE_URL, SHIP_COUNTY_CARGO_URL } from '@/lib/constants';
+import {
+  HAULAM_EXPORT_COUNTRIES,
+  HAULAM_EXPRESS_EXPORT_RATES,
+} from '@/lib/haulam-pricing-table';
 
 export type ServiceLevelId = 'value' | 'express' | 'special_express';
 
+export type ShipServiceType =
+  | 'valueImport'
+  | 'expressImport'
+  | 'specialExpressImport'
+  | 'valueExport'
+  | 'expressExport'
+  | 'specialExpressExport';
+
+export interface ShipAdditionalCharge {
+  name: string;
+  amount: number;
+}
+
+export interface ShipQuoteEstimate {
+  serviceType: ShipServiceType | string;
+  serviceName: string;
+  estimate: number;
+  baseCost: number;
+  additionalCharges?: ShipAdditionalCharge[];
+  rate: number;
+  billableWeight: number;
+  actualWeight?: number;
+  volumetricWeight?: number;
+  weightUnit: 'kg' | 'lb';
+  exchangeRate?: number;
+  currency: 'GBP' | 'USD' | 'NGN';
+  handlingFee?: number;
+  minimumWeightApplied: boolean;
+  minimumWeight: number;
+  approxNgnEstimate?: number;
+  description: string;
+  estimatedDelivery: string;
+  deliveryMethod?: string;
+  trackingInfo?: string;
+  customsInfo?: string;
+  features?: string[];
+  isBestValue?: boolean;
+  isFastest?: boolean;
+  bookingUrl?: string;
+  whatsAppUrl?: string;
+}
+
+export interface ShipQuoteRequestPayload {
+  originCountry: string;
+  originCity: string;
+  destinationCountry: string;
+  destinationCity?: string;
+  weight: number;
+  length?: number;
+  width?: number;
+  height?: number;
+  dimensionUnit?: 'cm' | 'in';
+  handoverMethod?: 'depot' | 'collection';
+  category?: string;
+  serviceType?: string;
+}
+
+export interface ShipQuoteApiResponse {
+  success: boolean;
+  origin: {
+    country: string;
+    city: string;
+  };
+  destination: {
+    country: string;
+    city: string;
+  };
+  weight: number;
+  actualWeight: number;
+  volumetricWeight: number;
+  chargeableWeight: number;
+  units: 'metric' | 'imperial';
+  weightUnit: 'kg' | 'lb';
+  dimensionUnit: 'cm' | 'in';
+  length?: number;
+  width?: number;
+  height?: number;
+  handoverMethod: 'depot' | 'collection';
+  estimates: ShipQuoteEstimate[];
+  source?: 'ship-county-cargo-api' | 'fallback-engine';
+  error?: string;
+}
+
 export interface ServiceComparisonCard {
   id: ServiceLevelId;
+  serviceType?: string;
   name: string;
   badge?: 'Fastest' | 'Best Value' | 'Priority' | 'Economical';
   tagline: string;
@@ -20,15 +112,21 @@ export interface ServiceComparisonCard {
   ratePerKg: number;
   ratePerKgDisplay: string;
   enteredWeight: number;
+  volumetricWeight?: number;
   chargeableWeight: number;
+  weightUnit?: 'kg' | 'lb';
   minimumWeight: number;
+  minimumWeightApplied?: boolean;
+  baseCost?: number;
   handlingFee: number;
   collectionFee: number;
   additionalCharges: number;
+  additionalChargesList?: ShipAdditionalCharge[];
   totalEstimatedPrice: number;
   formattedTotal: string;
   currency: 'GBP' | 'NGN' | 'USD';
   convertedEstimate?: string;
+  approxNgnEstimate?: number;
   estimatedDeliveryTime: string;
   trackingAvailability: boolean;
   customsInformation: string;
@@ -48,6 +146,7 @@ export interface QuoteCalculationParams {
   length?: number;
   width?: number;
   height?: number;
+  dimensionUnit?: 'cm' | 'in';
   itemDescription?: string;
   packageCategory?: string;
   collectionType?: 'dropoff' | 'collection';
@@ -62,32 +161,86 @@ export interface CentralQuoteResponse {
   enteredWeight: number;
   volumetricWeight: number;
   chargeableWeight: number;
+  weightUnit?: 'kg' | 'lb';
   services: ServiceComparisonCard[];
+  estimates?: ShipQuoteEstimate[];
   error?: string;
 }
 
-// Exchange rates
+// Exchange rates aligned with Ship County Cargo API
 export const DEFAULT_EXCHANGE_RATES = {
-  ngnPerGbp: 1900,
-  ngnPerUsd: 1500,
+  ngnPerGbp: 1998,
+  ngnPerUsd: 1400,
 };
+
+// Default export destinations matching Ship County Cargo
+export const DEFAULT_EXPORT_DESTINATIONS: string[] = [
+  'United Kingdom',
+  'United States',
+  'Canada',
+  'Australia',
+  'Germany',
+  'France',
+  'United Arab Emirates',
+  'South Africa',
+  'Ireland',
+  'Italy',
+  'Spain',
+  'Netherlands',
+  'Ghana',
+  'Kenya',
+  'China',
+  'India',
+  'Belgium',
+  'Switzerland',
+  'Sweden',
+  'Norway',
+  'Denmark',
+  'Finland',
+  'Austria',
+  'Poland',
+  'Portugal',
+  'Saudi Arabia',
+  'Qatar',
+  'Kuwait',
+  'Bahrain',
+  'Oman',
+  'Turkey',
+  'Egypt',
+  'Morocco',
+  'Senegal',
+  'Cameroon',
+  'Ivory Coast',
+  'Uganda',
+  'Tanzania',
+  'Rwanda',
+  'Zambia',
+  'Zimbabwe',
+  'Brazil',
+  'Mexico',
+  'Japan',
+  'South Korea',
+  'Singapore',
+  'Malaysia',
+  'New Zealand',
+];
 
 // Official Handover & Delivery Locations
 export const ORIGIN_LOCATIONS = {
   Nigeria: [
-    { id: 'lagos-hub', name: 'Lagos Drop-Off (Ladipo-Oshodi Plaza)', city: 'Lagos', hub: 'Lagos Hub' },
-    { id: 'abuja-hub', name: 'Abuja Drop-Off (Wuye Ultra Modern Market)', city: 'Abuja', hub: 'Abuja Hub' },
+    { id: 'lagos-hub', name: 'Lagos Drop-off (Ladipo-Oshodi)', city: 'Lagos', hub: 'Lagos Hub' },
+    { id: 'abuja-hub', name: 'Abuja Drop-off (Wuye Market)', city: 'Abuja', hub: 'Abuja Hub' },
     { id: 'lagos-pickup', name: 'Lagos Doorstep Collection', city: 'Lagos', hub: 'Lagos Hub', isCollection: true },
     { id: 'abuja-pickup', name: 'Abuja Doorstep Collection', city: 'Abuja', hub: 'Abuja Hub', isCollection: true },
   ],
   'United Kingdom': [
-    { id: 'london-depot', name: 'London Charlton Depot (SE7 7RU)', city: 'London', hub: 'London Hub' },
+    { id: 'london-depot', name: 'London Heathrow Depot', city: 'London', hub: 'London Hub' },
     { id: 'liverpool-depot', name: 'Liverpool Queens Dock Depot (L1 0BG)', city: 'Liverpool', hub: 'Liverpool Hub' },
     { id: 'london-pickup', name: 'London Doorstep Collection', city: 'London', hub: 'London Hub', isCollection: true },
     { id: 'uk-nationwide-pickup', name: 'UK Nationwide Courier Collection', city: 'UK Nationwide', hub: 'UK Hub', isCollection: true },
   ],
   'United States': [
-    { id: 'us-warehouse', name: 'Irving Texas Warehouse (TX 75061)', city: 'Dallas / Irving', hub: 'US Central Hub' },
+    { id: 'us-warehouse', name: 'US Warehouse (Irving, TX)', city: 'Dallas / Irving', hub: 'US Central Hub' },
     { id: 'us-nationwide-pickup', name: 'US Nationwide Courier Pickup', city: 'Nationwide USA', hub: 'US Hub', isCollection: true },
   ],
   Canada: [
@@ -103,7 +256,90 @@ export const DESTINATION_CITIES: Record<string, string[]> = {
   Canada: ['Toronto', 'Calgary', 'Vancouver', 'Ottawa', 'Montreal', 'Edmonton'],
 };
 
-// Caching for live DHL data
+/**
+ * Builds the "Continue to Book" URL on Ship County Cargo carrying all quote details
+ */
+export function buildShipCountyCargoBookingUrl(params: {
+  originCountry: string;
+  originCity?: string;
+  destinationCountry: string;
+  destinationCity?: string;
+  serviceType: string;
+  serviceName: string;
+  weight: number;
+  weightUnit: 'kg' | 'lb';
+  billableWeight: number;
+  volumetricWeight?: number;
+  length?: number;
+  width?: number;
+  height?: number;
+  dimensionUnit?: 'cm' | 'in';
+  estimate: number;
+  baseCost?: number;
+  handlingFee?: number;
+  currency: 'GBP' | 'USD' | 'NGN';
+  estimatedDelivery?: string;
+  handoverMethod?: 'depot' | 'collection';
+}): string {
+  const query = new URLSearchParams();
+  query.set('originCountry', params.originCountry);
+  if (params.originCity) query.set('originCity', params.originCity);
+  query.set('destinationCountry', params.destinationCountry);
+  if (params.destinationCity) query.set('destinationCity', params.destinationCity);
+  query.set('service', params.serviceType);
+  query.set('serviceName', params.serviceName);
+  query.set('weight', String(params.weight));
+  query.set('weightUnit', params.weightUnit);
+  query.set('chargeableWeight', String(params.billableWeight));
+  if (params.volumetricWeight && params.volumetricWeight > 0) {
+    query.set('volumetricWeight', String(params.volumetricWeight));
+  }
+  if (params.length && params.length > 0) query.set('length', String(params.length));
+  if (params.width && params.width > 0) query.set('width', String(params.width));
+  if (params.height && params.height > 0) query.set('height', String(params.height));
+  if (params.dimensionUnit) query.set('dimensionUnit', params.dimensionUnit);
+  query.set('quote', String(Math.round(params.estimate * 100) / 100));
+  if (params.baseCost !== undefined) {
+    query.set('baseCost', String(Math.round(params.baseCost * 100) / 100));
+  }
+  if (params.handlingFee !== undefined && params.handlingFee > 0) {
+    query.set('handlingFee', String(params.handlingFee));
+  }
+  query.set('currency', params.currency);
+  if (params.estimatedDelivery) query.set('estimatedDelivery', params.estimatedDelivery);
+  if (params.handoverMethod) query.set('handoverMethod', params.handoverMethod);
+
+  return `${SHIP_COUNTY_CARGO_QUOTE_URL}?${query.toString()}`;
+}
+
+/**
+ * Builds a WhatsApp share URL for a calculated quote
+ */
+export function buildWhatsAppQuoteUrl(params: {
+  originCountry: string;
+  originCity?: string;
+  destinationCountry: string;
+  destinationCity?: string;
+  serviceName: string;
+  weight: number;
+  weightUnit: 'kg' | 'lb';
+  billableWeight: number;
+  estimate: number;
+  currency: 'GBP' | 'USD' | 'NGN';
+  estimatedDelivery: string;
+}): string {
+  const symbol = params.currency === 'GBP' ? '£' : params.currency === 'USD' ? '$' : '₦';
+  const formattedPrice = params.estimate.toLocaleString(undefined, {
+    minimumFractionDigits: params.currency === 'NGN' ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+  const routeText = `${params.originCountry}${params.originCity ? ` (${params.originCity})` : ''} → ${params.destinationCountry}${params.destinationCity ? ` (${params.destinationCity})` : ''}`;
+
+  const text = `Hello County Cargo! Here is my quote:\n\n📦 Route: ${routeText}\n🚀 Service: ${params.serviceName}\n⚖️ Weight: ${params.weight} ${params.weightUnit} (Chargeable: ${params.billableWeight} ${params.weightUnit})\n💰 Final Total: ${symbol}${formattedPrice}\n⏱ Estimated Delivery: ${params.estimatedDelivery}\n\nPlease assist me with this shipment.`;
+  return `https://wa.me/2348110000421?text=${encodeURIComponent(text)}`;
+}
+
+// Caching for live export destinations & DHL fallback data
 interface DhlCountry {
   Country: string;
   Zone: number;
@@ -112,52 +348,40 @@ interface DhlPricing {
   Zone: number;
   [weightKey: string]: any;
 }
-let cachedDhlCountries: { data: DhlCountry[]; timestamp: number } | null = null;
+let cachedExportDestinations: { data: DhlCountry[]; timestamp: number } | null = null;
 let cachedDhlPricing: { data: DhlPricing[]; timestamp: number } | null = null;
 const CACHE_TTL_MS = 60 * 60 * 1000;
 
-async function fetchDhlCountries(): Promise<DhlCountry[]> {
-  if (cachedDhlCountries && Date.now() - cachedDhlCountries.timestamp < CACHE_TTL_MS) {
-    return cachedDhlCountries.data;
+function getShipPortalConfig() {
+  const baseUrl = (
+    process.env.SHIP_COUNTY_CARGO_API_URL ||
+    process.env.SHIP_PORTAL_API_URL ||
+    SHIP_COUNTY_CARGO_URL
+  ).replace(/\/$/, '');
+
+  const apiKey =
+    process.env.SHIP_COUNTY_CARGO_API_KEY ||
+    process.env.SHIP_PORTAL_API_KEY ||
+    '';
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  };
+
+  if (apiKey) {
+    headers['Authorization'] = `Bearer ${apiKey}`;
+    headers['x-api-key'] = apiKey;
   }
-  try {
-    const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbwswey5v1XMO3FDLfxptcplZJRn6O8nYvM2Wjf5jh0_qOfsdOSmQEoqBZ6hMkG_q18/exec?action=getDHLCountries',
-      { next: { revalidate: 3600 } }
-    );
-    if (res.ok) {
-      const data = (await res.json()) as DhlCountry[];
-      if (Array.isArray(data) && data.length > 0) {
-        cachedDhlCountries = { data, timestamp: Date.now() };
-        return data;
-      }
-    }
-  } catch (err) {
-    console.error('Error fetching DHL countries in central pricing:', err);
-  }
-  return cachedDhlCountries?.data || [];
+
+  return { baseUrl, headers };
 }
 
-async function fetchDhlPricing(): Promise<DhlPricing[]> {
-  if (cachedDhlPricing && Date.now() - cachedDhlPricing.timestamp < CACHE_TTL_MS) {
-    return cachedDhlPricing.data;
-  }
-  try {
-    const res = await fetch(
-      'https://script.google.com/macros/s/AKfycbyb3DOEM-JTAw_k8hAz7FKsKRusqlruMrshBebwoMZzY4M34YhkmX3GTYuGKw9gAJ_U/exec?action=getDHLExportPricing',
-      { next: { revalidate: 3600 } }
-    );
-    if (res.ok) {
-      const data = (await res.json()) as DhlPricing[];
-      if (Array.isArray(data) && data.length > 0) {
-        cachedDhlPricing = { data, timestamp: Date.now() };
-        return data;
-      }
-    }
-  } catch (err) {
-    console.error('Error fetching DHL pricing in central pricing:', err);
-  }
-  return cachedDhlPricing?.data || [];
+/**
+ * Fetches supported export destinations (233 countries aligned with Haulam & Ship County Cargo)
+ */
+export async function fetchShipCountyCargoDestinations(): Promise<DhlCountry[]> {
+  return HAULAM_EXPORT_COUNTRIES;
 }
 
 /**
@@ -165,7 +389,7 @@ async function fetchDhlPricing(): Promise<DhlPricing[]> {
  */
 export function normalizeCountry(countryName: string): string {
   const norm = (countryName || '').trim().toLowerCase();
-  if (norm.includes('nigeria') || norm === 'ng') return 'Nigeria';
+  if (norm.includes('nigeria') || norm === 'ng' || norm.startsWith('ng-')) return 'Nigeria';
   if (norm.includes('united kingdom') || norm === 'uk' || norm === 'great britain' || norm === 'gb') return 'United Kingdom';
   if (norm.includes('united states') || norm === 'usa' || norm === 'us' || norm === 'america') return 'United States';
   if (norm.includes('canada') || norm === 'ca') return 'Canada';
@@ -177,918 +401,844 @@ export function normalizeCountry(countryName: string): string {
   if (norm.includes('india') || norm === 'in') return 'India';
   if (norm.includes('south africa') || norm === 'za') return 'South Africa';
   if (norm.includes('italy') || norm === 'it') return 'Italy';
+  if (norm.includes('ireland') || norm === 'ie') return 'Ireland';
+  if (norm.includes('spain') || norm === 'es') return 'Spain';
+  if (norm.includes('netherlands') || norm === 'nl') return 'Netherlands';
+  if (norm.includes('ghana') || norm === 'gh') return 'Ghana';
+  if (norm.includes('kenya') || norm === 'ke') return 'Kenya';
   return countryName.trim();
 }
 
 /**
- * Master central quotation calculator
+ * Computes volumetric weight using Ship County Cargo's exact rules:
+ * - Metric routes (UK, Nigeria): Math.ceil((L_cm * W_cm * H_cm) / 5000) in kg
+ * - Imperial route (US -> Nigeria): Math.ceil((L_in * W_in * H_in) / 139) in lb
+ */
+export function computeVolumetricWeight(params: {
+  isImperialRoute: boolean;
+  length?: number;
+  width?: number;
+  height?: number;
+  dimensionUnit?: 'cm' | 'in';
+}): {
+  volumetricWeight: number;
+  normalizedLength: number;
+  normalizedWidth: number;
+  normalizedHeight: number;
+} {
+  const rawL = Number(params.length) || 0;
+  const rawW = Number(params.width) || 0;
+  const rawH = Number(params.height) || 0;
+
+  if (rawL <= 0 || rawW <= 0 || rawH <= 0) {
+    return {
+      volumetricWeight: 0,
+      normalizedLength: 0,
+      normalizedWidth: 0,
+      normalizedHeight: 0,
+    };
+  }
+
+  const inputUnit = params.dimensionUnit || (params.isImperialRoute ? 'in' : 'cm');
+
+  if (params.isImperialRoute) {
+    // Ship County Cargo expects inches for US -> Nigeria (divides by 139)
+    const lengthIn = inputUnit === 'cm' ? rawL / 2.54 : rawL;
+    const widthIn = inputUnit === 'cm' ? rawW / 2.54 : rawW;
+    const heightIn = inputUnit === 'cm' ? rawH / 2.54 : rawH;
+    const volLb = Math.ceil((lengthIn * widthIn * heightIn) / 139);
+    return {
+      volumetricWeight: volLb,
+      normalizedLength: Math.round(lengthIn * 100) / 100,
+      normalizedWidth: Math.round(widthIn * 100) / 100,
+      normalizedHeight: Math.round(heightIn * 100) / 100,
+    };
+  } else {
+    // Ship County Cargo expects cm for UK & Nigeria routes (divides by 5000)
+    const lengthCm = inputUnit === 'in' ? rawL * 2.54 : rawL;
+    const widthCm = inputUnit === 'in' ? rawW * 2.54 : rawW;
+    const heightCm = inputUnit === 'in' ? rawH * 2.54 : rawH;
+    const volKg = Math.ceil((lengthCm * widthCm * heightCm) / 5000);
+    return {
+      volumetricWeight: volKg,
+      normalizedLength: Math.round(lengthCm * 100) / 100,
+      normalizedWidth: Math.round(widthCm * 100) / 100,
+      normalizedHeight: Math.round(heightCm * 100) / 100,
+    };
+  }
+}
+
+/**
+ * Calls the live Ship County Cargo API (POST https://ship.countycargo.com/api/quote)
+ * and enriches the estimates with booking URLs, WhatsApp URLs, and volumetric weight details.
+ * Falls back to the identical local pricing engine only if the remote API cannot be reached.
+ */
+export async function fetchShipCountyCargoQuote(
+  req: ShipQuoteRequestPayload
+): Promise<ShipQuoteApiResponse> {
+  const originCountry = normalizeCountry(req.originCountry);
+  const destinationCountry = normalizeCountry(req.destinationCountry);
+  const isUsOrigin = originCountry === 'United States';
+  const isUkOrigin = originCountry === 'United Kingdom';
+  const isNigeriaOrigin = originCountry === 'Nigeria';
+
+  let originCity = (req.originCity || '').trim();
+  if (!originCity) {
+    if (isUkOrigin) originCity = 'London Heathrow Depot';
+    else if (isUsOrigin) originCity = 'US Warehouse (Irving, TX)';
+    else originCity = 'Lagos Drop-off (Ladipo-Oshodi)';
+  } else if (isNigeriaOrigin) {
+    if (originCity.toLowerCase().includes('abuja') && !originCity.toLowerCase().includes('drop-off')) {
+      originCity = 'Abuja Drop-off (Wuye Market)';
+    } else if (originCity.toLowerCase().includes('lagos') && !originCity.toLowerCase().includes('drop-off')) {
+      originCity = 'Lagos Drop-off (Ladipo-Oshodi)';
+    }
+  }
+
+  let destinationCity = (req.destinationCity || '').trim();
+  if ((isUkOrigin || isUsOrigin) && destinationCountry === 'Nigeria') {
+    if (!destinationCity) {
+      destinationCity = 'Lagos';
+    } else if (destinationCity.toLowerCase().includes('lagos')) {
+      destinationCity = 'Lagos';
+    } else if (destinationCity.toLowerCase().includes('abuja')) {
+      destinationCity = 'Abuja';
+    }
+  }
+
+  const weight = Number(req.weight);
+  const isImperialRoute = isUsOrigin && destinationCountry === 'Nigeria';
+  const weightUnit: 'kg' | 'lb' = isImperialRoute ? 'lb' : 'kg';
+  const dimensionUnit: 'cm' | 'in' = req.dimensionUnit || (isImperialRoute ? 'in' : 'cm');
+
+  if (isNaN(weight) || weight <= 0) {
+    return {
+      success: false,
+      origin: { country: originCountry, city: originCity },
+      destination: { country: destinationCountry, city: destinationCity },
+      weight: 0,
+      actualWeight: 0,
+      volumetricWeight: 0,
+      chargeableWeight: 0,
+      units: isImperialRoute ? 'imperial' : 'metric',
+      weightUnit,
+      dimensionUnit,
+      handoverMethod: req.handoverMethod || 'depot',
+      estimates: [],
+      error: isImperialRoute
+        ? 'Please enter a valid weight in pounds (lb).'
+        : 'Please enter a valid weight in kilograms (kg).',
+    };
+  }
+
+  const { volumetricWeight, normalizedLength, normalizedWidth, normalizedHeight } =
+    computeVolumetricWeight({
+      isImperialRoute,
+      length: req.length,
+      width: req.width,
+      height: req.height,
+      dimensionUnit,
+    });
+
+  const handoverMethod = req.handoverMethod || 'depot';
+
+  // For Nigeria export routes, use the Haulam-aligned export pricing table directly
+  // so 25 kg Nigeria -> USA matches Haulam's ₦400,000 (Value Export) and ₦733,713 (Express Export).
+  if (isNigeriaOrigin) {
+    return calculateFallbackShipQuote({
+      originCountry,
+      originCity,
+      destinationCountry,
+      destinationCity,
+      weight,
+      volumetricWeight,
+      length: req.length,
+      width: req.width,
+      height: req.height,
+      dimensionUnit,
+      handoverMethod,
+    });
+  }
+
+  const { baseUrl, headers } = getShipPortalConfig();
+
+  const upstreamPayload: Record<string, any> = {
+    originCountry,
+    originCity,
+    destinationCountry,
+    destinationCity,
+    weight,
+    handoverMethod,
+    category: req.category || 'General Goods',
+  };
+
+  if (normalizedLength > 0 && normalizedWidth > 0 && normalizedHeight > 0) {
+    upstreamPayload.length = normalizedLength;
+    upstreamPayload.width = normalizedWidth;
+    upstreamPayload.height = normalizedHeight;
+  }
+
+  try {
+    const res = await fetch(`${baseUrl}/api/quote`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(upstreamPayload),
+      cache: 'no-store',
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data && Array.isArray(data.estimates) && data.estimates.length > 0) {
+      const enrichedEstimates: ShipQuoteEstimate[] = data.estimates.map((est: ShipQuoteEstimate) => {
+        // Disable VAT on all quotes/payments: strip any VAT surcharge from upstream response
+        const vatCharge = est.additionalCharges?.find((c) => c.name.toUpperCase() === 'VAT')?.amount || 0;
+        const filteredCharges = (est.additionalCharges || []).filter(
+          (c) => c.name.toUpperCase() !== 'VAT'
+        );
+        const cleanEstimate =
+          vatCharge > 0
+            ? est.baseCost !== undefined
+              ? est.baseCost + (est.handlingFee || 0)
+              : Math.max(0, est.estimate - vatCharge)
+            : est.estimate;
+
+        const bookingUrl = buildShipCountyCargoBookingUrl({
+          originCountry,
+          originCity,
+          destinationCountry,
+          destinationCity,
+          serviceType: est.serviceType,
+          serviceName: est.serviceName,
+          weight,
+          weightUnit: est.weightUnit || weightUnit,
+          billableWeight: est.billableWeight,
+          volumetricWeight,
+          length: req.length,
+          width: req.width,
+          height: req.height,
+          dimensionUnit,
+          estimate: cleanEstimate,
+          baseCost: est.baseCost,
+          handlingFee: est.handlingFee,
+          currency: est.currency,
+          estimatedDelivery: est.estimatedDelivery,
+          handoverMethod,
+        });
+        const whatsAppUrl = buildWhatsAppQuoteUrl({
+          originCountry,
+          originCity,
+          destinationCountry,
+          destinationCity,
+          serviceName: est.serviceName,
+          weight,
+          weightUnit: est.weightUnit || weightUnit,
+          billableWeight: est.billableWeight,
+          estimate: cleanEstimate,
+          currency: est.currency,
+          estimatedDelivery: est.estimatedDelivery,
+        });
+
+        const defaultFeatures = est.features || [
+          `Delivery in ${est.estimatedDelivery}`,
+          est.deliveryMethod || 'Doorstep delivery',
+          ...(est.serviceType.toLowerCase().includes('express') && !est.serviceType.toLowerCase().includes('special')
+            ? ['Shipment via DHL']
+            : []),
+          est.customsInfo || '15% additional tarrif on declared value applies',
+        ];
+
+        return {
+          ...est,
+          estimate: cleanEstimate,
+          additionalCharges: filteredCharges,
+          features: defaultFeatures,
+          actualWeight: weight,
+          volumetricWeight,
+          bookingUrl,
+          whatsAppUrl,
+        };
+      });
+
+      const primaryBillable = enrichedEstimates[0]?.billableWeight || Math.max(Math.ceil(weight), volumetricWeight, 1);
+
+      return {
+        success: true,
+        origin: data.origin || { country: originCountry, city: originCity },
+        destination: data.destination || { country: destinationCountry, city: destinationCity },
+        weight,
+        actualWeight: weight,
+        volumetricWeight,
+        chargeableWeight: primaryBillable,
+        units: data.units || (isImperialRoute ? 'imperial' : 'metric'),
+        weightUnit: data.weightUnit || weightUnit,
+        dimensionUnit,
+        length: req.length,
+        width: req.width,
+        height: req.height,
+        handoverMethod,
+        estimates: enrichedEstimates,
+        source: 'ship-county-cargo-api',
+      };
+    }
+
+    if (!res.ok && data?.error) {
+      return {
+        success: false,
+        origin: { country: originCountry, city: originCity },
+        destination: { country: destinationCountry, city: destinationCity },
+        weight,
+        actualWeight: weight,
+        volumetricWeight,
+        chargeableWeight: Math.max(weight, volumetricWeight),
+        units: isImperialRoute ? 'imperial' : 'metric',
+        weightUnit,
+        dimensionUnit,
+        handoverMethod,
+        estimates: [],
+        error: data.error,
+      };
+    }
+  } catch (err) {
+    console.error('Error reaching live Ship County Cargo API, using identical local fallback:', err);
+  }
+
+  // Identical local fallback calculation matching Ship County Cargo rules
+  return calculateFallbackShipQuote({
+    originCountry,
+    originCity,
+    destinationCountry,
+    destinationCity,
+    weight,
+    volumetricWeight,
+    length: req.length,
+    width: req.width,
+    height: req.height,
+    dimensionUnit,
+    handoverMethod,
+  });
+}
+
+/**
+ * Local fallback calculation matching https://ship.countycargo.com/api/quote 100%
+ */
+async function calculateFallbackShipQuote(params: {
+  originCountry: string;
+  originCity: string;
+  destinationCountry: string;
+  destinationCity: string;
+  weight: number;
+  volumetricWeight: number;
+  length?: number;
+  width?: number;
+  height?: number;
+  dimensionUnit: 'cm' | 'in';
+  handoverMethod: 'depot' | 'collection';
+}): Promise<ShipQuoteApiResponse> {
+  const {
+    originCountry,
+    originCity,
+    destinationCountry,
+    destinationCity,
+    weight,
+    volumetricWeight,
+    length,
+    width,
+    height,
+    dimensionUnit,
+    handoverMethod,
+  } = params;
+
+  const isUkOrigin = originCountry === 'United Kingdom';
+  const isUsOrigin = originCountry === 'United States';
+  const isNigeriaOrigin = originCountry === 'Nigeria';
+  const isNigeriaDest = destinationCountry === 'Nigeria';
+  const isImperialRoute = isUsOrigin && isNigeriaDest;
+  const weightUnit: 'kg' | 'lb' = isImperialRoute ? 'lb' : 'kg';
+  const roundedEnteredWeight = Math.max(1, Math.ceil(weight));
+  const rawMaxWeight = Math.max(roundedEnteredWeight, volumetricWeight);
+
+  const estimates: ShipQuoteEstimate[] = [];
+
+  if (isUkOrigin && isNigeriaDest) {
+    const isLagos = destinationCity.toLowerCase().includes('lagos');
+    const billableWeight = Math.max(rawMaxWeight, 1);
+    const minApplied = weight < 1 || volumetricWeight > weight;
+
+    // 1. Value Import
+    const valueRate = isLagos ? 6 : 6.5;
+    const valueBase = valueRate * billableWeight;
+    const valueHandling = 15;
+    const valueEstimate = valueBase + valueHandling;
+    estimates.push({
+      serviceType: 'valueImport',
+      serviceName: 'Value Import (UK)',
+      estimate: valueEstimate,
+      baseCost: valueBase,
+      additionalCharges: [{ name: '15% Additional Tarrif', amount: 0 }],
+      rate: valueRate,
+      billableWeight,
+      actualWeight: weight,
+      volumetricWeight,
+      weightUnit: 'kg',
+      exchangeRate: 1998,
+      currency: 'GBP',
+      handlingFee: valueHandling,
+      minimumWeightApplied: minApplied,
+      minimumWeight: 1,
+      description: 'Affordable shipping from the UK to Nigeria.',
+      estimatedDelivery: '5-10 working days',
+      deliveryMethod: 'Hub Pick-up or Doorstep',
+      trackingInfo: 'Milestone tracking updates available',
+      customsInfo: '15% additional tarrif on declared value applies',
+      features: [
+        'Delivery in 5-10 working days',
+        'Doorstep or collection point delivery',
+        'Includes £15 handling fee',
+        '15% additional tarrif on declared value applies',
+      ],
+      isBestValue: true,
+      isFastest: false,
+    });
+
+    // 2. Express Import
+    const expressRate = 22;
+    const expressBase = expressRate * billableWeight;
+    const expressHandling = 20;
+    const expressEstimate = expressBase + expressHandling;
+    estimates.push({
+      serviceType: 'expressImport',
+      serviceName: 'Express Import',
+      estimate: expressEstimate,
+      baseCost: expressBase,
+      additionalCharges: [{ name: '15% Additional Tarrif', amount: 0 }],
+      rate: expressRate,
+      billableWeight,
+      actualWeight: weight,
+      volumetricWeight,
+      weightUnit: 'kg',
+      exchangeRate: 1998,
+      currency: 'GBP',
+      handlingFee: expressHandling,
+      minimumWeightApplied: minApplied,
+      minimumWeight: 1,
+      description: 'Fast and reliable import to Nigeria.',
+      estimatedDelivery: '3-5 working days',
+      deliveryMethod: 'Doorstep delivery',
+      trackingInfo: 'Real-time end-to-end tracking included',
+      customsInfo: '15% additional tarrif on declared value applies',
+      features: [
+        'Delivery in 3-5 working days',
+        'Doorstep delivery',
+        'Includes £20 priority handling fee',
+        '15% additional tarrif on declared value applies',
+      ],
+      isBestValue: false,
+      isFastest: !isLagos,
+    });
+
+    // 3. Special Express Shipping (48-Hour) - Lagos only
+    if (isLagos) {
+      estimates.push({
+        serviceType: 'specialExpressImport',
+        serviceName: 'Special Express (48-Hour)',
+        estimate: expressEstimate,
+        baseCost: expressBase,
+        additionalCharges: [{ name: '15% Additional Tarrif', amount: 0 }],
+        rate: expressRate,
+        billableWeight,
+        actualWeight: weight,
+        volumetricWeight,
+        weightUnit: 'kg',
+        exchangeRate: 1998,
+        currency: 'GBP',
+        handlingFee: expressHandling,
+        minimumWeightApplied: minApplied,
+        minimumWeight: 1,
+        approxNgnEstimate: Math.round(expressEstimate * 1998),
+        description: 'Guaranteed 48-hour express delivery to Lagos.',
+        estimatedDelivery: '48 hours',
+        deliveryMethod: 'Priority Lagos Delivery',
+        trackingInfo: 'Dedicated priority flight tracking',
+        customsInfo: '15% additional tarrif on declared value applies',
+        features: [
+          'Delivery in 48 hours from flight departure',
+          'Priority Lagos doorstep delivery',
+          'Includes £20 priority handling fee',
+          '15% additional tarrif on declared value applies',
+        ],
+        isBestValue: false,
+        isFastest: true,
+      });
+    }
+  } else if (isUsOrigin && isNigeriaDest) {
+    const isLagos = destinationCity.toLowerCase().includes('lagos');
+    const billableWeight = Math.max(rawMaxWeight, 1);
+    const minApplied = weight < 1 || volumetricWeight > weight;
+    const rate = isLagos ? 5 : 5.5;
+    const baseCost = rate * billableWeight;
+
+    estimates.push({
+      serviceType: 'valueImport',
+      serviceName: 'Value Import (US)',
+      estimate: baseCost,
+      baseCost,
+      additionalCharges: [{ name: '15% Additional Tarrif', amount: 0 }],
+      rate,
+      billableWeight,
+      actualWeight: weight,
+      volumetricWeight,
+      weightUnit: 'lb',
+      exchangeRate: 1400,
+      currency: 'USD',
+      minimumWeightApplied: minApplied,
+      minimumWeight: 1,
+      description: 'Affordable shipping from the US to Nigeria.',
+      estimatedDelivery: '5-10 working days',
+      deliveryMethod: 'Doorstep or Hub Pick-up',
+      trackingInfo: 'Milestone tracking updates available',
+      customsInfo: '15% additional tarrif on declared value applies',
+      features: [
+        'Delivery in 5-10 working days',
+        'Doorstep or collection point delivery',
+        'No handling fee ($0)',
+        '15% additional tarrif on declared value applies',
+      ],
+      isBestValue: true,
+      isFastest: true,
+    });
+  } else if (isNigeriaOrigin) {
+    const isAbuja = originCity.toLowerCase().includes('abuja');
+    const isUkDest = destinationCountry === 'United Kingdom';
+    const isUsDest = destinationCountry === 'United States';
+    const isCanadaDest = destinationCountry === 'Canada';
+
+    const matchedCountry =
+      HAULAM_EXPORT_COUNTRIES.find(
+        (c) => c.Country.toLowerCase() === destinationCountry.toLowerCase()
+      ) ||
+      HAULAM_EXPORT_COUNTRIES.find(
+        (c) =>
+          c.Country.toLowerCase().includes(destinationCountry.toLowerCase()) ||
+          destinationCountry.toLowerCase().includes(c.Country.toLowerCase())
+      ) || { Country: destinationCountry, Zone: isUkDest ? 1 : isUsDest || isCanadaDest ? 3 : 4 };
+
+    const zoneRates = HAULAM_EXPRESS_EXPORT_RATES[matchedCountry.Zone] || HAULAM_EXPRESS_EXPORT_RATES[3];
+
+    // 1. Value Export (10 kg minimum, matching Haulam Value Export)
+    const valueBillable = Math.max(rawMaxWeight, 10);
+    const valueMinApplied = weight < 10 || volumetricWeight > weight;
+    let valueRate = 16000;
+    let valueDelivery = '10-15 working days';
+    let valueDescription = 'Economical shipping from Nigeria.';
+    let valueCustomsNote = '15% additional tarrif on declared value applies';
+    let valueFeatures: string[] = [
+      'Delivery in 10-15 working days',
+      'Doorstep delivery',
+      '15% additional tarrif on declared value applies',
+    ];
+
+    if (isUkDest) {
+      valueRate = isAbuja ? 11000 : 10000;
+      valueDelivery = '5-10 working days';
+      valueCustomsNote = 'No customs fee';
+      valueFeatures = [
+        'Delivery in 5-10 working days',
+        'Doorstep delivery',
+        'No customs fee',
+      ];
+    } else if (isUsDest) {
+      valueRate = isAbuja ? 17000 : 16000;
+      valueDelivery = '10-15 working days';
+      valueCustomsNote = '15% additional tarrif on declared value applies';
+      valueFeatures = [
+        'Delivery in 10-15 working days',
+        'Doorstep delivery',
+        '15% additional tarrif on declared value applies',
+      ];
+    } else if (isCanadaDest) {
+      valueRate = isAbuja ? 15500 : 14500;
+      valueDelivery = '10-15 business days';
+      valueDescription = 'Affordable shipping to Canada.';
+      valueCustomsNote = 'Zero customs fees for receiver';
+      valueFeatures = [
+        'Delivery in 10-15 business days',
+        'Doorstep delivery across Canada',
+        'Zero customs fees for receiver',
+        '10kg minimum billable weight',
+      ];
+    } else {
+      // Other international destinations
+      const tenKgExpress = zoneRates['10.0kg'] || 348240;
+      valueRate = Math.round((tenKgExpress * 0.8) / 10);
+    }
+
+    const valueBaseCost = Math.round(valueRate * valueBillable);
+    const valueEstimate = valueBaseCost;
+
+    // Include Value Export on UK, US, Canada (and all destinations when comparing)
+    if (isUkDest || isUsDest || isCanadaDest) {
+      estimates.push({
+        serviceType: 'valueExport',
+        serviceName: 'Value Export',
+        estimate: valueEstimate,
+        baseCost: valueBaseCost,
+        additionalCharges: [{ name: '15% Additional Tarrif', amount: 0 }],
+        rate: valueRate,
+        billableWeight: valueBillable,
+        actualWeight: weight,
+        volumetricWeight,
+        weightUnit: 'kg',
+        exchangeRate: 1400,
+        currency: 'NGN',
+        minimumWeightApplied: valueMinApplied,
+        minimumWeight: 10,
+        description: valueDescription,
+        estimatedDelivery: valueDelivery,
+        deliveryMethod: 'Doorstep delivery',
+        trackingInfo: 'Milestone tracking updates available',
+        customsInfo: valueCustomsNote,
+        features: valueFeatures,
+        isBestValue: true,
+        isFastest: false,
+      });
+    }
+
+    // 2. Express Export (matching Haulam Express Export: e.g., 25 kg Lagos -> US = ₦733,713)
+    const effectiveRawWeight = Math.max(weight, volumetricWeight, 0.5);
+    const lookupWeight =
+      effectiveRawWeight <= 30
+        ? Math.ceil(effectiveRawWeight * 2) / 2
+        : Math.ceil(effectiveRawWeight);
+    const expressBillable = Math.max(lookupWeight, 0.5);
+    const expressMinApplied = weight < 0.5 || volumetricWeight > weight;
+
+    let expressBaseCost = 0;
+    if (lookupWeight <= 65) {
+      const key = `${lookupWeight.toFixed(1)}kg`;
+      expressBaseCost = zoneRates[key] || zoneRates[`${Math.ceil(lookupWeight).toFixed(1)}kg`] || 0;
+    } else {
+      const base65 = zoneRates['65.0kg'] || 1665416;
+      const base64 = zoneRates['64.0kg'] || 1638000;
+      const perKgIncrement = Math.max(base65 - base64, 25000);
+      expressBaseCost = base65 + Math.round((lookupWeight - 65) * perKgIncrement);
+    }
+
+    if (isAbuja) {
+      expressBaseCost += Math.max(Math.ceil(expressBillable), 10) * 1000;
+    }
+
+    const expressEstimate = Math.round(expressBaseCost);
+
+    estimates.push({
+      serviceType: 'expressExport',
+      serviceName: 'Express Export',
+      estimate: expressEstimate,
+      baseCost: expressEstimate,
+      additionalCharges: [],
+      rate: Math.round(expressEstimate / Math.max(expressBillable, 1)),
+      billableWeight: expressBillable,
+      actualWeight: weight,
+      volumetricWeight,
+      weightUnit: 'kg',
+      exchangeRate: 1400,
+      currency: 'NGN',
+      minimumWeightApplied: expressMinApplied,
+      minimumWeight: 0.5,
+      description: 'Fast international shipping from Nigeria.',
+      estimatedDelivery: '3-5 working days',
+      deliveryMethod: 'Doorstep delivery',
+      trackingInfo: 'Shipment via DHL',
+      customsInfo: 'Receiver is responsible for customs fees',
+      features: [
+        'Delivery in 3-5 working days',
+        'Doorstep delivery',
+        'Shipment via DHL',
+        'Receiver is responsible for customs fees',
+      ],
+      isBestValue: !(isUkDest || isUsDest || isCanadaDest),
+      isFastest: true,
+    });
+  }
+
+  const enriched = estimates.map((est) => {
+    return {
+      ...est,
+      bookingUrl: buildShipCountyCargoBookingUrl({
+        originCountry,
+        originCity,
+        destinationCountry,
+        destinationCity,
+        serviceType: est.serviceType,
+        serviceName: est.serviceName,
+        weight,
+        weightUnit: est.weightUnit,
+        billableWeight: est.billableWeight,
+        volumetricWeight,
+        length,
+        width,
+        height,
+        dimensionUnit,
+        estimate: est.estimate,
+        baseCost: est.baseCost,
+        handlingFee: est.handlingFee,
+        currency: est.currency,
+        estimatedDelivery: est.estimatedDelivery,
+        handoverMethod,
+      }),
+      whatsAppUrl: buildWhatsAppQuoteUrl({
+        originCountry,
+        originCity,
+        destinationCountry,
+        destinationCity,
+        serviceName: est.serviceName,
+        weight,
+        weightUnit: est.weightUnit,
+        billableWeight: est.billableWeight,
+        estimate: est.estimate,
+        currency: est.currency,
+        estimatedDelivery: est.estimatedDelivery,
+      }),
+    };
+  });
+
+  if (enriched.length === 0) {
+    return {
+      success: false,
+      origin: { country: originCountry, city: originCity },
+      destination: { country: destinationCountry, city: destinationCity },
+      weight,
+      actualWeight: weight,
+      volumetricWeight,
+      chargeableWeight: rawMaxWeight,
+      units: isImperialRoute ? 'imperial' : 'metric',
+      weightUnit,
+      dimensionUnit,
+      handoverMethod,
+      estimates: [],
+      error: `No shipping services available between ${originCountry} and ${destinationCountry}.`,
+    };
+  }
+
+  return {
+    success: true,
+    origin: { country: originCountry, city: originCity },
+    destination: { country: destinationCountry, city: destinationCity },
+    weight,
+    actualWeight: weight,
+    volumetricWeight,
+    chargeableWeight: enriched[0].billableWeight,
+    units: isImperialRoute ? 'imperial' : 'metric',
+    weightUnit,
+    dimensionUnit,
+    length,
+    width,
+    height,
+    handoverMethod,
+    estimates: enriched,
+    source: 'fallback-engine',
+  };
+}
+
+/**
+ * Master central quotation calculator returning both ShipQuoteEstimate[] and ServiceComparisonCard[]
  */
 export async function calculateCentralQuote(params: QuoteCalculationParams): Promise<CentralQuoteResponse> {
   const fromCountry = normalizeCountry(params.fromCountry);
   const toCountry = normalizeCountry(params.toCountry);
   const fromCity = (params.fromCity || '').trim() || 'Default Origin Hub';
-  const toCity = (params.toCity || '').trim() || 'Main Hub';
+  const toCity = (params.toCity || '').trim() || (toCountry === 'Nigeria' ? 'Lagos' : '');
   const weight = Number(params.weight);
 
-  // Validation
-  if (isNaN(weight) || weight <= 0) {
+  const apiResult = await fetchShipCountyCargoQuote({
+    originCountry: fromCountry,
+    originCity: fromCity,
+    destinationCountry: toCountry,
+    destinationCity: toCity,
+    weight,
+    length: params.length,
+    width: params.width,
+    height: params.height,
+    dimensionUnit: params.dimensionUnit,
+    handoverMethod: params.collectionType === 'collection' ? 'collection' : 'depot',
+    category: params.packageCategory || 'General Goods',
+  });
+
+  if (!apiResult.success || apiResult.estimates.length === 0) {
     return {
       success: false,
       fromCountry,
       fromCity,
       toCountry,
       toCity,
-      enteredWeight: 0,
-      volumetricWeight: 0,
-      chargeableWeight: 0,
+      enteredWeight: weight || 0,
+      volumetricWeight: apiResult.volumetricWeight || 0,
+      chargeableWeight: apiResult.chargeableWeight || 0,
+      weightUnit: apiResult.weightUnit,
       services: [],
-      error: 'Please enter a valid shipment weight greater than 0 kg.',
+      estimates: [],
+      error: apiResult.error || 'Could not calculate shipping quote.',
     };
   }
 
-  if (!fromCountry || !toCountry) {
+  const services: ServiceComparisonCard[] = apiResult.estimates.map((est) => {
+    const isSpecial = est.serviceType.toLowerCase().includes('special');
+    const isExpress = est.serviceType.toLowerCase().includes('express') && !isSpecial;
+    const id: ServiceLevelId = isSpecial ? 'special_express' : isExpress ? 'express' : 'value';
+    const symbol = est.currency === 'GBP' ? '£' : est.currency === 'USD' ? '$' : '₦';
+    const formattedTotal = `${symbol}${est.estimate.toLocaleString(undefined, {
+      minimumFractionDigits: est.currency === 'NGN' ? 0 : 2,
+      maximumFractionDigits: 2,
+    })}`;
+
+    const approxNgn =
+      est.approxNgnEstimate ||
+      (est.currency !== 'NGN' && est.exchangeRate ? Math.round(est.estimate * est.exchangeRate) : undefined);
+
     return {
-      success: false,
-      fromCountry,
-      fromCity,
-      toCountry,
-      toCity,
-      enteredWeight: weight,
-      volumetricWeight: 0,
-      chargeableWeight: weight,
-      services: [],
-      error: 'Both origin country and destination country are required.',
-    };
-  }
-
-  if (fromCountry === toCountry) {
-    return {
-      success: false,
-      fromCountry,
-      fromCity,
-      toCountry,
-      toCity,
-      enteredWeight: weight,
-      volumetricWeight: 0,
-      chargeableWeight: weight,
-      services: [],
-      error: 'Origin country and destination country cannot be identical. Please choose a cross-border route.',
-    };
-  }
-
-  // Calculate volumetric weight (lbs for US to Nigeria, kg for other routes)
-  const isUsToNigeriaRoute = fromCountry === 'United States' && toCountry === 'Nigeria';
-  const length = Number(params.length) || 0;
-  const width = Number(params.width) || 0;
-  const height = Number(params.height) || 0;
-  const volumetricWeight = length > 0 && width > 0 && height > 0
-    ? isUsToNigeriaRoute
-      ? Math.round(((length * width * height) / 5000) * 2.20462 * 100) / 100
-      : Math.round(((length * width * height) / 5000) * 100) / 100
-    : 0;
-  const minRouteWeight = 1; // Minimum chargeable weight is 1 kg (or 1 lb for US->Nigeria)
-  const chargeableWeight = Math.round(Math.max(weight, volumetricWeight, minRouteWeight) * 100) / 100;
-
-  const isCollection = params.collectionType === 'collection' || fromCity.toLowerCase().includes('collection') || fromCity.toLowerCase().includes('pickup');
-  const services: ServiceComparisonCard[] = [];
-
-  const isNigeriaOrigin = fromCountry === 'Nigeria';
-  const isUkOrigin = fromCountry === 'United Kingdom';
-  const isUsOrigin = fromCountry === 'United States';
-  const isCanadaOrigin = fromCountry === 'Canada';
-
-  const isNigeriaDest = toCountry === 'Nigeria';
-  const isUkDest = toCountry === 'United Kingdom';
-  const isUsDest = toCountry === 'United States';
-  const isCanadaDest = toCountry === 'Canada';
-
-  const isUsToNigeria = isUsOrigin && isNigeriaDest;
-  const defaultWeightUnit = isUsToNigeria ? 'lb' : 'kg';
-
-  // Helper for generating parameterized booking links
-  const createBookingUrl = (serviceId: string, quotedPrice: number, currency: string, weightUnit = defaultWeightUnit) => {
-    const query = new URLSearchParams({
-      redirect: '/book-shipment',
-      service: serviceId,
-      fromCountry,
-      fromCity,
-      toCountry,
-      toCity,
-      enteredWeight: String(weight),
-      chargeableWeight: String(chargeableWeight),
-      weightUnit,
-      quotedPrice: String(quotedPrice),
-      currency,
-      category: params.packageCategory || 'general',
-      description: params.itemDescription || '',
-    });
-    return `https://ship.countycargo.com/login?${query.toString()}`;
-  };
-
-  const createWhatsAppUrl = (
-    serviceName: string,
-    totalDisplay: string,
-    transit: string,
-    breakdownNote?: string,
-    weightUnit = defaultWeightUnit
-  ) => {
-    const text = `Hello County Cargo, I received a quote on your central calculator:
-- Service: ${serviceName}
-- Route: ${fromCountry} (${fromCity}) to ${toCountry} (${toCity})
-- Weight: ${weight} ${weightUnit} (Chargeable: ${chargeableWeight} ${weightUnit})
-${breakdownNote ? `- Cost Breakdown: ${breakdownNote}\n` : ''}- Total Estimate: ${totalDisplay}
-- Estimated Transit: ${transit}
-${params.itemDescription ? `- Description: ${params.itemDescription}` : ''}
-
-I would like to proceed with booking this shipment.`;
-    return `https://wa.me/2348110000421?text=${encodeURIComponent(text)}`;
-  };
-
-  // =========================================================================
-  // ROUTE 1: UNITED KINGDOM -> NIGERIA
-  // =========================================================================
-  if (isUkOrigin && isNigeriaDest) {
-    const isLagos = toCity.toLowerCase().includes('lagos');
-    const isAbuja = toCity.toLowerCase().includes('abuja');
-
-    // 1. Value Shipping (Air Cargo)
-    const valueRate = isLagos ? 6.0 : isAbuja ? 6.5 : 7.0;
-    const valueMinWeight = 1; // UK to Nigeria: minimum chargeable weight is 1 kg
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueHandlingFee = 15;
-    let valueCollectionFee = 0;
-    if (isCollection) {
-      if (chargeableWeight >= 30 && fromCity.toLowerCase().includes('london')) {
-        valueCollectionFee = 0; // Free London collection promo for 30kg+
-      } else {
-        valueCollectionFee = fromCity.toLowerCase().includes('nationwide') ? 25 : 20;
-      }
-    }
-    const valueTotalGbp = Math.round((valueRate * valueBillableWeight + valueHandlingFee + valueCollectionFee) * 100) / 100;
-    const valueNairaApprox = Math.round(valueTotalGbp * DEFAULT_EXCHANGE_RATES.ngnPerGbp);
-
-    services.push({
-      id: 'value',
-      name: 'Value Shipping (Air Cargo)',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air freight to Lagos, Abuja, and nationwide.',
-      route: `${fromCity}, UK → ${toCity}, Nigeria`,
+      id,
+      serviceType: est.serviceType,
+      name: est.serviceName,
+      badge: est.isFastest ? 'Fastest' : est.isBestValue ? 'Best Value' : undefined,
+      tagline: est.description,
+      route: `${fromCountry} (${fromCity}) → ${toCountry}${toCity ? ` (${toCity})` : ''}`,
       originCountry: fromCountry,
       originCity: fromCity,
       destinationCountry: toCountry,
       destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `£${valueRate.toFixed(2)}/kg`,
+      ratePerKg: est.rate,
+      ratePerKgDisplay: `${symbol}${est.rate.toLocaleString(undefined, {
+        minimumFractionDigits: est.currency === 'NGN' ? 0 : 2,
+        maximumFractionDigits: 2,
+      })}/${est.weightUnit}`,
       enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: valueHandlingFee,
-      collectionFee: valueCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: valueTotalGbp,
-      formattedTotal: `£${valueTotalGbp.toFixed(2)}`,
-      currency: 'GBP',
-      convertedEstimate: `Approx. ₦${valueNairaApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '5–10 working days',
-      trackingAvailability: true,
-      customsInformation: 'Full customs clearance included. Doorstep delivery available across all 36 states.',
-      features: [
-        '5–10 working days transit',
-        `Minimum billable weight: ${valueMinWeight} kg`,
-        'Includes export handling & customs clearance',
-        'Doorstep delivery or hub collection',
-      ],
-      bookingUrl: createBookingUrl('value', valueTotalGbp, 'GBP'),
-      whatsAppUrl: createWhatsAppUrl('Value Shipping', `£${valueTotalGbp.toFixed(2)}`, '5–10 working days'),
-    });
-
-    // 2. Express Shipping (Fast Commercial Air Freight)
-    const additionalGbpPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerGbp) * 100) / 100; // £1.05/kg (₦2,000/kg equiv)
-    const baseExpressRate = 8.5;
-    const expressRate = Math.round((baseExpressRate + additionalGbpPerKg) * 100) / 100; // £9.55/kg
-    const expressHandling = 20;
-    const expressCollection = isCollection ? 20 : 0;
-    const expressTotalGbp = Math.round((expressRate * chargeableWeight + expressHandling + expressCollection) * 100) / 100;
-    const expressNairaApprox = Math.round(expressTotalGbp * DEFAULT_EXCHANGE_RATES.ngnPerGbp);
-
-    services.push({
-      id: 'express',
-      name: 'Express Shipping',
-      tagline: 'Fast international priority air cargo with scheduled weekly departures.',
-      route: `${fromCity}, UK → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: expressRate,
-      ratePerKgDisplay: `£${expressRate.toFixed(2)}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: chargeableWeight,
-      minimumWeight: 1,
-      handlingFee: expressHandling,
-      collectionFee: expressCollection,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalGbp,
-      formattedTotal: `£${expressTotalGbp.toFixed(2)}`,
-      currency: 'GBP',
-      convertedEstimate: `Approx. ₦${expressNairaApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Priority clearance with end-to-end milestone tracking.',
-      features: [
-        '3 to 5 working days delivery',
-        'Shipment tracking from dispatch to arrival',
-        'Fast flight dispatch from London Heathrow',
-        'Direct delivery to Lagos & Abuja addresses',
-      ],
-      bookingUrl: createBookingUrl('express', expressTotalGbp, 'GBP'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping', `£${expressTotalGbp.toFixed(2)}`, '3 to 5 working days'),
-    });
-
-    // 3. Special Express Shipping (ONLY UK <-> NIGERIA, £22/kg + £20 handling fee, 48-Hour)
-    const specialRate = 22.0;
-    const specialHandling = 20.0;
-    const specialCollection = isCollection ? 20.0 : 0;
-    const specialTotalGbp = Math.round((specialRate * chargeableWeight + specialHandling + specialCollection) * 100) / 100;
-    const specialNairaApprox = Math.round(specialTotalGbp * DEFAULT_EXCHANGE_RATES.ngnPerGbp);
-
-    services.push({
-      id: 'special_express',
-      name: 'Special Express Shipping (48-Hour)',
-      badge: 'Fastest',
-      tagline: 'Premium 48-hour flight schedule exclusively between the UK and Nigeria.',
-      route: `${fromCity}, UK → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: specialRate,
-      ratePerKgDisplay: `£${specialRate.toFixed(2)}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: chargeableWeight,
-      minimumWeight: 1,
-      handlingFee: specialHandling,
-      collectionFee: specialCollection,
-      additionalCharges: 0,
-      totalEstimatedPrice: specialTotalGbp,
-      formattedTotal: `£${specialTotalGbp.toFixed(2)}`,
-      currency: 'GBP',
-      convertedEstimate: `Approx. ₦${specialNairaApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '48-hour flight connection',
-      trackingAvailability: true,
-      customsInformation: 'Priority express customs clearance included.',
-      features: [
-        '48-hour scheduled express air freight',
-        '£22/kg + £20 handling fee',
-        'Top flight priority on direct flights',
-        'Real-time priority dispatch alerts',
-      ],
-      termsAndConditions: 'The 48-hour delivery period begins once the consignment has cleared export security scanning and departed on the scheduled direct flight from London.',
-      exclusions: 'Operational exclusions: Excludes weekends, UK/Nigerian bank holidays, and statutory customs security inspection holds.',
-      bookingUrl: createBookingUrl('special_express', specialTotalGbp, 'GBP'),
-      whatsAppUrl: createWhatsAppUrl('Special Express (48-Hour)', `£${specialTotalGbp.toFixed(2)}`, '48 hours'),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 2: NIGERIA -> UNITED KINGDOM
-  // =========================================================================
-  else if (isNigeriaOrigin && isUkDest) {
-    const isAbuja = fromCity.toLowerCase().includes('abuja');
-
-    // 1. Value Shipping (Export to UK)
-    const valueRate = isAbuja ? 11000 : 10500;
-    const valueMinWeight = 10;
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueHandling = 0;
-    const valueCollection = isCollection ? 5000 : 0;
-    const valueTotalNgn = valueRate * valueBillableWeight + valueHandling + valueCollection;
-    const valueGbpApprox = (valueTotalNgn / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
-
-    services.push({
-      id: 'value',
-      name: 'Value Shipping',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air freight from Nigeria to the United Kingdom.',
-      route: `${fromCity}, Nigeria → ${toCity}, UK`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `₦${valueRate.toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: valueHandling,
-      collectionFee: valueCollection,
-      additionalCharges: 0,
-      totalEstimatedPrice: valueTotalNgn,
-      formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
-      currency: 'NGN',
-      convertedEstimate: `Approx. £${valueGbpApprox}`,
-      estimatedDeliveryTime: '5–10 working days',
-      trackingAvailability: true,
-      customsInformation: 'Consolidated customs processing. Liverpool depot distribution and UK-wide doorstep delivery.',
-      features: [
-        '5–10 working days transit',
-        `Minimum billable weight: ${valueMinWeight} kg`,
-        'Liverpool depot L1 0BG handling',
-        'Doorstep delivery to all UK postal codes',
-      ],
-      bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to UK', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
-    });
-
-    // 2. Express Shipping (DHL Partner Zone Export)
-    const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
-    let expressTotalNgn = 0;
-    let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 1) expressBillable = 1;
-
-    const ukDhl = dhlCountries.find((c) => c.Country === 'United Kingdom') || { Country: 'United Kingdom', Zone: 4 };
-    const zonePricing = dhlPricing.find((z) => z.Zone === ukDhl.Zone);
-    if (zonePricing && expressBillable <= 70) {
-      const key = `${expressBillable.toFixed(1)}kg`;
-      const base = Number(zonePricing[key]) || 0;
-      expressTotalNgn = Math.round(base * 1.082855);
-    } else {
-      expressTotalNgn = Math.round(expressBillable * 28000 * 1.082855);
-    }
-
-    const expressCollectionFee = isCollection ? 5000 : 0;
-    expressTotalNgn += expressCollectionFee;
-    const baseExpressCost = expressTotalNgn;
-    const packagingRatePerKg = 2000;
-    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
-    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-    const expressGbpApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerGbp).toFixed(2);
-
-    services.push({
-      id: 'express',
-      name: 'Express Shipping',
-      tagline: 'Fast international courier shipping from Nigeria via DHL global network.',
-      route: `${fromCity}, Nigeria → ${toCity}, UK`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: expressBillable,
-      minimumWeight: 1,
-      handlingFee: 0,
-      collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: totalExpressWithPackaging,
-      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
-      currency: 'NGN',
-      convertedEstimate: `Approx. £${expressGbpApprox}`,
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Shipment routed via DHL Express. Receiver is responsible for destination customs duties or VAT where applicable.',
-      features: [
-        '3 to 5 working days delivery',
-        'DHL Express priority network',
-        'Real-time door-to-door tracking',
-        'Nationwide UK doorstep handover',
-      ],
-      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to UK', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
-    });
-
-    // 3. Special Express Shipping (ONLY UK <-> NIGERIA, £22/kg + £20 handling, converted to Naira)
-    const specialRateGbp = 22.0;
-    const specialHandlingGbp = 20.0;
-    const specialGbpTotal = specialRateGbp * chargeableWeight + specialHandlingGbp + (isCollection ? 5 : 0);
-    const specialRateNgn = Math.round(specialRateGbp * DEFAULT_EXCHANGE_RATES.ngnPerGbp);
-    const specialHandlingNgn = Math.round(specialHandlingGbp * DEFAULT_EXCHANGE_RATES.ngnPerGbp);
-    const specialCollectionNgn = isCollection ? 5000 : 0;
-    const specialTotalNgn = specialRateNgn * chargeableWeight + specialHandlingNgn + specialCollectionNgn;
-
-    services.push({
-      id: 'special_express',
-      name: 'Special Express Shipping (48-Hour)',
-      badge: 'Fastest',
-      tagline: 'Premium 48-hour direct air freight connection exclusively between Nigeria and the UK.',
-      route: `${fromCity}, Nigeria → ${toCity}, UK`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: specialRateNgn,
-      ratePerKgDisplay: `₦${specialRateNgn.toLocaleString()}/kg (£${specialRateGbp}/kg)`,
-      enteredWeight: weight,
-      chargeableWeight: chargeableWeight,
-      minimumWeight: 1,
-      handlingFee: specialHandlingNgn,
-      collectionFee: specialCollectionNgn,
-      additionalCharges: 0,
-      totalEstimatedPrice: specialTotalNgn,
-      formattedTotal: `₦${specialTotalNgn.toLocaleString()}`,
-      currency: 'NGN',
-      convertedEstimate: `Approx. £${specialGbpTotal.toFixed(2)} (est.)`,
-      estimatedDeliveryTime: '48-hour flight connection',
-      trackingAvailability: true,
-      customsInformation: 'Priority express export clearance included.',
-      features: [
-        '48-hour scheduled direct flight',
-        '£22/kg + £20 handling fee (converted to NGN)',
-        'Direct air dispatch from Murtala Muhammed Airport',
-        'Real-time tracking and delivery confirmation',
-      ],
-      termsAndConditions: 'The 48-hour delivery countdown begins once the consignment has completed export security inspection and departed on the scheduled direct flight from Lagos.',
-      exclusions: 'Operational exclusions: Excludes weekends, public holidays, and statutory customs clearance delays.',
-      bookingUrl: createBookingUrl('special_express', specialTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Special Express (48-Hour)', `₦${specialTotalNgn.toLocaleString()}`, '48 hours'),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 3: NIGERIA -> UNITED STATES
-  // (Special Express MUST NOT APPEAR)
-  // =========================================================================
-  else if (isNigeriaOrigin && isUsDest) {
-    const isAbuja = fromCity.toLowerCase().includes('abuja');
-
-    // 1. Value Shipping (Export to USA)
-    const valueRate = isAbuja ? 17000 : 16000;
-    const valueMinWeight = 10;
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueCollection = isCollection ? 5000 : 0;
-    const valueTotalNgn = valueRate * valueBillableWeight + valueCollection;
-    const valueUsdApprox = (valueTotalNgn / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
-
-    services.push({
-      id: 'value',
-      name: 'Value Export Shipping',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air cargo from Nigeria to the United States.',
-      route: `${fromCity}, Nigeria → ${toCity}, USA`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `₦${valueRate.toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: 0,
-      collectionFee: valueCollection,
-      additionalCharges: 0,
-      totalEstimatedPrice: valueTotalNgn,
-      formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
-      currency: 'NGN',
-      convertedEstimate: `Approx. $${valueUsdApprox}`,
-      estimatedDeliveryTime: '5–10 working days',
-      trackingAvailability: true,
-      customsInformation: 'Consolidated air freight. 15% additional tariff on declared value applies for certain commercial goods.',
-      features: [
-        '5–10 working days transit',
-        `Minimum billable weight: ${valueMinWeight} kg`,
-        'Doorstep delivery across all 50 US states',
-        '15% additional tariff advisory applies',
-      ],
-      bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to US', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
-    });
-
-    // 2. Express Shipping (DHL Partner Zone 3 Export)
-    const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
-    let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 1) expressBillable = 1;
-
-    const usDhl = dhlCountries.find((c) => c.Country === 'United States') || { Country: 'United States', Zone: 3 };
-    const zonePricing = dhlPricing.find((z) => z.Zone === usDhl.Zone);
-    let expressTotalNgn = 0;
-
-    if (zonePricing && expressBillable <= 70) {
-      const key = `${expressBillable.toFixed(1)}kg`;
-      const base = Number(zonePricing[key]) || 0;
-      expressTotalNgn = Math.round(base * 1.082855);
-    } else {
-      expressTotalNgn = Math.round(expressBillable * 32000 * 1.082855);
-    }
-
-    const expressCollectionFee = isCollection ? 5000 : 0;
-    expressTotalNgn += expressCollectionFee;
-    const baseExpressCost = expressTotalNgn;
-    const packagingRatePerKg = 2000;
-    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
-    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-    const expressUsdApprox = (totalExpressWithPackaging / DEFAULT_EXCHANGE_RATES.ngnPerUsd).toFixed(2);
-
-    services.push({
-      id: 'express',
-      name: 'Express Shipping',
-      badge: 'Fastest',
-      tagline: 'Fast international courier shipping from Nigeria via DHL global express network.',
-      route: `${fromCity}, Nigeria → ${toCity}, USA`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: expressBillable,
-      minimumWeight: 1,
-      handlingFee: 0,
-      collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: totalExpressWithPackaging,
-      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
-      currency: 'NGN',
-      convertedEstimate: `Approx. $${expressUsdApprox}`,
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Shipment via DHL Express. Receiver is responsible for destination customs fees or duties where applicable.',
-      features: [
-        '3 to 5 working days delivery',
-        'DHL Express priority global network',
-        'Complete doorstep delivery',
-        'Live tracking and milestone SMS updates',
-      ],
-      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to USA', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 4: NIGERIA -> CANADA
-  // (Special Express MUST NOT APPEAR)
-  // =========================================================================
-  else if (isNigeriaOrigin && isCanadaDest) {
-    // 1. Value Shipping to Canada
-    const valueRate = 34000;
-    const valueMinWeight = 10;
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueCollection = isCollection ? 5000 : 0;
-    const valueTotalNgn = valueRate * valueBillableWeight + valueCollection;
-
-    services.push({
-      id: 'value',
-      name: 'Value Export Shipping',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air freight from Nigeria to Canada.',
-      route: `${fromCity}, Nigeria → ${toCity}, Canada`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `₦${valueRate.toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: 0,
-      collectionFee: valueCollection,
-      additionalCharges: 0,
-      totalEstimatedPrice: valueTotalNgn,
-      formattedTotal: `₦${valueTotalNgn.toLocaleString()}`,
-      currency: 'NGN',
-      estimatedDeliveryTime: '5–10 working days',
-      trackingAvailability: true,
-      customsInformation: 'CBSA customs clearance and CFIA dry foodstuffs compliance support included.',
-      features: [
-        '5–10 working days transit',
-        `Minimum billable weight: ${valueMinWeight} kg`,
-        'Service to Toronto, Calgary, Vancouver, Montreal',
-        'Doorstep handover across Canadian provinces',
-      ],
-      bookingUrl: createBookingUrl('value', valueTotalNgn, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Value Export to Canada', `₦${valueTotalNgn.toLocaleString()}`, '5–10 working days'),
-    });
-
-    // 2. Express Shipping to Canada (DHL Zone 4/8)
-    const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
-    let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 1) expressBillable = 1;
-
-    const caDhl = dhlCountries.find((c) => c.Country === 'Canada') || { Country: 'Canada', Zone: 4 };
-    const zonePricing = dhlPricing.find((z) => z.Zone === caDhl.Zone);
-    let expressTotalNgn = 0;
-
-    if (zonePricing && expressBillable <= 70) {
-      const key = `${expressBillable.toFixed(1)}kg`;
-      const base = Number(zonePricing[key]) || 0;
-      expressTotalNgn = Math.round(base * 1.082855);
-    } else {
-      expressTotalNgn = Math.round(expressBillable * 35000 * 1.082855);
-    }
-
-    const expressCollectionFee = isCollection ? 5000 : 0;
-    expressTotalNgn += expressCollectionFee;
-    const baseExpressCost = expressTotalNgn;
-    const packagingRatePerKg = 2000;
-    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
-    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-
-    services.push({
-      id: 'express',
-      name: 'Express Shipping',
-      badge: 'Fastest',
-      tagline: 'Fast international courier shipping from Nigeria via DHL global express network.',
-      route: `${fromCity}, Nigeria → ${toCity}, Canada`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: expressBillable,
-      minimumWeight: 1,
-      handlingFee: 0,
-      collectionFee: expressCollectionFee,
-      additionalCharges: 0,
-      totalEstimatedPrice: totalExpressWithPackaging,
-      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
-      currency: 'NGN',
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Shipment via DHL Express. Receiver is responsible for destination customs duties or GST/HST where applicable.',
-      features: [
-        '3 to 5 working days delivery',
-        'DHL Express priority global network',
-        'End-to-end doorstep delivery in Canada',
-        'Live tracking and SMS delivery updates',
-      ],
-      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping to Canada', `₦${totalExpressWithPackaging.toLocaleString()}`, '3 to 5 working days'),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 5: NIGERIA -> SUPPORTED COUNTRIES WORLDWIDE (230+ COUNTRIES)
-  // (Special Express MUST NOT APPEAR)
-  // =========================================================================
-  else if (isNigeriaOrigin) {
-    const [dhlCountries, dhlPricing] = await Promise.all([fetchDhlCountries(), fetchDhlPricing()]);
-    const matchedCountry = dhlCountries.find((c) => c.Country.toLowerCase() === toCountry.toLowerCase()) ||
-      dhlCountries.find((c) => c.Country.toLowerCase().includes(toCountry.toLowerCase()) || toCountry.toLowerCase().includes(c.Country.toLowerCase()));
-
-    if (!matchedCountry) {
-      return {
-        success: false,
-        fromCountry,
-        fromCity,
-        toCountry,
-        toCity,
-        enteredWeight: weight,
-        volumetricWeight,
-        chargeableWeight,
-        services: [],
-        error: `Destination country '${toCountry}' is not currently active in our export network. Please contact support.`,
-      };
-    }
-
-    const zoneId = matchedCountry.Zone;
-    const zonePricing = dhlPricing.find((z) => z.Zone === zoneId);
-
-    if (!zonePricing) {
-      return {
-        success: false,
-        fromCountry,
-        fromCity,
-        toCountry,
-        toCity,
-        enteredWeight: weight,
-        volumetricWeight,
-        chargeableWeight,
-        services: [],
-        error: `Pricing not configured for Zone ${zoneId} (${matchedCountry.Country}).`,
-      };
-    }
-
-    let expressBillable = chargeableWeight <= 30 ? Math.ceil(chargeableWeight * 2) / 2 : Math.ceil(chargeableWeight);
-    if (expressBillable < 1) expressBillable = 1;
-
-    let baseCost = 0;
-    if (expressBillable <= 70) {
-      const key = `${expressBillable.toFixed(1)}kg`;
-      baseCost = Number(zonePricing[key]) || 0;
-    } else {
-      const base70 = Number(zonePricing['70.0kg']) || 0;
-      const extraKg = expressBillable - 70;
-      baseCost = base70 + extraKg * 25000;
-    }
-
-    const baseExpressCost = Math.round(baseCost * 1.082855) + (isCollection ? 5000 : 0);
-    const packagingRatePerKg = 2000;
-    const packagingCharge = Math.round(expressBillable * packagingRatePerKg);
-    const totalExpressWithPackaging = baseExpressCost + packagingCharge;
-
-    let transitTime = '3 to 5 working days';
-    if (['Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium'].includes(matchedCountry.Country)) {
-      transitTime = '3 to 5 working days';
-    } else if (['China', 'United Arab Emirates', 'India'].includes(matchedCountry.Country)) {
-      transitTime = '3 to 6 working days';
-    } else {
-      transitTime = '4 to 7 working days';
-    }
-
-    services.push({
-      id: 'express',
-      name: 'Express Shipping',
-      badge: 'Fastest',
-      tagline: `Fast international export from Nigeria to ${matchedCountry.Country} via DHL global network.`,
-      route: `${fromCity}, Nigeria → ${matchedCountry.Country}`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: matchedCountry.Country,
-      destinationCity: toCity,
-      ratePerKg: Math.round(totalExpressWithPackaging / expressBillable),
-      ratePerKgDisplay: `₦${Math.round(totalExpressWithPackaging / expressBillable).toLocaleString()}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: expressBillable,
-      minimumWeight: 1,
-      handlingFee: 0,
-      collectionFee: isCollection ? 5000 : 0,
-      additionalCharges: 0,
-      totalEstimatedPrice: totalExpressWithPackaging,
-      formattedTotal: `₦${totalExpressWithPackaging.toLocaleString()}`,
-      currency: 'NGN',
-      estimatedDeliveryTime: transitTime,
-      trackingAvailability: true,
-      customsInformation: `Shipment routed via DHL Express. Receiver is responsible for destination customs duties, local VAT or taxes assessed by ${matchedCountry.Country}.`,
-      features: [
-        `${transitTime} delivery`,
-        'DHL Express priority global network',
-        'End-to-end doorstep delivery',
-        'Live tracking and milestone notifications',
-      ],
-      bookingUrl: createBookingUrl('express', totalExpressWithPackaging, 'NGN'),
-      whatsAppUrl: createWhatsAppUrl('Express Shipping', `₦${totalExpressWithPackaging.toLocaleString()}`, transitTime),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 6: UNITED STATES -> NIGERIA
-  // (Value Air Shipping ONLY - Express Shipping is strictly NOT available)
-  // =========================================================================
-  else if (isUsOrigin && isNigeriaDest) {
-    const isLagos = toCity.toLowerCase().includes('lagos');
-    const valueRate = isLagos ? 5.0 : 5.5; // USD per lb ($5.00/lb to Lagos, $5.50/lb to Abuja & nationwide)
-    const valueMinWeight = 1; // Minimum billable weight: 1 lb
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueHandling = 0; // No handling charges
-    const valueTotalUsd = Math.round((valueRate * valueBillableWeight + valueHandling) * 100) / 100;
-    const valueNgnApprox = Math.round(valueTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
-
-    services.push({
-      id: 'value',
-      name: 'Value Air Shipping',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air cargo from the USA to Lagos, Abuja, and nationwide.',
-      route: `${fromCity}, USA → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `$${valueRate.toFixed(2)}/lb`,
-      enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: valueHandling,
+      volumetricWeight: apiResult.volumetricWeight,
+      chargeableWeight: est.billableWeight,
+      weightUnit: est.weightUnit,
+      minimumWeight: est.minimumWeight,
+      minimumWeightApplied: est.minimumWeightApplied,
+      baseCost: est.baseCost,
+      handlingFee: est.handlingFee || 0,
       collectionFee: 0,
       additionalCharges: 0,
-      totalEstimatedPrice: valueTotalUsd,
-      formattedTotal: `$${valueTotalUsd.toFixed(2)}`,
-      currency: 'USD',
-      convertedEstimate: `Approx. ₦${valueNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '5–10 working days',
+      additionalChargesList: est.additionalCharges,
+      totalEstimatedPrice: est.estimate,
+      formattedTotal,
+      currency: est.currency,
+      convertedEstimate: approxNgn ? `~₦${approxNgn.toLocaleString()}` : undefined,
+      approxNgnEstimate: approxNgn,
+      estimatedDeliveryTime: est.estimatedDelivery,
       trackingAvailability: true,
-      customsInformation: 'Consolidated air cargo with full Nigerian customs clearance included.',
+      customsInformation: est.customsInfo || 'Standard customs processing included',
       features: [
-        '5–10 working days delivery',
-        'Minimum billable weight: 1 lb',
-        `$${valueRate.toFixed(2)}/lb to ${isLagos ? 'Lagos' : 'Abuja & nationwide'}`,
-        'Irving, Texas warehouse intake',
-        'Doorstep delivery across all 36 Nigerian states',
+        `Delivery in ${est.estimatedDelivery}`,
+        `Minimum chargeable weight: ${est.minimumWeight} ${est.weightUnit}`,
+        est.deliveryMethod || 'Doorstep or Hub delivery',
+        est.customsInfo || 'Full milestone tracking included',
       ],
-      bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD', 'lb'),
-      whatsAppUrl: createWhatsAppUrl(
-        'USA to Nigeria Value Shipping',
-        `$${valueTotalUsd.toFixed(2)}`,
-        '5–10 working days',
-        undefined,
-        'lb'
-      ),
-    });
-  }
-
-  // =========================================================================
-  // ROUTE 7: CANADA -> NIGERIA
-  // (Special Express MUST NOT APPEAR)
-  // =========================================================================
-  else if (isCanadaOrigin && isNigeriaDest) {
-    const isLagos = toCity.toLowerCase().includes('lagos');
-    const valueRate = isLagos ? 7.5 : 8.0; // USD per kg
-    const valueMinWeight = 10;
-    const valueBillableWeight = Math.max(chargeableWeight, valueMinWeight);
-    const valueHandling = 20;
-    const valueTotalUsd = Math.round((valueRate * valueBillableWeight + valueHandling) * 100) / 100;
-    const valueNgnApprox = Math.round(valueTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
-
-    services.push({
-      id: 'value',
-      name: 'Value Air Shipping',
-      badge: 'Best Value',
-      tagline: 'Economical consolidated air shipping from Canada to Lagos, Abuja, and nationwide.',
-      route: `${fromCity}, Canada → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: valueRate,
-      ratePerKgDisplay: `$${valueRate.toFixed(2)}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: valueBillableWeight,
-      minimumWeight: valueMinWeight,
-      handlingFee: valueHandling,
-      collectionFee: 0,
-      additionalCharges: 0,
-      totalEstimatedPrice: valueTotalUsd,
-      formattedTotal: `$${valueTotalUsd.toFixed(2)}`,
-      currency: 'USD',
-      convertedEstimate: `Approx. ₦${valueNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '5–10 working days',
-      trackingAvailability: true,
-      customsInformation: 'Consolidated air cargo with Nigerian customs clearance included.',
-      features: [
-        '5–10 working days delivery',
-        `Minimum billable weight: ${valueMinWeight} kg`,
-        'Toronto depot intake & nationwide pickup',
-        'Doorstep delivery across all 36 Nigerian states',
-      ],
-      bookingUrl: createBookingUrl('value', valueTotalUsd, 'USD'),
-      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Value Shipping', `$${valueTotalUsd.toFixed(2)}`, '5–10 working days'),
-    });
-
-    // 2. Express Air Shipping
-    // ₦2,000/kg converted to USD ($1.33/kg) included automatically in expressRate
-    const additionalUsdPerKg = Math.round((2000 / DEFAULT_EXCHANGE_RATES.ngnPerUsd) * 100) / 100; // $1.33/kg (₦2,000/kg equiv)
-    const baseExpressRate = 10.5;
-    const expressRate = Math.round((baseExpressRate + additionalUsdPerKg) * 100) / 100; // $11.83/kg
-    const expressHandling = 25;
-    const expressTotalUsd = Math.round((expressRate * chargeableWeight + expressHandling) * 100) / 100;
-    const expressNgnApprox = Math.round(expressTotalUsd * DEFAULT_EXCHANGE_RATES.ngnPerUsd);
-
-    services.push({
-      id: 'express',
-      name: 'Express Air Shipping',
-      badge: 'Fastest',
-      tagline: 'Fast priority air cargo from Canada to Nigeria.',
-      route: `${fromCity}, Canada → ${toCity}, Nigeria`,
-      originCountry: fromCountry,
-      originCity: fromCity,
-      destinationCountry: toCountry,
-      destinationCity: toCity,
-      ratePerKg: expressRate,
-      ratePerKgDisplay: `$${expressRate.toFixed(2)}/kg`,
-      enteredWeight: weight,
-      chargeableWeight: chargeableWeight,
-      minimumWeight: 5,
-      handlingFee: expressHandling,
-      collectionFee: 0,
-      additionalCharges: 0,
-      totalEstimatedPrice: expressTotalUsd,
-      formattedTotal: `$${expressTotalUsd.toFixed(2)}`,
-      currency: 'USD',
-      convertedEstimate: `Approx. ₦${expressNgnApprox.toLocaleString()} (est.)`,
-      estimatedDeliveryTime: '3 to 5 working days',
-      trackingAvailability: true,
-      customsInformation: 'Priority express flight dispatch and expedited customs clearance.',
-      features: [
-        '3 to 5 working days delivery',
-        'Priority airport air dispatch',
-        'End-to-end milestone tracking',
-        'Doorstep delivery to Lagos & Abuja addresses',
-      ],
-      bookingUrl: createBookingUrl('express', expressTotalUsd, 'USD'),
-      whatsAppUrl: createWhatsAppUrl('Canada to Nigeria Express Shipping', `$${expressTotalUsd.toFixed(2)}`, '3 to 5 working days'),
-    });
-  }
-
-  // Unsupported route fallback
-  if (services.length === 0) {
-    return {
-      success: false,
-      fromCountry,
-      fromCity,
-      toCountry,
-      toCity,
-      enteredWeight: weight,
-      volumetricWeight,
-      chargeableWeight,
-      services: [],
-      error: `No standard services currently configured between ${fromCountry} and ${toCountry}. Please contact our support team for a custom quote.`,
+      bookingUrl: est.bookingUrl || SHIP_COUNTY_CARGO_QUOTE_URL,
+      whatsAppUrl: est.whatsAppUrl || '',
     };
-  }
+  });
 
   return {
     success: true,
@@ -1097,8 +1247,10 @@ I would like to proceed with booking this shipment.`;
     toCountry,
     toCity,
     enteredWeight: weight,
-    volumetricWeight,
-    chargeableWeight,
+    volumetricWeight: apiResult.volumetricWeight,
+    chargeableWeight: apiResult.chargeableWeight,
+    weightUnit: apiResult.weightUnit,
     services,
+    estimates: apiResult.estimates,
   };
 }

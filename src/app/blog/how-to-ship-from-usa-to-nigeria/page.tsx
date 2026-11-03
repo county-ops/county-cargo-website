@@ -399,7 +399,7 @@ export default function HowToShipFromUsaToNigeriaPost() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild className="bg-primary hover:bg-blue-700 text-white font-semibold">
-                  <Link href="/shipping-from-usa-to-nigeria">
+                  <Link href="https://ship.countycargo.com/shipping-calculator">
                     Get Free US to Nigeria Quote <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

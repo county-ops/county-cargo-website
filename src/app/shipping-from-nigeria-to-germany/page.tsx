@@ -5,6 +5,7 @@ import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { JsonLd } from '@/components/json-ld';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   Plane,
   Clock,
@@ -134,6 +135,14 @@ export default function ShippingFromNigeriaToGermanyPage() {
               Express Air Courier (3–5 working days) &amp; Standard Air Cargo (5–10 working days) to Frankfurt, Berlin, Munich, Hamburg, and Cologne.
             </p>
 
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
+
             {/* Answer-First Summary */}
             <div className="mt-8 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-left max-w-3xl mx-auto shadow-xl">
               <h2 className="text-xs uppercase font-bold tracking-wider text-blue-300 mb-2 flex items-center gap-1.5">
@@ -250,7 +259,7 @@ export default function ShippingFromNigeriaToGermanyPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4 pt-2">
                 <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
-                  <Link href="/contact">Request Germany Freight Quote</Link>
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>Get a Quote <ArrowRight className="w-4 h-4 ml-2" /></Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 font-bold">
                   <a href="https://wa.me/2348110000421" target="_blank" rel="noopener noreferrer">

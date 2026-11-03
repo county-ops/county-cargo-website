@@ -38,6 +38,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { NigeriaUkQuoteForm } from '../ship-from-nigeria-to-uk/quote-form';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping from Nigeria to the UK | Air Freight, Food & Cargo | County Cargo',
@@ -308,10 +309,15 @@ export default function ShippingFromNigeriaToUkPage() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
-                  <a href="#quote-calculator">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
-                      Get a Nigeria-to-UK Shipping Quote
+                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-6 shadow-lg">
+                    <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      Get a Quote
                       <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                  <a href="#quote-calculator">
+                    <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold">
+                      Calculate Rate Below
                     </Button>
                   </a>
                   <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20ship%20from%20Nigeria%20to%20the%20UK" target="_blank" rel="noopener noreferrer">
@@ -772,10 +778,16 @@ export default function ShippingFromNigeriaToUkPage() {
               Get an accurate quote today or bring your packages to our Lagos or Abuja receiving hub. Our team ensures compliant, rapid transatlantic delivery.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-              <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20book%20a%20shipment%20from%20Nigeria%20to%20the%20UK" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 shadow-xl">
-                  Get a Nigeria-to-UK Shipping Quote
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote
                   <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+              <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20book%20a%20shipment%20from%20Nigeria%20to%20the%20UK" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/30 font-semibold px-6">
+                  <MessageSquare className="w-4 h-4 mr-2 text-emerald-400" />
+                  Book on WhatsApp
                 </Button>
               </a>
               <Link href="/contact">

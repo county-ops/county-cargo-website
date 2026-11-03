@@ -358,7 +358,7 @@ export default function ShippingNigeriaToUsaPost() {
                     </div>
                   </div>
                   <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium">
-                    <Link href="/#quote">Calculate Value Quote</Link>
+                    <Link href="https://ship.countycargo.com/shipping-calculator">Calculate Value Quote</Link>
                   </Button>
                 </div>
 
@@ -396,7 +396,7 @@ export default function ShippingNigeriaToUsaPost() {
                     </div>
                   </div>
                   <Button asChild variant="outline" className="w-full border-slate-300 hover:bg-slate-50">
-                    <Link href="/express-export">Calculate Express Quote</Link>
+                    <Link href="https://ship.countycargo.com/shipping-calculator">Calculate Express Quote</Link>
                   </Button>
                 </div>
               </div>

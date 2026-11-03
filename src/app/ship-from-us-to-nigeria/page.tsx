@@ -10,10 +10,12 @@ import {
   Truck,
   Shield,
   Star,
+  Calculator,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import { Faq } from './faq';
 import { UsNigeriaQuoteForm } from './quote-form';
 import Image from 'next/image';
@@ -123,6 +125,12 @@ export default function ShipFromUsToNigeriaPage() {
                 Fast, Reliable &amp; Affordable Shipping. Get your free US shipping address to shop American stores.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center md:justify-start">
+                <Button asChild size="lg" className="w-full sm:w-auto bg-[#dc2626] text-white font-bold hover:bg-[#b91c1c] transition-colors shadow-lg">
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                    <Calculator className="w-4 h-4 mr-2" />
+                    Get a Quote
+                  </Link>
+                </Button>
                 <Button asChild size="lg" className="w-full sm:w-auto bg-primary text-white font-semibold hover:bg-primary/90 transition-colors shadow-lg">
                   <Link href="https://ship.countycargo.com/login">Get Your Free US Address</Link>
                 </Button>
@@ -198,8 +206,8 @@ export default function ShipFromUsToNigeriaPage() {
                                 </ul>
                             </div>
                              <Button asChild className="w-full mt-auto">
-                                <Link href={tier.title.includes('Standard') ? '#quote' : '/contact'}>
-                                    {tier.title.includes('Standard') ? 'Get an Estimate' : 'Contact Us'}
+                                <Link href={tier.title.includes('Standard') ? SHIP_COUNTY_CARGO_QUOTE_URL : '/contact'}>
+                                    {tier.title.includes('Standard') ? 'Get a Quote' : 'Contact Us'}
                                 </Link>
                             </Button>
                           </div>
@@ -221,9 +229,17 @@ export default function ShipFromUsToNigeriaPage() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Shipping from US to Nigeria?</h2>
                 <p className="text-lg mb-8 opacity-90">Join thousands of satisfied customers who trust County Cargo for their shipping needs.</p>
-                <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200">
-                    <Link href="https://ship.countycargo.com/login">Get Your Free US Address Now</Link>
-                </Button>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Button asChild size="lg" className="bg-[#dc2626] text-white font-bold hover:bg-[#b91c1c] shadow-lg">
+                      <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                          <Calculator className="w-4 h-4 mr-2" />
+                          Get a Quote
+                      </Link>
+                  </Button>
+                  <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-200 font-bold">
+                      <Link href="https://ship.countycargo.com/login">Get Your Free US Address Now</Link>
+                  </Button>
+                </div>
             </div>
         </section>
       </main>

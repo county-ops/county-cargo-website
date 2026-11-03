@@ -39,6 +39,7 @@ const navLinks = [
     ]
   },
   { href: '/about', label: 'About Us' },
+  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
   { href: '/track', label: 'Track Shipment' },
 ];
@@ -49,12 +50,12 @@ export function Header() {
   const isHome = pathname === '/';
 
   const desktopNav = (
-     <div className="hidden lg:flex items-center justify-center flex-1 space-x-6 lg:space-x-8">
+     <div className="hidden lg:flex items-center justify-center flex-1 space-x-5 xl:space-x-7">
       {navLinks.map((link) => (
         link.submenu ? (
           <DropdownMenu key={link.label}>
             <DropdownMenuTrigger asChild>
-              <span className="text-secondary hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer select-none">
+              <span className="text-secondary hover:text-primary transition-colors inline-flex items-center gap-1 cursor-pointer select-none text-sm xl:text-base font-medium">
                 {link.label} <ChevronDown className="w-4 h-4 shrink-0" />
               </span>
             </DropdownMenuTrigger>
@@ -67,7 +68,7 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Link key={link.label} href={link.href} className="text-secondary hover:text-primary transition-colors inline-flex items-center">
+          <Link key={link.label} href={link.href} className="text-secondary hover:text-primary transition-colors inline-flex items-center text-sm xl:text-base font-medium">
             {link.label}
           </Link>
         )
@@ -98,9 +99,9 @@ export function Header() {
         <Link href="/contact" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Contact</Link>
         <Link href="/track" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Track Shipment</Link>
         
-        <div className="border-t border-gray-200 pt-4 pb-2">
+        <div className="border-t border-gray-200 pt-4 pb-2 space-y-2">
             <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
-            <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 mt-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
+            <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
         </div>
     </div>
   )
@@ -133,7 +134,7 @@ export function Header() {
             {desktopNav}
 
             {/* Desktop CTA Buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
+            <div className="hidden lg:flex items-center space-x-2.5">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="https://ship.countycargo.com/login">Login</Link>
               </Button>
@@ -142,8 +143,8 @@ export function Header() {
               </Button>
             </div>
 
-            {/* Mobile Hamburger */}
-            <div className="lg:hidden flex items-center">
+            {/* Mobile & Tablet Hamburger */}
+            <div className="lg:hidden flex items-center gap-2">
               <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
                 <SheetTrigger asChild>
                   <Button
@@ -186,17 +187,26 @@ export function Header() {
                       <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Services</p>
                       {[
                         { href: '/shipping-from-uk-to-nigeria', label: 'UK → Nigeria' },
+                        { href: '/shipping-from-uk-to-lagos', label: 'UK → Lagos' },
+                        { href: '/shipping-from-uk-to-abuja', label: 'UK → Abuja' },
+                        { href: '/shipping-from-uk-to-port-harcourt', label: 'UK → Port Harcourt' },
                         { href: '/shipping-from-london-to-nigeria', label: 'London Charlton Drop-Off' },
-                        { href: '/ship-from-us-to-nigeria', label: 'US → Nigeria' },
-                        { href: '/ship-from-nigeria-to-uk', label: 'Nigeria → UK' },
+                        { href: '/shipping-from-usa-to-nigeria', label: 'USA → Nigeria' },
+                        { href: '/shipping-from-usa-to-lagos', label: 'USA → Lagos' },
+                        { href: '/shipping-from-usa-to-abuja', label: 'USA → Abuja' },
+                        { href: '/shipping-from-usa-to-port-harcourt', label: 'USA → Port Harcourt' },
+                        { href: '/shipping-from-nigeria-to-uk', label: 'Nigeria → UK' },
                         { href: '/ship-from-nigeria-to-us', label: 'Nigeria → US' },
                         { href: '/ship-from-nigeria-to-world', label: 'Nigeria → World' },
+                        { href: '/express-export', label: 'Express Export (Worldwide)' },
+                        { href: '/uk-stores', label: 'Shop UK Online Stores' },
+                        { href: '/us-stores', label: 'Shop USA Online Stores' },
                       ].map(link => (
                         <Link
                           key={link.href}
                           href={link.href}
                           onClick={() => setSheetOpen(false)}
-                          className="flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:text-primary hover:bg-blue-50 transition-colors"
+                          className="flex items-center px-3 py-2 rounded-lg text-sm text-gray-700 hover:text-primary hover:bg-blue-50 transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -205,8 +215,9 @@ export function Header() {
 
                     {[
                       { href: '/about', label: 'About Us' },
+                      { href: '/blog', label: 'Blog' },
                       { href: '/contact', label: 'Contact' },
-                      { href: 'https://ship.countycargo.com/', label: 'Track Shipment' },
+                      { href: '/track', label: 'Track Shipment' },
                     ].map(link => (
                       <Link
                         key={link.href}
@@ -220,7 +231,7 @@ export function Header() {
                   </nav>
 
                   {/* Mobile CTA */}
-                  <div className="px-4 pb-6 pt-2 border-t border-gray-100 space-y-3">
+                  <div className="px-4 pb-6 pt-3 border-t border-gray-100 space-y-2.5">
                     <Link
                       href="https://ship.countycargo.com/login"
                       onClick={() => setSheetOpen(false)}

@@ -26,6 +26,8 @@ import {
   PhoneCall,
 } from 'lucide-react';
 import { Faq } from './faq';
+import { CentralQuotationForm } from '@/components/central-quotation-form';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Door-to-Door Shipping from Nigeria to the World (200+ Countries) | County Cargo',
@@ -57,42 +59,42 @@ const majorDestinations = [
     country: 'Canada',
     flag: '🇨🇦',
     popularCities: ['Toronto', 'Ottawa', 'Montreal', 'Vancouver', 'Calgary', 'Edmonton', 'Winnipeg', 'Brampton', 'Mississauga'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'Personal belongings, foodstuff, and business merchandise delivered across Canadian provinces.',
   },
   {
     country: 'Australia',
     flag: '🇦🇺',
     popularCities: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Canberra', 'Gold Coast'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'International freight & express courier compliant with Australian biosecurity standards.',
   },
   {
     country: 'Germany & Europe',
     flag: '🇪🇺',
     popularCities: ['Berlin', 'Frankfurt', 'Munich', 'Hamburg', 'Paris', 'Rome', 'Madrid', 'Amsterdam', 'Dublin', 'Zurich'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'Direct air links and EU customs clearance to Germany, France, Italy, Spain, Netherlands, Ireland, Switzerland, and 30+ European nations.',
   },
   {
     country: 'UAE & Middle East',
     flag: '🇦🇪',
     popularCities: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Riyadh', 'Jeddah', 'Dammam', 'Doha'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'High-frequency air cargo connecting Nigerian traders and families to Dubai, Saudi Arabia, and Qatar.',
   },
   {
     country: 'African Countries',
     flag: '🌍',
     popularCities: ['Accra', 'Nairobi', 'Kampala', 'Johannesburg', 'Cape Town', 'Kigali', 'Dakar', 'Cairo'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'Intra-African trade corridors connecting Ghana, Kenya, Uganda, South Africa, Rwanda, and 20+ countries.',
   },
   {
     country: 'Asia & Pacific',
     flag: '🌏',
     popularCities: ['Beijing', 'Guangzhou', 'Mumbai', 'Delhi', 'Tokyo', 'Singapore', 'Kuala Lumpur', 'Auckland'],
-    href: 'https://ship.countycargo.com',
+    href: SHIP_COUNTY_CARGO_QUOTE_URL,
     description: 'Trade and sample freight to China, India, Japan, Singapore, Malaysia, and New Zealand.',
   },
 ];
@@ -260,8 +262,8 @@ export default function ShipFromNigeriaToWorldPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
               <Button asChild size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-full shadow-xl">
-                <Link href="https://ship.countycargo.com">
-                  Get Your Shipping Quote <ArrowRight className="ml-2 w-4 h-4" />
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-8 py-6 text-base rounded-full">
@@ -279,6 +281,21 @@ export default function ShipFromNigeriaToWorldPage() {
                 <ShieldCheck className="w-4 h-4 text-blue-400" /> NEPC Export Documentation
               </span>
             </div>
+          </div>
+        </section>
+
+        {/* EMBEDDED WORLDWIDE EXPORT CALCULATOR */}
+        <section className="py-12 sm:py-16 bg-slate-100 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CentralQuotationForm
+              initialRoute="ng-to-world"
+              defaultFromCountry="Nigeria"
+              defaultFromCity="Lagos"
+              defaultToCountry="United States"
+              defaultWeight={25}
+              title="Calculate Worldwide Export Rates from Nigeria"
+              description="Select Lagos or Abuja hub, choose from 200+ destination countries, and calculate live Value Export and Express rates."
+            />
           </div>
         </section>
 
@@ -398,8 +415,8 @@ export default function ShipFromNigeriaToWorldPage() {
                 </div>
                 <div className="text-center lg:text-right">
                   <Button asChild size="lg" className="bg-slate-900 text-white hover:bg-black font-bold px-8 py-6 text-base rounded-full shadow-2xl">
-                    <Link href="https://ship.countycargo.com">
-                      Book DHL Express <ArrowRight className="ml-2 w-4 h-4" />
+                    <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                      Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                     </Link>
                   </Button>
                 </div>
@@ -604,8 +621,8 @@ export default function ShipFromNigeriaToWorldPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 font-bold px-8 py-6 text-base rounded-full shadow-2xl">
-                <Link href="https://ship.countycargo.com">
-                  Book Your Cargo Now <ArrowRight className="ml-2 w-4 h-4" />
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-8 py-6 text-base rounded-full">

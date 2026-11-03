@@ -246,7 +246,7 @@ export default function NigeriaCargoUpdateTodayPage() {
               <p className="opacity-90 text-sm mb-6">Our team monitors shipments throughout their journey and communicates important updates when confirmed information becomes available. For current prices, shipment requirements or assistance choosing between air and sea cargo, contact County Cargo before sending your items.</p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild className="bg-primary text-white hover:bg-primary/95 border-none font-semibold px-6 py-2.5">
-                  <Link href="/contact">Get a Quote <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                  <Link href="https://ship.countycargo.com/shipping-calculator">Get a Quote <ArrowRight className="ml-2 w-4 h-4" /></Link>
                 </Button>
                 <Button asChild variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-6 py-2.5">
                   <Link href="/shipping-from-uk-to-nigeria">UK to Nigeria Shipping</Link>

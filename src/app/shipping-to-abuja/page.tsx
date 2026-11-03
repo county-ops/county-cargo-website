@@ -8,6 +8,7 @@ import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
 import { MapPin, Truck, ArrowRight, HelpCircle } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping Cargo to Abuja, FCT | Doorstep Parcel Delivery',
@@ -69,6 +70,13 @@ export default function ShippingToAbujaPage() {
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
               Doorstep cargo delivery across Garki, Wuse, Maitama, Asokoro, Gwarinpa, and all parts of Abuja FCT.
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 
@@ -89,8 +97,8 @@ export default function ShippingToAbujaPage() {
                 <p className="text-sm text-gray-600">Standard rates with customs clearing included.</p>
               </div>
               <Button asChild className="bg-primary text-white font-bold shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria">
-                  Get Abuja Quote <ArrowRight className="ml-2 w-4 h-4" />
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
             </div>

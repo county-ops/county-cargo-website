@@ -51,7 +51,7 @@ export default function CargoAbujaToCanadaPage() {
           address: [
             { '@type': 'PostalAddress', streetAddress: 'Suite F8, Magnet Shopping Plaza, 525 Agege Motor Rd, Ladipo-Oshodi', addressLocality: 'Lagos', postalCode: '102214', addressCountry: 'NG' },
             { '@type': 'PostalAddress', streetAddress: 'Unit G6, Queens Dock Commercial Centre, 67-83 Norfolk Street', addressLocality: 'Liverpool', postalCode: 'L1 0BG', addressCountry: 'GB' },
-            { '@type': 'PostalAddress', streetAddress: '1234 N Belt Line Rd', addressLocality: 'Irving', addressRegion: 'TX', postalCode: '75061', addressCountry: 'US' },
+            { '@type': 'PostalAddress', streetAddress: '500 S Belt Line Road, Suite 508', addressLocality: 'Irving', addressRegion: 'TX', postalCode: '75060', addressCountry: 'US' },
           ],
         },
         areaServed: [{ '@type': 'City', name: 'Abuja' }, { '@type': 'Country', name: 'Canada' }],
@@ -193,7 +193,7 @@ export default function CargoAbujaToCanadaPage() {
               <a href="https://wa.me/2348110000421?text=Hello%20County%20Cargo%2C%20I%20want%20to%20ship%20cargo%20from%20Abuja%20to%20Canada" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold gap-2"><MessageSquare className="w-5 h-5" /> Chat on WhatsApp</Button>
               </a>
-              <Link href="/shipping-from-nigeria-to-canada">
+              <Link href="https://ship.countycargo.com/shipping-calculator">
                 <Button size="lg" variant="outline" className="w-full border-white text-white hover:bg-white/10 font-bold">Get a Quote</Button>
               </Link>
             </div>

@@ -8,7 +8,7 @@ import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
 import { SocialShare } from '@/components/social-share';
 import { DollarSign, CheckCircle2, ArrowRight, Plane, Ship, Package, ShieldCheck, HelpCircle } from 'lucide-react';
-import { SHIPPING_TIMEFRAMES } from '@/lib/constants';
+import { SHIPPING_TIMEFRAMES, SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping Rates to Nigeria from UK (2026 Price List) | County Cargo',
@@ -104,6 +104,13 @@ export default function UkToNigeriaShippingRatesPage() {
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
               Complete official price guide for air freight per kg, sea freight per CBM, 55-gallon shipping barrels, and customs clearance to Lagos, Abuja, and nationwide Nigeria.
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-gray-300 mt-6">
               <span>By County Cargo Logistics Specialists</span>
               <span>•</span>
@@ -223,11 +230,11 @@ export default function UkToNigeriaShippingRatesPage() {
             <div className="p-6 bg-gradient-to-r from-blue-900 to-slate-900 rounded-2xl text-white my-8 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <h3 className="text-xl font-bold">Calculate UK to Nigeria Shipping Cost</h3>
-                <p className="text-sm text-blue-100 mt-1">Try our instant rate calculator with zero personal info required.</p>
+                <p className="text-sm text-blue-100 mt-1">Request a shipping quote through our Ship County Cargo platform.</p>
               </div>
               <Button asChild className="bg-primary hover:bg-primary/90 text-white font-bold text-base px-6 py-3 shrink-0">
-                <Link href="/shipping-from-uk-to-nigeria#quote-calculator">
-                  Instant Calculator <ArrowRight className="ml-2 w-5 h-5" />
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>
             </div>

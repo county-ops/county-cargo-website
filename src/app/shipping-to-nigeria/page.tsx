@@ -25,6 +25,7 @@ import {
   HelpCircle,
 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping Cargo from UK & USA to Nigeria: Complete Guide | County Cargo',
@@ -143,6 +144,11 @@ export default function ShippingToNigeriaPillarPage() {
               Everything you need to know about air freight, ocean containers, £6.00/kg UK rates, Texas US receiving, customs clearance, and door-to-door delivery across Lagos, Abuja, and nationwide.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+              <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 font-bold px-8 py-5 text-base rounded-full shadow-lg">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
               <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-5 text-base rounded-full shadow-lg">
                 <Link href="/shipping-from-uk-to-nigeria">
                   Ship from UK to Nigeria <ArrowRight className="ml-2 w-4 h-4" />
@@ -226,7 +232,7 @@ export default function ShippingToNigeriaPillarPage() {
                 <h3 className="font-bold text-secondary text-lg mb-3 flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-primary" /> USA &amp; Texas Receiving Hub
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-600 mb-3">Send online shopping orders or drop off cargo at our Irving, Texas receiving center (75061) for nationwide delivery to:</p>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3">Send online shopping orders or drop off cargo at our Irving, Texas receiving center (75060) for nationwide delivery to:</p>
                 <ul className="space-y-1.5 text-xs sm:text-sm font-medium">
                   {ngDestinations.map((dest, i) => (
                     <li key={i}>
@@ -265,6 +271,11 @@ export default function ShippingToNigeriaPillarPage() {
                 Get an instant freight quote, receive your free UK/US shipping address, or book a doorstep collection with County Cargo today.
               </p>
               <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 font-bold px-8 py-5 text-base rounded-full shadow-lg">
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                    Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </Button>
                 <Button asChild size="lg" className="bg-white text-primary hover:bg-gray-100 font-bold px-8 py-5 text-base rounded-full shadow-lg">
                   <Link href="/shipping-from-uk-to-nigeria">
                     Ship from UK (£6.00/kg) <ArrowRight className="ml-2 w-4 h-4" />

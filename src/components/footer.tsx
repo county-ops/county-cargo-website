@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Truck, Facebook, Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export function Footer() {
     const [year, setYear] = useState<number | null>(null);
@@ -42,8 +43,8 @@ export function Footer() {
                         </div>
                         <div className="bg-gray-800/40 p-4 rounded-xl border border-gray-700/50 text-center sm:text-left">
                             <span className="font-semibold text-white block mb-1 text-base">🇺🇸 US Warehouse (Texas)</span>
-                            <a href="https://www.google.com/maps/search/?api=1&query=1234%20N%20Belt%20Line%20Rd%2C%20Irving%2C%20TX%2075061" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors leading-relaxed block text-xs">
-                                1234 N Belt Line Rd, Irving, TX 75061, United States
+                            <a href="https://www.google.com/maps/search/?api=1&query=500%20S%20Belt%20Line%20Rd%2C%20Suite%20508%2C%20Irving%2C%20TX%2075060" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors leading-relaxed block text-xs">
+                                500 S Belt Line Road, Suite 508, Irving, TX 75060, United States
                             </a>
                         </div>
                     </div>
@@ -80,6 +81,7 @@ export function Footer() {
                     <div className="text-center sm:text-left">
                         <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Company &amp; Guides</h3>
                         <ul className="space-y-2 text-sm">
+                            <li><Link href={SHIP_COUNTY_CARGO_QUOTE_URL} className="text-[#ef4444] font-bold hover:underline transition-colors">Get a Quote</Link></li>
                             <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact Hubs</Link></li>
                             <li><Link href="/blog" className="text-primary font-bold hover:underline transition-colors">All Shipping Guides &amp; Blog Index</Link></li>

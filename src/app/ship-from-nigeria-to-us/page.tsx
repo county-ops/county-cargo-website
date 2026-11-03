@@ -31,6 +31,7 @@ import {
 import { Faq } from './faq';
 import { NigeriaUsQuoteForm } from './quote-form';
 import placeholders from '@/app/lib/placeholder-images.json';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Shipping from Nigeria to the US: Reliable Cargo & Freight Solutions | County Cargo',
@@ -286,9 +287,12 @@ export default function ShipFromNigeriaToUsPage() {
                   <span className="px-3 py-1 bg-white/10 rounded-md border border-white/10">✈️ Weekly Air Consolidations</span>
                   <span className="px-3 py-1 bg-white/10 rounded-md border border-white/10">🇺🇸 50 US States Covered</span>
                 </div>
-                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <div className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
                   <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 font-bold px-8 py-6 text-base shadow-xl rounded-full">
-                    <Link href="#quote">Get Instant Quote &amp; Book</Link>
+                    <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>Get a Quote <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-6 py-6 text-base rounded-full">
+                    <Link href="#quote">Instant US Rate Calculator</Link>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="bg-white/10 text-white border-white/30 hover:bg-white/20 font-semibold px-6 py-6 text-base rounded-full">
                     <Link href="#pricing">View US Rates (from ₦15,500/kg)</Link>
@@ -886,7 +890,7 @@ export default function ShipFromNigeriaToUsPage() {
                 size="lg"
                 className="bg-white text-primary hover:bg-gray-100 font-bold px-10 py-6 text-base rounded-full shadow-2xl transition-all hover:scale-105"
               >
-                <Link href="https://ship.countycargo.com">Start Shipping Now <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>Get a Quote <ArrowRight className="ml-2 w-4 h-4" /></Link>
               </Button>
               <Button
                 asChild

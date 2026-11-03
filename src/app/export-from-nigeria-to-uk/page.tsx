@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@/components/breadcrumbs';
 import { RelatedGuides } from '@/components/related-guides';
 import { JsonLd } from '@/components/json-ld';
 import { SocialShare } from '@/components/social-share';
+import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 import {
   MapPin,
   Plane,
@@ -213,6 +214,14 @@ export default function ExportFromNigeriaToUkPage() {
             <p className="text-lg md:text-xl mt-4 text-blue-100 font-light max-w-3xl mx-auto">
               Learn how to send personal belongings, authentic African food, fashion, and commercial cargo from Nigeria to the United Kingdom safely and legally.
             </p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-full shadow-xl">
+                <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>
+                  Get a Quote <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
             
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-blue-200 mt-6 pt-4 border-t border-white/10">
               <span className="flex items-center gap-1"><UserCheck className="w-3.5 h-3.5 text-green-400" /> By County Cargo UK Trade Compliance Team</span>
@@ -500,6 +509,9 @@ export default function ExportFromNigeriaToUkPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold">
+                  <Link href={SHIP_COUNTY_CARGO_QUOTE_URL}>Get a Quote <ArrowRight className="w-4 h-4 ml-1.5" /></Link>
+                </Button>
+                <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
                   <Link href="/shipping-from-nigeria-to-uk">Book Nigeria Export</Link>
                 </Button>
                 <Button asChild variant="outline" className="border-white text-white hover:bg-white/10 font-bold">
