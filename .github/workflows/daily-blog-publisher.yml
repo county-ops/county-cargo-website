@@ -24,8 +24,8 @@ on:
   # after verifying storage persistence, authentication, and duplicate prevention.
   # The 4 hours (08:00, 09:00, 14:00, 15:00 UTC) accommodate both GMT and BST
   # so articles publish exactly at 09:00 and 15:00 Europe/London year-round.
-  # schedule:
-  #   - cron: '0 8,9,14,15 * * *'
+  schedule:
+    - cron: '0 8,9,14,15 * * *'
 
 jobs:
   publish-article:

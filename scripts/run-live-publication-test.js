@@ -170,7 +170,7 @@ All freight charges are calculated dynamically using the official [County Cargo 
   console.log(`====================================================`);
 }
 
-const targetBaseUrl = process.argv[2] || process.env.SITE_URL || 'https://county-cargo-website--studio-7985444708-3c482.us-central1.hosted.app';
+const targetBaseUrl = process.argv[2] || process.env.SITE_URL || 'https://countycargo.com';
 const testApiKey = process.argv[3] || process.env.ADMIN_API_KEY || 'cc_live_api_key_2026_shipping_blog';
 
 runLiveTest(targetBaseUrl, testApiKey)

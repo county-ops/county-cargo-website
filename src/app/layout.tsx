@@ -1,6 +1,6 @@
 
 import type { Metadata, Viewport } from 'next';
-import { Open_Sans, Poppins } from 'next/font/google';
+// Font loaded via CDN/CSS in globals.css
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { AosInit } from '@/components/aos-init';
@@ -9,19 +9,8 @@ import { CookieConsent } from '@/components/cookie-consent';
 import { JsonLd } from '@/components/json-ld';
 import { WhatsappButton } from '@/components/whatsapp-button';
 
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-});
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  variable: '--font-headline',
-  display: 'swap',
-  weight: ['600', '700'],
-});
+const openSans = { variable: 'font-body' };
+const poppins = { variable: 'font-headline' };
 
 export const viewport: Viewport = {
   width: 'device-width',
