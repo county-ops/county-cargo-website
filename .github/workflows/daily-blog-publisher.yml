@@ -1,0 +1,80 @@
+name: Daily County Cargo Blog Publisher
+
+on:
+  # MANUAL TESTING TRIGGER:
+  # Allows triggering from the GitHub Actions console with custom slot parameters
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'Publishing Slot (1 = Morning 09:00 UK, 2 = Afternoon 15:00 UK)'
+        required: true
+        default: '1'
+        type: choice
+        options:
+          - '1'
+          - '2'
+      target_date:
+        description: 'Target Date Override (YYYY-MM-DD) - Leave blank for today'
+        required: false
+        default: ''
+
+  # CRON SCHEDULE TRIGGER (CURRENTLY DISABLED):
+  # To enable automated daily publishing, uncomment the schedule block below
+  # after verifying storage persistence, authentication, and duplicate prevention.
+  # schedule:
+  #   # Slot 1: Morning 09:00 AM UK (08:00 UTC / 09:00 UTC depending on BST/GMT)
+  #   - cron: '0 9 * * *'
+  #   # Slot 2: Afternoon 15:00 PM UK (14:00 UTC / 15:00 UTC depending on BST/GMT)
+  #   - cron: '0 15 * * *'
+
+jobs:
+  publish-article:
+    name: Publish Scheduled Shipping Guide
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci --prefer-offline
+
+      - name: Determine Publishing Slot
+        id: determine-slot
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "SLOT=${{ github.event.inputs.slot }}" >> $GITHUB_OUTPUT
+            echo "DATE_OVERRIDE=${{ github.event.inputs.target_date }}" >> $GITHUB_OUTPUT
+          else
+            # Automated cron execution: determine slot based on UTC hour
+            HOUR=$(date -u +%H)
+            if [ "$HOUR" -ge 13 ]; then
+              echo "SLOT=2" >> $GITHUB_OUTPUT
+            else
+              echo "SLOT=1" >> $GITHUB_OUTPUT
+            fi
+            echo "DATE_OVERRIDE=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish Daily Article to County Cargo
+        env:
+          ADMIN_API_KEY: ${{ secrets.ADMIN_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SITE_URL: 'https://countycargo.com'
+        run: |
+          SLOT_ARG="${{ steps.determine-slot.outputs.SLOT }}"
+          DATE_ARG="${{ steps.determine-slot.outputs.DATE_OVERRIDE }}"
+          
+          CMD="node scripts/daily-blog-publisher.js --slot=$SLOT_ARG"
+          if [ -n "$DATE_ARG" ]; then
+            CMD="$CMD --date=$DATE_ARG"
+          fi
+          
+          echo "Executing publishing command: $CMD"
+          $CMD

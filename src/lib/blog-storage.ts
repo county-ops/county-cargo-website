@@ -1,74 +1,65 @@
-import fs from 'fs';
-import path from 'path';
 import standardPosts from './blog-posts.json';
 import { slugify, type BlogPost } from './blog-utils';
+import { getFirestoreDb } from './firebase-admin';
 
 export type { BlogPost };
 export { slugify };
 
-const CUSTOM_POSTS_PATH = path.join(process.cwd(), 'src', 'data', 'custom-blog-posts.json');
-let inMemoryCustomPosts: BlogPost[] | null = null;
+const COLLECTION_NAME = 'blog_posts';
 
-export function getCustomBlogPosts(): BlogPost[] {
-  if (inMemoryCustomPosts !== null) {
-    return inMemoryCustomPosts;
-  }
-
+/**
+ * Retrieve all custom blog posts stored persistently in Firestore.
+ */
+export async function getCustomBlogPosts(): Promise<BlogPost[]> {
   try {
-    if (fs.existsSync(CUSTOM_POSTS_PATH)) {
-      const fileData = fs.readFileSync(CUSTOM_POSTS_PATH, 'utf-8');
-      const parsed = JSON.parse(fileData);
-      if (Array.isArray(parsed)) {
-        inMemoryCustomPosts = parsed;
-        return inMemoryCustomPosts;
-      }
+    const db = getFirestoreDb();
+    const snapshot = await db.collection(COLLECTION_NAME).orderBy('createdAt', 'desc').get();
+    if (snapshot.empty) {
+      return [];
     }
-  } catch (err) {
-    console.error('Error reading custom blog posts file:', err);
-  }
-
-  inMemoryCustomPosts = [];
-  return inMemoryCustomPosts;
-}
-
-export function saveCustomBlogPosts(posts: BlogPost[]): boolean {
-  inMemoryCustomPosts = posts;
-  try {
-    const dir = path.dirname(CUSTOM_POSTS_PATH);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    fs.writeFileSync(CUSTOM_POSTS_PATH, JSON.stringify(posts, null, 2), 'utf-8');
-    return true;
-  } catch (err) {
-    console.error('Error writing custom blog posts file:', err);
-    return false;
+    return snapshot.docs.map((doc) => doc.data() as BlogPost);
+  } catch (err: any) {
+    console.error('Error fetching blog posts from Firestore:', err);
+    // Return empty list on connection fallback so page loads standard guides
+    return [];
   }
 }
 
-export function getAllBlogPosts(): BlogPost[] {
-  const custom = getCustomBlogPosts();
+/**
+ * Retrieve all blog posts: persistent Firestore articles prepended before static core guides.
+ */
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+  const custom = await getCustomBlogPosts();
+
   const standard = (standardPosts as BlogPost[]).map((p) => ({
     ...p,
     isCustom: false,
   }));
 
-  // Custom posts appear first so newly posted blogs are featured at the top of the blog grid
+  // Newly published custom posts in Firestore appear at the top
   return [...custom, ...standard];
 }
 
-export function getBlogPostBySlug(slug: string): BlogPost | null {
+/**
+ * Retrieve a single blog post by its URL slug, checking Firestore first then standard guides.
+ */
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const cleanSlug = slug.replace(/^\/blog\//, '').replace(/\/$/, '');
   const targetUrl = `/blog/${cleanSlug}`;
 
-  // Check custom posts first
-  const customPosts = getCustomBlogPosts();
-  const foundCustom = customPosts.find(
-    (p) => p.url === targetUrl || p.url.endsWith(`/${cleanSlug}`)
-  );
-  if (foundCustom) return foundCustom;
+  // 1. Direct O(1) Firestore lookup by document ID (which is the slug)
+  try {
+    const db = getFirestoreDb();
+    const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
+    const docSnap = await docRef.get();
+    if (docSnap.exists) {
+      return docSnap.data() as BlogPost;
+    }
+  } catch (err) {
+    console.error(`Error querying slug "${cleanSlug}" from Firestore:`, err);
+  }
 
-  // Check standard posts
+  // 2. Check standard core guides
   const foundStandard = (standardPosts as BlogPost[]).find(
     (p) => p.url === targetUrl || p.url.endsWith(`/${cleanSlug}`)
   );
@@ -95,10 +86,14 @@ export interface CreatePostInput {
   publicationDate?: string;
 }
 
-export function createNewBlogPost(
+/**
+ * Enforce unique slug, validate fields, and persist new blog post to Firestore.
+ * Returns an error if saving fails.
+ */
+export async function createNewBlogPost(
   input: CreatePostInput,
   authorInfo: { name: string; username: string }
-): { success: boolean; post?: BlogPost; error?: string } {
+): Promise<{ success: boolean; post?: BlogPost; error?: string }> {
   const title = (input.title || '').trim();
   if (!title) {
     return { success: false, error: 'Title is required.' };
@@ -112,68 +107,105 @@ export function createNewBlogPost(
 
   const url = `/blog/${cleanSlug}`;
 
-  // Check if a post with this slug already exists
-  const existingCustom = getCustomBlogPosts();
-  if (existingCustom.some((p) => p.url === url)) {
-    return { success: false, error: `A blog post with URL "${url}" already exists.` };
+  // Enforce unique slug against static core guides
+  const standardExists = (standardPosts as BlogPost[]).some(
+    (p) => p.url === url || p.url.endsWith(`/${cleanSlug}`)
+  );
+  if (standardExists) {
+    return {
+      success: false,
+      error: `Slug collision: A core shipping guide with URL "${url}" already exists.`,
+    };
   }
 
-  // Parse tags
-  let tagList: string[] = [];
-  if (Array.isArray(input.tags)) {
-    tagList = input.tags.map((t) => t.trim()).filter(Boolean);
-  } else if (typeof input.tags === 'string') {
-    tagList = input.tags
-      .split(',')
-      .map((t) => t.trim())
-      .filter(Boolean);
-  }
-  if (tagList.length === 0) {
-    tagList = ['County Cargo', 'Air Freight', 'Shipping Guide'];
+  // Enforce unique slug against Firestore documents
+  let db;
+  try {
+    db = getFirestoreDb();
+  } catch (err: any) {
+    return {
+      success: false,
+      error: `Firestore database initialization failed: ${err.message || err}`,
+    };
   }
 
-  const now = new Date();
-  const dateStr = input.publicationDate || now.toISOString().split('T')[0];
+  try {
+    const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
+    const existingSnap = await docRef.get();
+    if (existingSnap.exists) {
+      return {
+        success: false,
+        error: `Slug collision: An article with URL "${url}" already exists in Firestore.`,
+      };
+    }
 
-  const defaultImages = [
-    '/cargo-plane-hero.png',
-    '/images/blog/shipping-from-nigeria-to-uk-air-cargo-county.jpg',
-    '/images/blog/shipping-from-nigeria-to-usa-air-freight-county.jpg',
-    '/images/blog/uk-to-nigeria-shipping-rates-calculator.jpg',
-  ];
+    // Parse and sanitize tags
+    let tagList: string[] = [];
+    if (Array.isArray(input.tags)) {
+      tagList = input.tags.map((t) => t.trim()).filter(Boolean);
+    } else if (typeof input.tags === 'string') {
+      tagList = input.tags
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean);
+    }
+    if (tagList.length === 0) {
+      tagList = ['County Cargo', 'Air Freight', 'Shipping Guide'];
+    }
 
-  const post: BlogPost = {
-    title,
-    url,
-    category: input.category || 'Shipping Guides',
-    author: input.author || authorInfo.name || 'County Cargo Logistics Team',
-    publicationDate: dateStr,
-    tags: tagList,
-    description: (input.description || '').trim() || title,
-    image: input.image?.trim() || defaultImages[0],
-    imageHint: input.imageHint || `${title} - County Cargo logistics & freight guide`,
-    content: (input.content || '').trim(),
-    isCustom: true,
-    createdAt: now.toISOString(),
-  };
+    const now = new Date();
+    const dateStr = input.publicationDate || now.toISOString().split('T')[0];
+    const defaultImage = '/cargo-plane-hero.png';
 
-  const updatedCustom = [post, ...existingCustom];
-  saveCustomBlogPosts(updatedCustom);
+    const post: BlogPost = {
+      title,
+      url,
+      category: input.category || 'Shipping Guides',
+      author: input.author || authorInfo.name || 'County Cargo Logistics Team',
+      publicationDate: dateStr,
+      tags: tagList,
+      description: (input.description || '').trim() || title,
+      image: input.image?.trim() || defaultImage,
+      imageHint: input.imageHint || `${title} - County Cargo logistics & freight guide`,
+      content: (input.content || '').trim(),
+      isCustom: true,
+      createdAt: now.toISOString(),
+    };
 
-  return { success: true, post };
+    // Save to Firestore. If set() fails, an error is caught and returned.
+    await docRef.set(post);
+
+    return { success: true, post };
+  } catch (err: any) {
+    console.error('Failed to save blog post to Firestore:', err);
+    return {
+      success: false,
+      error: `Failed to save blog post to Firestore: ${err.message || 'Unknown Firestore write error'}`,
+    };
+  }
 }
 
-export function deleteCustomBlogPost(slug: string): { success: boolean; error?: string } {
+/**
+ * Delete a custom post from Firestore by slug.
+ */
+export async function deleteCustomBlogPost(slug: string): Promise<{ success: boolean; error?: string }> {
   const cleanSlug = slug.replace(/^\/blog\//, '').replace(/\/$/, '');
-  const targetUrl = `/blog/${cleanSlug}`;
 
-  const existingCustom = getCustomBlogPosts();
-  const filtered = existingCustom.filter((p) => p.url !== targetUrl);
+  try {
+    const db = getFirestoreDb();
+    const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
+    const docSnap = await docRef.get();
 
-  if (filtered.length === existingCustom.length) {
-    return { success: false, error: 'Custom post not found or it is a standard core guide.' };
+    if (!docSnap.exists) {
+      return { success: false, error: 'Custom post not found in Firestore.' };
+    }
+
+    await docRef.delete();
+    return { success: true };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: `Failed to delete post from Firestore: ${err.message || err}`,
+    };
   }
-
-  saveCustomBlogPosts(filtered);
-  return { success: true };
 }

@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const customPosts = getCustomBlogPosts();
-  const allPosts = getAllBlogPosts();
+  const customPosts = await getCustomBlogPosts();
+  const allPosts = await getAllBlogPosts();
 
   return NextResponse.json({
     success: true,
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const result = createNewBlogPost(body, {
+    const result = await createNewBlogPost(body, {
       name: user.name,
       username: user.username,
     });
@@ -82,7 +82,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Slug parameter is required.' }, { status: 400 });
     }
 
-    const result = deleteCustomBlogPost(slug);
+    const result = await deleteCustomBlogPost(slug);
     if (!result.success) {
       return NextResponse.json({ success: false, error: result.error }, { status: 400 });
     }
