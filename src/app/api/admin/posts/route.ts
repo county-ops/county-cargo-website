@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!result.success) {
-      return NextResponse.json({ success: false, error: result.error }, { status: 400 });
+      return NextResponse.json({ success: false, error: result.error }, { status: result.statusCode || 400 });
     }
 
     return NextResponse.json({
@@ -84,7 +84,7 @@ export async function DELETE(request: NextRequest) {
 
     const result = await deleteCustomBlogPost(slug);
     if (!result.success) {
-      return NextResponse.json({ success: false, error: result.error }, { status: 400 });
+      return NextResponse.json({ success: false, error: result.error }, { status: result.statusCode || 400 });
     }
 
     return NextResponse.json({

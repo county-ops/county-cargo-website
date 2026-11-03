@@ -93,16 +93,16 @@ export interface CreatePostInput {
 export async function createNewBlogPost(
   input: CreatePostInput,
   authorInfo: { name: string; username: string }
-): Promise<{ success: boolean; post?: BlogPost; error?: string }> {
+): Promise<{ success: boolean; post?: BlogPost; error?: string; statusCode?: number }> {
   const title = (input.title || '').trim();
   if (!title) {
-    return { success: false, error: 'Title is required.' };
+    return { success: false, statusCode: 400, error: 'Title is required.' };
   }
 
   const rawSlug = (input.slug || slugify(title)).trim();
   const cleanSlug = slugify(rawSlug);
   if (!cleanSlug) {
-    return { success: false, error: 'A valid slug could not be generated from the title.' };
+    return { success: false, statusCode: 400, error: 'A valid slug could not be generated from the title.' };
   }
 
   const url = `/blog/${cleanSlug}`;
@@ -114,6 +114,7 @@ export async function createNewBlogPost(
   if (standardExists) {
     return {
       success: false,
+      statusCode: 409,
       error: `Slug collision: A core shipping guide with URL "${url}" already exists.`,
     };
   }
@@ -125,19 +126,13 @@ export async function createNewBlogPost(
   } catch (err: any) {
     return {
       success: false,
+      statusCode: 500,
       error: `Firestore database initialization failed: ${err.message || err}`,
     };
   }
 
   try {
     const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
-    const existingSnap = await docRef.get();
-    if (existingSnap.exists) {
-      return {
-        success: false,
-        error: `Slug collision: An article with URL "${url}" already exists in Firestore.`,
-      };
-    }
 
     // Parse and sanitize tags
     let tagList: string[] = [];
@@ -172,15 +167,24 @@ export async function createNewBlogPost(
       createdAt: now.toISOString(),
     };
 
-    // Save to Firestore. If set() fails, an error is caught and returned.
-    await docRef.set(post);
+    // Use atomic document creation (docRef.create) to prevent overwriting existing articles.
+    // If a document with cleanSlug already exists, create() throws ALREADY_EXISTS (code 6).
+    await docRef.create(post);
 
     return { success: true, post };
   } catch (err: any) {
     console.error('Failed to save blog post to Firestore:', err);
+    if (err.code === 6 || err.code === 'ALREADY_EXISTS' || err.message?.includes('ALREADY_EXISTS')) {
+      return {
+        success: false,
+        statusCode: 409,
+        error: `Slug collision: An article with slug "${cleanSlug}" already exists in Firestore.`,
+      };
+    }
     return {
       success: false,
-      error: `Failed to save blog post to Firestore: ${err.message || 'Unknown Firestore write error'}`,
+      statusCode: 500,
+      error: `Firestore persistence failed: ${err.message || 'Unknown Firestore write error'}`,
     };
   }
 }
