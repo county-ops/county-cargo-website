@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { BlogPostGrid } from '@/components/blog-post-grid';
-import blogPosts from '@/lib/blog-posts.json';
+import { getAllBlogPosts } from '@/lib/blog-storage';
+import { ShieldCheck } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Shipping & Cargo Blog | County Cargo Guides & Insights',
@@ -36,6 +40,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllBlogPosts();
+
   return (
     <>
       <Header />
@@ -49,9 +55,19 @@ export default function BlogPage() {
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16" data-aos="fade-up">
-            <span className="inline-block bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
-              Knowledge Hub &bull; {blogPosts.length} Published Shipping Guides
-            </span>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <span className="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                Knowledge Hub &bull; {posts.length} Published Shipping Guides
+              </span>
+              <Link
+                href="/admin/login"
+                className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/25 text-white text-xs font-medium px-3 py-1 rounded-full border border-white/20 transition-all hover:scale-105"
+                title="Agent & Admin Portal - Publish Shipping Guides"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
+                <span>Agent Portal</span>
+              </Link>
+            </div>
             <h1 className="text-4xl md:text-5xl font-extrabold hero-text-glow">
               County Cargo Shipping &amp; Logistics Guides
             </h1>
@@ -63,7 +79,7 @@ export default function BlogPage() {
 
         <section id="blog-posts" className="py-12 sm:py-16 bg-white min-h-[60vh]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <BlogPostGrid posts={blogPosts} />
+            <BlogPostGrid posts={posts} />
           </div>
         </section>
       </main>

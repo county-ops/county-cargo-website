@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, Facebook, Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { Truck, Facebook, Mail, Phone, MapPin, Instagram, Lock } from 'lucide-react';
 import { SHIP_COUNTY_CARGO_QUOTE_URL } from '@/lib/constants';
 
 export function Footer() {
@@ -90,6 +90,7 @@ export function Footer() {
                             <li><Link href="/info" className="text-gray-400 hover:text-white transition-colors">Rates &amp; Terms</Link></li>
                             <li><Link href="/uk-stores" className="text-gray-400 hover:text-white transition-colors">Shop UK Online Stores</Link></li>
                             <li><Link href="/us-stores" className="text-gray-400 hover:text-white transition-colors">Shop USA Online Stores</Link></li>
+                            <li><Link href="/admin/login" className="text-blue-400 hover:text-white transition-colors flex items-center gap-1 font-medium"><Lock className="w-3.5 h-3.5 text-blue-400" /> Agent &amp; Admin Portal</Link></li>
                         </ul>
                     </div>
 
@@ -142,6 +143,8 @@ export function Footer() {
                         <Link href="/info" className="text-shiny-red hover:opacity-80 transition-opacity">Info, Prices &amp; Terms</Link>
                         <span className="text-gray-500">|</span>
                         <Link href="/faq" className="text-shiny-red hover:opacity-80 transition-opacity">FAQ</Link>
+                        <span className="text-gray-500">|</span>
+                        <Link href="/admin/login" className="text-gray-400 hover:text-white transition-opacity text-xs sm:text-sm">Agent / Admin Login</Link>
                     </div>
                 </div>
             </div>
