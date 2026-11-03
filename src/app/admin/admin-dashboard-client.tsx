@@ -27,6 +27,10 @@ import {
   Table,
   PhoneCall,
   Search,
+  KeyRound,
+  UserPlus,
+  ShieldCheck,
+  Lock,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { slugify, type BlogPost } from '@/lib/blog-utils';
@@ -35,6 +39,14 @@ interface UserSession {
   username: string;
   name: string;
   role: 'admin' | 'agent';
+}
+
+interface TeamUser {
+  username: string;
+  name: string;
+  role: 'admin' | 'agent';
+  createdAt: string;
+  isBuiltIn: boolean;
 }
 
 const PRESET_IMAGES = [
@@ -77,7 +89,7 @@ const CATEGORIES = [
 
 export function AdminDashboardClient({ initialUser }: { initialUser: UserSession }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'create' | 'manage'>('create');
+  const [activeTab, setActiveTab] = useState<'create' | 'manage' | 'users'>('create');
   const [editorMode, setEditorMode] = useState<'write' | 'preview'>('write');
 
   // Form states
@@ -104,6 +116,17 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
   const [totalCoreCount, setTotalCoreCount] = useState(0);
   const [loadingPosts, setLoadingPosts] = useState(true);
   const [searchFilter, setSearchFilter] = useState('');
+
+  // Team users state (Admin only)
+  const [teamUsers, setTeamUsers] = useState<TeamUser[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState(false);
+  const [newUsername, setNewUsername] = useState('');
+  const [newName, setNewName] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newRole, setNewRole] = useState<'agent' | 'admin'>('agent');
+  const [userSuccessMsg, setUserSuccessMsg] = useState('');
+  const [userErrorMsg, setUserErrorMsg] = useState('');
+  const [savingUser, setSavingUser] = useState(false);
 
   // Auto-slugify when title changes
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -133,9 +156,31 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
     }
   };
 
+  // Fetch team users
+  const loadUsers = async () => {
+    if (initialUser.role !== 'admin') return;
+    try {
+      setLoadingUsers(true);
+      const res = await fetch('/api/admin/users');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setTeamUsers(data.users || []);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load users:', err);
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
+
   useEffect(() => {
     loadPosts();
-  }, []);
+    if (initialUser.role === 'admin') {
+      loadUsers();
+    }
+  }, [initialUser.role]);
 
   const handleLogout = async () => {
     try {
@@ -250,6 +295,68 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
     }
   };
 
+  const handleCreateOrUpdateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setUserErrorMsg('');
+    setUserSuccessMsg('');
+
+    if (!newUsername.trim() || !newName.trim() || !newPassword.trim()) {
+      setUserErrorMsg('Please fill in Name, Username/Email, and Password.');
+      return;
+    }
+
+    setSavingUser(true);
+    try {
+      const res = await fetch('/api/admin/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: newUsername,
+          name: newName,
+          password: newPassword,
+          role: newRole,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setUserErrorMsg(data.error || 'Failed to save credential.');
+        setSavingUser(false);
+        return;
+      }
+
+      setUserSuccessMsg(`Login credential for "${newName}" (${newUsername}) saved successfully!`);
+      setNewUsername('');
+      setNewName('');
+      setNewPassword('');
+      loadUsers();
+    } catch {
+      setUserErrorMsg('Network error while saving user.');
+    } finally {
+      setSavingUser(false);
+    }
+  };
+
+  const handleDeleteUser = async (username: string) => {
+    if (!confirm(`Are you sure you want to remove the login credential for "${username}"?`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/users?username=${encodeURIComponent(username)}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success) {
+        loadUsers();
+      } else {
+        alert(data.error || 'Failed to delete user.');
+      }
+    } catch {
+      alert('Error connecting to server.');
+    }
+  };
+
   const filteredCustomPosts = customPosts.filter((p) => {
     if (!searchFilter.trim()) return true;
     const query = searchFilter.toLowerCase();
@@ -352,7 +459,7 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
           </div>
 
           {/* Navigation Tabs */}
-          <div className="mt-6 flex border-b border-slate-200">
+          <div className="mt-6 flex flex-wrap border-b border-slate-200 gap-1 sm:gap-2">
             <button
               onClick={() => setActiveTab('create')}
               className={`pb-3 px-4 font-semibold text-sm flex items-center gap-2 border-b-2 transition-colors ${
@@ -375,6 +482,19 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
               <FileText className="w-4 h-4" />
               Manage Agent Articles ({customPosts.length})
             </button>
+            {initialUser.role === 'admin' && (
+              <button
+                onClick={() => setActiveTab('users')}
+                className={`pb-3 px-4 font-semibold text-sm flex items-center gap-2 border-b-2 transition-colors ${
+                  activeTab === 'users'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                <KeyRound className="w-4 h-4" />
+                Staff Credentials &amp; Passwords
+              </button>
+            )}
           </div>
         </div>
 
@@ -915,6 +1035,195 @@ Ensure all commercial goods and food items are packaged in sturdy, tamper-eviden
                 </table>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Tab 3: Staff Credentials & Passwords (Admin Only) */}
+        {activeTab === 'users' && initialUser.role === 'admin' && (
+          <div className="space-y-8">
+            {/* Create Credential Card */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+              <div className="flex items-center gap-2 mb-2">
+                <UserPlus className="w-5 h-5 text-blue-600" />
+                <h3 className="text-lg font-bold text-slate-900">
+                  Create or Update Staff &amp; Agent Login
+                </h3>
+              </div>
+              <p className="text-xs text-slate-500 mb-6">
+                Add login credentials for team members and logistics agents so they can access the portal and draft shipping articles.
+              </p>
+
+              {userSuccessMsg && (
+                <div className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-900 text-xs flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
+                  <span>{userSuccessMsg}</span>
+                </div>
+              )}
+
+              {userErrorMsg && (
+                <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-900 text-xs flex items-start gap-2.5">
+                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                  <span>{userErrorMsg}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleCreateOrUpdateUser} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Staff Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                    placeholder="e.g. Ibrahim Musa"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs text-slate-900 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Username or Email *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                    placeholder="e.g. ibrahim or agent@countycargo.com"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs text-slate-900 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Password *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Min 6 characters"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs text-slate-900 font-mono focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Account Role
+                  </label>
+                  <select
+                    value={newRole}
+                    onChange={(e) => setNewRole(e.target.value as 'agent' | 'admin')}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs bg-white text-slate-900 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                  >
+                    <option value="agent">Logistics Agent (Can post &amp; manage articles)</option>
+                    <option value="admin">Administrator (Full Access &amp; User Management)</option>
+                  </select>
+                </div>
+
+                <div className="sm:col-span-2 lg:col-span-4 flex justify-end pt-2">
+                  <Button
+                    type="submit"
+                    disabled={savingUser}
+                    className="px-5 py-2 text-xs bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg flex items-center gap-1.5"
+                  >
+                    {savingUser ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" /> Saving Credential...
+                      </>
+                    ) : (
+                      <>
+                        <UserPlus className="w-3.5 h-3.5" /> Save Credential
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </div>
+
+            {/* Existing Credentials Table */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-4">
+              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                <Lock className="w-4 h-4 text-blue-600" /> Active System &amp; Staff Credentials
+              </h3>
+
+              {loadingUsers ? (
+                <div className="py-8 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin text-blue-600" /> Loading credentials...
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs text-slate-700">
+                    <thead className="bg-slate-50 text-slate-600 uppercase font-semibold border-b border-slate-200">
+                      <tr>
+                        <th className="py-3 px-4">Name</th>
+                        <th className="py-3 px-4">Username / Login ID</th>
+                        <th className="py-3 px-4">Role</th>
+                        <th className="py-3 px-4">Status / Type</th>
+                        <th className="py-3 px-4 text-right">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200">
+                      {teamUsers.map((u) => (
+                        <tr key={u.username} className="hover:bg-slate-50/70">
+                          <td className="py-3 px-4 font-semibold text-slate-900">{u.name}</td>
+                          <td className="py-3 px-4 font-mono text-slate-600">{u.username}</td>
+                          <td className="py-3 px-4">
+                            <span
+                              className={`px-2 py-0.5 rounded font-medium text-[11px] ${
+                                u.role === 'admin'
+                                  ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                                  : 'bg-blue-50 text-blue-700 border border-blue-200'
+                              }`}
+                            >
+                              {u.role.toUpperCase()}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4">
+                            {u.isBuiltIn ? (
+                              <span className="text-[11px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                                System Account ({u.createdAt})
+                              </span>
+                            ) : (
+                              <span className="text-[11px] text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+                                Active Custom Staff
+                              </span>
+                            )}
+                          </td>
+                          <td className="py-3 px-4 text-right">
+                            {u.isBuiltIn ? (
+                              <span className="text-[11px] text-slate-400 italic">Managed in Cloud Env</span>
+                            ) : (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleDeleteUser(u.username)}
+                                className="h-7 px-2 text-xs text-red-600 hover:bg-red-50 hover:text-red-700"
+                              >
+                                <Trash2 className="w-3.5 h-3.5 mr-1" /> Remove
+                              </Button>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
+
+            {/* Cloud Credentials Reference */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5 text-xs text-slate-700 space-y-2">
+              <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-blue-600" /> Cloud Secrets &amp; Environment Variables
+              </h4>
+              <p className="leading-relaxed">
+                The primary built-in system administrator password can also be updated directly in your hosting dashboard by setting the <code className="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono text-blue-700">ADMIN_PASSWORD</code> environment variable. All custom agent passwords created here are securely salted and hashed.
+              </p>
+            </div>
           </div>
         )}
       </main>

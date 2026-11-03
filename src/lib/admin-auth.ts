@@ -1,10 +1,20 @@
 import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
 import { cookies } from 'next/headers';
 
 export interface AdminUser {
   username: string;
   name: string;
   role: 'admin' | 'agent';
+}
+
+export interface StoredUser {
+  username: string;
+  name: string;
+  passwordHash: string;
+  role: 'admin' | 'agent';
+  createdAt: string;
 }
 
 export interface SessionPayload {
@@ -19,7 +29,10 @@ const COOKIE_NAME = 'cc_admin_session';
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'countycargo-admin-secret-2026-secure-key';
 export const ADMIN_API_KEY = process.env.ADMIN_API_KEY || 'cc_live_api_key_2026_shipping_blog';
 
-// Default credentials - can also be customized via environment variables
+const USERS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'admin-users.json');
+let inMemoryUsers: StoredUser[] | null = null;
+
+// Default built-in credentials - can be customized via environment variables
 export const ADMIN_CREDENTIALS = {
   admin: {
     username: 'admin',
@@ -35,13 +48,148 @@ export const ADMIN_CREDENTIALS = {
   },
 };
 
+function hashPassword(password: string): string {
+  return crypto.createHmac('sha256', SESSION_SECRET).update(password).digest('hex');
+}
+
+export function getStoredUsers(): StoredUser[] {
+  if (inMemoryUsers !== null) {
+    return inMemoryUsers;
+  }
+
+  try {
+    if (fs.existsSync(USERS_FILE_PATH)) {
+      const data = fs.readFileSync(USERS_FILE_PATH, 'utf-8');
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed)) {
+        inMemoryUsers = parsed;
+        return inMemoryUsers;
+      }
+    }
+  } catch (err) {
+    console.error('Error reading admin-users.json:', err);
+  }
+
+  inMemoryUsers = [];
+  return inMemoryUsers;
+}
+
+export function saveStoredUsers(users: StoredUser[]): boolean {
+  inMemoryUsers = users;
+  try {
+    const dir = path.dirname(USERS_FILE_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(USERS_FILE_PATH, JSON.stringify(users, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error('Error writing admin-users.json:', err);
+    return false;
+  }
+}
+
+export function createOrUpdateStoredUser(input: {
+  username: string;
+  name: string;
+  password?: string;
+  role: 'admin' | 'agent';
+}): { success: boolean; user?: Omit<StoredUser, 'passwordHash'>; error?: string } {
+  const username = (input.username || '').trim().toLowerCase();
+  const name = (input.name || '').trim();
+
+  if (!username) {
+    return { success: false, error: 'Username is required.' };
+  }
+  if (!name) {
+    return { success: false, error: 'Name is required.' };
+  }
+
+  const existing = getStoredUsers();
+  const index = existing.findIndex((u) => u.username === username);
+
+  if (index >= 0) {
+    // Update existing user
+    const userToUpdate = existing[index];
+    userToUpdate.name = name;
+    userToUpdate.role = input.role || userToUpdate.role;
+    if (input.password && input.password.trim()) {
+      userToUpdate.passwordHash = hashPassword(input.password.trim());
+    }
+    saveStoredUsers(existing);
+    return {
+      success: true,
+      user: {
+        username: userToUpdate.username,
+        name: userToUpdate.name,
+        role: userToUpdate.role,
+        createdAt: userToUpdate.createdAt,
+      },
+    };
+  } else {
+    // Create new user
+    if (!input.password || !input.password.trim()) {
+      return { success: false, error: 'Password is required for new accounts.' };
+    }
+    if (input.password.trim().length < 6) {
+      return { success: false, error: 'Password must be at least 6 characters long.' };
+    }
+
+    const newUser: StoredUser = {
+      username,
+      name,
+      passwordHash: hashPassword(input.password.trim()),
+      role: input.role || 'agent',
+      createdAt: new Date().toISOString(),
+    };
+
+    saveStoredUsers([newUser, ...existing]);
+    return {
+      success: true,
+      user: {
+        username: newUser.username,
+        name: newUser.name,
+        role: newUser.role,
+        createdAt: newUser.createdAt,
+      },
+    };
+  }
+}
+
+export function deleteStoredUser(username: string): { success: boolean; error?: string } {
+  const normalized = username.trim().toLowerCase();
+  const existing = getStoredUsers();
+  const filtered = existing.filter((u) => u.username !== normalized);
+
+  if (filtered.length === existing.length) {
+    return { success: false, error: 'User not found in custom credentials store.' };
+  }
+
+  saveStoredUsers(filtered);
+  return { success: true };
+}
+
 export function validateCredentials(usernameInput: string, passwordInput: string): AdminUser | null {
   const normalizedUser = (usernameInput || '').trim().toLowerCase();
   const password = (passwordInput || '').trim();
 
   if (!normalizedUser || !password) return null;
 
-  // Check admin
+  // 1. Check custom stored users first
+  const storedUsers = getStoredUsers();
+  const match = storedUsers.find((u) => u.username === normalizedUser);
+  if (match) {
+    const inputHash = hashPassword(password);
+    if (match.passwordHash === inputHash) {
+      return {
+        username: match.username,
+        name: match.name,
+        role: match.role,
+      };
+    }
+  }
+
+  // 2. Check built-in / environment variable admin
   if (
     (normalizedUser === 'admin' || normalizedUser === 'admin@countycargo.com') &&
     password === ADMIN_CREDENTIALS.admin.password
@@ -53,7 +201,7 @@ export function validateCredentials(usernameInput: string, passwordInput: string
     };
   }
 
-  // Check agent
+  // 3. Check built-in / environment variable agent
   if (
     (normalizedUser === 'agent' || normalizedUser === 'agent@countycargo.com') &&
     password === ADMIN_CREDENTIALS.agent.password
