@@ -59,14 +59,6 @@ export default async function BlogPage() {
               <span className="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
                 Knowledge Hub &bull; {posts.length} Published Shipping Guides
               </span>
-              <Link
-                href="/admin/login"
-                className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/25 text-white text-xs font-medium px-3 py-1 rounded-full border border-white/20 transition-all hover:scale-105"
-                title="Agent & Admin Portal - Publish Shipping Guides"
-              >
-                <ShieldCheck className="w-3.5 h-3.5 text-blue-300" />
-                <span>Agent Portal</span>
-              </Link>
             </div>
             <h1 className="text-4xl md:text-5xl font-extrabold hero-text-glow">
               County Cargo Shipping &amp; Logistics Guides

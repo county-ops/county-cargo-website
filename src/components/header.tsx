@@ -102,7 +102,7 @@ export function Header() {
         <div className="border-t border-gray-200 pt-4 pb-2 space-y-2">
             <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50">Login</Link>
             <Link href="https://ship.countycargo.com/login" className="block px-3 py-2 bg-primary text-white text-center rounded-md hover:bg-blue-700">Register</Link>
-            <Link href="/admin/login" className="block px-3 py-2 text-center text-xs text-slate-500 hover:text-primary font-medium">Agent &amp; Admin Blog Portal &rarr;</Link>
+
         </div>
     </div>
   )
