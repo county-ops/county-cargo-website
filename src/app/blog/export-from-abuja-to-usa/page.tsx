@@ -139,7 +139,7 @@ export default function ExportFromAbujaToUsaPage() {
         headline: 'How to Export and Ship from Abuja to the USA: Rates, Delivery Times & Complete Guide',
         description:
           'A complete guide to exporting packages, dry foodstuffs, fashion, and commercial cargo from Abuja (FCT) to the United States with County Cargo.',
-        image: 'https://countycargo.com/service-nigeria-to-us-enhanced.png',
+        image: 'https://countycargo.com/blog-export-abuja-to-usa.jpg',
         author: {
           '@type': 'Organization',
           name: 'County Cargo Staff',
@@ -210,7 +210,7 @@ export default function ExportFromAbujaToUsaPage() {
         <section
           className="min-h-[55vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.78), rgba(15, 23, 42, 0.88)), url('/service-nigeria-to-us-enhanced.png')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.78), rgba(15, 23, 42, 0.88)), url('/blog-export-abuja-to-usa.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

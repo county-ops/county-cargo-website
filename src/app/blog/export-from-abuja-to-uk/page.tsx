@@ -145,7 +145,7 @@ export default function ExportFromAbujaToUkPage() {
         headline: 'Exporting and Shipping from Abuja to the UK: Costs, Express Options & Complete Guide',
         description:
           'Complete guide to exporting parcels, dry foodstuffs, fashion, and commercial cargo from Abuja (FCT) to the United Kingdom with County Cargo.',
-        image: 'https://countycargo.com/service-nigeria-uk-enhanced.png',
+        image: 'https://countycargo.com/blog-export-abuja-to-uk.jpg',
         author: {
           '@type': 'Organization',
           name: 'County Cargo Staff',
@@ -216,7 +216,7 @@ export default function ExportFromAbujaToUkPage() {
         <section
           className="min-h-[55vh] flex items-center justify-center text-white"
           style={{
-            background: `linear-gradient(rgba(13, 27, 62, 0.78), rgba(15, 23, 42, 0.88)), url('/service-nigeria-uk-enhanced.png')`,
+            background: `linear-gradient(rgba(13, 27, 62, 0.78), rgba(15, 23, 42, 0.88)), url('/blog-export-abuja-to-uk.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
