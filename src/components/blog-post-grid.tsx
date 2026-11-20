@@ -234,7 +234,7 @@ export function BlogPostGrid({ posts }: BlogPostGridProps) {
       {activeTab === 'All' && !searchQuery && posts.length >= 2 && (
         <section className="bg-gradient-to-br from-blue-900 via-primary to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl">
           <div className="flex items-center gap-2 text-blue-200 text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-4 h-4 text-yellow-400" /> Latest Shipping Guides (October 2026)
+            <Sparkles className="w-4 h-4 text-yellow-400" /> Latest Shipping Guides (November 2026)
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {posts.slice(0, 2).map((post, idx) => (

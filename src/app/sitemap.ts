@@ -77,6 +77,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const blogPosts = [
+    '/blog/export-from-abuja-to-usa',
+    '/blog/export-from-abuja-to-uk',
     '/blog/cargo-price-from-nigeria-to-usa',
     '/blog/nigeria-to-uk-cargo-shipping-guide',
     '/blog/export-from-nigeria-to-uk-usa-canada-worldwide',
