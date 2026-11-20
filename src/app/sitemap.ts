@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/uk-stores',
     '/us-stores',
     '/blog',
+    '/blog/export-from-abuja-to-usa',
+    '/blog/export-from-abuja-to-uk',
     '/blog/door-to-door-shipping-from-uk-and-usa-to-nigeria-guide',
     '/blog/shipping-from-uk-and-usa-to-nigeria-avoid-delays',
     '/blog/shipping-industry-nigeria-2026',
