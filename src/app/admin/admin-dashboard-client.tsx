@@ -51,6 +51,14 @@ interface TeamUser {
 
 const PRESET_IMAGES = [
   {
+    url: '/images/blog/export-from-abuja-to-usa.jpg',
+    title: 'Abuja to USA Air Cargo Hub',
+  },
+  {
+    url: '/images/blog/export-from-abuja-to-uk.jpg',
+    title: 'Abuja to UK Export Hub',
+  },
+  {
     url: '/cargo-plane-hero.png',
     title: 'Cargo Plane Aircraft',
   },

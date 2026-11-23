@@ -36,6 +36,11 @@ export function getFirestoreDb(): Firestore {
   if (!firestoreDb) {
     getAdminApp();
     firestoreDb = getFirestore();
+    try {
+      firestoreDb.settings({ ignoreUndefinedProperties: true });
+    } catch {
+      // Firestore settings may already be locked if initialized earlier in the process
+    }
   }
   return firestoreDb;
 }

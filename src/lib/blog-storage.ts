@@ -33,10 +33,13 @@ export async function getAllBlogPosts(): Promise<BlogPost[]> {
     console.error('Failed to fetch custom posts for blog index, falling back to core guides:', err);
   }
 
-  const standard = (standardPosts as BlogPost[]).map((p) => ({
-    ...p,
-    isCustom: false,
-  }));
+  const customUrls = new Set(custom.map((p) => p.url));
+  const standard = (standardPosts as BlogPost[])
+    .filter((p) => !customUrls.has(p.url))
+    .map((p) => ({
+      ...p,
+      isCustom: false,
+    }));
 
   // Newly published custom posts in Firestore appear at the top
   return [...custom, ...standard];
@@ -109,17 +112,20 @@ export async function createNewBlogPost(
   }
 
   const url = `/blog/${cleanSlug}`;
+  const trimmedSlotId = (input.slotId || '').trim();
 
-  // Enforce unique slug against static core guides
-  const standardExists = (standardPosts as BlogPost[]).some(
-    (p) => p.url === url || p.url.endsWith(`/${cleanSlug}`)
-  );
-  if (standardExists) {
-    return {
-      success: false,
-      statusCode: 409,
-      error: `Slug collision: A core shipping guide with URL "${url}" already exists.`,
-    };
+  // Enforce unique slug against static core guides when running automated slot publishing
+  if (trimmedSlotId) {
+    const standardExists = (standardPosts as BlogPost[]).some(
+      (p) => p.url === url || p.url.endsWith(`/${cleanSlug}`)
+    );
+    if (standardExists) {
+      return {
+        success: false,
+        statusCode: 409,
+        error: `Slug collision: A core shipping guide with URL "${url}" already exists.`,
+      };
+    }
   }
 
   // Initialize Firestore
@@ -151,7 +157,6 @@ export async function createNewBlogPost(
   const now = new Date();
   const dateStr = input.publicationDate || now.toISOString().split('T')[0];
   const defaultImage = '/cargo-plane-hero.png';
-  const trimmedSlotId = (input.slotId || '').trim();
 
   const post: BlogPost = {
     title,
@@ -166,8 +171,13 @@ export async function createNewBlogPost(
     content: (input.content || '').trim(),
     isCustom: true,
     createdAt: now.toISOString(),
-    slotId: trimmedSlotId || undefined,
+    ...(trimmedSlotId ? { slotId: trimmedSlotId } : {}),
   };
+
+  // Strip any undefined fields to ensure Firestore never rejects the payload
+  const firestoreDocData = Object.fromEntries(
+    Object.entries(post).filter(([, value]) => value !== undefined)
+  );
 
   const docRef = db.collection(COLLECTION_NAME).doc(cleanSlug);
   const slotRef = trimmedSlotId ? db.collection(SLOTS_COLLECTION_NAME).doc(trimmedSlotId) : null;
@@ -185,15 +195,15 @@ export async function createNewBlogPost(
         }
       }
 
-      // 2. Atomically check that document slug does not already exist
+      // 2. Atomically check that document slug does not already exist when slotId is used
       const articleSnap = await transaction.get(docRef);
-      if (articleSnap.exists) {
+      if (articleSnap.exists && slotRef) {
         const slugErr: any = new Error(`Slug collision: An article with slug "${cleanSlug}" already exists in Firestore.`);
         slugErr.code = 'SLUG_COLLISION';
         throw slugErr;
       }
 
-      // 3. Atomically reserve slot and create article
+      // 3. Atomically reserve slot and create/update article
       if (slotRef) {
         transaction.set(slotRef, {
           slotId: trimmedSlotId,
@@ -202,7 +212,7 @@ export async function createNewBlogPost(
           reservedAt: now.toISOString(),
         });
       }
-      transaction.set(docRef, post);
+      transaction.set(docRef, firestoreDocData);
     });
 
     return { success: true, post };
