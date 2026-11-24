@@ -132,6 +132,22 @@ const CURATED_EDITORIAL_REGISTRY = [
 
   // UK ARRIVAL & LOGISTICS HUBS (LONDON & LIVERPOOL)
   {
+    url: '/images/blog/uk-to-nigeria-sea-cargo-port-clearance.jpg',
+    filename: 'uk-to-nigeria-sea-cargo-port-clearance.jpg',
+    routes: ['uk-to-nigeria', 'sea-cargo', 'port-arrival', 'customs-clearance', 'apapa', 'tincan', 'maritime', 'port'],
+    title: 'Lagos Port Sea Cargo Consignee Clearance',
+    alt: 'Nigerian consignee and maritime logistics officer reviewing shipping documentation and bill of lading at Lagos Apapa port container terminal for sea cargo arrival.',
+    tags: ['lagos', 'apapa', 'tincan', 'sea-cargo', 'clearance', 'consignee', 'customs', 'maritime'],
+  },
+  {
+    url: '/images/blog/uk-to-nigeria-sea-boxes-packed-dimensions.jpg',
+    filename: 'uk-to-nigeria-sea-boxes-packed-dimensions.jpg',
+    routes: ['uk-to-nigeria', 'sea-cargo', 'sea-boxes', 'dimensions', 'barrels', 'packing', 'cbm', 'volumetric'],
+    title: 'UK to Nigeria Sea Freight Palletized Boxes and Barrels',
+    alt: 'Reinforced export cargo cartons and sea freight shipping barrels arranged on wooden pallets at County Cargo logistics depot for UK to Nigeria transit.',
+    tags: ['uk', 'sea-freight', 'sea-boxes', 'dimensions', 'barrels', 'pallets', 'packing', 'warehouse'],
+  },
+  {
     url: '/images/blog/london-heathrow-nigerian-cargo-arrival.jpg',
     filename: 'london-heathrow-nigerian-cargo-arrival.jpg',
     routes: ['nigeria-to-uk', 'uk-to-nigeria', 'london', 'heathrow', 'customs-clearance'],
