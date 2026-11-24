@@ -24,13 +24,15 @@ on:
   # after verifying storage persistence, authentication, and duplicate prevention.
   # The 4 hours (08:00, 09:00, 14:00, 15:00 UTC) accommodate both GMT and BST
   # so articles publish exactly at 09:00 and 15:00 Europe/London year-round.
-  schedule:
-    - cron: '0 8,9,14,15 * * *'
+  # schedule:
+  #   - cron: '0 8,9,14,15 * * *'
 
 jobs:
   publish-article:
     name: Publish Scheduled Shipping Guide
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
@@ -64,3 +66,16 @@ jobs:
           
           echo "Executing publishing command: $CMD"
           $CMD
+
+      - name: Commit and Push Generated Editorial Blog Images
+        if: success()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/images/blog/
+          if git diff --staged --quiet; then
+            echo "No newly generated editorial images to commit."
+          else
+            git commit -m "chore(blog): commit new high-resolution editorial photograph for published guide [skip ci]"
+            git push origin HEAD:main
+          fi

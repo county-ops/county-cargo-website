@@ -52,35 +52,58 @@ interface TeamUser {
 const PRESET_IMAGES = [
   {
     url: '/images/blog/export-from-abuja-to-usa.jpg',
-    title: 'Abuja to USA Air Cargo Hub',
+    title: 'Abuja Wuye Hub to USA Air Cargo',
+    alt: 'Nigerian logistics staff and exporters weighing and scanning commercial export boxes at County Cargo Wuye Market Hub Abuja with Aso Rock backdrop.',
   },
   {
     url: '/images/blog/export-from-abuja-to-uk.jpg',
-    title: 'Abuja to UK Export Hub',
+    title: 'Abuja Wuye Hub to UK Export Hub',
+    alt: 'County Cargo operations team packing palletized export parcels at Wuye Ultra Modern Market Abuja for London Heathrow air freight dispatch.',
   },
   {
-    url: '/cargo-plane-hero.png',
-    title: 'Cargo Plane Aircraft',
+    url: '/images/blog/abuja-wuye-market-produce-export.jpg',
+    title: 'Wuye Market Abuja Agricultural Produce Exporter',
+    alt: 'Nigerian businesswoman and exporter at Wuye Ultra Modern Market Abuja inspecting vacuum-sealed packages of dried agricultural goods for international air cargo.',
   },
   {
-    url: '/images/blog/shipping-from-nigeria-to-uk-air-cargo-county.jpg',
-    title: 'Nigeria to UK Air Freight',
+    url: '/images/blog/lagos-ladipo-market-freight-dispatch.jpg',
+    title: 'Lagos Ladipo Market Freight Dispatch',
+    alt: 'Bustling commercial trade morning at Ladipo market Lagos with Nigerian traders and County Cargo logistics staff strapping heavy-duty export cartons.',
   },
   {
-    url: '/images/blog/shipping-from-nigeria-to-usa-air-freight-county.jpg',
-    title: 'Nigeria to USA Air Cargo',
+    url: '/images/blog/lagos-ikeja-customer-parcel-handover.jpg',
+    title: 'Lagos Ikeja Customer Service Reception',
+    alt: 'Welcoming County Cargo customer service representative in Ikeja Lagos scanning an export parcel on a digital scale handed over by a Nigerian entrepreneur.',
   },
   {
-    url: '/images/blog/uk-to-nigeria-shipping-rates-calculator.jpg',
-    title: 'UK to Nigeria Rates & Map',
+    url: '/images/blog/london-heathrow-nigerian-cargo-arrival.jpg',
+    title: 'London Heathrow Cargo Terminal Arrival',
+    alt: 'Air cargo logistics handlers at Heathrow freight terminal receiving palletized County Cargo cartons arriving on direct flights from Nigeria.',
   },
   {
-    url: '/images/blog/how-to-export-goods-nigeria-to-uk-commercial-guide.jpg',
-    title: 'Commercial Export Cargo',
+    url: '/images/blog/liverpool-commercial-dock-cargo.jpg',
+    title: 'Liverpool Queens Dock Freight Distribution',
+    alt: 'Logistics supervisors reviewing air freight pallets labeled COUNTY CARGO NIGERIA FREIGHT inside Queens Dock commercial facility in Liverpool, UK.',
   },
   {
-    url: '/images/blog/complete-guide-nigeria-to-uk-freight.jpg',
-    title: 'Warehouse & Consolidated Pallets',
+    url: '/images/blog/texas-irving-depot-nigeria-shipment.jpg',
+    title: 'Texas Irving Hub USA Customer Collection',
+    alt: 'Nigerian-American customer picking up commercial air cargo consignments at County Cargo USA depot on South Belt Line Road in Irving, Texas.',
+  },
+  {
+    url: '/images/blog/kano-commercial-textiles-export-depot.jpg',
+    title: 'Kano Commercial Trading Textiles & Leather',
+    alt: 'Experienced Hausa merchant and assistant in Kano packing traditional handwoven textiles and tanned leather goods into County Cargo export boxes.',
+  },
+  {
+    url: '/images/blog/nigeria-customs-export-inspection-hall.jpg',
+    title: 'Lagos Airport Export Inspection & Seals',
+    alt: 'Nigerian export compliance officer checking phytosanitary seals and electronic Form NXP documentation on export cartons at Lagos cargo airport.',
+  },
+  {
+    url: '/images/blog/how-to-package-cargo-boxes.jpg',
+    title: 'Heavy-Duty Export Packaging Standards',
+    alt: 'Step-by-step demonstration of professional export packaging: double-walled corrugated boxes with corner protectors and heavy-duty filament strapping.',
   },
 ];
 
@@ -112,6 +135,7 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
   const [tags, setTags] = useState('Nigeria to UK, Air Cargo, Shipping Guide');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(PRESET_IMAGES[0].url);
+  const [imageHint, setImageHint] = useState(PRESET_IMAGES[0].alt || '');
   const [content, setContent] = useState('');
 
   // UI state
@@ -253,6 +277,7 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
           tags,
           description,
           image,
+          imageHint,
           content,
         }),
       });
@@ -275,6 +300,8 @@ export function AdminDashboardClient({ initialUser }: { initialUser: UserSession
       setTitle('');
       setSlug('');
       setDescription('');
+      setImage(PRESET_IMAGES[0].url);
+      setImageHint(PRESET_IMAGES[0].alt || '');
       setContent('');
       setIsSlugAuto(true);
     } catch {
@@ -881,22 +908,41 @@ Ensure all commercial goods and food items are packaged in sturdy, tamper-eviden
                       type="text"
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
-                      placeholder="/cargo-plane-hero.png"
+                      placeholder="/images/blog/export-from-abuja-to-usa.jpg"
                       className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs text-slate-900 focus:ring-2 focus:ring-blue-600 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-2">
-                      Or Select from County Cargo Library:
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      Image Caption / Alt Text (SEO &amp; Accessibility)
                     </label>
-                    <div className="grid grid-cols-2 gap-2">
+                    <textarea
+                      rows={2}
+                      value={imageHint}
+                      onChange={(e) => setImageHint(e.target.value)}
+                      placeholder="Descriptive caption depicting authentic Nigerian people, market/hub setting, and shipping route..."
+                      className="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs text-slate-900 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+                    />
+                    <p className="text-[10px] text-slate-500 mt-0.5">
+                      Prioritise realistic Nigerian people, businesses, streets, and specific UK/USA routes. Avoid generic illustrations.
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-2">
+                      Or Select from Verified Nigerian Editorial Library:
+                    </label>
+                    <div className="grid grid-cols-2 gap-2 max-h-80 overflow-y-auto pr-1">
                       {PRESET_IMAGES.map((preset) => (
                         <button
                           key={preset.url}
                           type="button"
-                          onClick={() => setImage(preset.url)}
-                          className={`group text-left rounded-lg overflow-hidden border transition-all p-1 ${
+                          onClick={() => {
+                            setImage(preset.url);
+                            if (preset.alt) setImageHint(preset.alt);
+                          }}
+                          className={`group text-left rounded-lg overflow-hidden border transition-all p-1.5 ${
                             image === preset.url
                               ? 'border-blue-600 ring-2 ring-blue-500/30 bg-blue-50/50'
                               : 'border-slate-200 hover:border-slate-300 bg-white'
@@ -910,7 +956,7 @@ Ensure all commercial goods and food items are packaged in sturdy, tamper-eviden
                               className="object-cover group-hover:scale-105 transition-transform"
                             />
                           </div>
-                          <span className="block text-[10px] font-medium text-slate-700 truncate">
+                          <span className="block text-[10px] font-semibold text-slate-800 truncate">
                             {preset.title}
                           </span>
                         </button>
@@ -920,16 +966,18 @@ Ensure all commercial goods and food items are packaged in sturdy, tamper-eviden
                 </div>
               </div>
 
-              {/* Guidelines Box */}
-              <div className="bg-blue-50/80 rounded-2xl border border-blue-200/80 p-5 text-xs text-blue-900 space-y-2.5">
-                <h4 className="font-bold flex items-center gap-1.5 text-blue-900">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-600" /> SEO &amp; Publishing Tips
+              {/* Editorial Photography & Publishing Guidelines */}
+              <div className="bg-gradient-to-br from-amber-50/90 to-blue-50/90 rounded-2xl border border-amber-200/80 p-5 text-xs text-slate-800 space-y-2.5">
+                <h4 className="font-bold flex items-center gap-1.5 text-amber-900 text-sm">
+                  <Sparkles className="w-4 h-4 text-amber-600" /> New Editorial Photography Standards
                 </h4>
-                <ul className="list-disc pl-4 space-y-1 text-blue-800 leading-relaxed">
-                  <li>Keep titles clear with primary routes (e.g. &quot;Nigeria to UK&quot;).</li>
-                  <li>Include chargeable weight minimums and current per-kg rates.</li>
-                  <li>Mention drop-off hubs in Lagos (Ladipo) and Abuja (Wuye).</li>
-                  <li>Articles are indexed on Google and automatically appear on <Link href="/blog" target="_blank" className="underline font-semibold">/blog</Link>.</li>
+                <ul className="list-disc pl-4 space-y-1.5 text-slate-700 leading-relaxed">
+                  <li><strong>Unique Featured Imagery:</strong> Never reuse the same photograph across multiple articles.</li>
+                  <li><strong>Authentic Nigerian Identity:</strong> Prioritise realistic Nigerian people, local businesses, markets (Wuye, Ladipo, Ikeja, Kano), and streetscapes.</li>
+                  <li><strong>Route Accuracy:</strong> Match visual context directly to the shipping route (Nigeria, UK, USA).</li>
+                  <li><strong>Sharp High Resolution:</strong> 1920 × 1080 (16:9 widescreen) natural daylight documentary photographs.</li>
+                  <li><strong>No Generic Illustrations:</strong> Airplane graphics, cartoon renders, blurry stock photos, and heavy text overlays are strictly prohibited.</li>
+                  <li><strong>SEO Alt Text:</strong> Provide rich descriptive text explaining people, location, and cargo handling.</li>
                 </ul>
               </div>
             </div>

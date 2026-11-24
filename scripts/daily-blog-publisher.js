@@ -30,6 +30,7 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs');
 const path = require('path');
+const { resolveBlogImage, BLACKLISTED_IMAGES } = require('./blog-image-engine');
 
 // 1. Anchor Configuration: Monday, 2 November 2026
 const ANCHOR_DATE_STR = '2026-11-02';
@@ -341,10 +342,10 @@ async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
     slugs: new Set(),
     titles: new Set(),
     slotIds: new Set(),
+    usedImages: new Set(),
     items: [],
   };
 
-  // 1. Read local static core posts
   // 1. Read local static core posts - MUST fail if missing
   const jsonPath = path.resolve(__dirname, '../src/lib/blog-posts.json');
   if (!fs.existsSync(jsonPath)) {
@@ -358,7 +359,8 @@ async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
       if (slug) existing.slugs.add(slug);
       if (p.title) existing.titles.add(p.title.trim().toLowerCase());
       if (p.slotId) existing.slotIds.add(p.slotId.trim());
-      existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: false });
+      if (p.image) existing.usedImages.add(p.image.trim());
+      existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, image: p.image, isCustom: false });
     });
   } catch (err) {
     throw new Error('Existing article retrieval failed: Could not read local catalogue (' + err.message + ')');
@@ -391,7 +393,8 @@ async function loadAllExistingArticles(baseUrl, apiKey, fetchFn = makeRequest) {
         if (slug) existing.slugs.add(slug);
         if (p.title) existing.titles.add(p.title.trim().toLowerCase());
         if (p.slotId) existing.slotIds.add(p.slotId.trim());
-        existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, isCustom: true });
+        if (p.image) existing.usedImages.add(p.image.trim());
+        existing.items.push({ title: p.title, slug, url: p.url, slotId: p.slotId, image: p.image, isCustom: true });
       });
     } catch (err) {
       throw new Error(`Existing article retrieval failed: Could not fetch custom articles from live API (${err.message})`);
@@ -466,6 +469,13 @@ MANDATORY RULES & PROHIBITIONS:
 3. REMOVE DISPUTED RATES: DO NOT assert or promise fixed per-kg freight prices (such as ₦10,500/kg or ₦16,000/kg or ₦55,000/kg as static guarantees). Explain that freight rates are dynamic, based on volumetric vs actual weight, destination zone, and real-time carrier costs. Direct shippers to the official County Cargo Shipping Calculator (${OFFICIAL_DATA.URLS.CALCULATOR}) for confirmed live quotes.
 4. ABSOLUTELY NO DISCONTINUED SERVICES: Never reference the discontinued 48-Hour Special Express or 48-hour flight options.
 5. RICH MARKDOWN: Produce substantial, high-quality markdown content (minimum 1,200 words) with clear subheadings, structured tables, packaging checklists, and actionable regulatory advice.
+6. EDITORIAL PHOTOGRAPHY DIRECTIVE:
+   Every published article must have a unique featured image complying with County Cargo's premium editorial photography standard:
+   - Prioritise realistic Nigerian people, businesses, streets, and communities.
+   - Accurately reflect the shipping route (e.g. Nigeria to UK, Nigeria to USA, UK to Nigeria, USA to Nigeria, Abuja Wuye Hub, Lagos Ladipo/Ikeja Hub).
+   - Natural-looking people, customers, traders, and logistics professionals in action.
+   - Explicitly forbid generic illustrations (like cargo planes), blurry images, cartoons, and text overlays.
+   - Include an SEO-friendly image filename and descriptive alternative text.
 
 You must respond with pure, valid JSON in the following format:
 {
@@ -473,6 +483,10 @@ You must respond with pure, valid JSON in the following format:
   "slug": "unique-url-slug",
   "description": "150-160 character meta description containing focus keywords",
   "tags": ["tag1", "tag2", "tag3", "tag4"],
+  "imageAlt": "Descriptive, SEO-friendly alternative text depicting realistic Nigerian people, commercial setting, and shipping route",
+  "imageSubject": "Short route/subject classification (e.g. abuja-wuye-market-agricultural-export or lagos-ladipo-air-cargo)",
+  "imagePrompt": "Hyper-realistic editorial photography prompt for 35mm lens, natural daylight, candid Nigerian people, authentic commercial scene, 16:9 widescreen, zero text overlays",
+  "suggestedImageFilename": "seo-friendly-name-based-on-slug.jpg",
   "citedSources": [
     { "name": "Exact Name of Retrieved Source 1", "url": "Exact Retrieved URL 1", "claim": "Regulatory claim supported" },
     { "name": "Exact Name of Retrieved Source 2", "url": "Exact Retrieved URL 2", "claim": "Regulatory claim supported" }
@@ -715,7 +729,27 @@ async function publishDailyArticle(options = {}) {
     throw new Error(`Publication aborted: Could not generate a unique topic after ${maxAttempts} attempts against the complete article catalogue.`);
   }
 
-  // 5. Authenticate and Publish via POST /api/admin/posts
+  // 5. Resolve a guaranteed unique, high-resolution, route-specific editorial photograph
+  const outputImagesDir = path.resolve(__dirname, '../public/images/blog');
+  const resolvedImage = await resolveBlogImage({
+    article: articleData,
+    pillarInfo,
+    existingUsedImages: existing.usedImages,
+    openaiApiKey,
+    outputDir: outputImagesDir,
+    enableAiGeneration: true,
+    fetchFn,
+  });
+
+  console.log(`[Publisher] 📷 Resolved Unique Editorial Image: "${resolvedImage.url}"`);
+  console.log(`[Publisher] 📝 Image Alt/Caption: "${resolvedImage.alt}"`);
+
+  // Verify that blacklisted generic illustrations are NEVER used
+  if (BLACKLISTED_IMAGES.has(resolvedImage.url)) {
+    throw new Error(`[Publisher] Publication aborted: Generic illustration "${resolvedImage.url}" is banned under editorial photography standards.`);
+  }
+
+  // 6. Authenticate and Publish via POST /api/admin/posts
   if (!apiKey) {
     throw new Error('Publication aborted: ADMIN_API_KEY is required to publish articles to Firestore.');
   }
@@ -728,7 +762,8 @@ async function publishDailyArticle(options = {}) {
     publicationDate: london.dateStr,
     tags: articleData.tags || ['County Cargo', pillarInfo.pillar, 'Shipping Guide'],
     description: articleData.description,
-    image: '/cargo-plane-hero.png',
+    image: resolvedImage.url,
+    imageHint: resolvedImage.alt,
     content: articleData.content,
     slotId: slotId,
   });
